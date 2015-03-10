@@ -1,0 +1,76 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Classes
+{
+    using Exceptions;
+    public class PayPalDocument
+    {
+        const string DATE_FORMAT = "YYYY/MM/dd/HH:mm:SS";
+
+        public decimal AccountNumber{get;private set;}
+        public DateTime DateStart{get;private set;}
+        public DateTime DateEnd { get; private set; }
+        public KeyValuePair<int, decimal>[] Deposits { get; private set; }
+
+        public PayPalDocument(decimal accountNumber, DateTime dateStart, DateTime dateEnd, KeyValuePair<int, decimal>[] deposits)
+        {
+            this.AccountNumber = accountNumber;
+            this.DateStart = dateStart;
+            this.DateEnd = dateEnd;
+            this.Deposits = deposits;
+        }
+
+        public static PayPalDocument Parse(string text)
+        {
+            return Parse(text.Split('\n'));
+        }
+
+        public static PayPalDocument Parse(string[] lines)
+        {
+            if (lines.Length < 5) throw new InvalidPayPalLogFileException();
+
+            ushort numberOfDeposits = 0;
+            if (ushort.TryParse(lines[3], out numberOfDeposits))
+                if (numberOfDeposits - 4 != 4)
+                    throw new InvalidPayPalLogFileException();
+
+            decimal bankAccountNumber = -1;
+            if (!decimal.TryParse(lines[0], out bankAccountNumber))
+                throw new InvalidPayPalLogFileException();
+
+            DateTime dateStart = new DateTime(2, 2, 2);
+            if (!DateTime.TryParseExact(lines[1], DATE_FORMAT, null, System.Globalization.DateTimeStyles.None, out dateStart))
+                throw new InvalidPayPalLogFileException();
+
+            DateTime dateEnd = new DateTime(2, 2, 2);
+            if (!DateTime.TryParseExact(lines[2], DATE_FORMAT, null, System.Globalization.DateTimeStyles.None, out dateEnd))
+                throw new InvalidPayPalLogFileException();
+
+            KeyValuePair<int, decimal>[] deposits = new KeyValuePair<int, decimal>[numberOfDeposits];
+
+            for (int i = 0; i < numberOfDeposits; i++)
+            {
+                decimal amount = -1;
+                int id = -1;
+                string[] lineParams = lines[i].Split(' ');
+
+                if (lineParams.Length != 2)
+                    throw new InvalidPayPalLogFileException();
+
+                if (!int.TryParse(lineParams[0], out id))
+                    throw new InvalidPayPalLogFileException();
+
+                if (!decimal.TryParse(lineParams[1], out amount))
+                    throw new InvalidPayPalLogFileException();
+
+                deposits[i] = new KeyValuePair<int, decimal>(id, amount);
+            }
+
+            return new PayPalDocument(bankAccountNumber, dateStart, dateEnd, deposits);
+        }
+    }
+}
