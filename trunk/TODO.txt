@@ -1,0 +1,32 @@
+Project Plan:
+	Leader				: validate EMAIL
+	Justification : FROM CLIENT SIDE
+	Deliverables 	: Rearange
+	Constraints 	: Figure them out
+	Risks 				: Figure them out
+	Phasing 			: Deliverables 
+	Quality 			: MORE
+	TIME					: MORE based on Phasing and Deliverables
+Design:
+	Everything has to have a Mobile and PC version
+	Applications
+	Website
+Structure:
+	Database
+	Classes in Applications
+Code:
+	Website
+		v1 Basic Concept
+		v2 Able to make reservations
+		v3 'Tweeting'
+	Applications:
+		Login / Logout / Details of the account
+		Store Purchase
+		Borrowing equipment
+		PC Doctor
+		Tent Area Booking
+			Book a Tent
+			Book an Area for own Tent
+Extra
+	?
+Logo
