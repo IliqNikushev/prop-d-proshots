@@ -39,10 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\InvalidPayPalLogFileException.cs" />
     <Compile Include="Exceptions\InvalidShopException.cs" />
     <Compile Include="Exceptions\InvalidUserException.cs" />
     <Compile Include="HireableItem.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="PayPalDocument.cs" />
     <Compile Include="PurchasableItem.cs" />
     <Compile Include="Receipt.cs" />
     <Compile Include="SelectedItem.cs" />
