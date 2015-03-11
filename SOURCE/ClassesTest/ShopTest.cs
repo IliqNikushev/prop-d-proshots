@@ -14,7 +14,7 @@ namespace Classes
 
         //Use TestInitialize to run code before running each test 
         [TestInitialize()]
-        public void MyTestInitialize() 
+        public void Initialize() 
         {
 #warning DATABASE DOES NOT EXIST try catch
             try
@@ -26,7 +26,7 @@ namespace Classes
         
         //Use TestCleanup to run code after each test has run
         [TestCleanup()]
-        public void MyTestCleanup()
+        public void Cleanup()
         {
 
         }
@@ -82,6 +82,16 @@ namespace Classes
 
         [TestMethod]
         public void UserPurchasesWithNotEnoughCredits()
+        {
+        }
+
+        [TestMethod]
+        public void OnPowerFailure()
+        {
+        }
+
+        [TestMethod]
+        public void OnConnectionFailure()
         {
         }
     }
