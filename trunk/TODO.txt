@@ -30,3 +30,20 @@ Code:
 Extra
 	?
 Logo
+	+Icon
+Connection to Database
+	ONLINE / OFFLINE
+MAP
+LOGGING of the actions
+QUEUE of the actions
+
+For the admin system:
+	tabbed view:
+		Logged in users ( like at the student's sport center log-in system)
+			-Current used cash
+				-View purchases
+				-View hired items
+			-Current Balance
+		Merchandise
+			How much of what item is left in stock
+		Facilities overview ( Planned activities, events )
