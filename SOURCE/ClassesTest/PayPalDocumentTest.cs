@@ -37,12 +37,6 @@ namespace Classes
 
         [TestMethod]
         [ExpectedException(typeof(Exceptions.InvalidPayPalLogFileException))]
-        public void AccountNumberTooSmall()
-        {
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(Exceptions.InvalidPayPalLogFileException))]
         public void DateTimeFormat()
         {
         }
