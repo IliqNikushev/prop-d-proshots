@@ -53,6 +53,9 @@
     <Compile Include="ShopTest.cs" />
     <Compile Include="PayPalDocumentTest.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="OnlineDatabase.cs" />
+    <Compile Include="OfflineDatabase.cs" />
+    <Compile Include="UnitTest.cs" />
     <Compile Include="UserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

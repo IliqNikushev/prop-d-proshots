@@ -4,53 +4,38 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Classes
 {
     [TestClass]
-    public class Database
+    public abstract class Database : UnitTest
     {
         [TestMethod]
-        public void Connect()
-        {
-        }
+        public abstract void Connect();
 
         [TestMethod]
-        public void ConnectFailedNotExistingDatabase()
-        {
-        }
+        public abstract void ConnectFailedNotExistingDatabase();
 
         [TestMethod]
-        public void ConnectFailedWrongProvider()
-        {
-        }
+        public abstract void ConnectFailedWrongProvider();
 
         [TestMethod]
-        public void GetSingleItem()
-        {
+        public abstract void GetSingleItem();
             //Assert that it is retrieved
             //Assert that it's value is correct
-        }
 
         [TestMethod]
-        public void GetMultipleItems()
-        {
-        }
+        public abstract void GetMultipleItems();
 
         [TestMethod]
-        public void UpdateSingleItem()
-        {
-        }
+        public abstract void UpdateSingleItem();
 
         [TestMethod]
-        public void UpdateMultipleItems()
-        {
-        }
+        public abstract void UpdateMultipleItems();
 
         [TestMethod]
-        public void OnPowerFailure()
-        {
-        }
+        public abstract void OnPowerFailure();
 
         [TestMethod]
-        public void OnConnectionFailure()
-        {
-        }
+        public abstract void OnConnectionFailure();
+
+        [TestMethod]
+        public abstract void Synchronize();
     }
 }
