@@ -1,6 +1,6 @@
 test
 Project Plan:
-	Leader				: validate EMAIL
+	Leader: m.shaghelanilor@student.fontys.nl
 	Justification : FROM CLIENT SIDE
 	Deliverables 	: Rearange
 	Constraints 	: Figure them out
@@ -13,7 +13,7 @@ Design:
 	Applications
 	Website
 Structure:
-	Database
+	Database (done)
 	Classes in Applications
 Code:
 	Website
@@ -30,8 +30,7 @@ Code:
 			Book an Area for own Tent
 Extra
 	?
-Logo
-	+Icon
+Logo +Icon (done)
 Connection to Database
 	ONLINE / OFFLINE
 MAP
