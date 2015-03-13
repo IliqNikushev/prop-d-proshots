@@ -1,4 +1,3 @@
-test
 Project Plan:
 	Leader: m.shaghelanilor@student.fontys.nl
 	Justification : FROM CLIENT SIDE
@@ -47,3 +46,55 @@ For the admin system:
 		Merchandise
 			How much of what item is left in stock
 		Facilities overview ( Planned activities, events )
+Database
+	//string 			= varchar
+	//references 	= int, that refers to a table
+	//text 				= long string
+	//decimal 		= number @ SQL
+	// >> 				= needs to be reviewed
+	User
+		ID:int	PK
+		firstName:string
+		lastName:string
+		city:string
+		tel:string
+		balance:decimal // rename from money
+		cardID:string // identificator
+	>>Shop
+		ID:int PK
+		name:string
+	>>ShopItem
+		shop:reference
+	>>UserPurchasedItem
+		shopItem:reference
+		price:decimal
+	>>HireItem
+		id:int
+		<< DETAILS >>
+		price:decimal
+	>>UserHiredItem
+		id:int
+		hireItem:reference
+		dateHired:datetime
+		dateReturned:datetime
+	>>PayPal
+		ID:int PK
+		accountNumber:??
+		dateStart:datetime
+		dateEnd:datetime
+	>>PayPalDeposit
+		id:int
+		amount:decimal
+		paypal:reference
+	>>CampingArea
+		booking:reference
+	>>CampingAreaBooking
+		numberOfPeople:int
+		bookedFrom:datetime
+		bookedTo:datetime
+	>>DoctorAppointment
+		user:reference
+		time:datetime
+		problem:text
+		section:??
+		resolved_state:text

@@ -4,15 +4,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Classes
 {
     [TestClass]
-    public class UserTest
+    public class UserTest : PowerDependantTest
     {
         public const string VALID_USER_ID = "123abc";
         public const string INVALID_USER_ID = "invalid";
         private User user;
 
         //Use TestInitialize to run code before running each test 
-        [TestInitialize()]
-        public void Initialize()
+        public override void OnInitialize()
         {
 #warning DATABASE DOES NOT EXIST try catch
             try
@@ -20,12 +19,6 @@ namespace Classes
                 user = new User(VALID_USER_ID);
             }
             catch { }
-        }
-
-        //Use TestCleanup to run code after each test has run
-        [TestCleanup()]
-        public void Cleanup()
-        {
         }
 
         [TestMethod]
@@ -67,13 +60,15 @@ namespace Classes
         }
 
         [TestMethod]
-        public void OnPowerFailure()
+        public override void OnPowerFailure()
         {
+            throw new NotImplementedException();
         }
 
         [TestMethod]
-        public void OnConnectionFailure()
+        public override void OnConnectionFailure()
         {
+            throw new NotImplementedException();
         }
     }
 }
