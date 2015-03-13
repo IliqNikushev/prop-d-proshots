@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Classes
 {
     [TestClass]
-    public abstract class Database : UnitTest
+    public abstract class Database : PowerDependantTest
     {
         [TestMethod]
         public abstract void Connect();
@@ -30,12 +30,18 @@ namespace Classes
         public abstract void UpdateMultipleItems();
 
         [TestMethod]
-        public abstract void OnPowerFailure();
-
-        [TestMethod]
-        public abstract void OnConnectionFailure();
-
-        [TestMethod]
         public abstract void Synchronize();
+
+        [TestMethod]
+        public abstract void HandleValidPayPalDocument();
+
+        [TestMethod]
+        public abstract void HandleInvalidPayPalDocument();
+
+        [TestMethod]
+        public abstract void HandlePayPalDocumentPowerFailure();
+
+        [TestMethod]
+        public abstract void HandlePayPalDocumentConnectionFailure();
     }
 }

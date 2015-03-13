@@ -100,15 +100,5 @@ namespace Classes
         public void InvalidDepositTooSmall()
         {
         }
-
-        [TestMethod]
-        public void OnPowerFailure()
-        {
-        }
-
-        [TestMethod]
-        public void OnConnectionFailure()
-        {
-        }
     }
 }

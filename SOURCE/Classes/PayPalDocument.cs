@@ -14,9 +14,9 @@ namespace Classes
         public decimal AccountNumber{get;private set;}
         public DateTime DateStart{get;private set;}
         public DateTime DateEnd { get; private set; }
-        public KeyValuePair<int, decimal>[] Deposits { get; private set; }
+        public Deposit[] Deposits { get; private set; }
 
-        public PayPalDocument(decimal accountNumber, DateTime dateStart, DateTime dateEnd, KeyValuePair<int, decimal>[] deposits)
+        public PayPalDocument(decimal accountNumber, DateTime dateStart, DateTime dateEnd, Deposit[] deposits)
         {
             this.AccountNumber = accountNumber;
             this.DateStart = dateStart;
@@ -50,7 +50,7 @@ namespace Classes
             if (!DateTime.TryParseExact(lines[2], DATE_FORMAT, null, System.Globalization.DateTimeStyles.None, out dateEnd))
                 throw new InvalidPayPalLogFileException();
 
-            KeyValuePair<int, decimal>[] deposits = new KeyValuePair<int, decimal>[numberOfDeposits];
+            Deposit[] deposits = new Deposit[numberOfDeposits];
 
             for (int i = 0; i < numberOfDeposits; i++)
             {
@@ -67,7 +67,7 @@ namespace Classes
                 if (!decimal.TryParse(lineParams[1], out amount))
                     throw new InvalidPayPalLogFileException();
 
-                deposits[i] = new KeyValuePair<int, decimal>(id, amount);
+                deposits[i] = new Deposit(id, amount);
             }
 
             return new PayPalDocument(bankAccountNumber, dateStart, dateEnd, deposits);

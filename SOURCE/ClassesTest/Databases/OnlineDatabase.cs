@@ -65,5 +65,25 @@ namespace Classes
         {
             throw new NotImplementedException();
         }
+
+        public override void HandleValidPayPalDocument()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void HandleInvalidPayPalDocument()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void HandlePayPalDocumentPowerFailure()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void HandlePayPalDocumentConnectionFailure()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
