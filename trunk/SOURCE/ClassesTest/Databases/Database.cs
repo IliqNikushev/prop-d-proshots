@@ -6,6 +6,7 @@ namespace Classes
     [TestClass]
     public abstract class Database : PowerDependantTest
     {
+        //"Provider=MySQL Provider;server=localhost;User Id=MyID;password=MyPassword;database=MyDatabase;
         [TestMethod]
         public abstract void Connect();
 
