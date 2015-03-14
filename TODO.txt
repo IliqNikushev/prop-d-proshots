@@ -1,12 +1,11 @@
 Project Plan:
-	Leader: m.shaghelanilor@student.fontys.nl
 	Justification : FROM CLIENT SIDE
 	Deliverables 	: Rearange
 	Constraints 	: Figure them out
-	Risks 				: Figure them out
-	Phasing 			: Deliverables 
-	Quality 			: MORE
-	TIME					: MORE based on Phasing and Deliverables
+	Risks 		: Figure them out
+	Phasing		: Deliverables 
+	Quality 	: MORE
+	TIME		: MORE based on Phasing and Deliverables
 Design:
 	Everything has to have a Mobile and PC version
 	Applications
