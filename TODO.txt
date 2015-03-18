@@ -1,11 +1,6 @@
 Project Plan:
-	Justification : FROM CLIENT SIDE
-	Deliverables 	: Rearange
-	Constraints 	: Figure them out
-	Risks 		: Figure them out
-	Phasing		: Deliverables 
-	Quality 	: MORE
-	TIME		: MORE based on Phasing and Deliverables
+	Constraints 	: FIX IT BY BUDGET AND LIMIT OF PEOPLE
+
 Design:
 	Everything has to have a Mobile and PC version
 	Applications
