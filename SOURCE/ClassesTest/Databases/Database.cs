@@ -34,6 +34,9 @@ namespace Classes
         public abstract void Synchronize();
 
         [TestMethod]
+        public abstract void OnSynchronizeWithConflict();
+
+        [TestMethod]
         public abstract void HandleValidPayPalDocument();
 
         [TestMethod]
