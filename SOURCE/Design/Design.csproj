@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Examples\Landing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Examples\Landing.Designer.cs">
+      <DependentUpon>Landing.cs</DependentUpon>
+    </Compile>
     <Compile Include="Examples\Store.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +64,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Examples\Landing.resx">
+      <DependentUpon>Landing.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Examples\Store.resx">
       <DependentUpon>Store.cs</DependentUpon>
     </EmbeddedResource>
@@ -69,6 +78,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -88,6 +98,33 @@
       <Project>{187aacee-fd7c-493e-964d-b4f5f4dca1c0}</Project>
       <Name>Classes</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home166.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pin60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profile29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\repair17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\soft4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wealth.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
