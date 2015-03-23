@@ -44,34 +44,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Examples\Employees.cs">
+    <Compile Include="Idea\AdministratorInterface\Employees.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Examples\Employees.Designer.cs">
+    <Compile Include="Idea\AdministratorInterface\Employees.Designer.cs">
       <DependentUpon>Employees.cs</DependentUpon>
     </Compile>
-    <Compile Include="Examples\Landing.cs">
+    <Compile Include="Idea\AdministratorInterface\Landing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Examples\Landing.Designer.cs">
+    <Compile Include="Idea\AdministratorInterface\Landing.Designer.cs">
       <DependentUpon>Landing.cs</DependentUpon>
     </Compile>
-    <Compile Include="Examples\PcDoctor.cs">
+    <Compile Include="Idea\AdministratorInterface\PcDoctor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Examples\PcDoctor.Designer.cs">
+    <Compile Include="Idea\AdministratorInterface\PcDoctor.Designer.cs">
       <DependentUpon>PcDoctor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Examples\ShopSubMenu.cs">
+    <Compile Include="Idea\AdministratorInterface\ShopSubMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Examples\ShopSubMenu.Designer.cs">
+    <Compile Include="Idea\AdministratorInterface\ShopSubMenu.Designer.cs">
       <DependentUpon>ShopSubMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Examples\Store.cs">
+    <Compile Include="Idea\EmployeeInterface\EmployeeLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Examples\Store.Designer.cs">
+    <Compile Include="Idea\EmployeeInterface\EmployeeLogin.Designer.cs">
+      <DependentUpon>EmployeeLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\Store.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\Store.Designer.cs">
       <DependentUpon>Store.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
@@ -80,22 +92,145 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Idea\VisitorInterface\Appointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\Appointments.Designer.cs">
+      <DependentUpon>Appointments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\Bookings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\Bookings.Designer.cs">
+      <DependentUpon>Bookings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\New\Appointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\New\Appointments.Designer.cs">
+      <DependentUpon>Appointments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\New\Bookings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\New\Bookings.Designer.cs">
+      <DependentUpon>Bookings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\New\Purchases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\New\Purchases.Designer.cs">
+      <DependentUpon>Purchases.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\New\Rent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\New\Rent.Designer.cs">
+      <DependentUpon>Rent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\Rent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\Rent.Designer.cs">
+      <DependentUpon>Rent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\Purchases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\Purchases.Designer.cs">
+      <DependentUpon>Purchases.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\View\Appointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\View\Appointments.Designer.cs">
+      <DependentUpon>Appointments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\View\Bookings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\View\Bookings.Designer.cs">
+      <DependentUpon>Bookings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\View\Purchases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\View\Purchases.Designer.cs">
+      <DependentUpon>Purchases.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\View\Rent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\VisitorInterface\View\Rent.Designer.cs">
+      <DependentUpon>Rent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Examples\Employees.resx">
+    <EmbeddedResource Include="Idea\AdministratorInterface\Employees.resx">
       <DependentUpon>Employees.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Examples\Landing.resx">
+    <EmbeddedResource Include="Idea\AdministratorInterface\Landing.resx">
       <DependentUpon>Landing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Examples\PcDoctor.resx">
+    <EmbeddedResource Include="Idea\AdministratorInterface\PcDoctor.resx">
       <DependentUpon>PcDoctor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Examples\ShopSubMenu.resx">
+    <EmbeddedResource Include="Idea\AdministratorInterface\ShopSubMenu.resx">
       <DependentUpon>ShopSubMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Examples\Store.resx">
+    <EmbeddedResource Include="Idea\EmployeeInterface\EmployeeLogin.resx">
+      <DependentUpon>EmployeeLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\Store.resx">
       <DependentUpon>Store.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\VisitorInterface\Appointments.resx">
+      <DependentUpon>Appointments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\VisitorInterface\Bookings.resx">
+      <DependentUpon>Bookings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\VisitorInterface\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\VisitorInterface\New\Appointments.resx">
+      <DependentUpon>Appointments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\VisitorInterface\New\Bookings.resx">
+      <DependentUpon>Bookings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\VisitorInterface\New\Purchases.resx">
+      <DependentUpon>Purchases.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\VisitorInterface\New\Rent.resx">
+      <DependentUpon>Rent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\VisitorInterface\Purchases.resx">
+      <DependentUpon>Purchases.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\VisitorInterface\Rent.resx">
+      <DependentUpon>Rent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\VisitorInterface\View\Appointments.resx">
+      <DependentUpon>Appointments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\VisitorInterface\View\Bookings.resx">
+      <DependentUpon>Bookings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\VisitorInterface\View\Purchases.resx">
+      <DependentUpon>Purchases.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\VisitorInterface\View\Rent.resx">
+      <DependentUpon>Rent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -197,6 +332,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Yes_check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Idea\EmployeeInterface\Food n Drinks\" />
+    <Folder Include="Idea\EmployeeInterface\PC Doctor\" />
+    <Folder Include="Idea\EmployeeInterface\ServiceDesk %28 Hiring %29\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Employees1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
