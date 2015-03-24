@@ -85,5 +85,10 @@ namespace Classes
         {
             throw new NotImplementedException();
         }
+
+        public override void OnSynchronizeWithConflict()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
