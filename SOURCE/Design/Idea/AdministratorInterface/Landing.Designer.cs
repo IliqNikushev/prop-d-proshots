@@ -37,6 +37,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -44,6 +47,8 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -110,7 +115,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(283, 411);
+            this.label8.Location = new System.Drawing.Point(269, 451);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(138, 17);
             this.label8.TabIndex = 16;
@@ -119,7 +124,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(25, 418);
+            this.label9.Location = new System.Drawing.Point(25, 445);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(50, 17);
             this.label9.TabIndex = 17;
@@ -128,11 +133,40 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(585, 411);
+            this.label10.Location = new System.Drawing.Point(583, 442);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(90, 17);
             this.label10.TabIndex = 18;
             this.label10.Text = "Total Visitors";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(485, 158);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 17);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Pc-Doctor";
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = global::Design.Properties.Resources.money;
+            this.pictureBox9.Location = new System.Drawing.Point(28, 373);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(73, 69);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox9.TabIndex = 21;
+            this.pictureBox9.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Design.Properties.Resources.TentGreen1;
+            this.pictureBox1.Location = new System.Drawing.Point(479, 15);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(128, 128);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
             // 
             // pictureBox8
             // 
@@ -157,7 +191,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = global::Design.Properties.Resources.warning38;
-            this.pictureBox7.Location = new System.Drawing.Point(313, 358);
+            this.pictureBox7.Location = new System.Drawing.Point(299, 398);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(65, 61);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -177,7 +211,7 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Image = global::Design.Properties.Resources.Shop;
+            this.pictureBox4.Image = global::Design.Properties.Resources.shop_nice;
             this.pictureBox4.Location = new System.Drawing.Point(28, 15);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(128, 128);
@@ -187,7 +221,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::Design.Properties.Resources.calendar1;
+            this.pictureBox3.Image = global::Design.Properties.Resources.appointment;
             this.pictureBox3.Location = new System.Drawing.Point(37, 182);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(128, 128);
@@ -209,7 +243,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(697, 439);
+            this.ClientSize = new System.Drawing.Size(697, 471);
+            this.Controls.Add(this.pictureBox9);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -228,6 +265,8 @@
             this.Controls.Add(this.pictureBox2);
             this.Name = "Landing";
             this.Text = "Landing";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
@@ -258,6 +297,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox9;
 
     }
 }
