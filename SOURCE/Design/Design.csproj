@@ -104,6 +104,36 @@
     <Compile Include="Idea\EmployeeInterface\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="Idea\Inheritance\LayoutBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\Inheritance\LayoutBase.Designer.cs">
+      <DependentUpon>LayoutBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\Inheritance\Layouts\Layout1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\Inheritance\Layouts\Layout1.Designer.cs">
+      <DependentUpon>Layout1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\Inheritance\Menus\Menu1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\Inheritance\Menus\Menu1.Designer.cs">
+      <DependentUpon>Menu1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\Inheritance\Menus\Menu2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\Inheritance\Menus\Menu2.Designer.cs">
+      <DependentUpon>Menu2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\Inheritance\MenuBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\Inheritance\MenuBase.Designer.cs">
+      <DependentUpon>MenuBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Idea\LandingBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +267,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\AdministratorInterface\Visitors.resx">
       <DependentUpon>Visitors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\Inheritance\Layouts\Layout1.resx">
+      <DependentUpon>Layout1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\Inheritance\Menus\Menu1.resx">
+      <DependentUpon>Menu1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\Inheritance\Menus\Menu2.resx">
+      <DependentUpon>Menu2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

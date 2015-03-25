@@ -31,5 +31,10 @@ namespace Design
         {
             new Idea.Login(Idea.Login.For.Employee).Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Idea.Inheritance.Menus.Menu1(new Idea.Inheritance.Layouts.Layout1()).Show();
+        }
     }
 }
