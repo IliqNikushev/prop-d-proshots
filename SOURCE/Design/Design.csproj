@@ -410,6 +410,24 @@
   <ItemGroup>
     <None Include="Resources\removepurchase.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows8-design-splash-screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows8-design-splash-screen1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer-doctor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\michael.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acc-image-icon-big.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
