@@ -86,11 +86,11 @@
     <Compile Include="Idea\AdministratorInterface\ShopSubMenu.Designer.cs">
       <DependentUpon>ShopSubMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\AdministratorInterface\Tents.cs">
+    <Compile Include="Idea\AdministratorInterface\Camping.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Idea\AdministratorInterface\Tents.Designer.cs">
-      <DependentUpon>Tents.cs</DependentUpon>
+    <Compile Include="Idea\AdministratorInterface\Camping.Designer.cs">
+      <DependentUpon>Camping.cs</DependentUpon>
     </Compile>
     <Compile Include="Idea\AdministratorInterface\Visitors.cs">
       <SubType>Form</SubType>
@@ -433,6 +433,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\removepurchase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows8-design-splash-screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows8-design-splash-screen1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer-doctor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\michael.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acc-image-icon-big.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
