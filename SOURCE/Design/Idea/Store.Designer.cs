@@ -1,4 +1,4 @@
-﻿namespace Design.Examples
+﻿namespace Design.Idea
 {
     partial class Store
     {

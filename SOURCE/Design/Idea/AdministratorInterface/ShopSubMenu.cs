@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Examples
+namespace Design.Idea.AdministratorInterface
 {
-    public partial class ShopSubMenu : Form
+    public partial class ShopSubMenu : SubMenuBase
     {
-        public ShopSubMenu()
+        public ShopSubMenu(Form parent) : base(parent)
         {
             InitializeComponent();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

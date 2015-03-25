@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Examples
+namespace Design.Idea.AdministratorInterface
 {
-    public partial class PcDoctor : Form
+    public partial class PcDoctor : SubMenuBase
     {
-        public PcDoctor()
+        public PcDoctor(Form parent) : base(parent)
         {
             InitializeComponent();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

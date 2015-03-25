@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Idea.VisitorInterface.New
+namespace Design.Idea.EmployeeInterface
 {
-    public partial class Purchases : SubMenuBase
+    public partial class Home : LandingBase
     {
-        public Purchases(Form parent) : base(parent)
+        public Home(Form parent) : base(parent)
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

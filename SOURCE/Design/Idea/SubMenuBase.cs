@@ -8,18 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Idea.VisitorInterface.New
+namespace Design.Idea
 {
-    public partial class Purchases : SubMenuBase
+    public partial class SubMenuBase : Form
     {
-        public Purchases(Form parent) : base(parent)
+        public SubMenuBase() { InitializeComponent(); }
+        public SubMenuBase(Form parent)
         {
+            parent.Hide();
+            this.FormClosed += (x, y) => parent.Show();
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

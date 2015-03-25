@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Idea.VisitorInterface
+namespace Design.Idea.VisitorInterface.View
 {
-    public partial class Appointments : Form
+    public partial class Appointments : SubMenuBase
     {
-        public Appointments()
+        public Appointments(Form parent) : base(parent)
         {
             InitializeComponent();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -12,9 +12,23 @@ namespace Design.Idea
 {
     public partial class Login : Form
     {
-        public Login()
+        private For forWho;
+        public enum For { Admin, Visitor, Employee }
+        public Login(For forWho)
         {
+            this.forWho = forWho;
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (forWho == For.Admin)
+                new AdministratorInterface.Landing(this).Show();
+            else if (forWho == For.Employee)
+                new EmployeeInterface.Home(this).Show();
+            else if (forWho == For.Visitor)
+                new VisitorInterface.Home(this).Show();
+            this.Hide();
         }
     }
 }

@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Design.Idea.AdministratorInterface
 {
-    public partial class ServiceDesk : Form
+    public partial class ServiceDesk : SubMenuBase
     {
-        public ServiceDesk()
+        public ServiceDesk(Form parent) : base(parent)
         {
             InitializeComponent();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Design.Idea.AdministratorInterface
 {
-    public partial class Visitors : Form
+    public partial class Visitors : SubMenuBase
     {
-        public Visitors()
+        public Visitors(Form parent) : base(parent)
         {
             InitializeComponent();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

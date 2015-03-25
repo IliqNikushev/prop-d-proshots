@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Examples
+namespace Design.Idea.AdministratorInterface
 {
-    public partial class Employees : Form
+    public partial class Employees : SubMenuBase
     {
-        public Employees()
+        public Employees(Form parent) : base(parent)
         {
             InitializeComponent();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

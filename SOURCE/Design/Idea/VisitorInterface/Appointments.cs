@@ -10,11 +10,26 @@ using System.Windows.Forms;
 
 namespace Design.Idea.VisitorInterface
 {
-    public partial class Appointments : Form
+    public partial class Appointments : SubMenuBase
     {
-        public Appointments()
+        public Appointments(Form parent) : base(parent)
         {
             InitializeComponent();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            new New.Appointments(this).Show();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            new View.Appointments(this).Show();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

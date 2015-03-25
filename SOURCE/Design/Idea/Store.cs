@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Examples
+namespace Design.Idea
 {
     public partial class Store : Form
     {

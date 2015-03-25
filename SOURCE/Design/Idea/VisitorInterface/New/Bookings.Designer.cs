@@ -1,4 +1,4 @@
-﻿namespace Design.Idea.VisitorInterface
+﻿namespace Design.Idea.VisitorInterface.New
 {
     partial class Bookings
     {
@@ -70,6 +70,7 @@
             this.button1.TabIndex = 56;
             this.button1.Text = "Cancel";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // checkBox1
             // 

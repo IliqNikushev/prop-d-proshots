@@ -62,6 +62,12 @@
     <Compile Include="Idea\AdministratorInterface\Landing.Designer.cs">
       <DependentUpon>Landing.cs</DependentUpon>
     </Compile>
+    <Compile Include="Idea\AdministratorInterface\Map.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\AdministratorInterface\Map.Designer.cs">
+      <DependentUpon>Map.cs</DependentUpon>
+    </Compile>
     <Compile Include="Idea\AdministratorInterface\PcDoctor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,17 +86,29 @@
     <Compile Include="Idea\AdministratorInterface\ShopSubMenu.Designer.cs">
       <DependentUpon>ShopSubMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Idea\AdministratorInterface\Tents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\AdministratorInterface\Tents.Designer.cs">
+      <DependentUpon>Tents.cs</DependentUpon>
+    </Compile>
     <Compile Include="Idea\AdministratorInterface\Visitors.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Idea\AdministratorInterface\Visitors.Designer.cs">
       <DependentUpon>Visitors.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\EmployeeInterface\EmployeeLogin.cs">
+    <Compile Include="Idea\EmployeeInterface\Home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Idea\EmployeeInterface\EmployeeLogin.Designer.cs">
-      <DependentUpon>EmployeeLogin.cs</DependentUpon>
+    <Compile Include="Idea\EmployeeInterface\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\LandingBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\LandingBase.Designer.cs">
+      <DependentUpon>LandingBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Idea\Login.cs">
       <SubType>Form</SubType>
@@ -109,6 +127,12 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\SubMenuBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\SubMenuBase.Designer.cs">
+      <DependentUpon>SubMenuBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Idea\VisitorInterface\Appointments.cs">
       <SubType>Form</SubType>
@@ -190,6 +214,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Idea\AdministratorInterface\Calendar.resx">
       <DependentUpon>Calendar.cs</DependentUpon>
     </EmbeddedResource>
@@ -210,9 +237,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\AdministratorInterface\Visitors.resx">
       <DependentUpon>Visitors.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Idea\EmployeeInterface\EmployeeLogin.resx">
-      <DependentUpon>EmployeeLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

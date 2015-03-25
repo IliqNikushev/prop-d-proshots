@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Idea.VisitorInterface
+namespace Design.Idea.VisitorInterface.New
 {
-    public partial class Bookings : Form
+    public partial class Bookings : SubMenuBase
     {
-        public Bookings()
+        public Bookings(Form parent) : base(parent)
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

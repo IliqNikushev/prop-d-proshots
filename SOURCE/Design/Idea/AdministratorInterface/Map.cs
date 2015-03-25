@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Idea
+namespace Design.Idea.AdministratorInterface
 {
-    public partial class Login : Form
+    public partial class Map : SubMenuBase
     {
-        public Login()
+        public Map(Form parent) : base(parent)
         {
             InitializeComponent();
         }

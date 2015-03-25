@@ -1,4 +1,4 @@
-﻿namespace Design.Idea.VisitorInterface
+﻿namespace Design.Idea.VisitorInterface.New
 {
     partial class Appointments
     {

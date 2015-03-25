@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Idea.VisitorInterface
+namespace Design.Idea.VisitorInterface.View
 {
-    public partial class Rent : Form
+    public partial class Rent : SubMenuBase
     {
-        public Rent()
+        public Rent(Form parent) : base(parent)
         {
             InitializeComponent();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
