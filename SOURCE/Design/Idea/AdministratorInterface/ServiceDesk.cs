@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Idea.VisitorInterface
+namespace Design.Idea.AdministratorInterface
 {
-    public partial class Home : Form
+    public partial class ServiceDesk : Form
     {
-        public Home()
+        public ServiceDesk()
         {
             InitializeComponent();
-        }
-
-        private void pictureBox7_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

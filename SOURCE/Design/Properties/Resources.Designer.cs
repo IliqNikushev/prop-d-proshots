@@ -83,6 +83,16 @@ namespace Design.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap acc_image_icon_big {
+            get {
+                object obj = ResourceManager.GetObject("acc-image-icon-big", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap addMoney {
             get {
                 object obj = ResourceManager.GetObject("addMoney", resourceCulture);
@@ -146,6 +156,16 @@ namespace Design.Properties {
         internal static System.Drawing.Bitmap cart1 {
             get {
                 object obj = ResourceManager.GetObject("cart1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap computer_doctor {
+            get {
+                object obj = ResourceManager.GetObject("computer-doctor", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -256,6 +276,16 @@ namespace Design.Properties {
         internal static System.Drawing.Bitmap Map {
             get {
                 object obj = ResourceManager.GetObject("Map", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap michael {
+            get {
+                object obj = ResourceManager.GetObject("michael", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -393,6 +423,16 @@ namespace Design.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap tent {
+            get {
+                object obj = ResourceManager.GetObject("tent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TentGreen {
             get {
                 object obj = ResourceManager.GetObject("TentGreen", resourceCulture);
@@ -436,6 +476,26 @@ namespace Design.Properties {
         internal static System.Drawing.Bitmap wealth {
             get {
                 object obj = ResourceManager.GetObject("wealth", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap windows8_design_splash_screen {
+            get {
+                object obj = ResourceManager.GetObject("windows8-design-splash-screen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap windows8_design_splash_screen1 {
+            get {
+                object obj = ResourceManager.GetObject("windows8-design-splash-screen1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Idea.VisitorInterface
+namespace Design.Idea.AdministratorInterface
 {
-    public partial class Home : Form
+    public partial class Visitors : Form
     {
-        public Home()
+        public Visitors()
         {
             InitializeComponent();
-        }
-
-        private void pictureBox7_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

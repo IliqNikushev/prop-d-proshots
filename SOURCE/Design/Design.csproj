@@ -368,6 +368,48 @@
   <ItemGroup>
     <None Include="Resources\Employees1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\appointment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2561.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TentGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_desk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\purchase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shop-nice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TentGreen1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TENTRED.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addMoney.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addpurchase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\removepurchase.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
