@@ -6,3 +6,4 @@ SOURCE/Design/bin/
 SOURCE/Design/obj/
 SOURCE/TestResults/
 ignore
+/SOURCE/DatabaseControl/obj/Debug
