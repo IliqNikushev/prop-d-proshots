@@ -104,7 +104,7 @@ namespace DatabaseControl
 
             for (int i = 0; i < result.Count; i += 4)
             {
-                if (i + 3 >= result.Count) // indexOutOfRange
+                if (i + 2 >= result.Count) // indexOutOfRange
                     throw new InvalidQueryException(query);
 
                 string variable = result[i];
@@ -125,9 +125,11 @@ namespace DatabaseControl
                 }
                 string operation = result[i + 1];
                 string value = result[i + 2];
-                string andOr = result[i + 3];
+                string andOr = "";
+                if(i + 3 < result.Count)
+                    andOr = result[i + 3];
 
-                if (andOr.ToLower() != "and" && andOr.ToLower() != "or")
+                if (andOr.ToLower() != "and" && andOr.ToLower() != "or" && i + 3 < result.Count)
                 {
                     value += andOr;
                     andOr = "";
