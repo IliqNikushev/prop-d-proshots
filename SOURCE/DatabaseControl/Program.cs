@@ -10,15 +10,22 @@ namespace DatabaseControl
     {
         static void Main(string[] args)
         {
-            /*
-            string query = "name = 'it's about's timet's' and free = ' to ' ' ' ' ' '";
-            string expec = "name = 'it''s about''s timet''s' and free = ' to '' '' '' '' '' '";
-            var split = Utilities.SplitForWHEREQuery(query).Select(x => Utilities.ConvertForWhere(x));
+            string testS = "name = test and name = 'it's in in in' and int in 'in in in the tint's'".ToUpper();
+            string resultS = Utilities.ConvertToQuery(testS);
+            Console.WriteLine("----");
+            Console.WriteLine(resultS);
+            return;
+            string query = "name = it's about's timet's' and free = ' to ' ' ' ' ' ";
+            string expec = "name = it''s about''s tinet''s' and free = ' to '' '' '' '' '' ";
+            var split = Utilities.SplitForQuery(query).Select(x => "|" + Utilities.ConvertForQuery(x)+"|");
 
-            Console.WriteLine(Utilities.ConvertForWhere(query));
-            Console.WriteLine(Utilities.ConvertForWhere(query) == expec);
-            Console.WriteLine(string.Join("", split) == expec);
-            return;*/
+            Console.WriteLine(Utilities.ConvertForQuery(query));
+            Console.WriteLine(Utilities.ConvertForQuery(query) == expec);
+            string spli = string.Join("", split);
+            Console.WriteLine("IS:"+spli);
+            Console.WriteLine("BE:"+expec);
+            Console.WriteLine(spli == expec);
+            return;
             /*
             string query = "name = 3 and p = 3 and u 2be is to be the one in 3,4,5 of 6 5 5 in 3 and a = 5";
             Console.WriteLine(query);
@@ -35,7 +42,7 @@ namespace DatabaseControl
             test.Save();
             Visitor[] visitors = Visitor.All();
             Visitor v = Visitor.Find("name = 'test'");
-            visitors = Visitor.Where("name = 'test'");
+            visitors = Visitor.Where("name = 'test' and id = 'tint'");
         }
     }
 }

@@ -33,8 +33,6 @@ namespace DatabaseControl
             List<string> clauses = new List<string>();
             foreach (string value in whereClauses)
                 clauses.AddRange(Utilities.SplitForQuery(value).Select(x=>Utilities.ConvertForQuery(x)));
-
-            if ((clauses.Count - 3) % 4 != 0) throw new InvalidOperationException("Not enough parameters, " + clauses.Count);
             
             IEnumerable<Property> properties = typeof(T).GetDatabaseSavedProperties();
             for (int i = 0; i < clauses.Count; i += 4)
@@ -48,10 +46,17 @@ namespace DatabaseControl
                     Property foundProperty = properties.First(x => x.Name.ToLower() == field.ToLower());
                     if (foundProperty == null)
                         throw new KeyNotFoundException("Filed not found for " + typeof(T).Name + "." + field);
+                    if (foundProperty.PropertyType == typeof(string))
+                    {
+                        if (value[0] != '\'')
+                            value = '\'' + value;
+                        if (value[value.Length - 1] != '\'')
+                            value += '\'';
+                    }
                 }
                 if (operation == "in")
                 {
-                    //check if the value is an array  or sql  sql
+                    //check if the value is an array  or sql
                 }
                 if (i + 4 < clauses.Count) value +=" "+ clauses[i+3]+" ";
                 WhereClauses.Add(field + " " + operation + " " + value);

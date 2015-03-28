@@ -11,9 +11,23 @@ namespace DatabaseControl
 
     public static class Utilities
     {
-        private static readonly string[] commands = new string[] { "<=", ">=", "in", "=", "like", "and", "or" };
+        //TOO : MYSQL commands
+        //https://dev.mysql.com/doc/refman/5.1/en/non-typed-operators.html
+        private static readonly string[] commands = new string[]
+        {
+            "!=", "<>","<=", ">=", "=", ">", "<",
+            "like", "not like",
+            "and", "or", 
+            "in",
+            "is not null", "is null", "is not","is",
+            "not", "!"
+        };
+        private static readonly string[] functionCommands = new string[]
+        {
+            "+", "-", "*", "/", "%"
+        };
 
-        private static List<int> FindIndexesOf(string stringToSearch, string searchFor, Func<string, int, bool> indexPicker = null)
+        private static List<int> FindIndexesOf(string stringToSearch, string searchFor)
         {
             List<int> foundIndexes = new List<int>();
 
@@ -51,21 +65,22 @@ namespace DatabaseControl
                 }
 
                 int startIndex = 0;
-                foreach (int foundIndex in foundIndexesOfTheCommand)
+                for (int j = 0; j < foundIndexesOfTheCommand.Count; j++)
                 {
+                    int foundIndex = foundIndexesOfTheCommand[j];
                     int length = foundIndex - startIndex;
+                    string beforeCommand = str.Substring(startIndex, length);
 
-                    result.Add(str.Substring(startIndex, length));
-                    result.Add(command);
+                    result.Add(beforeCommand);
+                    result.Add(str.Substring(foundIndex, command.Length));
 
-                    startIndex = length;
+                    startIndex = foundIndex;
                     startIndex += command.Length;
                 }
                 result.Add(str.Substring(foundIndexesOfTheCommand.Last() + command.Length));
             }
             if (result.Count == 0)
                 result.AddRange(items);
-            bool same = string.Join("", items) == string.Join("", result);
             items.Clear();
             
             return SplitForCommand(result, commandIndex + 1);
@@ -74,11 +89,93 @@ namespace DatabaseControl
         /// <summary>
         /// Returns the string separated by where operations 
         /// <para>ex: name='John' or name = 'Tim' -> [name ,=, 'John' ,or, name ,=, 'Tim'</para>
-        /// <para>Requires that the data is valid ( passed through ConvertToValidSQL )</para>
         /// </summary>
-        public static List<string> SplitForQuery(string str)
+        /// <exception cref="InvalidQueryLengthException">Thrown</exception>
+        /// <exception cref="InvalidQueryException">Thrown instead of IndexOutOfRangeException</exception>
+        /// <exception cref="InvalidQueryCommandException"></exception>
+        public static List<string> SplitForQuery(string query)
         {
-            return SplitForCommand(new List<string>(){str}, 0);
+            //TODO : FUNCTIONS
+            List<string> result = SplitForCommand(new List<string>() { query }, 0);
+            List<string> fixedResult = new List<string>();
+            if (result.Count < 3)
+                throw new InvalidQueryLengthException(query);
+            if (result.Count == 3) return result;
+
+            for (int i = 0; i < result.Count; i += 4)
+            {
+                if (i + 3 >= result.Count) // indexOutOfRange
+                    throw new InvalidQueryException(query);
+
+                string variable = result[i];
+                while (true) // find next operator
+                {
+                    if (i >= result.Count - 1)
+                        throw new InvalidQueryException(query);
+                    if (variable.Trim().Length == 0)
+                    {
+                        variable += result[i + 1];
+                        i++;
+                        continue;
+                    }
+                    if (commands.Contains(result[i + 1].ToLower()))
+                        break;
+                    else
+                        variable += result[i++ + 1];
+                }
+                string operation = result[i + 1];
+                string value = result[i + 2];
+                string andOr = result[i + 3];
+
+                if (andOr.ToLower() != "and" && andOr.ToLower() != "or")
+                {
+                    value += andOr;
+                    andOr = "";
+                    while (true) // find next And Or
+                    {
+                        if (result.Count > i + 4)
+                        {
+                            if (result[i + 4].ToLower() != "and" && result[i + 4].ToLower() != "or")
+                            {
+                                value += result[i + 4];
+                                i++;
+                            }
+                            else
+                            {
+                                string trimmed = value.Trim();
+                                if (trimmed[0] == '\'' && trimmed[trimmed.Length - 1] == '\'')
+                                {
+                                    andOr = result[i + 4];
+                                    i += 1;
+                                    break;
+                                }
+                                else
+                                {
+                                    value += result[i + 4];
+                                    i++;
+                                }
+                            }
+                        }
+                        else
+                            break;
+                    }
+                }
+
+                if (!commands.Contains(operation.ToLower()))
+                    throw new InvalidQueryCommandException(operation, query);
+
+                fixedResult.Add(variable);
+                fixedResult.Add(operation);
+                fixedResult.Add(value);
+                fixedResult.Add(andOr);
+            }
+
+            return fixedResult;
+        }
+
+        public static string ConvertToQuery(string str)
+        {
+            return string.Join("", SplitForQuery(str).Select(x=>ConvertForQuery(x)));
         }
 
         /// <summary>
@@ -110,6 +207,24 @@ namespace DatabaseControl
         public static string ConvertFromQuery(string str)
         {
             return str.Replace("''", "'");
+        }
+
+        [Serializable]
+        public class InvalidQueryException : Exception
+        {
+            public InvalidQueryException(string query) : base(query) { }
+        }
+
+        [Serializable]
+        public class InvalidQueryCommandException : InvalidQueryException
+        {
+            public InvalidQueryCommandException(string command, string query) : base(command+"@"+query) { }
+        }
+
+        [Serializable]
+        public class InvalidQueryLengthException : InvalidQueryException
+        {
+            public InvalidQueryLengthException(string query) : base(query) { }
         }
     }
     
