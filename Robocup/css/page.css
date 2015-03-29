@@ -2,7 +2,7 @@ body {
 	background-color: GhostWhite   ;
 }
 
-#header1{
+#background-image{
 	height: 650px;
 }
 
@@ -11,99 +11,48 @@ body {
 
 }
 
-#M1{
+#Register{
 	color: white;
 	top: -15px;
 }
 
-#M2{
+#ForgotenPassword{
 	color: white;
 	position: relative;
 	right: -145px;
 	top: -15px;
 }
 
-#Text1{
+#Registration{
 	background-color: white;
 	width: 750px;
 	height: 650px;
 	position: relative;
-	top: -230px;
     padding: 25px;
     border: 1px solid ;
     margin: 15px;
 }
 
-#Text2{
+#Leagues{
 	background-color: white;
 	width: 750px;
 	height: 450px;
 	position: relative;
-	top: -200px;
     padding: 5px;
     border: 1px solid ;
     margin: 15px;
+	overflow: hidden;
 }
 
-#Text3{
-	background-color: white;
-	width: 750px;
-	height: 300px;
+#Leagues-text{
 	position: relative;
-	top: -200px;
-    padding: 5px;
-    border: 1px solid ;
-    margin: 15px;
-}
+	width: 190px;
+	height: 400px;
+	margin: 28px;
+	font-size: 14px;
+	line-height: 100%;
 
-#Heading1{
-	background-color: white;
-	width: 750px;
-	height: 70px;
-	position: relative;
-	top: -180px;
-    padding: 10px;
-    border: 1px solid ;
-    margin: 15px;
 }
-
-#Heading2{
-	background-color: white;
-	width: 750px;
-	height: 70px;
-	position: relative;
-	top: -180px;
-    padding: 10px;
-    border: 1px solid ;
-    margin: 15px;
-}
-
-#Pictures1{
-	background-color: white;
-	position: relative;
-	right: -970px;
-	top: 30px;
-	width: 330px;
-	height: 45px;
-    padding: 1px;
-    border: 1px solid ;
-    margin: 15px;
-}
-#Pictures2{
-	background-color: white;
-	position: relative;
-	right: -970px;
-	top: 10px;
-	width: 330px;
-	height: 170px;
-    padding: 15px;
-    border: 1px solid ;
-    margin: 15px;
-}
-#Pictures2 img{
-padding-bottom: 10px;
-}
-
 
 #Leagues1{
 	position: relative;
@@ -115,6 +64,65 @@ padding-bottom: 10px;
 	top: -450px;
 }
 
+#Text3{
+	background-color: white;
+	width: 750px;
+	height: 300px;
+	position: relative;
+    padding: 5px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#LeaguesHeading{
+	background-color: white;
+	width: 750px;
+	height: 70px;
+	position: relative;
+	top: 20px;
+    padding: 10px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#SponsorsHeading{
+	background-color: white;
+	width: 750px;
+	height: 70px;
+	position: relative;
+	top: 20px;
+    padding: 10px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#PicturesHeading{
+	background-color: white;
+	position: absolute;
+	right: 180px;
+	top: 810px;
+	width: 330px;
+	height: 45px;
+    padding: 1px;
+    border: 1px solid ;
+    margin: 15px;
+}
+#Pictures1{
+	background-color: white;
+	position: absolute;
+	right: 180px;
+	top: 850px;
+	width: 330px;
+	height: 170px;
+    padding: 15px;
+    border: 1px solid ;
+    margin: 15px;
+}
+#Pictures1 img{
+padding-bottom: 10px;
+}
+
+
 #back-arrow-1 {
 	position: relative;
 	right: -500px;
@@ -125,13 +133,47 @@ padding-bottom: 10px;
 	right: -500px;
 }
 
-#Leagues-text1{
+
+
+
+#Heading {
+	background-color: white;
+	width: 750px;
+	height: 70px;
 	position: relative;
-	width: 190px;
-	height: 400px;
-	margin: 28px;
-	font-size: 14px;
-	line-height: 100%;
-	
+    padding: 1px;
+    border: 1px solid ;
+    margin: 15px;
 }
 
+#VisitorsText {
+	background-color: white;
+	width: 750px;
+	height: 800px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+#VisitorsText img{
+	position: relative;
+	left: 70px;
+	padding-left: 25px;
+
+}
+
+#LocationText {
+	background-color: white;
+	width: 750px;
+	height: 1000px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+#LocationText img{
+	position: relative;
+	left: 20px;
+	padding-left: 25px;
+
+}
