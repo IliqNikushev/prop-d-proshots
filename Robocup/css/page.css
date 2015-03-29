@@ -54,9 +54,6 @@ body {
 
 }
 
-#Leagues1{
-	position: relative;
-}
 
 #Leagues2{
 	position: relative;
@@ -72,6 +69,10 @@ body {
     padding: 5px;
     border: 1px solid ;
     margin: 15px;
+}
+
+#Leagues1{
+	position: relative;
 }
 
 #LeaguesHeading{
@@ -176,4 +177,114 @@ padding-bottom: 10px;
 	left: 20px;
 	padding-left: 25px;
 
+}
+
+#ReservationText {
+	background-color: white;
+	width: 750px;
+	height: 500px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#TicketsText {
+	background-color: white;
+	width: 750px;
+	height: 500px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#ParticipantsText {
+	background-color: white;
+	width: 750px;
+	height: 600px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#ScheduleText {
+	background-color: white;
+	width: 750px;
+	height: 600px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#RoboCupSoccerText {
+	background-color: white;
+	width: 750px;
+	height: 1500px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#RoboCupRescueText {
+	background-color: white;
+	width: 750px;
+	height: 900px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#RoboCupJuniorText {
+	background-color: white;
+	width: 750px;
+	height: 500px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#RoboCupHomeText {
+	background-color: white;
+	width: 750px;
+	height: 550px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#RoboCupWorkText {
+	background-color: white;
+	width: 750px;
+	height: 400px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#SponsorsText {
+	background-color: white;
+	width: 750px;
+	height: 1200px;
+	position: relative;
+    padding: 5px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#ContactUsText {
+	background-color: white;
+	width: 750px;
+	height: 600px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
 }
