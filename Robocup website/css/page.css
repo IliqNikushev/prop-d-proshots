@@ -16,7 +16,7 @@ body {
 	top: -15px;
 }
 
-#ForgotenPassword{
+#ForgottenPassword{
 	color: white;
 	position: relative;
 	right: -145px;
@@ -123,6 +123,29 @@ body {
 padding-bottom: 10px;
 }
 
+#TwitterHeading{
+	background-color: white;
+	position: absolute;
+	right: 180px;
+	top: 1060px;
+	width: 330px;
+	height: 45px;
+    padding: 1px;
+    border: 1px solid ;
+    margin: 15px;
+}
+#Twitter{
+	background-color: white;
+	position: absolute;
+	right: 180px;
+	top: 1100px;
+	width: 330px;
+	height: 370px;
+    padding: 15px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
 
 #back-arrow-1 {
 	position: relative;
@@ -182,7 +205,7 @@ padding-bottom: 10px;
 #ReservationText {
 	background-color: white;
 	width: 750px;
-	height: 500px;
+	height: 1300px;
 	position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -242,7 +265,7 @@ padding-bottom: 10px;
 #RoboCupJuniorText {
 	background-color: white;
 	width: 750px;
-	height: 500px;
+	height: 600px;
 	position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -262,7 +285,7 @@ padding-bottom: 10px;
 #RoboCupWorkText {
 	background-color: white;
 	width: 750px;
-	height: 400px;
+	height: 600px;
 	position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -287,4 +310,26 @@ padding-bottom: 10px;
     padding: 25px;
     border: 1px solid ;
     margin: 15px;
+}
+
+#RegisterText {
+	background-color: white;
+	width: 750px;
+	height: 700px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+	text-align: center;
+}
+
+#ForgottenText {
+	background-color: white;
+	width: 750px;
+	height: 300px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+	text-align: center;
 }
