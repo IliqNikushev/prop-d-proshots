@@ -12,19 +12,58 @@ namespace Design.Idea.AdministratorInterface
 {
     public partial class Landing : LandingBase
     {
+        private Pointable[] examples = new Pointable[]{
+            new ShopExample(0,0,"KFC", "Fried chicken"),
+            new ShopExample(100,100,"MC Donalds", "Fast Food"),
+            new ShopExample(200,200,"Doctor", "Fast and Easy doctor repairs")
+        };
+
+        private int mapX = 0, mapY = 0;
+        float zoom = 1;
+        float wantedZoom = 1;
         public Landing(Form parent) : base(parent)
         {
             InitializeComponent();
+            mapX = mapArea.Left;
+            mapY = mapArea.Top;
+
+            mapArea.Image = Properties.Resources.Park_English;
+            
+            foreach (Pointable pointable in examples)
+            {
+                pointable.AddToMap(mapArea);
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+            
+        }
 
+        private void ChangeZoom(float amount)
+        {
+            if (wantedZoom + amount <= 0) return;
+            //example : change from 1.1 to 1.2
+            float target = wantedZoom + amount; //1.2
+            float current = zoom; // 1.1
+            float difference = target / current; // 1.1 * ? = 1.2
+
+            zoom *= difference;
+            wantedZoom += amount;
+
+            mapArea.Scale(new SizeF(difference, difference));
+            
+            mapArea.Left = mapX;
+            mapArea.Top = mapY;
         }
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {
+            
+        }
 
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -100,6 +139,21 @@ namespace Design.Idea.AdministratorInterface
         private void pictureBox8_Click(object sender, EventArgs e)
         {
             new Employees(this).Show();
+        }
+
+        private void pictureBox11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ChangeZoom(0.1f);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ChangeZoom(-0.1f);
         }
     }
 }
