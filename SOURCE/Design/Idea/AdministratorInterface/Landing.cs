@@ -46,9 +46,7 @@ namespace Design.Idea.AdministratorInterface
             holder.BringToFront();
             mapArea.BringToFront();
             foreach (Pointable pointable in examples)
-            {
                 pointable.AddToMap(mapArea);
-            }
 
             mapArea.MouseDown += (x, mouse) =>
             {
@@ -98,9 +96,20 @@ namespace Design.Idea.AdministratorInterface
 
         }
 
+        private void SetZoom(float amount)
+        {
+            float delta = amount - wantedZoom;
+            ChangeZoom(delta);
+        }
+
+        private void ResetZoom()
+        {
+            SetZoom(1);
+        }
+
         private void ChangeZoom(float amount)
         {
-            if (wantedZoom + amount <= 0) return;
+            if (wantedZoom + amount <= 1) return;
             //example : change from 1.1 to 1.2
             float target = wantedZoom + amount; //1.2
             float current = zoom; // 1.1
@@ -114,9 +123,36 @@ namespace Design.Idea.AdministratorInterface
             mapArea.Location = dragOffset;
         }
 
+        private void ZoomToItems(params Pointable[] items)
+        {
+            int left = items[0].X;
+            int right = items[0].X;
+            int top = items[0].Y;
+            int bottom = items[0].Y;
+
+            foreach (Pointable item in items)
+            {
+                if (item.X < left) left = item.X;
+                else if (item.X > right) right = item.X;
+
+                if (item.Y < top) top = item.Y;
+                else if (item.Y > bottom) bottom = item.Y;
+            }
+
+            float width = right - left + Pointable.IconSize;
+            float height = bottom - top + Pointable.IconSize;
+
+            dragOffset = new Point(left, top);
+
+            float deltaZoomWidth = mapArea.Width / width;
+            float deltaZoomHeight = mapArea.Height / height;
+            float deltaZoom = deltaZoomWidth > deltaZoomHeight ? deltaZoomWidth : deltaZoomHeight;
+
+            ChangeZoom(deltaZoom - 1);
+        }
+
         private void pictureBox7_Click(object sender, EventArgs e)
         {
-
         }
 
         private void pictureBox9_Click(object sender, EventArgs e)

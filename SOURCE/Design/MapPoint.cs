@@ -8,22 +8,24 @@ namespace Design
 {
     abstract class Pointable
     {
-            private string Label;
-            private string Description;
-            private int X, Y;
+        public const int IconSize = 32;
+        private string Label;
+        private string Description;
+        public int X { get; private set; }
+        public int Y { get; private set; }
 
-            public Pointable(int x, int y, string label, string description)
-            {
-                this.Label = label;
-                this.Description = description;
-                this.X = x;
-                this.Y = y;
-            }
+        public Pointable(int x, int y, string label, string description)
+        {
+            this.Label = label;
+            this.Description = description;
+            this.X = x;
+            this.Y = y;
+        }
 
         public void AddToMap(System.Windows.Forms.Control map)
         {
             System.Drawing.Bitmap image = null;
-            if(this.GetType() == typeof(ShopExample))
+            if (this.GetType() == typeof(ShopExample))
                 image = Design.Properties.Resources.Back;
 
             if (image == null)
@@ -36,12 +38,13 @@ namespace Design
 
             System.Windows.Forms.PictureBox marker = new System.Windows.Forms.PictureBox();
             marker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            marker.Size = new System.Drawing.Size(32, 32);
+            marker.Size = new System.Drawing.Size(IconSize, IconSize);
             onHover.Visible = false;
             onHover.SendToBack();
+
             marker.Left = this.X;
             marker.Top = this.Y;
-            onHover.Left = this.X + 32;
+            onHover.Left = this.X + IconSize;
             onHover.Top = this.Y;
 
             onHover.AutoSize = true;
