@@ -71,6 +71,17 @@ body {
 	top: -450px;
 }
 
+#SponsorsHeading{
+	background-color: white;
+	width: 750px;
+	height: 70px;
+	position: relative;
+	top: 20px;
+    padding: 10px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
 #Text3{
 	background-color: white;
 	width: 750px;
@@ -84,7 +95,7 @@ body {
 #Sponsors-text{
 	position: relative;
 	width: 190px;
-	height: 400px;
+	height: 100px;
 	margin: 28px;
 	font-size: 14px;
 	line-height: 100%;
@@ -95,17 +106,6 @@ body {
 
 
 #LeaguesHeading{
-	background-color: white;
-	width: 750px;
-	height: 70px;
-	position: relative;
-	top: 20px;
-    padding: 10px;
-    border: 1px solid ;
-    margin: 15px;
-}
-
-#SponsorsHeading{
 	background-color: white;
 	width: 750px;
 	height: 70px;
@@ -168,13 +168,13 @@ padding-bottom: 10px;
 
 #back-arrow-1 {
 	position: relative;
-	right: -470px;
+	right: -460px;
 	background-color: white;
 }
 
 #Forward-arrow-1 {
 	position: relative;
-	right: -470px;
+	right: -460px;
 	background-color: white;
 }
 
@@ -226,7 +226,7 @@ padding-bottom: 10px;
 #ReservationText {
 	background-color: white;
 	width: 750px;
-	height: 1300px;
+	height: 1000px;
 	position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -236,7 +236,7 @@ padding-bottom: 10px;
 #TicketsText {
 	background-color: white;
 	width: 750px;
-	height: 700px;
+	height: 900px;
 	position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -286,7 +286,7 @@ padding-bottom: 10px;
 #RoboCupJuniorText {
 	background-color: white;
 	width: 750px;
-	height: 600px;
+	height: 550px;
 	position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -306,7 +306,7 @@ padding-bottom: 10px;
 #RoboCupWorkText {
 	background-color: white;
 	width: 750px;
-	height: 600px;
+	height: 550px;
 	position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -326,7 +326,7 @@ padding-bottom: 10px;
 #ContactUsText {
 	background-color: white;
 	width: 750px;
-	height: 600px;
+	height: 550px;
 	position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -336,7 +336,7 @@ padding-bottom: 10px;
 #RegisterText {
 	background-color: white;
 	width: 750px;
-	height: 700px;
+	height: 770px;
 	position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -347,10 +347,40 @@ padding-bottom: 10px;
 #ForgottenText {
 	background-color: white;
 	width: 750px;
-	height: 300px;
+	height: 650px;
 	position: relative;
     padding: 25px;
     border: 1px solid ;
     margin: 15px;
 	text-align: center;
+}
+
+#BookedText {
+	background-color: white;
+	width: 750px;
+	height: 550px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+	text-align: center;
+}
+
+#TextBox {
+	background-color: white;
+	width: 650px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#BalanceText {
+	background-color: white;
+	width: 750px;
+	height: 600px;
+	position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
 }
