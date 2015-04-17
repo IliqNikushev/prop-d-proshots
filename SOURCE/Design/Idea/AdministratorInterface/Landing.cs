@@ -18,26 +18,84 @@ namespace Design.Idea.AdministratorInterface
             new ShopExample(200,200,"Doctor", "Fast and Easy doctor repairs")
         };
 
-        private int mapX = 0, mapY = 0;
+        private Point dragOffset;
+        private Point mouseDragStartLocation;
+
         float zoom = 1;
         float wantedZoom = 1;
-        public Landing(Form parent) : base(parent)
+        private bool mapDragging = false;
+        public Landing(Form parent)
+            : base(parent)
         {
             InitializeComponent();
-            mapX = mapArea.Left;
-            mapY = mapArea.Top;
+            int mapX = mapArea.Left;
+            int mapY = mapArea.Top;
 
             mapArea.Image = Properties.Resources.Park_English;
-            
+            PictureBox holder = new PictureBox();
+            holder.Size = new Size(mapArea.Size.Width, mapArea.Size.Height);
+
+            holder.Left = mapX;
+            holder.Top = mapY;
+
+            mapArea.Parent = holder;
+            mapArea.Left = 0;
+            mapArea.Top = 0;
+
+            this.Controls.Add(holder);
+            holder.BringToFront();
+            mapArea.BringToFront();
             foreach (Pointable pointable in examples)
             {
                 pointable.AddToMap(mapArea);
             }
+
+            mapArea.MouseDown += (x, mouse) =>
+            {
+                if (mapDragging) return;
+                this.Cursor = Cursors.Cross;
+                this.mapDragging = true;
+                mouseDragStartLocation = mouse.Location;
+            };
+
+            mapArea.MouseUp += (x, mouse) =>
+            {
+                if (!mapDragging) return;
+
+                mapDragging = false;
+                this.Cursor = Cursors.Default;
+                mapArea.Location = dragOffset;
+                holder.Refresh();
+            };
+
+            mapArea.MouseMove += (sender, mouse) =>
+            {
+                if (!mapDragging) return;
+
+                if (mouse.Location == mouseDragStartLocation)
+                    return;
+                Point delta = new Point(mouse.Location.X - mouseDragStartLocation.X, mouse.Location.Y - mouseDragStartLocation.Y);
+                Point previous = dragOffset;
+                dragOffset = new Point(dragOffset.X + delta.X, dragOffset.Y + delta.Y);
+
+                float minimumArea = 64;
+
+                if (
+                    (dragOffset.X < -mapArea.Width + minimumArea || dragOffset.Y < -mapArea.Height + minimumArea) ||
+                    (dragOffset.X > holder.Width - minimumArea || dragOffset.Y > holder.Height - minimumArea)
+                    )
+                {
+                    dragOffset = previous;
+                    return;
+                }
+                mapArea.Location = dragOffset;
+                holder.Refresh();
+            };
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void ChangeZoom(float amount)
@@ -52,14 +110,13 @@ namespace Design.Idea.AdministratorInterface
             wantedZoom += amount;
 
             mapArea.Scale(new SizeF(difference, difference));
-            
-            mapArea.Left = mapX;
-            mapArea.Top = mapY;
+
+            mapArea.Location = dragOffset;
         }
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void pictureBox9_Click(object sender, EventArgs e)
