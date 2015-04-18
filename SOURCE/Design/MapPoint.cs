@@ -9,10 +9,24 @@ namespace Design
     abstract class Pointable
     {
         public const int IconSize = 32;
-        private string Label;
-        private string Description;
+        public string Label { get; private set; }
+        public string Description { get; private set; }
         public int X { get; private set; }
         public int Y { get; private set; }
+
+        private System.Windows.Forms.PictureBox marker;
+
+        public void HideInMap()
+        {
+            if (marker != null)
+                marker.Visible = false;
+        }
+
+        public void ShowInMap()
+        {
+            if (marker != null)
+                marker.Visible = true;
+        }
 
         public Pointable(int x, int y, string label, string description)
         {
@@ -36,7 +50,7 @@ namespace Design
             if (this.Description != null)
                 onHover.Text += "\n" + this.Description;
 
-            System.Windows.Forms.PictureBox marker = new System.Windows.Forms.PictureBox();
+            marker = new System.Windows.Forms.PictureBox();
             marker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             marker.Size = new System.Drawing.Size(IconSize, IconSize);
             onHover.Visible = false;

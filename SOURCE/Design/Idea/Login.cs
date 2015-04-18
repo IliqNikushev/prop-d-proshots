@@ -23,7 +23,7 @@ namespace Design.Idea
         private void button1_Click(object sender, EventArgs e)
         {
             if (forWho == For.Admin)
-                new AdministratorInterface.Landing(this).Show();
+                new AdministratorInterface.Home(this).Show();
             else if (forWho == For.Employee)
                 new EmployeeInterface.Home(this).Show();
             else if (forWho == For.Visitor)

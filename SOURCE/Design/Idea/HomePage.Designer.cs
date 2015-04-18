@@ -1,6 +1,6 @@
 ﻿namespace Design.Idea
 {
-    partial class LandingBase
+    partial class HomePage
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "LandingBase";
+            this.Text = "HomePage";
         }
 
         #endregion

@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace Design.Idea
 {
-    public partial class LandingBase : Form
+    public partial class HomePage : Form
     {
-        public LandingBase() { InitializeComponent(); }
-        public LandingBase(Form parent)
+        public HomePage() { InitializeComponent(); }
+        public HomePage(Form parent)
         {
             if (parent == null) throw new ArgumentNullException("Parent of " + this.GetType() + " cannot be null!");
             this.FormClosed += (x, y) => parent.Close();

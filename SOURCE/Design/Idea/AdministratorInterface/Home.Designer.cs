@@ -1,6 +1,6 @@
 ﻿namespace Design.Idea.AdministratorInterface
 {
-    partial class Landing
+    partial class Home
     {
         /// <summary>
         /// Required designer variable.
@@ -48,10 +48,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.mapArea = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -62,8 +58,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mapArea)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -306,67 +300,26 @@
             this.pictureBox7.TabStop = false;
             this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
             // 
-            // pictureBox10
-            // 
-            this.pictureBox10.Image = global::Design.Properties.Resources.imac1;
-            this.pictureBox10.Location = new System.Drawing.Point(356, 10);
-            this.pictureBox10.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(400, 474);
-            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox10.TabIndex = 22;
-            this.pictureBox10.TabStop = false;
-            this.pictureBox10.Click += new System.EventHandler(this.pictureBox10_Click);
-            // 
-            // mapArea
-            // 
-            this.mapArea.Image = global::Design.Properties.Resources.Park_English;
-            this.mapArea.Location = new System.Drawing.Point(371, 26);
-            this.mapArea.Name = "mapArea";
-            this.mapArea.Size = new System.Drawing.Size(374, 371);
-            this.mapArea.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.mapArea.TabIndex = 24;
-            this.mapArea.TabStop = false;
-            this.mapArea.Click += new System.EventHandler(this.pictureBox11_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(309, 434);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(42, 23);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "+";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(309, 460);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(42, 23);
-            this.button2.TabIndex = 26;
-            this.button2.Text = "-";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // Landing
+            // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(771, 506);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.mapArea);
+            this.ClientSize = new System.Drawing.Size(750, 506);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.pictureBox7);
-            this.Controls.Add(this.pictureBox10);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Landing";
-            this.Text = "Landing";
+            this.Name = "Home";
+            this.Text = "Home";
+            this.Controls.SetChildIndex(this.pictureBox7, 0);
+            this.Controls.SetChildIndex(this.label8, 0);
+            this.Controls.SetChildIndex(this.label9, 0);
+            this.Controls.SetChildIndex(this.label10, 0);
+            this.Controls.SetChildIndex(this.pictureBox9, 0);
+            this.Controls.SetChildIndex(this.groupBox1, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -378,8 +331,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mapArea)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -406,11 +357,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox mapArea;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
 
     }
 }
