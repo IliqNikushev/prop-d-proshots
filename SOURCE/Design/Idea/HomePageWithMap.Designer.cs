@@ -157,6 +157,15 @@
             this.Controls.Add(this.pictureBox10);
             this.Name = "HomePageWithMap";
             this.Text = "HomePageWithMap";
+            this.Controls.SetChildIndex(this.pictureBox10, 0);
+            this.Controls.SetChildIndex(this.mapArea, 0);
+            this.Controls.SetChildIndex(this.ZoomInBtn, 0);
+            this.Controls.SetChildIndex(this.zoomOutBtn, 0);
+            this.Controls.SetChildIndex(this.zoomTb, 0);
+            this.Controls.SetChildIndex(this.findByNameTb, 0);
+            this.Controls.SetChildIndex(this.findByNameLbl, 0);
+            this.Controls.SetChildIndex(this.findByTypeLbl, 0);
+            this.Controls.SetChildIndex(this.findByTypeTb, 0);
             ((System.ComponentModel.ISupportInitialize)(this.mapArea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.ResumeLayout(false);

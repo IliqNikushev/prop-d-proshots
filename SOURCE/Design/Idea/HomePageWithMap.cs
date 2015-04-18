@@ -149,6 +149,7 @@ namespace Design.Idea
                 }, (selection) => ShowItemsOnMap(findByTypeTb.Text, selection.ToString()));
 
             findByTypeTb.Text = "All";
+            SetNameSearchCollection("All");
         }
 
         private void AddAutoCompleteTo(TextBox tb, Action<KeyPressEventArgs> onKeyPress, Action<object> onSelected)

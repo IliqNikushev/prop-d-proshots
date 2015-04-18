@@ -275,6 +275,9 @@
     <EmbeddedResource Include="Idea\AdministratorInterface\Visitors.resx">
       <DependentUpon>Visitors.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Idea\HomePage.resx">
+      <DependentUpon>HomePage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Idea\HomePageWithMap.resx">
       <DependentUpon>HomePageWithMap.cs</DependentUpon>
     </EmbeddedResource>
