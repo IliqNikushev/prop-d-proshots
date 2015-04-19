@@ -2,33 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Classes
 {
-    public class Shop
+    public class Shop : EmploymentPlace
     {
-        public int Id { get; private set; }
-        public Shop(int id)
-        {
-            //Using the database -> 
-            //Check if the store exists and is not logged in
-            //else the shop is not valid
-            if (false)
-            {
-
-            }
-            else
-                throw new Exceptions.InvalidShopException();
-        }
+        public Shop(string id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
 
         public Receipt Purchase(string identificator, List<PurchaseSelection> items)
         {
-            User user = new User(identificator);
+            Visitor user = new Visitor(identificator);
             return Purchase(user, items);
         }
 
-        public Receipt Purchase(User user, List<PurchaseSelection> items)
+        public Receipt Purchase(Visitor user, List<PurchaseSelection> items)
         {
             //Check if items are in stock -> return those items that are not found
             //Check if he has amount in his account

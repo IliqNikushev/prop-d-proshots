@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
+    /// <summary>
+    /// Deposit made by Paypal Transaction
+    /// </summary>
     public class Deposit
     {
         public int ID { get; private set; }

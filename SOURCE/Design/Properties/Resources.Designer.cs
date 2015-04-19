@@ -435,7 +435,7 @@ namespace Design.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Shop {
             get {
-                object obj = ResourceManager.GetObject("Shop", resourceCulture);
+                object obj = ResourceManager.GetObject("EmploymentPlace", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

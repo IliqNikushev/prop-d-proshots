@@ -8,14 +8,34 @@ namespace Classes
 {
     public class Receipt
     {
-        public User User { get; private set; }
-        public Shop Shop { get; private set; }
         public List<PurchaseSelection> Items { get; private set; }
         public DateTime PurchasedOn { get; private set; }
 
-        public Receipt(User user, Shop shop, List<PurchaseSelection> items)
+        public Visitor Visitor
         {
-            this.User = user;
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public Shop Shop
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public Receipt(Visitor visitor, Shop shop, List<PurchaseSelection> items)
+        {
+            this.Visitor = visitor;
             this.Shop = shop;
             this.Items = items;
             this.PurchasedOn = DateTime.Now;

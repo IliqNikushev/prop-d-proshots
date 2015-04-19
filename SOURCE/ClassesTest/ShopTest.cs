@@ -8,8 +8,8 @@ namespace Classes
     [TestClass]
     public class ShopTest : PowerDependantTest
     {
-        public const int VALID_SHOP_ID = 3;
-        public const int INVALID_SHOP_ID = -1;
+        public const string VALID_SHOP_ID = "3";
+        public const string INVALID_SHOP_ID = "-1";
         private Shop shop;
 
         //Use TestInitialize to run code before running each test 
@@ -19,7 +19,7 @@ namespace Classes
 #warning DATABASE DOES NOT EXIST try catch
             try
             {
-                shop = new Shop(VALID_SHOP_ID);
+                shop = new Shop(VALID_SHOP_ID, null, null, 0, 0);
             }
             catch { }
         }
@@ -34,14 +34,14 @@ namespace Classes
         [TestMethod]
         public void AuthenticateShop()
         {
-            Assert.IsTrue(shop.Id == VALID_SHOP_ID);
+            Assert.IsTrue(shop.ID == VALID_SHOP_ID);
         }
 
         [TestMethod]
         [ExpectedException(typeof(Exceptions.InvalidShopException))]
         public void AuthenticateShopFailed()
         {
-            Shop shop = new Shop(INVALID_SHOP_ID);
+            Shop shop = new Shop(INVALID_SHOP_ID, null, null, 0, 0);
         }
 
         [TestMethod]

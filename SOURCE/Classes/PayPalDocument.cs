@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 namespace Classes
 {
     using Exceptions;
+    /// <summary>
+    /// Document received from PayPal to inform about transactions ( deposits )
+    /// </summary>
     public class PayPalDocument
     {
         const string DATE_FORMAT = "YYYY/MM/dd/HH:mm:SS";
