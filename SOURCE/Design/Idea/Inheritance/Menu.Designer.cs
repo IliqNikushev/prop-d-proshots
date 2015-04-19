@@ -1,6 +1,6 @@
-﻿namespace Design.Idea.Inheritance.Layouts
+﻿namespace Design.Idea.Inheritance
 {
-    partial class Layout1
+    partial class Menu
     {
         /// <summary>
         /// Required designer variable.
@@ -28,33 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.dynamicContainer = new System.Windows.Forms.GroupBox();
+            this.topNav = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
-            // button1
+            // dynamicContainer
             // 
-            this.button1.Location = new System.Drawing.Point(13, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Close";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.dynamicContainer.Location = new System.Drawing.Point(9, 47);
+            this.dynamicContainer.Name = "dynamicContainer";
+            this.dynamicContainer.Size = new System.Drawing.Size(200, 100);
+            this.dynamicContainer.TabIndex = 0;
+            this.dynamicContainer.TabStop = false;
+            this.dynamicContainer.Text = "dynamicContainer";
             // 
-            // Layout1
+            // topNav
+            // 
+            this.topNav.Location = new System.Drawing.Point(9, 12);
+            this.topNav.Name = "topNav";
+            this.topNav.Size = new System.Drawing.Size(263, 29);
+            this.topNav.TabIndex = 1;
+            this.topNav.TabStop = false;
+            this.topNav.Text = "TopNav";
+            // 
+            // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.button1);
-            this.Name = "Layout1";
-            this.Text = "Layout1";
+            this.Controls.Add(this.topNav);
+            this.Controls.Add(this.dynamicContainer);
+            this.Name = "Menu";
+            this.Text = "MenuBase";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        protected System.Windows.Forms.GroupBox dynamicContainer;
+        private System.Windows.Forms.GroupBox topNav;
+
     }
 }

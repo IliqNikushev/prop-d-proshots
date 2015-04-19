@@ -110,41 +110,35 @@
     <Compile Include="Idea\HomePageWithMap.Designer.cs">
       <DependentUpon>HomePageWithMap.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\Inheritance\LayoutBase.cs">
+    <Compile Include="Idea\Inheritance\Menu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Idea\Inheritance\LayoutBase.Designer.cs">
-      <DependentUpon>LayoutBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Idea\Inheritance\Layouts\Layout1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Idea\Inheritance\Layouts\Layout1.Designer.cs">
-      <DependentUpon>Layout1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Idea\Inheritance\Menus\Menu1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Idea\Inheritance\Menus\Menu1.Designer.cs">
-      <DependentUpon>Menu1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Idea\Inheritance\Menus\Menu2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Idea\Inheritance\Menus\Menu2.Designer.cs">
-      <DependentUpon>Menu2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Idea\Inheritance\MenuBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Idea\Inheritance\MenuBase.Designer.cs">
-      <DependentUpon>MenuBase.cs</DependentUpon>
+    <Compile Include="Idea\Inheritance\Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Idea\HomePage.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Idea\HomePage.Designer.cs">
       <DependentUpon>HomePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\Inheritance\Menus\AdminMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\Inheritance\Menus\AdminMenu.Designer.cs">
+      <DependentUpon>AdminMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\Inheritance\Menus\EmployeeMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\Inheritance\Menus\EmployeeMenu.Designer.cs">
+      <DependentUpon>EmployeeMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\Inheritance\Menus\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\Inheritance\Menus\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Idea\Login.cs">
       <SubType>Form</SubType>
@@ -158,11 +152,11 @@
     <Compile Include="Idea\Store.Designer.cs">
       <DependentUpon>Store.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Idea\SubMenuBase.cs">
       <SubType>Form</SubType>
@@ -251,8 +245,20 @@
     <Compile Include="MapPoint.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Idea\Inheritance\Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\Inheritance\Menus\AdminMenu.resx">
+      <DependentUpon>AdminMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\Inheritance\Menus\EmployeeMenu.resx">
+      <DependentUpon>EmployeeMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\Inheritance\Menus\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\AdministratorInterface\Calendar.resx">
       <DependentUpon>Calendar.cs</DependentUpon>
@@ -280,15 +286,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\HomePageWithMap.resx">
       <DependentUpon>HomePageWithMap.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Idea\Inheritance\Layouts\Layout1.resx">
-      <DependentUpon>Layout1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Idea\Inheritance\Menus\Menu1.resx">
-      <DependentUpon>Menu1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Idea\Inheritance\Menus\Menu2.resx">
-      <DependentUpon>Menu2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

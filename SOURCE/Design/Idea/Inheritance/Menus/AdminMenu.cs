@@ -10,16 +10,26 @@ using System.Windows.Forms;
 
 namespace Design.Idea.Inheritance.Menus
 {
-    public partial class Menu1 : MenuBase
+    public partial class AdminMenu : Menu
     {
-        public Menu1(LayoutBase layout):base(layout)
+        public AdminMenu()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Menu2(new Layouts.Layout1()).Show();
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            new Menus.EmployeeMenu().SetAsActive();
         }
     }
 }
