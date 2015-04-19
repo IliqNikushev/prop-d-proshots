@@ -51,7 +51,7 @@
             this.visitorGUIBtn.Name = "visitorGUIBtn";
             this.visitorGUIBtn.Size = new System.Drawing.Size(75, 23);
             this.visitorGUIBtn.TabIndex = 1;
-            this.visitorGUIBtn.Text = "Visitor";
+            this.visitorGUIBtn.Text = "visitor";
             this.visitorGUIBtn.UseVisualStyleBackColor = true;
             this.visitorGUIBtn.Click += new System.EventHandler(this.visitorGUIBtn_Click);
             // 
@@ -72,7 +72,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(279, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "TODO : Close or Hide ? ( Keep what the user has done ? ";
+            this.label1.Text = "TODO : Close or Hide ? ( Keep what the visitor has done ? ";
             // 
             // button1
             // 

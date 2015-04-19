@@ -8,12 +8,8 @@ namespace Classes
 {
     public class PurchasableItem : Item
     {
-       // public Shop ShopOfferedAt { get; private set; }
-
-       // public PurchasableItem(int id, string name, decimal price, Shop shop) : base(id, name, price) 
-        public PurchasableItem(int id, string name, decimal price) : base(id, name, price) 
+        public PurchasableItem(int id, decimal price, string brand, string model, string type) : base(id, price, brand, model, type)
         {
-            //this.ShopOfferedAt = shop;
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Design.Idea
 {
-    public partial class HomePageWithMap : Menu
+    public partial class HomePageWithMap : HomePage
     {
         private Pointable[] examples = new Pointable[]{
             new ShopExample(0,0,"KFC", "Fried chicken"),

@@ -8,7 +8,7 @@ namespace Classes
     {
         public const string VALID_USER_ID = "123abc";
         public const string INVALID_USER_ID = "invalid";
-        private User user;
+        private Visitor user;
 
         //Use TestInitialize to run code before running each test 
         public override void OnInitialize()
@@ -16,7 +16,7 @@ namespace Classes
 #warning DATABASE DOES NOT EXIST try catch
             try
             {
-                user = new User(VALID_USER_ID);
+                user = new Visitor(VALID_USER_ID);
             }
             catch { }
         }
@@ -31,7 +31,7 @@ namespace Classes
         [ExpectedException(typeof(Exceptions.InvalidUserException))]
         public void UserAuthenticateFailed()
         {
-            User user = new User(INVALID_USER_ID);
+            Visitor user = new Visitor(INVALID_USER_ID);
         }
 
         [TestMethod]

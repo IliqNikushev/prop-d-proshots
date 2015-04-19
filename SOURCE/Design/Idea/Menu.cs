@@ -101,7 +101,6 @@ namespace Design.Idea
             OnSet(menu);
         }
 
-
         private static bool IsIn(Control control, Control contrainer)
         {
             return
