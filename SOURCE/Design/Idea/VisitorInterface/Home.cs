@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Design.Idea.VisitorInterface
 {
-    public partial class Home : LandingBase
+    public partial class Home : HomePageWithMap
     {
         public Home(Form parent) : base(parent)
         {

@@ -60,12 +60,6 @@ namespace Classes
             throw new NotImplementedException();
         }
 
-        [TestMethod]
-        public override void Synchronize()
-        {
-            throw new NotImplementedException();
-        }
-
         public override void HandleValidPayPalDocument()
         {
             throw new NotImplementedException();
@@ -82,11 +76,6 @@ namespace Classes
         }
 
         public override void HandlePayPalDocumentConnectionFailure()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void OnSynchronizeWithConflict()
         {
             throw new NotImplementedException();
         }

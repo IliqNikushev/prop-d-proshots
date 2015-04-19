@@ -56,11 +56,11 @@
     <Compile Include="Idea\AdministratorInterface\Employees.Designer.cs">
       <DependentUpon>Employees.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\AdministratorInterface\Landing.cs">
+    <Compile Include="Idea\AdministratorInterface\Home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Idea\AdministratorInterface\Landing.Designer.cs">
-      <DependentUpon>Landing.cs</DependentUpon>
+    <Compile Include="Idea\AdministratorInterface\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
     </Compile>
     <Compile Include="Idea\AdministratorInterface\Map.cs">
       <SubType>Form</SubType>
@@ -104,6 +104,12 @@
     <Compile Include="Idea\EmployeeInterface\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="Idea\HomePageWithMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\HomePageWithMap.Designer.cs">
+      <DependentUpon>HomePageWithMap.cs</DependentUpon>
+    </Compile>
     <Compile Include="Idea\Inheritance\LayoutBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,11 +140,11 @@
     <Compile Include="Idea\Inheritance\MenuBase.Designer.cs">
       <DependentUpon>MenuBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\LandingBase.cs">
+    <Compile Include="Idea\HomePage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Idea\LandingBase.Designer.cs">
-      <DependentUpon>LandingBase.cs</DependentUpon>
+    <Compile Include="Idea\HomePage.Designer.cs">
+      <DependentUpon>HomePage.cs</DependentUpon>
     </Compile>
     <Compile Include="Idea\Login.cs">
       <SubType>Form</SubType>
@@ -242,6 +248,7 @@
     <Compile Include="Idea\VisitorInterface\View\Rent.Designer.cs">
       <DependentUpon>Rent.cs</DependentUpon>
     </Compile>
+    <Compile Include="MapPoint.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -253,8 +260,8 @@
     <EmbeddedResource Include="Idea\AdministratorInterface\Employees.resx">
       <DependentUpon>Employees.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Idea\AdministratorInterface\Landing.resx">
-      <DependentUpon>Landing.cs</DependentUpon>
+    <EmbeddedResource Include="Idea\AdministratorInterface\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\AdministratorInterface\PcDoctor.resx">
       <DependentUpon>PcDoctor.cs</DependentUpon>
@@ -267,6 +274,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\AdministratorInterface\Visitors.resx">
       <DependentUpon>Visitors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\HomePage.resx">
+      <DependentUpon>HomePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\HomePageWithMap.resx">
+      <DependentUpon>HomePageWithMap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\Inheritance\Layouts\Layout1.resx">
       <DependentUpon>Layout1.cs</DependentUpon>
@@ -490,6 +503,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\acc-image-icon-big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Park.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Park-English.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
