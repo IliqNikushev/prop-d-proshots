@@ -12,7 +12,7 @@ namespace Design.Idea.VisitorInterface
 {
     public partial class Home : HomePageWithMap
     {
-        public Home(Form parent) : base(parent)
+        public Home()
         {
             InitializeComponent();
         }

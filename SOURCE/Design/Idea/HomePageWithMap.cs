@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Design.Idea
 {
-    public partial class HomePageWithMap : HomePage
+    public partial class HomePageWithMap : Menu
     {
         private Pointable[] examples = new Pointable[]{
             new ShopExample(0,0,"KFC", "Fried chicken"),
@@ -18,15 +18,31 @@ namespace Design.Idea
             new ShopExample(200,200,"Doctor", "Fast and Easy doctor repairs")
         };
 
+        protected override List<Control> Inherited
+        {
+            get
+            {
+                List<Control> result = base.Inherited;
+                result.Add(mapBtn);
+                return result;
+            }
+        }
+
         private Point dragOffset;
         private Point mouseDragStartLocation;
 
         float zoom = 1;
         float wantedZoom = 1;
         private bool mapDragging = false;
-        public HomePageWithMap() { InitializeComponent(); }
-        public HomePageWithMap(Form parent)
-            : base(parent)
+
+        private void SetParent(Control a, Control b)
+        {
+            a.Left = a.Left - b.Left;
+            a.Top = a.Top - b.Top;
+            a.Parent = b;
+        }
+
+        public HomePageWithMap()
         {
             InitializeComponent();
 
@@ -37,14 +53,23 @@ namespace Design.Idea
             PictureBox holder = new PictureBox();
             holder.Size = new Size(mapArea.Size.Width, mapArea.Size.Height);
 
-            holder.Left = mapX;
-            holder.Top = mapY;
-
+            holder.Left = mapX - pictureBox10.Left + 2;
+            holder.Top = mapY - 3;
+            mapArea.Parent.Controls.Add(holder);
             mapArea.Parent = holder;
             mapArea.Left = 0;
             mapArea.Top = 0;
 
-            this.Controls.Add(holder);
+            holder.Parent = pictureBox10;
+
+            SetParent(ZoomInBtn, pictureBox10);
+            SetParent(zoomOutBtn, pictureBox10);
+            SetParent(zoomTb, pictureBox10);
+            SetParent(findByNameLbl, pictureBox10);
+            SetParent(findByNameTb, pictureBox10);
+            SetParent(findByTypeLbl, pictureBox10);
+            SetParent(findByTypeTb, pictureBox10);
+
             holder.BringToFront();
             mapArea.BringToFront();
             foreach (Pointable pointable in examples)
@@ -150,6 +175,20 @@ namespace Design.Idea
 
             findByTypeTb.Text = "All";
             SetNameSearchCollection("All");
+
+            
+        }
+
+        protected override void OnSet(Menu menu)
+        {
+            if (menu == this)
+            {
+                if (pictureBox10.Visible)
+                {
+                    MainMenu.Width -= pictureBox10.Width;
+                    pictureBox10.Visible = false;
+                }
+            }
         }
 
         private void AddAutoCompleteTo(TextBox tb, Action<KeyPressEventArgs> onKeyPress, Action<object> onSelected)
@@ -335,6 +374,17 @@ namespace Design.Idea
             float deltaZoom = deltaZoomWidth > deltaZoomHeight ? deltaZoomWidth : deltaZoomHeight;
 
             ChangeZoom(deltaZoom - 1);
+        }
+
+        private void ToggleMap()
+        {
+            MainMenu.Width += pictureBox10.Width * (pictureBox10.Visible ? -1 : 1);
+            pictureBox10.Visible = !pictureBox10.Visible;
+        }
+
+        private void mapBtn_Click(object sender, EventArgs e)
+        {
+            ToggleMap();
         }
     }
 }

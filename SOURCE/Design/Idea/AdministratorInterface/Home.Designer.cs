@@ -48,6 +48,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.dynamicContainer.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -59,6 +60,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
+            // 
+            // dynamicContainer
+            // 
+            this.dynamicContainer.Controls.Add(this.pictureBox9);
+            this.dynamicContainer.Controls.Add(this.label10);
+            this.dynamicContainer.Controls.Add(this.groupBox1);
+            this.dynamicContainer.Controls.Add(this.label9);
+            this.dynamicContainer.Controls.Add(this.label8);
+            this.dynamicContainer.Controls.Add(this.pictureBox7);
+            this.dynamicContainer.Controls.SetChildIndex(this.pictureBox7, 0);
+            this.dynamicContainer.Controls.SetChildIndex(this.label8, 0);
+            this.dynamicContainer.Controls.SetChildIndex(this.label9, 0);
+            this.dynamicContainer.Controls.SetChildIndex(this.groupBox1, 0);
+            this.dynamicContainer.Controls.SetChildIndex(this.label10, 0);
+            this.dynamicContainer.Controls.SetChildIndex(this.pictureBox9, 0);
             // 
             // label2
             // 
@@ -129,7 +145,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(74, 485);
+            this.label8.Location = new System.Drawing.Point(82, 478);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(104, 13);
@@ -139,7 +155,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(5, 486);
+            this.label9.Location = new System.Drawing.Point(13, 479);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(39, 13);
@@ -149,7 +165,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(192, 486);
+            this.label10.Location = new System.Drawing.Point(200, 479);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(67, 13);
@@ -183,7 +199,7 @@
             this.groupBox1.Controls.Add(this.pictureBox4);
             this.groupBox1.Controls.Add(this.pictureBox3);
             this.groupBox1.Controls.Add(this.pictureBox2);
-            this.groupBox1.Location = new System.Drawing.Point(9, 10);
+            this.groupBox1.Location = new System.Drawing.Point(3, 10);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -279,7 +295,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Image = global::Design.Properties.Resources.money;
-            this.pictureBox9.Location = new System.Drawing.Point(8, 427);
+            this.pictureBox9.Location = new System.Drawing.Point(16, 420);
             this.pictureBox9.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(55, 56);
@@ -291,7 +307,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = global::Design.Properties.Resources.warning38;
-            this.pictureBox7.Location = new System.Drawing.Point(93, 434);
+            this.pictureBox7.Location = new System.Drawing.Point(101, 427);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(49, 50);
@@ -304,22 +320,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(750, 506);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.pictureBox9);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.pictureBox7);
+            this.ClientSize = new System.Drawing.Size(781, 541);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Home";
             this.Text = "Home";
-            this.Controls.SetChildIndex(this.pictureBox7, 0);
-            this.Controls.SetChildIndex(this.label8, 0);
-            this.Controls.SetChildIndex(this.label9, 0);
-            this.Controls.SetChildIndex(this.label10, 0);
-            this.Controls.SetChildIndex(this.pictureBox9, 0);
-            this.Controls.SetChildIndex(this.groupBox1, 0);
+            this.dynamicContainer.ResumeLayout(false);
+            this.dynamicContainer.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -332,7 +338,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

@@ -1,4 +1,4 @@
-﻿namespace Design.Idea.Inheritance
+﻿namespace Design.Idea
 {
     partial class Menu
     {
@@ -28,34 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dynamicContainer = new System.Windows.Forms.GroupBox();
-            this.topNav = new System.Windows.Forms.GroupBox();
+            this.dynamicContainer = new System.Windows.Forms.Panel();
+            this.topNavContainer = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // dynamicContainer
             // 
-            this.dynamicContainer.Location = new System.Drawing.Point(9, 47);
+            this.dynamicContainer.Location = new System.Drawing.Point(12, 47);
             this.dynamicContainer.Name = "dynamicContainer";
-            this.dynamicContainer.Size = new System.Drawing.Size(200, 100);
-            this.dynamicContainer.TabIndex = 0;
-            this.dynamicContainer.TabStop = false;
-            this.dynamicContainer.Text = "dynamicContainer";
+            this.dynamicContainer.Size = new System.Drawing.Size(260, 202);
+            this.dynamicContainer.TabIndex = 2;
             // 
             // topNav
             // 
-            this.topNav.Location = new System.Drawing.Point(9, 12);
-            this.topNav.Name = "topNav";
-            this.topNav.Size = new System.Drawing.Size(263, 29);
-            this.topNav.TabIndex = 1;
-            this.topNav.TabStop = false;
-            this.topNav.Text = "TopNav";
+            this.topNavContainer.Location = new System.Drawing.Point(15, 12);
+            this.topNavContainer.Name = "topNav";
+            this.topNavContainer.Size = new System.Drawing.Size(257, 29);
+            this.topNavContainer.TabIndex = 0;
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.topNav);
+            this.Controls.Add(this.topNavContainer);
             this.Controls.Add(this.dynamicContainer);
             this.Name = "Menu";
             this.Text = "MenuBase";
@@ -65,8 +61,7 @@
 
         #endregion
 
-        protected System.Windows.Forms.GroupBox dynamicContainer;
-        private System.Windows.Forms.GroupBox topNav;
-
+        protected System.Windows.Forms.Panel dynamicContainer;
+        protected System.Windows.Forms.Panel topNavContainer;
     }
 }

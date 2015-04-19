@@ -8,18 +8,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Idea.Inheritance.Menus
+namespace Design.Idea.Menus
 {
-    public partial class EmployeeMenu : Menu
+    public partial class AdminMenu : Menu
     {
-        public EmployeeMenu()
+        public AdminMenu()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Menus.AdminMenu().SetAsActive();
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            new Menus.EmployeeMenu().SetAsActive();
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Idea.Inheritance.Menus
+namespace Design.Idea.Menus
 {
     public partial class Main : Menu
     {

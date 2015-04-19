@@ -12,7 +12,7 @@ namespace Design.Idea.EmployeeInterface
 {
     public partial class Home : HomePage
     {
-        public Home(Form parent) : base(parent)
+        public Home()
         {
             InitializeComponent();
         }

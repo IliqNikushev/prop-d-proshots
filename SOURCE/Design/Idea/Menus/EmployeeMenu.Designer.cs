@@ -1,4 +1,4 @@
-﻿namespace Design.Idea.Inheritance.Menus
+﻿namespace Design.Idea.Menus
 {
     partial class EmployeeMenu
     {

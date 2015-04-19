@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Design.Idea
 {
-    public partial class Login : Form
+    public partial class Login : Menu
     {
         private For forWho;
         public enum For { Admin, Visitor, Employee }
@@ -23,12 +23,11 @@ namespace Design.Idea
         private void button1_Click(object sender, EventArgs e)
         {
             if (forWho == For.Admin)
-                new AdministratorInterface.Home(this).Show();
+                new AdministratorInterface.Home().Show();
             else if (forWho == For.Employee)
-                new EmployeeInterface.Home(this).Show();
+                new EmployeeInterface.Home().Show();
             else if (forWho == For.Visitor)
-                new VisitorInterface.Home(this).Show();
-            this.Hide();
+                new VisitorInterface.Home().Show();
         }
     }
 }

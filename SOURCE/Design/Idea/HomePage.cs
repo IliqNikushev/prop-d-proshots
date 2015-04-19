@@ -10,13 +10,10 @@ using System.Windows.Forms;
 
 namespace Design.Idea
 {
-    public partial class HomePage : Form
+    public partial class HomePage : Menu
     {
-        public HomePage() { InitializeComponent(); }
-        public HomePage(Form parent)
+        public HomePage()
         {
-            if (parent == null) throw new ArgumentNullException("Parent of " + this.GetType() + " cannot be null!");
-            this.FormClosed += (x, y) => parent.Close();
             InitializeComponent();
         }
     }

@@ -34,7 +34,7 @@ namespace Design
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Idea.Inheritance.Menus.Main().SetAsActive();
+            new Idea.Menus.Main().SetAsActive();
         }
     }
 }

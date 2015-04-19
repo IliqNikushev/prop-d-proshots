@@ -12,7 +12,7 @@ namespace Design.Idea.AdministratorInterface
 {
     public partial class Home : HomePageWithMap
     {
-        public Home(Form parent) : base(parent) { InitializeComponent(); }
+        public Home() { InitializeComponent(); }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {

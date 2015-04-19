@@ -227,7 +227,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(658, 499);
+            this.ClientSize = new System.Drawing.Size(753, 499);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -248,6 +248,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "Home";
             this.Text = "Home";
+            this.Controls.SetChildIndex(this.dynamicContainer, 0);
             this.Controls.SetChildIndex(this.pictureBox1, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.pictureBox2, 0);
