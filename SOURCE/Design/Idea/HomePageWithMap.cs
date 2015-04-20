@@ -443,12 +443,12 @@ namespace Design.Idea
 
         private void ZoomInBtn_Click(object sender, EventArgs e)
         {
-            ChangeZoom(((int)(wantedZoom * 100f) / 1000f));
+            ChangeZoom(wantedZoom * 0.1f);
         }
 
         private void zoomOutBtn_Click(object sender, EventArgs e)
         {
-            ChangeZoom(((int)(wantedZoom * 100f) / -1000f));
+            ChangeZoom(wantedZoom * 0.1f);
         }
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -43,6 +42,12 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.dynamicContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -51,15 +56,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.SuspendLayout();
             // 
             // dynamicContainer
             // 
+            this.dynamicContainer.Controls.Add(this.label10);
+            this.dynamicContainer.Controls.Add(this.pictureBox11);
+            this.dynamicContainer.Controls.Add(this.label9);
+            this.dynamicContainer.Controls.Add(this.pictureBox9);
+            this.dynamicContainer.Controls.Add(this.label3);
+            this.dynamicContainer.Controls.Add(this.pictureBox8);
             this.dynamicContainer.Controls.Add(this.pictureBox6);
             this.dynamicContainer.Controls.Add(this.pictureBox7);
             this.dynamicContainer.Controls.Add(this.label1);
             this.dynamicContainer.Controls.Add(this.label8);
-            this.dynamicContainer.Controls.Add(this.label3);
             this.dynamicContainer.Controls.Add(this.label2);
             this.dynamicContainer.Controls.Add(this.label7);
             this.dynamicContainer.Controls.Add(this.label4);
@@ -81,11 +94,16 @@
             this.dynamicContainer.Controls.SetChildIndex(this.label4, 0);
             this.dynamicContainer.Controls.SetChildIndex(this.label7, 0);
             this.dynamicContainer.Controls.SetChildIndex(this.label2, 0);
-            this.dynamicContainer.Controls.SetChildIndex(this.label3, 0);
             this.dynamicContainer.Controls.SetChildIndex(this.label8, 0);
             this.dynamicContainer.Controls.SetChildIndex(this.label1, 0);
             this.dynamicContainer.Controls.SetChildIndex(this.pictureBox7, 0);
             this.dynamicContainer.Controls.SetChildIndex(this.pictureBox6, 0);
+            this.dynamicContainer.Controls.SetChildIndex(this.pictureBox8, 0);
+            this.dynamicContainer.Controls.SetChildIndex(this.label3, 0);
+            this.dynamicContainer.Controls.SetChildIndex(this.pictureBox9, 0);
+            this.dynamicContainer.Controls.SetChildIndex(this.label9, 0);
+            this.dynamicContainer.Controls.SetChildIndex(this.pictureBox11, 0);
+            this.dynamicContainer.Controls.SetChildIndex(this.label10, 0);
             // 
             // label1
             // 
@@ -95,15 +113,6 @@
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Profile Pic";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(121, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "ID Card";
             // 
             // label2
             // 
@@ -126,7 +135,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(121, 33);
+            this.label5.Location = new System.Drawing.Point(121, 12);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 8;
@@ -153,7 +162,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(154, 343);
+            this.label8.Location = new System.Drawing.Point(268, 231);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(30, 13);
             this.label8.TabIndex = 13;
@@ -183,7 +192,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::Design.Properties.Resources.info_desk;
-            this.pictureBox5.Location = new System.Drawing.Point(124, 255);
+            this.pictureBox5.Location = new System.Drawing.Point(238, 143);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(96, 104);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -234,6 +243,63 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = global::Design.Properties.Resources.remMoney;
+            this.pictureBox8.Location = new System.Drawing.Point(189, 78);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(48, 38);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox8.TabIndex = 24;
+            this.pictureBox8.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(121, 38);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(32, 13);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Email";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(127, 339);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(39, 13);
+            this.label9.TabIndex = 38;
+            this.label9.Text = "History";
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = global::Design.Properties.Resources._256;
+            this.pictureBox9.Location = new System.Drawing.Point(124, 255);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(96, 104);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox9.TabIndex = 37;
+            this.pictureBox9.TabStop = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(241, 337);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(49, 13);
+            this.label10.TabIndex = 40;
+            this.label10.Text = "Receipts";
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = global::Design.Properties.Resources._256;
+            this.pictureBox11.Location = new System.Drawing.Point(238, 253);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(96, 104);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox11.TabIndex = 39;
+            this.pictureBox11.TabStop = false;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -250,6 +316,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -259,7 +328,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -271,5 +339,11 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.PictureBox pictureBox11;
     }
 }

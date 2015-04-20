@@ -19,11 +19,8 @@ namespace Design.Idea.VisitorInterface
 
         protected override void OnSet()
         {
-            base.OnSet();
             mainMenuHeight = MainMenu.Height;
-
-            MainMenu.Width = this.Width;
-            MainMenu.Height = this.Height;
+            base.OnSet();
         }
 
         private int mainMenuHeight = -1;
