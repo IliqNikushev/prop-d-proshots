@@ -32,10 +32,24 @@
 
 </head>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script> 
+$(document).ready(function(){
+
+	$("#Login-Panel").hide();
+		 
+	$("#Login-Button").click(function(){
+		 $("#Login-Button").hide();
+		 $("#Login-Panel").show();
+
+    });
+});
+</script> 
+
 <body>
 
     <!-- Navigation -->
-    <nav class=" navbar-inverse navbar-static-top" id="navbar1">
+    <nav class=" navbar-inverse navbar-static-top" id="navbar">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -50,24 +64,24 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			
-				<ul class="nav navbar-nav navbar-left">
-                    <li>
-                    <input type="text" name="firstname" value="Enter your username">
-                    </li>
+				<ul class="nav navbar-nav navbar-left" id="Left-Navbar">
+				<div id="Login-Panel">
 
-					<li>
-                    <input type="password" name="firstname" value="Password">
-                    </li>
+                    <input type="text" name="Username" placeholder="Username">
+
+
+                    <input type="password" name="Password" placeholder="Password">
+
 					
-					<li>
-                    <input type="submit" name="Enter" value="Enter">
-                    </li>
+                    <input type="submit" name="Login" value="Login">
+
 					
-					<br><br>
-					
-					<li id="Register" ><a  href="Register.html">Register</a></li> 
-					<li id="ForgottenPassword" ><a  href="Forgotten.html">Forgotten password</a></li> 
-					
+					<br>
+					  
+				</div>
+				<button class="link" id="Login-Button" >Login</button>
+				<a  href="Register.html" id="Register" >Register</a>
+				<a  href="Forgotten.html" id="Forgotten-password" >Forgotten password</a>
                 </ul>
 				
                 <ul class="nav navbar-nav navbar-right">
@@ -75,12 +89,12 @@
                         <a href="index.html">Home</a>
                     </li>
 					<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Visitors<b class="caret"></b></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Event<b class="caret"></b></a>
 					<ul class="dropdown-menu " >
 					<li><a href="Visitors.html" >Info</a></li>
 					<li><a href="Location.html" >Location</a></li>
-					<li><a href="Tickets.html" >Buy tickets</a></li>
-					<li><a href="Reservation.html" >Reservation</a></li>
+					<li><a href="Tickets.html" >Tickets</a></li>
+					<li><a href="Reservation.html" >Camping spot</a></li>
 					</ul>
 					</li>
                     <li>
@@ -100,7 +114,7 @@
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
 					<ul class="dropdown-menu" >
 					<li><a href="Sponsors.html">Sponsors</a></li>
-					<li><a href="Contact us.html">Contact us</a></li>
+					<li><a href="Contact Information.html">Contact Information</a></li>
 					</ul>
 					</li>
                 </ul>
@@ -112,24 +126,31 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/home.jpg'); background-repeat: no-repeat; background-size: 100% 100%;" id="background-image" >
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="site-heading">
-                        <span class="subheading"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+<header class="intro-header" style="background-image: url('img/home.jpg'); background-repeat: no-repeat; background-size: 100% 100%;" id="background-image" ></header>
 
     <!-- Main Content -->
+    <div id="Elements-Placement">
+			<div id="Heading">
+				<h2>Booked items</h2>
+			</div>
+			
+	<div id="BookedText">
+		Booked items<br>
+		<select name="sometext" size="15" id="TextBox">
+		<option>item1</option>
+		<option>item2</option>
+		<option>item3</option>
+		</select>
+	</div>
+
+    </div>
+	
+	<div id="Elements-Placement">
 	<div class="container" id="PicturesHeading">
 	<div>Photos</div>
 	</div>
 	
-	<div class="container" id="Pictures1">
+	<div class="container" id="Pictures">
 	 <a href="img/RoboCup-1.jpg"><img src="img/RoboCup-1.jpg"     alt="IMG"     title="IMG1" height="65" width="95"/></a>
 	 	 <a href="img/RoboCup-2.jpg"><img src="img/RoboCup-2.jpg"     alt="IMG"     title="IMG2" height="65" width="95"/></a>
 		 	 <a href="img/RoboCup-3.jpg"><img src="img/RoboCup-3.jpg"     alt="IMG"     title="IMG3" height="65" width="95"/></a>
@@ -145,23 +166,7 @@
 	<div class="container" id="Twitter">
 	
 	</div>
-	
-	
-    <div class="container">
-			<div id="Heading">
-				<h2>Booked items</h2>
-			</div>
-			
-	<div id="BookedText">
-		Booked items<br>
-		<select name="sometext" size="15" id="TextBox">
-		<option>item1</option>
-		<option>item2</option>
-		<option>item3</option>
-		</select>
 	</div>
-
-    </div>
 	
     <hr>
 

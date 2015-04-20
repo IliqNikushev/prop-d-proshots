@@ -3,37 +3,61 @@ body {
 }
 
 #background-image{
-	height: 650px;
+	height: 500px;
 }
 
-#navbar1{
+#navbar{
 	background-color: black;
 
 }
 
+#Left-Navbar{
+	position: relative;
+	top: 10px;
+}
+
 #Register{
 	color: white;
-	top: -15px;
+	position: relative;
+	left: 10px;
 }
 
-#ForgottenPassword{
+#Forgotten-password{
 	color: white;
 	position: relative;
-	right: -145px;
-	top: -15px;
+	left: 20px;
+
 }
 
-#Registration{
+#Elements-Placement{
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	right: -15%;
+}
+
+#Index-Info{
 	background-color: white;
 	width: 750px;
-	height: 650px;
+	height: 850px;
 	position: relative;
     padding: 25px;
     border: 1px solid ;
     margin: 15px;
 }
 
-#Leagues{
+#Index-Leagues-Heading{
+	background-color: white;
+	width: 750px;
+	height: 70px;
+	position: relative;
+	top: 20px;
+    padding: 10px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#Index-Leagues{
 	background-color: white;
 	width: 750px;
 	height: 450px;
@@ -44,7 +68,7 @@ body {
 	overflow:hidden;
 }
 
-#Leagues1{
+#Index-Leagues-content{
 	background-color: white;
 	width: 1250px;
 	height: 450px;
@@ -64,14 +88,7 @@ body {
 
 }
 
-
-#Leagues2{
-	position: relative;
-	right: -220px;
-	top: -450px;
-}
-
-#SponsorsHeading{
+#Index-Sponsors-Heading{
 	background-color: white;
 	width: 750px;
 	height: 70px;
@@ -82,71 +99,62 @@ body {
     margin: 15px;
 }
 
-#Text3{
+#Index-Sponsors-Content{
 	background-color: white;
 	width: 750px;
 	height: 300px;
+	position: relative;
+    padding: 1px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#Sponsors-images{
+	position: relative;
+	width: 190px;
+	height: 100px;
+	margin: 28px;
+	font-size: 14px;
+
+
+}
+
+#Sponsors-Content {
+	background-color: white;
+	width: 750px;
+	height: 1700px;
 	position: relative;
     padding: 5px;
     border: 1px solid ;
     margin: 15px;
 }
 
-#Sponsors-text{
-	position: relative;
-	width: 190px;
-	height: 100px;
-	margin: 28px;
-	font-size: 14px;
-	line-height: 100%;
-	display:block;
-	float:left;
-
-}
-
-
-#LeaguesHeading{
-	background-color: white;
-	width: 750px;
-	height: 70px;
-	position: relative;
-	top: 20px;
-    padding: 10px;
-    border: 1px solid ;
-    margin: 15px;
-}
-
 #PicturesHeading{
 	background-color: white;
-	position: absolute;
-	right: 180px;
-	top: 810px;
+	position: relative;
 	width: 330px;
 	height: 45px;
     padding: 1px;
     border: 1px solid ;
     margin: 15px;
 }
-#Pictures1{
+#Pictures{
 	background-color: white;
-	position: absolute;
-	right: 180px;
-	top: 850px;
+	position: relative;
+	top: -20px;
 	width: 330px;
 	height: 170px;
     padding: 15px;
     border: 1px solid ;
     margin: 15px;
 }
-#Pictures1 img{
+#Pictures img{
 padding-bottom: 10px;
 }
 
 #TwitterHeading{
 	background-color: white;
-	position: absolute;
-	right: 180px;
-	top: 1060px;
+	position: relative;
 	width: 330px;
 	height: 45px;
     padding: 1px;
@@ -155,9 +163,8 @@ padding-bottom: 10px;
 }
 #Twitter{
 	background-color: white;
-	position: absolute;
-	right: 180px;
-	top: 1100px;
+	position: relative;
+	top: -20px;
 	width: 330px;
 	height: 370px;
     padding: 15px;
@@ -166,20 +173,17 @@ padding-bottom: 10px;
 }
 
 
-#back-arrow-1 {
+#Leagues-back-arrow {
 	position: relative;
 	right: -460px;
 	background-color: white;
 }
 
-#Forward-arrow-1 {
+#Leagues-forward-arrow-1 {
 	position: relative;
 	right: -460px;
 	background-color: white;
 }
-
-
-
 
 #Heading {
 	background-color: white;
@@ -286,7 +290,7 @@ padding-bottom: 10px;
 #RoboCupJuniorText {
 	background-color: white;
 	width: 750px;
-	height: 550px;
+	height: 500px;
 	position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -296,7 +300,7 @@ padding-bottom: 10px;
 #RoboCupHomeText {
 	background-color: white;
 	width: 750px;
-	height: 550px;
+	height: 500px;
 	position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -306,19 +310,9 @@ padding-bottom: 10px;
 #RoboCupWorkText {
 	background-color: white;
 	width: 750px;
-	height: 550px;
+	height: 450px;
 	position: relative;
     padding: 25px;
-    border: 1px solid ;
-    margin: 15px;
-}
-
-#SponsorsText {
-	background-color: white;
-	width: 750px;
-	height: 1200px;
-	position: relative;
-    padding: 5px;
     border: 1px solid ;
     margin: 15px;
 }
@@ -378,7 +372,7 @@ padding-bottom: 10px;
 #BalanceText {
 	background-color: white;
 	width: 750px;
-	height: 600px;
+	height: 400px;
 	position: relative;
     padding: 25px;
     border: 1px solid ;
