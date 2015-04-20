@@ -117,9 +117,6 @@ namespace Design.Idea
                 holder.Refresh();
             };
 
-            zoomOutBtn.Click += (x, y) => ChangeZoom(-.1f);
-            ZoomInBtn.Click += (x, y) => ChangeZoom(.1f);
-
             zoomTb.Text = "100%";
 
             AddAutoCompleteTo(zoomTb, 
@@ -442,6 +439,16 @@ namespace Design.Idea
         private void resetZoomBtn_Click(object sender, EventArgs e)
         {
             ResetZoom();
+        }
+
+        private void ZoomInBtn_Click(object sender, EventArgs e)
+        {
+            ChangeZoom(((int)(wantedZoom * 100f) / 1000f));
+        }
+
+        private void zoomOutBtn_Click(object sender, EventArgs e)
+        {
+            ChangeZoom(((int)(wantedZoom * 100f) / -1000f));
         }
     }
 }

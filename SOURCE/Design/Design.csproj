@@ -45,11 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Idea\AdministratorInterface\Calendar.cs" />
+    <Compile Include="Idea\AdministratorInterface\Calendar.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\AdministratorInterface\Calendar.Designer.cs">
       <DependentUpon>Calendar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\AdministratorInterface\Employees.cs" />
+    <Compile Include="Idea\AdministratorInterface\Employees.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\AdministratorInterface\Employees.Designer.cs">
       <DependentUpon>Employees.cs</DependentUpon>
     </Compile>
@@ -59,27 +63,39 @@
     <Compile Include="Idea\AdministratorInterface\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\AdministratorInterface\Map.cs" />
+    <Compile Include="Idea\AdministratorInterface\Map.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\AdministratorInterface\Map.Designer.cs">
       <DependentUpon>Map.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\AdministratorInterface\PcDoctor.cs" />
+    <Compile Include="Idea\AdministratorInterface\PcDoctor.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\AdministratorInterface\PcDoctor.Designer.cs">
       <DependentUpon>PcDoctor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\AdministratorInterface\ServiceDesk.cs" />
+    <Compile Include="Idea\AdministratorInterface\ServiceDesk.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\AdministratorInterface\ServiceDesk.Designer.cs">
       <DependentUpon>ServiceDesk.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\AdministratorInterface\ShopSubMenu.cs" />
+    <Compile Include="Idea\AdministratorInterface\ShopSubMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\AdministratorInterface\ShopSubMenu.Designer.cs">
       <DependentUpon>ShopSubMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\AdministratorInterface\Camping.cs" />
+    <Compile Include="Idea\AdministratorInterface\Camping.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\AdministratorInterface\Camping.Designer.cs">
       <DependentUpon>Camping.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\AdministratorInterface\Visitors.cs" />
+    <Compile Include="Idea\AdministratorInterface\Visitors.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\AdministratorInterface\Visitors.Designer.cs">
       <DependentUpon>Visitors.cs</DependentUpon>
     </Compile>
@@ -143,31 +159,45 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\VisitorInterface\Appointments.cs" />
+    <Compile Include="Idea\VisitorInterface\Appointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\VisitorInterface\Appointments.Designer.cs">
       <DependentUpon>Appointments.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\VisitorInterface\Bookings.cs" />
+    <Compile Include="Idea\VisitorInterface\Bookings.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\VisitorInterface\Bookings.Designer.cs">
       <DependentUpon>Bookings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\VisitorInterface\New\Appointments.cs" />
+    <Compile Include="Idea\VisitorInterface\New\Appointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\VisitorInterface\New\Appointments.Designer.cs">
       <DependentUpon>Appointments.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\VisitorInterface\New\Bookings.cs" />
+    <Compile Include="Idea\VisitorInterface\New\Bookings.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\VisitorInterface\New\Bookings.Designer.cs">
       <DependentUpon>Bookings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\VisitorInterface\New\Purchases.cs" />
+    <Compile Include="Idea\VisitorInterface\New\Purchases.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\VisitorInterface\New\Purchases.Designer.cs">
       <DependentUpon>Purchases.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\VisitorInterface\New\Rent.cs" />
+    <Compile Include="Idea\VisitorInterface\New\Rent.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\VisitorInterface\New\Rent.Designer.cs">
       <DependentUpon>Rent.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\VisitorInterface\Rent.cs" />
+    <Compile Include="Idea\VisitorInterface\Rent.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\VisitorInterface\Rent.Designer.cs">
       <DependentUpon>Rent.cs</DependentUpon>
     </Compile>
@@ -177,19 +207,27 @@
     <Compile Include="Idea\VisitorInterface\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\VisitorInterface\Purchases.cs" />
+    <Compile Include="Idea\VisitorInterface\Purchases.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\VisitorInterface\Purchases.Designer.cs">
       <DependentUpon>Purchases.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\VisitorInterface\View\Appointments.cs" />
+    <Compile Include="Idea\VisitorInterface\View\Appointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\VisitorInterface\View\Appointments.Designer.cs">
       <DependentUpon>Appointments.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\VisitorInterface\View\Bookings.cs" />
+    <Compile Include="Idea\VisitorInterface\View\Bookings.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\VisitorInterface\View\Bookings.Designer.cs">
       <DependentUpon>Bookings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\VisitorInterface\View\Purchases.cs" />
+    <Compile Include="Idea\VisitorInterface\View\Purchases.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Idea\VisitorInterface\View\Purchases.Designer.cs">
       <DependentUpon>Purchases.cs</DependentUpon>
     </Compile>

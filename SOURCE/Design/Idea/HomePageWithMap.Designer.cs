@@ -93,6 +93,7 @@
             this.zoomOutBtn.TabIndex = 28;
             this.zoomOutBtn.Text = "-";
             this.zoomOutBtn.UseVisualStyleBackColor = true;
+            this.zoomOutBtn.Click += new System.EventHandler(this.zoomOutBtn_Click);
             // 
             // ZoomInBtn
             // 
@@ -102,6 +103,7 @@
             this.ZoomInBtn.TabIndex = 27;
             this.ZoomInBtn.Text = "+";
             this.ZoomInBtn.UseVisualStyleBackColor = true;
+            this.ZoomInBtn.Click += new System.EventHandler(this.ZoomInBtn_Click);
             // 
             // mapArea
             // 
