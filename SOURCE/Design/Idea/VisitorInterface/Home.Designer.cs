@@ -46,8 +46,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.dynamicContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -58,13 +56,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.SuspendLayout();
             // 
             // dynamicContainer
             // 
-            this.dynamicContainer.Controls.Add(this.label10);
-            this.dynamicContainer.Controls.Add(this.pictureBox11);
             this.dynamicContainer.Controls.Add(this.label9);
             this.dynamicContainer.Controls.Add(this.pictureBox9);
             this.dynamicContainer.Controls.Add(this.label3);
@@ -102,8 +97,6 @@
             this.dynamicContainer.Controls.SetChildIndex(this.label3, 0);
             this.dynamicContainer.Controls.SetChildIndex(this.pictureBox9, 0);
             this.dynamicContainer.Controls.SetChildIndex(this.label9, 0);
-            this.dynamicContainer.Controls.SetChildIndex(this.pictureBox11, 0);
-            this.dynamicContainer.Controls.SetChildIndex(this.label10, 0);
             // 
             // label1
             // 
@@ -281,25 +274,6 @@
             this.pictureBox9.TabIndex = 37;
             this.pictureBox9.TabStop = false;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(241, 337);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(49, 13);
-            this.label10.TabIndex = 40;
-            this.label10.Text = "Receipts";
-            // 
-            // pictureBox11
-            // 
-            this.pictureBox11.Image = global::Design.Properties.Resources._256;
-            this.pictureBox11.Location = new System.Drawing.Point(238, 253);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(96, 104);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox11.TabIndex = 39;
-            this.pictureBox11.TabStop = false;
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -318,7 +292,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -343,7 +316,5 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.PictureBox pictureBox11;
     }
 }
