@@ -17,6 +17,24 @@ namespace Design.Idea.VisitorInterface
             InitializeComponent();
         }
 
+        protected override void OnSet()
+        {
+            base.OnSet();
+            mainMenuHeight = MainMenu.Height;
+
+            MainMenu.Width = this.Width;
+            MainMenu.Height = this.Height;
+        }
+
+        private int mainMenuHeight = -1;
+
+        protected override void OnTogglingMap(bool state)
+        {
+            base.OnTogglingMap(state);
+            if (!state)            
+                MainMenu.Height = mainMenuHeight;
+        }
+
         private void pictureBox7_Click(object sender, EventArgs e)
         {
 

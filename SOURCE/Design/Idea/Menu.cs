@@ -88,7 +88,7 @@ namespace Design.Idea
             Clear(this.topNavContainer);
         }
 
-        protected virtual void OnSet(Menu menu) { menu.OnSet(menu); }
+        protected virtual void OnSet() { }
 
         private void Set(Menu menu)
         {
@@ -98,7 +98,7 @@ namespace Design.Idea
             this.Width = menu.Width;
             this.Height = menu.Height;
 
-            OnSet(menu);
+            menu.OnSet();
         }
 
         private static bool IsIn(Control control, Control contrainer)

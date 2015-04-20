@@ -38,6 +38,8 @@
             this.findByTypeLbl = new System.Windows.Forms.Label();
             this.findByTypeTb = new System.Windows.Forms.TextBox();
             this.mapBtn = new System.Windows.Forms.Button();
+            this.zoomOnItemsBtn = new System.Windows.Forms.Button();
+            this.resetZoomBtn = new System.Windows.Forms.Button();
             this.dynamicContainer.SuspendLayout();
             this.topNavContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mapArea)).BeginInit();
@@ -46,6 +48,8 @@
             // 
             // dynamicContainer
             // 
+            this.dynamicContainer.Controls.Add(this.resetZoomBtn);
+            this.dynamicContainer.Controls.Add(this.zoomOnItemsBtn);
             this.dynamicContainer.Controls.Add(this.findByNameTb);
             this.dynamicContainer.Controls.Add(this.zoomOutBtn);
             this.dynamicContainer.Controls.Add(this.zoomTb);
@@ -57,7 +61,7 @@
             this.dynamicContainer.Controls.Add(this.pictureBox10);
             this.dynamicContainer.Size = new System.Drawing.Size(768, 531);
             // 
-            // topNav
+            // topNavContainer
             // 
             this.topNavContainer.Controls.Add(this.mapBtn);
             // 
@@ -83,7 +87,7 @@
             // 
             // zoomOutBtn
             // 
-            this.zoomOutBtn.Location = new System.Drawing.Point(586, 395);
+            this.zoomOutBtn.Location = new System.Drawing.Point(586, 398);
             this.zoomOutBtn.Name = "zoomOutBtn";
             this.zoomOutBtn.Size = new System.Drawing.Size(42, 24);
             this.zoomOutBtn.TabIndex = 28;
@@ -92,7 +96,7 @@
             // 
             // ZoomInBtn
             // 
-            this.ZoomInBtn.Location = new System.Drawing.Point(480, 396);
+            this.ZoomInBtn.Location = new System.Drawing.Point(480, 398);
             this.ZoomInBtn.Name = "ZoomInBtn";
             this.ZoomInBtn.Size = new System.Drawing.Size(42, 23);
             this.ZoomInBtn.TabIndex = 27;
@@ -171,6 +175,26 @@
             this.mapBtn.UseVisualStyleBackColor = true;
             this.mapBtn.Click += new System.EventHandler(this.mapBtn_Click);
             // 
+            // zoomOnItemsBtn
+            // 
+            this.zoomOnItemsBtn.Location = new System.Drawing.Point(367, 396);
+            this.zoomOnItemsBtn.Name = "zoomOnItemsBtn";
+            this.zoomOnItemsBtn.Size = new System.Drawing.Size(102, 23);
+            this.zoomOnItemsBtn.TabIndex = 35;
+            this.zoomOnItemsBtn.Text = "Zoom on items";
+            this.zoomOnItemsBtn.UseVisualStyleBackColor = true;
+            this.zoomOnItemsBtn.Click += new System.EventHandler(this.zoomOnItemsBtn_Click);
+            // 
+            // resetZoomBtn
+            // 
+            this.resetZoomBtn.Location = new System.Drawing.Point(652, 395);
+            this.resetZoomBtn.Name = "resetZoomBtn";
+            this.resetZoomBtn.Size = new System.Drawing.Size(86, 23);
+            this.resetZoomBtn.TabIndex = 36;
+            this.resetZoomBtn.Text = "Reset zoom";
+            this.resetZoomBtn.UseVisualStyleBackColor = true;
+            this.resetZoomBtn.Click += new System.EventHandler(this.resetZoomBtn_Click);
+            // 
             // HomePageWithMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -199,5 +223,7 @@
         private System.Windows.Forms.Label findByTypeLbl;
         private System.Windows.Forms.TextBox findByTypeTb;
         private System.Windows.Forms.Button mapBtn;
+        private System.Windows.Forms.Button resetZoomBtn;
+        private System.Windows.Forms.Button zoomOnItemsBtn;
     }
 }
