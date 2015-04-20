@@ -188,6 +188,11 @@ namespace Design.Idea
                     MainMenu.Width -= pictureBox10.Width;
                     pictureBox10.Visible = false;
                 }
+                foreach (var item in this.OnAutoComplete)
+                {
+                    item.Value.ListBox.Visible = false;
+                    MainMenu.Controls.Add(item.Value.ListBox);
+                }
             }
         }
 
@@ -207,13 +212,17 @@ namespace Design.Idea
 
         class AutoCompleteData
         {
+            public bool IsInitialized { get; private set; }
             public ListBox ListBox;
             public Action<object> Action;
 
             public AutoCompleteData(Action<object> action)
             {
                 this.Action = action;
+                this.ListBox = new ListBox();
             }
+
+            public void Initialize() { this.IsInitialized = true; }
 
             public void Invoke() { this.Action(ListBox.SelectedItem); }
         }
@@ -221,15 +230,26 @@ namespace Design.Idea
         private void AutoComplete(object sender, KeyEventArgs e)
         {
             TextBox textBox = sender as TextBox;
-            ListBox listBox = null;
+            ListBox listBox = OnAutoComplete[textBox].ListBox;
             string[] items = new string[textBox.AutoCompleteCustomSource.Count];
             textBox.AutoCompleteCustomSource.CopyTo(items, 0);
 
-            if (OnAutoComplete[textBox].ListBox == null)
+            if (!OnAutoComplete[textBox].IsInitialized)
             {
-                listBox = new ListBox();
-                listBox.Top = textBox.Height + textBox.Top;
-                listBox.Left = textBox.Left;
+                OnAutoComplete[textBox].Initialize();
+                int yy = textBox.Height + textBox.Top;
+                int xx = textBox.Left;
+                Control parent = textBox.Parent;
+                while (true)
+                {
+                    xx += parent.Left;
+                    yy += parent.Top;
+                    parent = parent.Parent;
+                    if (parent == null) break;
+                    if (parent == listBox.Parent) break;
+                }
+                listBox.Top = yy;
+                listBox.Left = xx;
                 listBox.Width = textBox.Width;
                 listBox.IntegralHeight = false;
                 listBox.Sorted = false;
@@ -242,8 +262,6 @@ namespace Design.Idea
                         textBox.Text = listBox.SelectedItem.ToString();
                     }
                 };
-
-                this.Controls.Add(listBox);
 
                 listBox.BringToFront();
                 OnAutoComplete[textBox].ListBox = listBox;

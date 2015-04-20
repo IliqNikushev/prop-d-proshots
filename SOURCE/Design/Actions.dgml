@@ -8,6 +8,7 @@
     <Node Id="ITService" Bounds="-236.421353251139,34.8884559738159,70.0633333333333,25.96" Label="IT Service" UseManualLocation="True" />
     <Node Id="Information" Bounds="327.270622717799,176.52730012209,82.1800000000001,25.96" UseManualLocation="True" />
     <Node Id="Login" Bounds="38.001615524292,7.01808731918334,50,25.96" UseManualLocation="True" />
+    <Node Id="Logs" Bounds="167.0540837192,139.546950444875,50,25.96" UseManualLocation="True" />
     <Node Id="Map" Bounds="434.934725423981,-37.4376078685993,50,25.96" UseManualLocation="True" />
     <Node Id="PCDoctor" Bounds="-101.676180216471,22.2387221694946,73.6933333333334,25.96" Label="PC Doctor" UseManualLocation="True" />
     <Node Id="PCDoctor1" Bounds="542.368527990472,120.56720012209,73.6933333333334,25.96" Label="PC Doctor" UseManualLocation="True" />
@@ -22,32 +23,35 @@
     <Node Id="TopUp" Bounds="191.121929127657,-183.749095773625,55.666666666667,25.96" UseManualLocation="True" />
     <Node Id="Unique" Bounds="411.134560715366,120.56720012209,58.0733333333333,25.96" UseManualLocation="True" />
     <Node Id="Visitor" Bounds="105.681183724474,-102.507006568304,53.63,25.96" UseManualLocation="True" />
+    <Node Id="Warnings" Bounds="151.158099052201,224.526950444875,70.1366666666667,25.96" UseManualLocation="True" />
   </Nodes>
   <Links>
     <Link Source="Admin" Target="Employee" Category="View" Bounds="32.3956341549299,60.428360156173,112.686386100726,44.2527446604788" />
     <Link Source="Admin" Target="Event" Category="View" Bounds="192.980613495641,62.6777985160151,79.8462454211339,50.3744641348216" />
+    <Link Source="Admin" Target="Logs" Category="View" Bounds="174.886688365842,62.6777985160151,12.9982473679868,68.0290737301803" />
     <Link Source="Admin" Target="Map" Category="Extra Information" Bounds="199.826612692526,-15.7623300327049,226.393283999168,58.3883287732134" Label="Can Use" LabelBounds="277.305617988743,-6.53023931856883,43.2266666666667,15.96" />
     <Link Source="Admin" Target="Stock" Category="View" Bounds="5.50226278462992,62.6777985160151,156.211668693147,189.627598439967" />
-    <Link Source="Admin" Target="Tents" Category="View" Bounds="181.979388207508,-1.98375417551586,28.5424711862293,38.7015526915309" />
-    <Link Source="Admin" Target="Visitor" Category="View" Bounds="138.697121236942,-67.8954596559807,29.988621688939,104.613258171996" Label="" LabelBounds="149.588313318553,-22.2955706582287,0.0999999999999943,15.96" />
-    <Link Source="Appointment" Target="PCDoctor" Category="Uses" Bounds="-54.8275337219238,-22.9820117950439,24.4781055450439,37.7240800857544" Label="Make" LabelBounds="-73.6013124630358,-20.6355125601341,29.1233333333333,15.96" />
+    <Link Source="Admin" Target="Tents" Category="View" Bounds="181.979388326924,-1.98375430880067,28.5424716405832,38.7015528248158" />
+    <Link Source="Admin" Target="Visitor" Category="View" Bounds="138.697121236942,-67.8954596559807,29.988621688939,104.613258171996" Label="" LabelBounds="149.588313318553,-22.2955706582287,0.0999999999999659,15.96" />
+    <Link Source="Appointment" Target="PCDoctor" Category="Uses" Bounds="-55.2412300109863,-22.9820117950439,24.5267124176025,37.6385231018066" Label="Make" LabelBounds="-74.8555938954309,-19.7370606245399,29.1233333333333,15.96" />
     <Link Source="Employee" Target="ITService" Bounds="-159.619987633686,63.7362989677869,116.80469290613,44.3728007275616" />
     <Link Source="Employee" Target="PCDoctor" Bounds="-51.4697926979587,55.7413522754308,33.997241014487,52.2251033311292" />
     <Link Source="Employee" Target="Shop" Bounds="-298.861349612222,61.2297136958508,253.960121182406,52.3245648601077" />
-    <Link Source="ITService" Target="Rent" Category="Uses" Bounds="-190.094375610352,-46.9781188964844,49.3592834472656,81.8665733337402" Label="" LabelBounds="-170.657696381973,-17.20239492477,0.0999999999999943,15.96" />
+    <Link Source="ITService" Target="Rent" Category="Uses" Bounds="-189.821014404297,-47.010009765625,50.1071624755859,81.8984642028809" Label="" LabelBounds="-164.479974001476,-25.3104991283074,0.0999999999999659,15.96" />
     <Link Source="ITService" Target="Stock" Category="Extra Information" Bounds="-190.370112769857,60.8484559738159,162.612998029714,191.542499731361" Label="Has" LabelBounds="-107.53895716146,139.365324801403,19.72,15.96" />
     <Link Source="Login" Target="Admin" Bounds="88.001615524292,26.7847314317831,48.2993473693453,13.1116192586632" />
     <Link Source="Login" Target="Employee" Bounds="5.46528639574297,32.9780873191833,48.2753755963802,67.6619716387098" />
     <Link Source="Login" Target="Visitor" Bounds="71.2375317259709,-68.9476732426312,48.2008966243383,75.9657605618146" />
+    <Link Source="Logs" Target="Warnings" Bounds="187.732301348416,165.506954650879,3.43165067921225,50.0410838598608" />
     <Link Source="Map" Target="PayPalMachines" Category="Extra Information" Bounds="484.224757199653,-77.7204288332351,84.264937285517,41.3448440642539" Label="Can Show" LabelBounds="472.996250006197,-74.8035238787228,52.48,15.96" />
     <Link Source="Map" Target="Shops" Category="Extra Information" Bounds="484.934725423981,-16.997786017427,64.3868853240013,19.2125877627564" Label="Can Show" LabelBounds="510.705433582829,-27.3551303076371,52.4800000000001,15.96" />
     <Link Source="Map" Target="Unique" Category="Extra Information" Bounds="442.911817198816,-11.4776078685993,15.3993487408262,123.114396844701" Label="Can Show" LabelBounds="454.611612071547,42.3478195165162,52.48,15.96" />
-    <Link Source="PCDoctor" Target="Appointment" Category="Uses" Bounds="-52.6039810180664,-15.3916454315186,24.5328063964844,37.6303672790527" Label="" LabelBounds="-48.9914918679757,-2.93966038767507,0,15.96" />
+    <Link Source="PCDoctor" Target="Appointment" Category="Uses" Bounds="-52.968017578125,-15.477596282959,24.481071472168,37.7163181304932" Label="" LabelBounds="-48.9914918679757,-2.93966038767507,0,15.96" />
     <Link Source="Purchase" Target="Shop" Category="Uses" Bounds="-319.891815185547,-142.496978759766,82.6028900146484,175.567157745361" Label="From" LabelBounds="-272.305615999276,-64.2993200787142,27.4,15.96" />
-    <Link Source="Rent" Target="ITService" Category="Uses" Bounds="-192.459274291992,-54.7613792419434,49.3078308105469,81.9345855712891" Label="Rent" LabelBounds="-189.809443886991,-37.2528324296365,24.31,15.96" />
+    <Link Source="Rent" Target="ITService" Category="Uses" Bounds="-192.139541625977,-54.7613792419434,50.0283966064453,81.9986953735352" Label="Rent" LabelBounds="-189.148454807226,-36.0646100352774,24.31,15.96" />
     <Link Source="Shop" Target="Purchase" Category="Uses" Bounds="-330.148162841797,-134.40625,82.2423400878906,175.688934326172" Label="" LabelBounds="-291.794118902231,-62.5029799422812,0,15.96" />
     <Link Source="Shop" Target="Stock" Category="Extra Information" Bounds="-313.515288482495,67.2426859052705,275.990289862408,186.961583404686" Label="Has" LabelBounds="-241.239843862643,97.8278829139312,19.72,15.96" />
-    <Link Source="TopUp" Target="PayPalMachines" Category="Extra Information" Bounds="246.788594563802,-165.253845768753,293.521038625972,58.1619911168153" Label="Using" LabelBounds="383.648390665792,-156.133591868494,30.1,15.96" />
+    <Link Source="TopUp" Target="PayPalMachines" Category="Extra Information" Bounds="246.788595794324,-165.253845193742,293.521037382448,58.1619905975315" Label="Using" LabelBounds="383.648391226347,-156.133591553112,30.1,15.96" />
     <Link Source="Unique" Target="Event" Category="Extra Information" Bounds="335.01090554937,131.49722465361,76.1236551659959,1.48394016813367" />
     <Link Source="Unique" Target="Information" Category="Extra Information" Bounds="392.116184007412,146.52720012209,31.3985032944246,24.4680210175345" />
     <Link Source="Unique" Target="PCDoctor1" Category="Extra Information" Bounds="469.207894048699,133.54720012209,64.1606339417727,0" />
@@ -56,8 +60,8 @@
     <Link Source="Visitor" Target="Map" Category="Extra Information" Bounds="159.311183724474,-84.1982632961274,266.796153592498,53.0183930075939" Label="Can use" LabelBounds="282.837997781641,-77.6498168535223,41.7733333333334,15.96" />
     <Link Source="Visitor" Target="Purchase" Bounds="-191.694863206333,-147.816656003755,297.376046930807,53.4683042304882" />
     <Link Source="Visitor" Target="Rent" Bounds="-98.1894760202207,-87.3196765535408,203.870659744695,16.782018511432" />
-    <Link Source="Visitor" Target="Tents" Bounds="150.41604452685,-76.547006568304,49.8118255614977,36.0804976622651" Label="Book" LabelBounds="176.495187363573,-76.086489577866,26.9033333333333,15.96" />
-    <Link Source="Visitor" Target="TopUp" Bounds="146.309698722731,-151.626092180097,52.2732839598754,49.1190856117929" />
+    <Link Source="Visitor" Target="Tents" Bounds="150.41604452685,-76.547006568304,49.8118255614977,36.0804976622651" Label="Book" LabelBounds="147.245393918292,-56.887025896477,26.9033333333333,15.96" />
+    <Link Source="Visitor" Target="TopUp" Bounds="146.309699021499,-151.626091650002,52.2732845263414,49.1190850816977" />
   </Links>
   <Categories>
     <Category Id="Extra Information" Label="Extra Information" IsTag="True" />
