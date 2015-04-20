@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Design.Idea.VisitorInterface.View
 {
-    public partial class Rent : ShopSubMenu
+    public partial class Rent : SubMenuBase
     {
         public Rent(Form parent) : base(parent)
         {
