@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Classes
 {
-    public enum ActionType
+    public enum EmployeeActionType
     {
         Login,
         DutyPerformance,

@@ -10,7 +10,7 @@ namespace Classes
     {
         public const string VALID_SHOP_ID = "3";
         public const string INVALID_SHOP_ID = "-1";
-        private Shop shop;
+        private ShopJob shop;
 
         //Use TestInitialize to run code before running each test 
         [TestInitialize()]
@@ -19,7 +19,7 @@ namespace Classes
 #warning DATABASE DOES NOT EXIST try catch
             try
             {
-                shop = new Shop(VALID_SHOP_ID, null, null, 0, 0);
+                shop = new ShopJob(VALID_SHOP_ID, null, null, 0, 0);
             }
             catch { }
         }
@@ -41,7 +41,7 @@ namespace Classes
         [ExpectedException(typeof(Exceptions.InvalidShopException))]
         public void AuthenticateShopFailed()
         {
-            Shop shop = new Shop(INVALID_SHOP_ID, null, null, 0, 0);
+            ShopJob shop = new ShopJob(INVALID_SHOP_ID, null, null, 0, 0);
         }
 
         [TestMethod]

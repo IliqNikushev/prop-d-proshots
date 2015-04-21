@@ -7,10 +7,9 @@ namespace Classes
 {
     public class Employee : User
     {
-        public Employee(string identificator) : base(identificator) { }
         public Employee(string username, string password) : base(username, password) { }
 
-        public EmploymentPlace EmploymentPlace
+        public Job Job
         {
             get
             {
@@ -19,6 +18,13 @@ namespace Classes
             set
             {
             }
+        }
+
+        protected override void OnBuildFrom(User user)
+        {
+            Employee employee = user as Employee;
+
+            //apply employee properties
         }
     }
 }

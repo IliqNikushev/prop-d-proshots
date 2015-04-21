@@ -7,7 +7,7 @@ namespace Classes
 {
     public class EmployeeAction
     {
-        public EmployeeAction(Employee employee, ActionType type)
+        public EmployeeAction(Employee employee, EmployeeActionType type)
         {
             throw new System.NotImplementedException();
         }
@@ -23,7 +23,7 @@ namespace Classes
             }
         }
 
-        public ActionType Type
+        public EmployeeActionType Type
         {
             get
             {
