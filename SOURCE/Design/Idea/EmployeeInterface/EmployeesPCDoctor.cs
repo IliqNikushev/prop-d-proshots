@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Design.Idea.EmployeeInterface
 {
-    public partial class Home : HomePage
+    public partial class EmployeesPCDoctor : Form
     {
-        public Home()
+        public EmployeesPCDoctor()
         {
             InitializeComponent();
-        }
-
-        private void dynamicContainer_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

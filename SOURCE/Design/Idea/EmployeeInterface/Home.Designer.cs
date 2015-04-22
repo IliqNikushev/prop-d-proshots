@@ -50,6 +50,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
+            // dynamicContainer
+            // 
+            this.dynamicContainer.Location = new System.Drawing.Point(6, 409);
+            this.dynamicContainer.Size = new System.Drawing.Size(316, 27);
+            this.dynamicContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.dynamicContainer_Paint);
+            // 
+            // topNavContainer
+            // 
+            this.topNavContainer.Location = new System.Drawing.Point(432, 33);
+            this.topNavContainer.Size = new System.Drawing.Size(96, 12);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -200,7 +211,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(470, 378);
+            this.ClientSize = new System.Drawing.Size(541, 449);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -218,6 +229,23 @@
             this.Controls.Add(this.pictureBox3);
             this.Name = "Home";
             this.Text = "Home";
+            this.Controls.SetChildIndex(this.pictureBox3, 0);
+            this.Controls.SetChildIndex(this.pictureBox4, 0);
+            this.Controls.SetChildIndex(this.pictureBox1, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.label6, 0);
+            this.Controls.SetChildIndex(this.pictureBox2, 0);
+            this.Controls.SetChildIndex(this.label7, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.label5, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.pictureBox7, 0);
+            this.Controls.SetChildIndex(this.textBox1, 0);
+            this.Controls.SetChildIndex(this.textBox2, 0);
+            this.Controls.SetChildIndex(this.textBox3, 0);
+            this.Controls.SetChildIndex(this.dynamicContainer, 0);
+            this.Controls.SetChildIndex(this.topNavContainer, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
