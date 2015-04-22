@@ -11,10 +11,18 @@ namespace Classes
     /// </summary>
     public class Deposit
     {
-        public int ID { get; private set; }
+        public string ID { get; private set; }
         public decimal Amount { get; private set; }
 
-        public Deposit(int id, decimal amount)
+        public Visitor Visitor
+        {
+            get
+            {
+                return User.Authenticate(this.ID) as Visitor;
+            }
+        }
+
+        public Deposit(string id, decimal amount)
         {
             this.ID = id;
             this.Amount = amount;

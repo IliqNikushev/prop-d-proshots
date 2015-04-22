@@ -58,15 +58,12 @@ namespace Classes
             for (int i = 0; i < numberOfDeposits; i++)
             {
                 decimal amount = -1;
-                int id = -1;
                 string[] lineParams = lines[i].Split(' ');
 
                 if (lineParams.Length != 2)
                     throw new InvalidPayPalLogFileException();
 
-                if (!int.TryParse(lineParams[0], out id))
-                    throw new InvalidPayPalLogFileException();
-
+                string id = lineParams[1];
                 if (!decimal.TryParse(lineParams[1], out amount))
                     throw new InvalidPayPalLogFileException();
 

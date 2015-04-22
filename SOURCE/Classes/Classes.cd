@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
-  <Comment CommentText="Deposit id = Visitor or ??">
-    <Position X="4.746" Y="4.581" Height="0.291" Width="1.609" />
-  </Comment>
   <Comment CommentText="Shop has many purchasable">
     <Position X="9.683" Y="4.733" Height="0.291" Width="1.8" />
   </Comment>
@@ -59,62 +56,22 @@
   <Class Name="Classes.User" Collapsed="true">
     <Position X="4.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAICAAQAAAAAgAAAAAAACAAAAAAAAAAg=</HashCode>
+      <HashCode>AgAAAEAAAAAAAICAAQAAAAIgAAAAAAACAAAAAAAAAAg=</HashCode>
       <FileName>User.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.Visitor" Collapsed="true">
     <Position X="4.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAEAAAAACAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <HashCode>AgAAAAAAAAAAAAAAEAAAAACAAAAAAAAAAAAAEAAAAAA=</HashCode>
       <FileName>Visitor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.Employee" Collapsed="true">
     <Position X="12" Y="0.75" Width="1.5" />
-    <AssociationLine Name="EmploymentPlace" Type="Classes.EmploymentPlace" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="12.75" Y="1.441" />
-        <Point X="12.75" Y="6.25" />
-      </Path>
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-1.119" Y="0.07" />
-      </MemberNameLabel>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Employee.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="EmploymentPlace" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="Classes.Admin" Collapsed="true">
-    <Position X="6.5" Y="1.25" Width="1.5" />
-    <InheritanceLine Type="Classes.User" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="6.062" Y="1.062" />
-        <Point X="6.062" Y="1.562" />
-        <Point X="6.5" Y="1.562" />
-      </Path>
-    </InheritanceLine>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Admin.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Classes.EmploymentPlace" Collapsed="true">
-    <Position X="11.75" Y="6.25" Width="1.5" />
-    <InheritanceLine Type="Classes.Landmark" FixedToPoint="true">
-      <Path>
-        <Point X="8" Y="7.75" />
-        <Point X="8" Y="6.563" />
-        <Point X="11.75" Y="6.563" />
-      </Path>
-    </InheritanceLine>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>EmploymentPlace.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.Receipt" Collapsed="true">
@@ -135,10 +92,10 @@
       <FileName>PayPalDocument.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Classes.Deposit" Collapsed="true">
+  <Class Name="Classes.Deposit">
     <Position X="4.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAEAAAAAgAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Deposit.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -163,11 +120,11 @@
       <Property Name="AppointedItem" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Classes.TentArea" Collapsed="true">
+  <Class Name="Classes.TentAreaLandmark" Collapsed="true">
     <Position X="4.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
-      <FileName>TentArea.cs</FileName>
+      <FileName>TentAreaLandmark.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Tent" />
@@ -192,27 +149,6 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>PayPalMachine.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Classes.ITService" Collapsed="true">
-    <Position X="10" Y="7.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ITService.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Classes.PCDoctor" Collapsed="true">
-    <Position X="11.75" Y="7.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>PCDoctor.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Classes.FoodAndDrink" Collapsed="true">
-    <Position X="9" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>FoodAndDrink.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.GeneralShop" Collapsed="true">
@@ -240,25 +176,11 @@
       <FileName>AppointedItem.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Classes.InformationKiosk" Collapsed="true">
-    <Position X="13.75" Y="7.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>InformationKiosk.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Classes.Shop" Collapsed="true">
+  <Class Name="Classes.ShopJob" Collapsed="true">
     <Position X="10.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Shop.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Classes.Event" Collapsed="true">
-    <Position X="6.25" Y="9.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Event.cs</FileName>
+      <FileName>ShopJob.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.PurchaseSelection" Collapsed="true">
@@ -296,6 +218,69 @@
       <FileName>Exceptions\InvalidUserException.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Classes.AdminUser" Collapsed="true">
+    <Position X="6.5" Y="1.25" Width="1.5" />
+    <InheritanceLine Type="Classes.User" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.062" Y="1.062" />
+        <Point X="6.062" Y="1.562" />
+        <Point X="6.5" Y="1.562" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AdminUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Classes.FoodAndDrinkShopJob" Collapsed="true">
+    <Position X="9" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FoodAndDrinkShopJob.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Classes.EventLandmark" Collapsed="true">
+    <Position X="6.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EventLandmark.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Classes.ITServiceJob" Collapsed="true">
+    <Position X="10" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ITServiceJob.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Classes.PCDoctorJob" Collapsed="true">
+    <Position X="11.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PCDoctorJob.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Classes.InformationKioskJob" Collapsed="true">
+    <Position X="13.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InformationKioskJob.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Classes.Job" Collapsed="true">
+    <Position X="11.75" Y="6.25" Width="1.5" />
+    <InheritanceLine Type="Classes.Landmark" FixedToPoint="true">
+      <Path>
+        <Point X="8" Y="7.75" />
+        <Point X="8" Y="6.563" />
+        <Point X="11.75" Y="6.563" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Job.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Enum Name="Classes.WarningType" Collapsed="true">
     <Position X="2.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
@@ -303,11 +288,11 @@
       <FileName>WarningType.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Classes.ActionType" Collapsed="true">
+  <Enum Name="Classes.EmployeeActionType" Collapsed="true">
     <Position X="17.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAgAAAAAAAAIAAAAIAAAAAAABAAAAQAAEAAAE=</HashCode>
-      <FileName>ActionType.cs</FileName>
+      <FileName>EmployeeActionType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />
