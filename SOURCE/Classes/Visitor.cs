@@ -21,5 +21,12 @@ namespace Classes
         {
             //check if he has this item
         }
+
+        protected override void OnBuildFrom(User user)
+        {
+            Visitor visitor = user as Visitor;
+
+            //apply visitor properties
+        }
     }
 }

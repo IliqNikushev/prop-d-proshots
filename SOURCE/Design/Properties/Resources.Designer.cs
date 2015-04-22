@@ -403,6 +403,16 @@ namespace Design.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap remMoney {
+            get {
+                object obj = ResourceManager.GetObject("remMoney", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap removepurchase {
             get {
                 object obj = ResourceManager.GetObject("removepurchase", resourceCulture);
@@ -435,7 +445,7 @@ namespace Design.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Shop {
             get {
-                object obj = ResourceManager.GetObject("EmploymentPlace", resourceCulture);
+                object obj = ResourceManager.GetObject("Shop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -12,6 +12,8 @@ namespace Design.Idea
 {
     public partial class Menu : Form
     {
+        protected static Classes.User LoggedInUser = null;
+
         protected static Menu MainMenu;
         private static List<Menu> Menus = new List<Menu>();
 

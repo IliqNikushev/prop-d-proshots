@@ -12,14 +12,24 @@ namespace Design.Idea.EmployeeInterface
 {
     public partial class Home : HomePage
     {
+        protected Classes.Employee Employee { get { return LoggedInUser as Classes.Employee; } }
         public Home()
         {
             InitializeComponent();
         }
 
-        private void dynamicContainer_Paint(object sender, PaintEventArgs e)
+        protected override void OnSet()
         {
-
+            base.OnSet();
+            return;
+            if (Employee.Job is Classes.ITServiceJob)
+                new PCDoctor().Show();
+            else if (Employee.Job is Classes.ShopJob)
+                new Store().Show();
+            else if (Employee.Job is Classes.PCDoctorJob)
+                new PCDoctor().Show();
+            else
+                throw new NotImplementedException("Unknown job : " + Employee.Job);
         }
     }
 }

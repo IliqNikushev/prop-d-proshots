@@ -13,4 +13,7 @@ Debug
 /~$Setup.docx
 /~$Tasks.xlsx
 /~WRL0005.tmp
-/SOURCE/*.suo
+SOURCE/SOURCE.v11.suo
+SOURCE/SOURCE.v12.suo
+/SOURCE/SOURCE.v11.suo
+/SOURCE/SOURCE.v12.suo

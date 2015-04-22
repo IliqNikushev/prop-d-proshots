@@ -22,7 +22,7 @@ namespace Classes
             }
         }
 
-        public Shop Shop
+        public ShopJob Shop
         {
             get
             {
@@ -33,7 +33,7 @@ namespace Classes
             }
         }
 
-        public Receipt(Visitor visitor, Shop shop, List<PurchaseSelection> items)
+        public Receipt(Visitor visitor, ShopJob shop, List<PurchaseSelection> items)
         {
             this.Visitor = visitor;
             this.Shop = shop;

@@ -18,10 +18,26 @@ namespace Design.Idea
         {
             this.forWho = forWho;
             InitializeComponent();
+
+            // for who is visitor -> show the 'show your identificator'
+        }
+
+        private void Authenticate(string id)
+        {
+            LoggedInUser = Classes.User.Authenticate(id);
+        }
+
+        private void Authenticate(string name, string password)
+        {
+            //check the database
+            LoggedInUser = Classes.User.Authenticate(name, password);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string username = "";
+            string password = "";
+            Authenticate(username, password);
             if (forWho == For.Admin)
                 new AdministratorInterface.Home().Show();
             else if (forWho == For.Employee)
