@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Reservation</title>
+    <title>Camping spot reservation</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -35,14 +35,71 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script> 
 $(document).ready(function(){
-
+	
 	$("#Login-Panel").hide();
 		 
 	$("#Login-Button").click(function(){
 		 $("#Login-Button").hide();
 		 $("#Login-Panel").show();
+		 });
+		 
+		 $("#Reservation-Email-1").hide();
+		 $("#Reservation-Email-2").hide();
+		 $("#Reservation-Email-3").hide();
+		 $("#Reservation-Email-4").hide();
+		 $("#Reservation-Email-5").hide();
+		 
+		 $( "#Additional-visitors" ).change(function() {
+		 var Values = $( "#Additional-visitors option:selected" ).val();
+  		 if(Values == 0) {
+		 $("#Reservation-Email-1").hide();
+		 $("#Reservation-Email-2").hide();
+		 $("#Reservation-Email-3").hide();
+		 $("#Reservation-Email-4").hide();
+		 $("#Reservation-Email-5").hide();
+		 }
+		 
+		   		 if(Values == 1) {
+		 $("#Reservation-Email-1").show();
+		 $("#Reservation-Email-2").hide();
+		 $("#Reservation-Email-3").hide();
+		 $("#Reservation-Email-4").hide();
+		 $("#Reservation-Email-5").hide();
+		 }
+		 
+		   		 if(Values == 2) {
+		 $("#Reservation-Email-1").show();
+		 $("#Reservation-Email-2").show();
+		 $("#Reservation-Email-3").hide();
+		 $("#Reservation-Email-4").hide();
+		 $("#Reservation-Email-5").hide();
+		 }
+		 
+		   		 if(Values == 3) {
+		 $("#Reservation-Email-1").show();
+		 $("#Reservation-Email-2").show();
+		 $("#Reservation-Email-3").show();
+		 $("#Reservation-Email-4").hide();
+		 $("#Reservation-Email-5").hide();
+		 }
+		 
+		   		 if(Values == 4) {
+		 $("#Reservation-Email-1").show();
+		 $("#Reservation-Email-2").show();
+		 $("#Reservation-Email-3").show();
+		 $("#Reservation-Email-4").show();
+		 $("#Reservation-Email-5").hide();
+		 }
+		 
+		  if(Values == 5) {
+		 $("#Reservation-Email-1").show();
+		 $("#Reservation-Email-2").show();
+		 $("#Reservation-Email-3").show();
+		 $("#Reservation-Email-4").show();
+		 $("#Reservation-Email-5").show();
+		 }
+		});
 
-    });
 });
 </script> 
 
@@ -131,13 +188,13 @@ $(document).ready(function(){
     <!-- Main Content -->
     <div id="Elements-Placement">
 			<div id="Heading">
-				<h2>Reservation of camping spot</h2>
+				<h2>Camping spot reservation</h2>
 			</div>
 			
 			<div id="ReservationText">
 			
-			Reserve camping spot for the weekend with your account.<br>
-			You can add additional visitors but they also have to be registered.<br>
+			To reserve a camping spot for the weekend you need to be registered.<br>
+			You can add additional visitors for the camping spot but they also need to be registered.<br>
 			The price for  reserving a camping spot is 30 euro plus 20 euro for every additional visitor.<br><br>
 			
 			Select camping spot:<br> 
@@ -146,35 +203,43 @@ $(document).ready(function(){
 			</select><br><br>
 
 			Additional visitors:
-			<select name="Additional visitors">
-			<option value="Additional visitors:">0</option>
-			<option value="Additional visitors:">1</option>
-			<option value="Additional visitors:">2</option>
-			<option value="Additional visitors:">3</option>
-			<option value="Additional visitors:">4</option>
-			<option value="Additional visitors:">5</option>
+			<select name="Additional visitors" id="Additional-visitors">
+			<option value="0">0</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
 			</select><br><br>
 			
-			
+			<div id="Reservation-Email-1">
 			<b>Email</b><br>
-			<input type="text" name="Email" ><br><br>
+			<input type="email" name="Email" ><br><br>
+			</div>
 			
-			
+			<div id="Reservation-Email-2">
 			<b>Email</b><br>
-			<input type="text" name="Email" ><br><br>
+			<input type="email" name="Email" ><br><br>
+			</div>
 						
 			
 			
+			<div id="Reservation-Email-3">
 			<b>Email</b><br>
-			<input type="text" name="Email" ><br><br>
+			<input type="email" name="Email" ><br><br>
+			</div>
 						
 			
+			<div id="Reservation-Email-4">
 			<b>Email</b><br>
-			<input type="text" name="Email" ><br><br>
+			<input type="email" name="Email" ><br><br>
+			</div>
 						
 			
+			<div id="Reservation-Email-5">
 			<b>Email</b><br>
-			<input type="text" name="Email" ><br><br>
+			<input type="email" name="Email" ><br><br>
+			</div>
 			
 			
 			Price:<br><br>
