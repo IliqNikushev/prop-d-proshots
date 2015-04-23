@@ -34,25 +34,28 @@
             // 
             // dynamicContainer
             // 
-            this.dynamicContainer.Location = new System.Drawing.Point(12, 47);
+            this.dynamicContainer.Location = new System.Drawing.Point(16, 197);
+            this.dynamicContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dynamicContainer.Name = "dynamicContainer";
-            this.dynamicContainer.Size = new System.Drawing.Size(260, 202);
+            this.dynamicContainer.Size = new System.Drawing.Size(347, 249);
             this.dynamicContainer.TabIndex = 2;
             // 
-            // topNav
+            // topNavContainer
             // 
-            this.topNavContainer.Location = new System.Drawing.Point(15, 12);
-            this.topNavContainer.Name = "topNav";
-            this.topNavContainer.Size = new System.Drawing.Size(257, 29);
+            this.topNavContainer.Location = new System.Drawing.Point(20, 15);
+            this.topNavContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.topNavContainer.Name = "topNavContainer";
+            this.topNavContainer.Size = new System.Drawing.Size(343, 174);
             this.topNavContainer.TabIndex = 0;
             // 
             // Menu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(379, 471);
             this.Controls.Add(this.topNavContainer);
             this.Controls.Add(this.dynamicContainer);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Menu";
             this.Text = "MenuBase";
             this.ResumeLayout(false);

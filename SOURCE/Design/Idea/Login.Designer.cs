@@ -32,14 +32,10 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.dynamicContainer.SuspendLayout();
             this.topNavContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.SuspendLayout();
             // 
             // dynamicContainer
@@ -48,22 +44,23 @@
             this.dynamicContainer.Controls.Add(this.textBox1);
             this.dynamicContainer.Controls.Add(this.textBox2);
             this.dynamicContainer.Controls.Add(this.button1);
-            this.dynamicContainer.Size = new System.Drawing.Size(280, 212);
+            this.dynamicContainer.Location = new System.Drawing.Point(20, 119);
+            this.dynamicContainer.Margin = new System.Windows.Forms.Padding(5);
+            this.dynamicContainer.Size = new System.Drawing.Size(310, 214);
             // 
-            // topNav
+            // topNavContainer
             // 
-            this.topNavContainer.Controls.Add(this.label3);
-            this.topNavContainer.Controls.Add(this.label2);
-            this.topNavContainer.Controls.Add(this.pictureBox2);
-            this.topNavContainer.Controls.Add(this.pictureBox1);
+            this.topNavContainer.Controls.Add(this.pictureBox11);
             this.topNavContainer.Location = new System.Drawing.Point(-1, 0);
-            this.topNavContainer.Size = new System.Drawing.Size(302, 50);
+            this.topNavContainer.Margin = new System.Windows.Forms.Padding(5);
+            this.topNavContainer.Size = new System.Drawing.Size(403, 148);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(86, 121);
+            this.button1.Location = new System.Drawing.Point(116, 176);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 0;
             this.button1.Text = "Login";
             this.button1.UseVisualStyleBackColor = true;
@@ -71,78 +68,53 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(54, 48);
+            this.textBox1.Location = new System.Drawing.Point(73, 86);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(156, 20);
+            this.textBox1.Size = new System.Drawing.Size(207, 22);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "Identifier // username // code";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(54, 74);
+            this.textBox2.Location = new System.Drawing.Point(73, 118);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(156, 20);
+            this.textBox2.Size = new System.Drawing.Size(207, 22);
             this.textBox2.TabIndex = 2;
             this.textBox2.Text = "password";
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(51, 6);
+            this.label1.Location = new System.Drawing.Point(69, 34);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(171, 41);
+            this.label1.Size = new System.Drawing.Size(228, 50);
             this.label1.TabIndex = 3;
             this.label1.Text = "Enter you credentials OR Approach your card to the reader";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // pictureBox1
+            // pictureBox11
             // 
-            this.pictureBox1.Image = global::Design.Properties.Resources.Employees1;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Logo";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Design.Properties.Resources.Employees1;
-            this.pictureBox2.Location = new System.Drawing.Point(199, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox2.TabIndex = 6;
-            this.pictureBox2.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(240, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Logo";
+            this.pictureBox11.Image = global::Design.Properties.Resources.LOGO_Proshot;
+            this.pictureBox11.Location = new System.Drawing.Point(98, 0);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(203, 167);
+            this.pictureBox11.TabIndex = 8;
+            this.pictureBox11.TabStop = false;
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(313, 271);
+            this.ClientSize = new System.Drawing.Size(417, 334);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Login";
             this.Text = "Login";
             this.dynamicContainer.ResumeLayout(false);
             this.dynamicContainer.PerformLayout();
             this.topNavContainer.ResumeLayout(false);
-            this.topNavContainer.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -153,9 +125,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox pictureBox11;
     }
 }

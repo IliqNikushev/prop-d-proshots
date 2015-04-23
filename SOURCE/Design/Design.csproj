@@ -123,6 +123,24 @@
     <Compile Include="Idea\EmployeeInterface\Store.Designer.cs">
       <DependentUpon>Store.cs</DependentUpon>
     </Compile>
+    <Compile Include="Idea\EmployeeV1\EmployeeITDesk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\EmployeeV1\EmployeeITDesk.designer.cs">
+      <DependentUpon>EmployeeITDesk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\EmployeeV1\EmployeeShop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\EmployeeV1\EmployeeShop.designer.cs">
+      <DependentUpon>EmployeeShop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\EmployeeV1\EmployeesPCDoctor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\EmployeeV1\EmployeesPCDoctor.designer.cs">
+      <DependentUpon>EmployeesPCDoctor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Idea\HomePageWithMap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,6 +284,15 @@
     </Compile>
     <EmbeddedResource Include="Idea\EmployeeInterface\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\EmployeeV1\EmployeeITDesk.resx">
+      <DependentUpon>EmployeeITDesk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\EmployeeV1\EmployeeShop.resx">
+      <DependentUpon>EmployeeShop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\EmployeeV1\EmployeesPCDoctor.resx">
+      <DependentUpon>EmployeesPCDoctor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
@@ -458,7 +485,9 @@
   <ItemGroup>
     <None Include="Resources\Yes_check.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\LOGO-Proshot.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Employees1.png" />
   </ItemGroup>
