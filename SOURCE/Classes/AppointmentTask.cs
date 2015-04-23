@@ -5,11 +5,14 @@ using System.Text;
 
 namespace Classes
 {
-    public class EventLandmark : Landmark
+    public class AppointmentTask
     {
-        public EventLandmark(string id, string label, string description, int x, int y, System.DateTime timeStart, DateTime timeEnd) : base(id, label, description, x, y) { }
-
-        public DateTime TimeStart
+        public AppointmentTask(string name, decimal price, string description)
+        {
+            throw new System.NotImplementedException();
+        }
+    
+        public string Name
         {
             get
             {
@@ -20,7 +23,18 @@ namespace Classes
             }
         }
 
-        public DateTime TimeEnd
+        public decimal Price
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public string Description
         {
             get
             {

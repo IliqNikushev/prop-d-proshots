@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public class PurchaseSelection
+    public class RestockSelection
     {
         public PurchasableItem Item { get; private set; }
         public int Times { get; private set; }
 
-        public PurchaseSelection(PurchasableItem item, int times)
+        public RestockSelection(PurchasableItem item, int times)
         {
             this.Item = item;
             this.Times = times;
         }
 
-        public void Purchase()
+        public void Restock()
         {
-            this.Item.Purchase(this.Times);
+            this.Item.Restock(this.Times);
         }
     }
 }

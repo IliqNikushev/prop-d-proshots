@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppointmentTask.cs" />
+    <Compile Include="Database.cs" />
     <Compile Include="EmployeeActionType.cs" />
     <Compile Include="AdminUser.cs" />
     <Compile Include="AppointedItem.cs" />
@@ -50,12 +52,13 @@
     <Compile Include="Deposit.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeAction.cs" />
+    <Compile Include="Employer.cs" />
     <Compile Include="EventLandmark.cs" />
     <Compile Include="Exceptions\InvalidPayPalLogFileException.cs" />
     <Compile Include="Exceptions\InvalidShopException.cs" />
     <Compile Include="Exceptions\InvalidUserException.cs" />
     <Compile Include="FoodAndDrinkShopJob.cs" />
-    <Compile Include="General.cs" />
+    <Compile Include="GeneralShopJob.cs" />
     <Compile Include="InformationKioskJob.cs" />
     <Compile Include="ITServiceJob.cs" />
     <Compile Include="LogMessage.cs" />
@@ -69,6 +72,9 @@
     <Compile Include="Receipt.cs" />
     <Compile Include="PurchaseSelection.cs" />
     <Compile Include="Job.cs" />
+    <Compile Include="RentableItemHistory.cs" />
+    <Compile Include="RestockableItem.cs" />
+    <Compile Include="RestockSelection.cs" />
     <Compile Include="ShopJob.cs" />
     <Compile Include="Tent.cs" />
     <Compile Include="TentAreaLandmark.cs" />

@@ -12,7 +12,12 @@ namespace Classes
         public Visitor(string identificator) : base(identificator) { }
         public Visitor(string username, string password) : base(username, password) { }
 
-        public void Hire(RentableItem item)
+        public Visitor(string id, string firstName, string lastName, string username, string email, decimal amount) : base(id,firstName,lastName,username,email)
+        {
+            this.Amount = amount;
+        }
+
+        public void Rent(RentableItem item)
         {
             //check if has enough in account
         }
@@ -26,7 +31,7 @@ namespace Classes
         {
             Visitor visitor = user as Visitor;
 
-            //apply visitor properties
+            //this.amount = visitor.amount
         }
     }
 }

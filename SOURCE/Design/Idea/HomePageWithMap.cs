@@ -12,7 +12,7 @@ namespace Design.Idea
 {
     public partial class HomePageWithMap : HomePage
     {
-        private Pointable[] pointableItems = new Pointable[]{
+        private MapPoint[] pointableItems = new MapPoint[]{
             new ShopExample(0,0,"KFC", "Fried chicken"),
             new ShopExample(100,100,"MC Donalds", "Fast Food"),
             new ShopExample(200,200,"Doctor", "Fast and Easy doctor repairs")
@@ -72,7 +72,7 @@ namespace Design.Idea
 
             holder.BringToFront();
             mapArea.BringToFront();
-            foreach (Pointable pointable in pointableItems)
+            foreach (MapPoint pointable in pointableItems)
                 pointable.AddToMap(mapArea);
 
             mapArea.MouseDown += (x, mouse) =>
@@ -142,7 +142,7 @@ namespace Design.Idea
                 });
 
             var pointableTypes = System.Reflection.Assembly.GetExecutingAssembly().GetTypes().
-                Where(x => x.IsSubclassOf(typeof(Pointable)));
+                Where(x => x.IsSubclassOf(typeof(MapPoint)));
 
             findByTypeTb.AutoCompleteCustomSource.Add("All");
 
@@ -328,7 +328,7 @@ namespace Design.Idea
 
         private void SetMapItems(string type, string label = "")
         {
-            IEnumerable<Pointable> collection = new Pointable[0];
+            IEnumerable<MapPoint> collection = new MapPoint[0];
             type = type.ToLower();
             if (type == "none")
             {
@@ -347,16 +347,16 @@ namespace Design.Idea
             }
         }
 
-        private void ZoomToItems(params Pointable[] items)
+        private void ZoomToItems(params MapPoint[] items)
         {
             ZoomToItems(items);
         }
 
-        private IEnumerable<Pointable> GetVisibleItemsOnMap(string type, string label)
+        private IEnumerable<MapPoint> GetVisibleItemsOnMap(string type, string label)
         {
             type = type.ToLower();
             label = label.ToLower();
-            IEnumerable<Pointable> collection = new Pointable[0];
+            IEnumerable<MapPoint> collection = new MapPoint[0];
             if (type == "all")
                 if (label == "")
                     collection = pointableItems;
@@ -371,11 +371,11 @@ namespace Design.Idea
             return collection;
         }
 
-        private void ZoomToItems(IEnumerable<Pointable> items)
+        private void ZoomToItems(IEnumerable<MapPoint> items)
         {
             ResetZoom();
 
-            Pointable first = items.FirstOrDefault();
+            MapPoint first = items.FirstOrDefault();
             if (first == null) return;
 
             int left = first.X;
@@ -383,7 +383,7 @@ namespace Design.Idea
             int top = first.Y;
             int bottom = first.Y;
 
-            foreach (Pointable item in items)
+            foreach (MapPoint item in items)
             {
                 item.ShowInMap();
                 if (item.X < left) left = item.X;
@@ -393,8 +393,8 @@ namespace Design.Idea
                 else if (item.Y > bottom) bottom = item.Y;
             }
 
-            float width = right - left + Pointable.IconSize;
-            float height = bottom - top + Pointable.IconSize;
+            float width = right - left + MapPoint.IconSize;
+            float height = bottom - top + MapPoint.IconSize;
 
             dragOffset = new Point(left, top);
 

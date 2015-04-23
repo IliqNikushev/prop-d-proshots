@@ -6,38 +6,18 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public class RentableItem : Item
+    public class RentableItem : RestockableItem
     {
-        public DateTime RentedAt { get; private set; }
-        public DateTime ReturnedAt { get; private set; }
-
-        public Visitor RentedBy
+        public RentableItem(int id, decimal price, string brand, string model, string type, int inStock)
+            : base(id, price, brand, model, type, inStock)
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            
         }
 
-        public RentableItem(int id, decimal price, string brand, string model, string type): base(id, price, brand, model, type)
+        public void Rent(Classes.Visitor renter)
         {
-        }
-
-        public void Hire(Classes.Visitor visitor)
-        {
-            visitor.Hire(this);
-            this.RentedBy = visitor;
-            this.RentedAt = DateTime.Now;
-        }
-
-        public void Return()
-        {
-            this.RentedBy.Return(this);
-            this.RentedBy = null;
-            this.ReturnedAt = DateTime.Now;
+            renter.Rent(this);
+            RentableItemHistory history = new RentableItemHistory(this, renter);
         }
     }
 }

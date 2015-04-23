@@ -61,11 +61,6 @@ namespace Classes
             }
         }
 
-        public void Book()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void Pay()
         {
             throw new System.NotImplementedException();

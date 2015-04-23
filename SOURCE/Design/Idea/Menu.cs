@@ -33,7 +33,7 @@ namespace Design.Idea
             InitializeComponent();
 
             this.FormClosed += (x, y) => MainMenu = null;
-            this.Disposed += (x, y) => Menus.Remove(this);
+            this.Disposed += (x, y) => Menus.Clear();
         }
 
         new public void Show()

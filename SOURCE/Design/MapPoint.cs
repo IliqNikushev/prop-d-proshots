@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Design
 {
-    abstract class Pointable
+    abstract class MapPoint
     {
         public const int IconSize = 32;
-        public string Label { get; private set; }
-        public string Description { get; private set; }
-        public int X { get; private set; }
-        public int Y { get; private set; }
+        private Classes.Landmark Landmark;
+        public string Label { get { return this.Landmark.Label; } }
+        public string Description { get { return this.Landmark.Description; } }
+        public int X { get { return this.Landmark.X; } }
+        public int Y { get { return this.Landmark.Y; } }
 
         private System.Windows.Forms.PictureBox marker;
 
@@ -28,12 +29,16 @@ namespace Design
                 marker.Visible = true;
         }
 
-        public Pointable(int x, int y, string label, string description)
+        //temporary constructor
+        public MapPoint(int x, int y, string label, string description)
         {
-            this.Label = label;
-            this.Description = description;
-            this.X = x;
-            this.Y = y;
+            this.Landmark = new Classes.EventLandmark("-1", label, description, x, y, DateTime.Today, DateTime.Today);
+        }
+
+        //temporary constructor
+        public MapPoint(Classes.Landmark landmark)
+        {
+            this.Landmark = landmark;
         }
 
         public void AddToMap(System.Windows.Forms.Control map)
@@ -72,7 +77,7 @@ namespace Design
         }
     }
 
-    class ShopExample : Pointable
+    class ShopExample : MapPoint
     {
         public ShopExample(int x, int y, string label, string description)
             : base(x, y, label, description)
