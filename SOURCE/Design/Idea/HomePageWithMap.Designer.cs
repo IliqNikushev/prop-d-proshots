@@ -40,30 +40,9 @@
             this.mapBtn = new System.Windows.Forms.Button();
             this.zoomOnItemsBtn = new System.Windows.Forms.Button();
             this.resetZoomBtn = new System.Windows.Forms.Button();
-            this.dynamicContainer.SuspendLayout();
-            this.topNavContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mapArea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dynamicContainer
-            // 
-            this.dynamicContainer.Controls.Add(this.resetZoomBtn);
-            this.dynamicContainer.Controls.Add(this.zoomOnItemsBtn);
-            this.dynamicContainer.Controls.Add(this.findByNameTb);
-            this.dynamicContainer.Controls.Add(this.zoomOutBtn);
-            this.dynamicContainer.Controls.Add(this.zoomTb);
-            this.dynamicContainer.Controls.Add(this.findByTypeLbl);
-            this.dynamicContainer.Controls.Add(this.findByTypeTb);
-            this.dynamicContainer.Controls.Add(this.ZoomInBtn);
-            this.dynamicContainer.Controls.Add(this.findByNameLbl);
-            this.dynamicContainer.Controls.Add(this.mapArea);
-            this.dynamicContainer.Controls.Add(this.pictureBox10);
-            this.dynamicContainer.Size = new System.Drawing.Size(768, 531);
-            // 
-            // topNavContainer
-            // 
-            this.topNavContainer.Controls.Add(this.mapBtn);
             // 
             // zoomTb
             // 
@@ -109,7 +88,7 @@
             // 
             this.mapArea.Image = global::Design.Properties.Resources.Park_English;
             this.mapArea.InitialImage = null;
-            this.mapArea.Location = new System.Drawing.Point(367, 20);
+            this.mapArea.Location = new System.Drawing.Point(368, 19);
             this.mapArea.Name = "mapArea";
             this.mapArea.Size = new System.Drawing.Size(371, 369);
             this.mapArea.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -202,14 +181,24 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 714);
+            this.Controls.Add(this.resetZoomBtn);
+            this.Controls.Add(this.zoomOnItemsBtn);
+            this.Controls.Add(this.findByNameTb);
+            this.Controls.Add(this.zoomOutBtn);
+            this.Controls.Add(this.zoomTb);
+            this.Controls.Add(this.findByTypeLbl);
+            this.Controls.Add(this.findByTypeTb);
+            this.Controls.Add(this.ZoomInBtn);
+            this.Controls.Add(this.findByNameLbl);
+            this.Controls.Add(this.mapArea);
+            this.Controls.Add(this.pictureBox10);
+            this.Controls.Add(this.mapBtn);
             this.Name = "HomePageWithMap";
             this.Text = "HomePageWithMap";
-            this.dynamicContainer.ResumeLayout(false);
-            this.dynamicContainer.PerformLayout();
-            this.topNavContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mapArea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

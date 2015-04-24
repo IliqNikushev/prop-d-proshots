@@ -9,12 +9,17 @@ namespace Classes
     public class PurchaseSelection
     {
         public PurchasableItem Item { get; private set; }
-        public uint Times { get; private set; }
+        public int Times { get; private set; }
 
-        public PurchaseSelection(PurchasableItem item, uint times)
+        public PurchaseSelection(PurchasableItem item, int times)
         {
             this.Item = item;
             this.Times = times;
+        }
+
+        public void Purchase()
+        {
+            this.Item.Purchase(this.Times);
         }
     }
 }

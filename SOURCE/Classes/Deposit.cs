@@ -18,7 +18,7 @@ namespace Classes
         {
             get
             {
-                return User.Authenticate(this.ID) as Visitor;
+                return new Visitor(this.ID);
             }
         }
 

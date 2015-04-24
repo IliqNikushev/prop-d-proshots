@@ -9,15 +9,9 @@ namespace Classes
     {
         public TentAreaLandmark(string id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
 
-        public bool Booked
+        public bool IsBooked
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get { return this.Tent != null; }
         }
 
         public Tent Tent

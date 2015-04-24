@@ -29,13 +29,12 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.dynamicContainer.SuspendLayout();
+            
             this.SuspendLayout();
             // 
             // dynamicContainer
             // 
-            this.dynamicContainer.Controls.Add(this.button1);
-            this.dynamicContainer.Size = new System.Drawing.Size(311, 256);
+            this.Controls.Add(this.button1);
             // 
             // button1
             // 
@@ -54,7 +53,6 @@
             this.ClientSize = new System.Drawing.Size(335, 315);
             this.Name = "Main";
             this.Text = "Main";
-            this.dynamicContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

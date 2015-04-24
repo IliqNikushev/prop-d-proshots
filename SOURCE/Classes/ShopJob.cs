@@ -9,6 +9,17 @@ namespace Classes
     {
         public ShopJob(string id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
 
+        public List<Classes.PurchasableItem> Items
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         public Receipt Purchase(string identificator, List<PurchaseSelection> items)
         {
             Visitor user = new Visitor(identificator);

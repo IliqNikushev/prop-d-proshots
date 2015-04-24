@@ -42,8 +42,8 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.dynamicContainer.SuspendLayout();
-            this.topNavContainer.SuspendLayout();
+            
+            
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -52,16 +52,12 @@
             // 
             // dynamicContainer
             // 
-            this.dynamicContainer.Controls.Add(this.pictureBox1);
-            this.dynamicContainer.Controls.Add(this.label4);
-            this.dynamicContainer.Location = new System.Drawing.Point(10, 188);
-            this.dynamicContainer.Size = new System.Drawing.Size(506, 358);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label4);
             // 
             // topNavContainer
             // 
-            this.topNavContainer.Controls.Add(this.pictureBox11);
-            this.topNavContainer.Location = new System.Drawing.Point(13, 4);
-            this.topNavContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.topNavContainer_Paint);
+            this.Controls.Add(this.pictureBox11);
             // 
             // textBox3
             // 
@@ -214,7 +210,6 @@
             this.Controls.Add(this.pictureBox2);
             this.Name = "EmployeesPCDoctor";
             this.Text = "EmployeesPCDoctor";
-            this.Controls.SetChildIndex(this.dynamicContainer, 0);
             this.Controls.SetChildIndex(this.pictureBox2, 0);
             this.Controls.SetChildIndex(this.label7, 0);
             this.Controls.SetChildIndex(this.label2, 0);
@@ -226,10 +221,6 @@
             this.Controls.SetChildIndex(this.textBox3, 0);
             this.Controls.SetChildIndex(this.listBox1, 0);
             this.Controls.SetChildIndex(this.label3, 0);
-            this.Controls.SetChildIndex(this.topNavContainer, 0);
-            this.dynamicContainer.ResumeLayout(false);
-            this.dynamicContainer.PerformLayout();
-            this.topNavContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

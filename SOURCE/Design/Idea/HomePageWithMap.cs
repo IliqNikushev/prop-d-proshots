@@ -12,7 +12,7 @@ namespace Design.Idea
 {
     public partial class HomePageWithMap : HomePage
     {
-        private Pointable[] pointableItems = new Pointable[]{
+        private MapPoint[] pointableItems = new MapPoint[]{
             new ShopExample(0,0,"KFC", "Fried chicken"),
             new ShopExample(100,100,"MC Donalds", "Fast Food"),
             new ShopExample(200,200,"Doctor", "Fast and Easy doctor repairs")
@@ -53,26 +53,29 @@ namespace Design.Idea
             PictureBox holder = new PictureBox();
             holder.Size = new Size(mapArea.Size.Width, mapArea.Size.Height);
 
-            holder.Left = mapX - pictureBox10.Left + 2;
-            holder.Top = mapY - 3;
-            mapArea.Parent.Controls.Add(holder);
-            mapArea.Parent = holder;
-            mapArea.Left = 0;
-            mapArea.Top = 0;
+            holder.Left = mapX;
+            holder.Top = mapY;
+            this.Controls.Add(holder);
 
-            holder.Parent = pictureBox10;
+            SetParent(holder, pictureBox10);
 
             SetParent(ZoomInBtn, pictureBox10);
             SetParent(zoomOutBtn, pictureBox10);
             SetParent(zoomTb, pictureBox10);
+            SetParent(zoomOnItemsBtn, pictureBox10);
+            SetParent(resetZoomBtn, pictureBox10);
             SetParent(findByNameLbl, pictureBox10);
             SetParent(findByNameTb, pictureBox10);
             SetParent(findByTypeLbl, pictureBox10);
             SetParent(findByTypeTb, pictureBox10);
+            
+            mapArea.Parent = holder;
+            mapArea.Left = 0;
+            mapArea.Top = 0;
 
             holder.BringToFront();
             mapArea.BringToFront();
-            foreach (Pointable pointable in pointableItems)
+            foreach (MapPoint pointable in pointableItems)
                 pointable.AddToMap(mapArea);
 
             mapArea.MouseDown += (x, mouse) =>
@@ -117,8 +120,6 @@ namespace Design.Idea
                 holder.Refresh();
             };
 
-            zoomTb.Text = "100%";
-
             AddAutoCompleteTo(zoomTb, 
                 (e) =>
                 {
@@ -142,7 +143,7 @@ namespace Design.Idea
                 });
 
             var pointableTypes = System.Reflection.Assembly.GetExecutingAssembly().GetTypes().
-                Where(x => x.IsSubclassOf(typeof(Pointable)));
+                Where(x => x.IsSubclassOf(typeof(MapPoint)));
 
             findByTypeTb.AutoCompleteCustomSource.Add("All");
 
@@ -170,6 +171,8 @@ namespace Design.Idea
                     }
                 }, (selection) => SetMapItems(findByTypeTb.Text, selection.ToString()));
 
+            zoomTb.Text = "100%";
+
             findByTypeTb.Text = "All";
             SetNameSearchCollection("All");
 
@@ -179,15 +182,14 @@ namespace Design.Idea
         protected override void OnSet()
         {
             base.OnSet();
+            foreach (var item in this.OnAutoComplete)
+            {
+                item.Value.ListBox.Visible = false;
+            }
             if (pictureBox10.Visible)
             {
                 MainMenu.Width -= pictureBox10.Width;
                 pictureBox10.Visible = false;
-            }
-            foreach (var item in this.OnAutoComplete)
-            {
-                item.Value.ListBox.Visible = false;
-                MainMenu.Controls.Add(item.Value.ListBox);
             }
         }
 
@@ -197,8 +199,29 @@ namespace Design.Idea
             tb.AcceptsReturn = true;
             tb.AutoCompleteMode = AutoCompleteMode.Suggest;
             tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
             OnAutoComplete.Add(tb, new AutoCompleteData(onSelected));
+            ListBox listBox = OnAutoComplete[tb].ListBox;
+            this.Controls.Add(listBox);
+            int yy = tb.Top + tb.Height + tb.Parent.Top;
+            int xx = tb.Left + tb.Parent.Left;
+            listBox.Top = yy;
+            listBox.Left = xx;
+            listBox.Width = tb.Width;
+            listBox.IntegralHeight = false;
+            listBox.Sorted = false;
+
+            listBox.SelectedIndexChanged += (x, y) =>
+            {
+                if (listBox.SelectedIndex != -1)
+                {
+                    OnAutoComplete[tb].Invoke();
+                    tb.Text = listBox.SelectedItem.ToString();
+                    listBox.Visible = false;
+                }
+            };
+
+            listBox.BringToFront();
+
             tb.KeyPress += (x, e) => onKeyPress(e);
             tb.KeyUp += AutoComplete;
         }
@@ -217,8 +240,6 @@ namespace Design.Idea
                 this.ListBox = new ListBox();
             }
 
-            public void Initialize() { this.IsInitialized = true; }
-
             public void Invoke() { this.Action(ListBox.SelectedItem); }
         }
 
@@ -226,44 +247,9 @@ namespace Design.Idea
         {
             TextBox textBox = sender as TextBox;
             ListBox listBox = OnAutoComplete[textBox].ListBox;
+            if (e.KeyCode == Keys.Return) { listBox.Visible = false; return; }
             string[] items = new string[textBox.AutoCompleteCustomSource.Count];
             textBox.AutoCompleteCustomSource.CopyTo(items, 0);
-
-            if (!OnAutoComplete[textBox].IsInitialized)
-            {
-                OnAutoComplete[textBox].Initialize();
-                int yy = textBox.Height + textBox.Top;
-                int xx = textBox.Left;
-                Control parent = textBox.Parent;
-                while (true)
-                {
-                    xx += parent.Left;
-                    yy += parent.Top;
-                    parent = parent.Parent;
-                    if (parent == null) break;
-                    if (parent == listBox.Parent) break;
-                }
-                listBox.Top = yy;
-                listBox.Left = xx;
-                listBox.Width = textBox.Width;
-                listBox.IntegralHeight = false;
-                listBox.Sorted = false;
-
-                listBox.SelectedIndexChanged += (x, y) =>
-                {
-                    if (listBox.SelectedIndex != -1)
-                    {
-                        OnAutoComplete[textBox].Invoke();
-                        textBox.Text = listBox.SelectedItem.ToString();
-                    }
-                };
-
-                listBox.BringToFront();
-                OnAutoComplete[textBox].ListBox = listBox;
-                OnAutoComplete[textBox].Action += (x) => listBox.Visible = false;
-            }
-            else
-                listBox = OnAutoComplete[textBox].ListBox;
 
             string text = textBox.Text.ToLower();
             IEnumerable<string> localList = items.Where(x => x.ToLower().StartsWith(text) || x.ToLower().Contains(text));
@@ -328,7 +314,7 @@ namespace Design.Idea
 
         private void SetMapItems(string type, string label = "")
         {
-            IEnumerable<Pointable> collection = new Pointable[0];
+            IEnumerable<MapPoint> collection = new MapPoint[0];
             type = type.ToLower();
             if (type == "none")
             {
@@ -347,16 +333,16 @@ namespace Design.Idea
             }
         }
 
-        private void ZoomToItems(params Pointable[] items)
+        private void ZoomToItems(params MapPoint[] items)
         {
             ZoomToItems(items);
         }
 
-        private IEnumerable<Pointable> GetVisibleItemsOnMap(string type, string label)
+        private IEnumerable<MapPoint> GetVisibleItemsOnMap(string type, string label)
         {
             type = type.ToLower();
             label = label.ToLower();
-            IEnumerable<Pointable> collection = new Pointable[0];
+            IEnumerable<MapPoint> collection = new MapPoint[0];
             if (type == "all")
                 if (label == "")
                     collection = pointableItems;
@@ -371,11 +357,11 @@ namespace Design.Idea
             return collection;
         }
 
-        private void ZoomToItems(IEnumerable<Pointable> items)
+        private void ZoomToItems(IEnumerable<MapPoint> items)
         {
             ResetZoom();
 
-            Pointable first = items.FirstOrDefault();
+            MapPoint first = items.FirstOrDefault();
             if (first == null) return;
 
             int left = first.X;
@@ -383,7 +369,7 @@ namespace Design.Idea
             int top = first.Y;
             int bottom = first.Y;
 
-            foreach (Pointable item in items)
+            foreach (MapPoint item in items)
             {
                 item.ShowInMap();
                 if (item.X < left) left = item.X;
@@ -393,8 +379,8 @@ namespace Design.Idea
                 else if (item.Y > bottom) bottom = item.Y;
             }
 
-            float width = right - left + Pointable.IconSize;
-            float height = bottom - top + Pointable.IconSize;
+            float width = right - left + MapPoint.IconSize;
+            float height = bottom - top + MapPoint.IconSize;
 
             dragOffset = new Point(left, top);
 
@@ -409,7 +395,7 @@ namespace Design.Idea
         {
             if (state)
             {
-                int sum = pictureBox10.Height + pictureBox10.Top + pictureBox10.Parent.Top + topNavContainer.Height + topNavContainer.Top;
+                int sum = pictureBox10.Height + pictureBox10.Top;
                 if (MainMenu.Height < sum)
                     MainMenu.Height = sum;
             }
@@ -448,7 +434,7 @@ namespace Design.Idea
 
         private void zoomOutBtn_Click(object sender, EventArgs e)
         {
-            ChangeZoom(wantedZoom * 0.1f);
+            ChangeZoom(wantedZoom * -0.1f);
         }
     }
 }

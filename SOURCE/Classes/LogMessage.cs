@@ -7,6 +7,11 @@ namespace Classes
 {
     public class LogMessage
     {
+        public LogMessage(string name, string description)
+        {
+            throw new System.NotImplementedException();
+        }
+    
         public string Name
         {
             get

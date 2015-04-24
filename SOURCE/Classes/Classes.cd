@@ -4,30 +4,11 @@
     <Position X="9.683" Y="4.733" Height="0.291" Width="1.8" />
   </Comment>
   <Class Name="Classes.RentableItem" Collapsed="true">
-    <Position X="2.75" Y="6" Width="1.5" />
-    <InheritanceLine Type="Classes.Item" FixedFromPoint="true">
-      <Path>
-        <Point X="2" Y="7.25" />
-        <Point X="2" Y="7.066" />
-        <Point X="3.5" Y="7.066" />
-        <Point X="3.5" Y="6.691" />
-      </Path>
-    </InheritanceLine>
-    <AssociationLine Name="RentedBy" Type="Classes.Visitor" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="4.156" Y="6" />
-        <Point X="4.156" Y="3.566" />
-        <Point X="5" Y="3.566" />
-        <Point X="5" Y="3.191" />
-      </Path>
-    </AssociationLine>
+    <Position X="2.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAAACAAAAEAIAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>RentableItem.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="RentedBy" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Classes.Item" Collapsed="true">
     <Position X="0.75" Y="7.25" Width="1.5" />
@@ -38,41 +19,47 @@
   </Class>
   <Class Name="Classes.PurchasableItem" Collapsed="true">
     <Position X="8" Y="5" Width="1.5" />
-    <InheritanceLine Type="Classes.Item" ManuallyRouted="true" FixedFromPoint="true">
+    <InheritanceLine Type="Classes.RestockableItem" FixedFromPoint="true">
       <Path>
-        <Point X="2.25" Y="7.5" />
-        <Point X="2.25" Y="7.398" />
-        <Point X="4.5" Y="7.398" />
-        <Point X="4.5" Y="6.459" />
-        <Point X="8.75" Y="6.459" />
-        <Point X="8.75" Y="5.691" />
+        <Point X="4.25" Y="7.498" />
+        <Point X="7.625" Y="7.498" />
+        <Point X="7.625" Y="5.346" />
+        <Point X="8" Y="5.346" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>PurchasableItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.User" Collapsed="true">
     <Position X="4.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAEAAAAAAAICAAQAAAAIgAAAAAAACAAAAAAAAAAg=</HashCode>
+      <HashCode>AgACAEAAACAAAIAAAQAAAAIgAAAAAAACAAAAAAAAAAg=</HashCode>
       <FileName>User.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.Visitor" Collapsed="true">
     <Position X="4.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAEAAAAACAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAACAACAAAAAAAAAAEAAAAAA=</HashCode>
       <FileName>Visitor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.Employee" Collapsed="true">
     <Position X="12" Y="0.75" Width="1.5" />
+    <AssociationLine Name="Job" Type="Classes.Job">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.525" Y="0.108" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>CgAAEAgAIAAAAAAAAAAAAAIAAAACAAAAAAAQAAAAAAA=</HashCode>
       <FileName>Employee.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Job" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Classes.Receipt" Collapsed="true">
     <Position X="8" Y="3.5" Width="1.5" />
@@ -92,7 +79,7 @@
       <FileName>PayPalDocument.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Classes.Deposit">
+  <Class Name="Classes.Deposit" Collapsed="true">
     <Position X="4.75" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAAAAgAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -112,7 +99,7 @@
   <Class Name="Classes.Appointment" Collapsed="true">
     <Position X="0.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAECFAAAAASAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
       <FileName>Appointment.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -123,7 +110,7 @@
   <Class Name="Classes.TentAreaLandmark" Collapsed="true">
     <Position X="4.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
       <FileName>TentAreaLandmark.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -133,7 +120,7 @@
   <Class Name="Classes.Tent" Collapsed="true">
     <Position X="4" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAQEgBAAAAAAAAAAAAAAQAAAAAAAAAAQAA=</HashCode>
+      <HashCode>AAAAAAAAAQAQEgAAAAAAAAAAAAAAAQAAAAAAAAAAQAA=</HashCode>
       <FileName>Tent.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -151,11 +138,11 @@
       <FileName>PayPalMachine.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Classes.GeneralShop" Collapsed="true">
+  <Class Name="Classes.GeneralShopJob" Collapsed="true">
     <Position X="10.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>General.cs</FileName>
+      <FileName>GeneralShopJob.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.EmployeeAction" Collapsed="true">
@@ -179,14 +166,14 @@
   <Class Name="Classes.ShopJob" Collapsed="true">
     <Position X="10.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ShopJob.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.PurchaseSelection" Collapsed="true">
     <Position X="8" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAEAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>PurchaseSelection.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -228,7 +215,7 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AgAAAAAgAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>AdminUser.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -242,28 +229,28 @@
   <Class Name="Classes.EventLandmark" Collapsed="true">
     <Position X="6.25" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
       <FileName>EventLandmark.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.ITServiceJob" Collapsed="true">
     <Position X="10" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAABQCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ITServiceJob.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.PCDoctorJob" Collapsed="true">
     <Position X="11.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAEAAQAAAAAAAAAgQAAAAAEA=</HashCode>
       <FileName>PCDoctorJob.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.InformationKioskJob" Collapsed="true">
     <Position X="13.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQCAAAA=</HashCode>
       <FileName>InformationKioskJob.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -277,8 +264,57 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Job.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Employer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Classes.AppointmentTask" Collapsed="true">
+    <Position X="2" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AppointmentTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Classes.RestockableItem" Collapsed="true">
+    <Position X="2.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAIAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>RestockableItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Classes.Employer" Collapsed="true">
+    <Position X="14.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Employer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Classes.RestockSelection" Collapsed="true">
+    <Position X="8.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAEAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>RestockSelection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Classes.RentableItemHistory" Collapsed="true">
+    <Position X="4" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIACAAAAACAAAAAAIAAAAAAAAAAAAAEAAAEQAAAAA=</HashCode>
+      <FileName>RentableItemHistory.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RentedItem" />
+      <Property Name="RentedBy" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Classes.Database">
+    <Position X="16.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MEBAAFAAAAABoQAAAAABCCAoAAAAEAABQgkAAEEACgA=</HashCode>
+      <FileName>Database.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="Classes.WarningType" Collapsed="true">

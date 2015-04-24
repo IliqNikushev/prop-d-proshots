@@ -39,6 +39,9 @@ namespace Classes
             this.Shop = shop;
             this.Items = items;
             this.PurchasedOn = DateTime.Now;
+
+            foreach (PurchaseSelection selection in items)
+                selection.Purchase();
         }
     }
 }
