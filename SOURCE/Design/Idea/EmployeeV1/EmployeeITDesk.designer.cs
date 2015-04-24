@@ -57,8 +57,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.dynamicContainer.SuspendLayout();
-            this.topNavContainer.SuspendLayout();
+            
+            
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -67,27 +67,24 @@
             // 
             // dynamicContainer
             // 
-            this.dynamicContainer.Controls.Add(this.pictureBox2);
-            this.dynamicContainer.Controls.Add(this.label9);
-            this.dynamicContainer.Controls.Add(this.label8);
-            this.dynamicContainer.Controls.Add(this.label7);
-            this.dynamicContainer.Controls.Add(this.dateTimePicker1);
-            this.dynamicContainer.Controls.Add(this.label2);
-            this.dynamicContainer.Controls.Add(this.textBox2);
-            this.dynamicContainer.Controls.Add(this.label5);
-            this.dynamicContainer.Controls.Add(this.textBox3);
-            this.dynamicContainer.Controls.Add(this.pictureBox3);
-            this.dynamicContainer.Controls.Add(this.addOneBtn);
-            this.dynamicContainer.Controls.Add(this.removeOneBtn);
-            this.dynamicContainer.Controls.Add(this.label6);
-            this.dynamicContainer.Controls.Add(this.purchaseBtn);
-            this.dynamicContainer.Location = new System.Drawing.Point(13, 196);
-            this.dynamicContainer.Size = new System.Drawing.Size(563, 479);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.addOneBtn);
+            this.Controls.Add(this.removeOneBtn);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.purchaseBtn);
             // 
             // topNavContainer
             // 
-            this.topNavContainer.Controls.Add(this.pictureBox11);
-            this.topNavContainer.Location = new System.Drawing.Point(13, 8);
+            this.Controls.Add(this.pictureBox11);
             // 
             // textBox3
             // 
@@ -324,7 +321,6 @@
             this.Controls.Add(this.label1);
             this.Name = "EmployeeITDesk";
             this.Text = "EmployeeITDesk";
-            this.Controls.SetChildIndex(this.dynamicContainer, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.pictureBox7, 0);
             this.Controls.SetChildIndex(this.textBox1, 0);
@@ -333,10 +329,6 @@
             this.Controls.SetChildIndex(this.addMultipleBtn, 0);
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.label3, 0);
-            this.Controls.SetChildIndex(this.topNavContainer, 0);
-            this.dynamicContainer.ResumeLayout(false);
-            this.dynamicContainer.PerformLayout();
-            this.topNavContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

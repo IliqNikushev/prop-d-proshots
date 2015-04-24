@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.dynamicContainer.SuspendLayout();
+            
             this.SuspendLayout();
             // 
             // dynamicContainer
             // 
-            this.dynamicContainer.Controls.Add(this.button1);
+            this.Controls.Add(this.button1);
             // 
             // button1
             // 
@@ -54,7 +54,6 @@
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "EmployeeMenu";
             this.Text = "EmployeeMenu";
-            this.dynamicContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

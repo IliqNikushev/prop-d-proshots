@@ -15,60 +15,11 @@ namespace Classes
             this.X = x;
             this.Y = y;
         }
-    
-        public int X
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
 
-        public int Y
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public string Label
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public string Description
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public string ID
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public int X { get; private set; }
+        public int Y { get; private set; }
+        public string Label { get; private set; }
+        public string Description { get; private set; }
+        public string ID { get; private set; }
     }
 }

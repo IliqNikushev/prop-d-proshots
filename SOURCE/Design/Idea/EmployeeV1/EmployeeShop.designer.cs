@@ -61,7 +61,6 @@
             // 
             // dynamicContainer
             // 
-            this.dynamicContainer.Size = new System.Drawing.Size(788, 470);
             // 
             // label6
             // 
@@ -287,7 +286,6 @@
             this.Name = "EmployeeShop";
             this.Text = "EmployeeShop";
             this.Load += new System.EventHandler(this.EmployeeShop_Load);
-            this.Controls.SetChildIndex(this.dynamicContainer, 0);
             this.Controls.SetChildIndex(this.itemsListView, 0);
             this.Controls.SetChildIndex(this.purchaseBtn, 0);
             this.Controls.SetChildIndex(this.cartListView, 0);
@@ -308,7 +306,6 @@
             this.Controls.SetChildIndex(this.textBox3, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.label6, 0);
-            this.Controls.SetChildIndex(this.topNavContainer, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();

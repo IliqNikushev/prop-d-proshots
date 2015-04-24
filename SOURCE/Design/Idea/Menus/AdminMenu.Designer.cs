@@ -31,13 +31,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.dynamicContainer.SuspendLayout();
+            
             this.SuspendLayout();
             // 
             // dynamicContainer
             // 
-            this.dynamicContainer.Controls.Add(this.button3);
-            this.dynamicContainer.Location = new System.Drawing.Point(12, 47);
+            this.Controls.Add(this.button3);
             // 
             // button1
             // 
@@ -76,7 +75,6 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Name = "AdminMenu";
             this.Text = "AdminMenu";
-            this.dynamicContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
