@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "Item",
             "Sub Item"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
             "Item",
             "Sub Item"}, -1);
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -57,8 +57,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.dynamicContainer.SuspendLayout();
-            this.topNavContainer.SuspendLayout();
+            
+            
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -67,27 +67,24 @@
             // 
             // dynamicContainer
             // 
-            this.dynamicContainer.Controls.Add(this.pictureBox2);
-            this.dynamicContainer.Controls.Add(this.label9);
-            this.dynamicContainer.Controls.Add(this.label8);
-            this.dynamicContainer.Controls.Add(this.label7);
-            this.dynamicContainer.Controls.Add(this.dateTimePicker1);
-            this.dynamicContainer.Controls.Add(this.label2);
-            this.dynamicContainer.Controls.Add(this.textBox2);
-            this.dynamicContainer.Controls.Add(this.label5);
-            this.dynamicContainer.Controls.Add(this.textBox3);
-            this.dynamicContainer.Controls.Add(this.pictureBox3);
-            this.dynamicContainer.Controls.Add(this.addOneBtn);
-            this.dynamicContainer.Controls.Add(this.removeOneBtn);
-            this.dynamicContainer.Controls.Add(this.label6);
-            this.dynamicContainer.Controls.Add(this.purchaseBtn);
-            this.dynamicContainer.Location = new System.Drawing.Point(13, 196);
-            this.dynamicContainer.Size = new System.Drawing.Size(563, 479);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.addOneBtn);
+            this.Controls.Add(this.removeOneBtn);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.purchaseBtn);
             // 
             // topNavContainer
             // 
-            this.topNavContainer.Controls.Add(this.pictureBox11);
-            this.topNavContainer.Location = new System.Drawing.Point(13, 8);
+            this.Controls.Add(this.pictureBox11);
             // 
             // textBox3
             // 
@@ -246,7 +243,7 @@
             // cartListView
             // 
             this.cartListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem5});
+            listViewItem3});
             this.cartListView.Location = new System.Drawing.Point(586, 386);
             this.cartListView.Margin = new System.Windows.Forms.Padding(4);
             this.cartListView.Name = "cartListView";
@@ -267,7 +264,7 @@
             // itemsListView
             // 
             this.itemsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem6});
+            listViewItem4});
             this.itemsListView.Location = new System.Drawing.Point(21, 387);
             this.itemsListView.Margin = new System.Windows.Forms.Padding(4);
             this.itemsListView.Name = "itemsListView";
@@ -323,8 +320,7 @@
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.label1);
             this.Name = "EmployeeITDesk";
-            this.Text = ",";
-            this.Controls.SetChildIndex(this.dynamicContainer, 0);
+            this.Text = "EmployeeITDesk";
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.pictureBox7, 0);
             this.Controls.SetChildIndex(this.textBox1, 0);
@@ -333,10 +329,6 @@
             this.Controls.SetChildIndex(this.addMultipleBtn, 0);
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.label3, 0);
-            this.Controls.SetChildIndex(this.topNavContainer, 0);
-            this.dynamicContainer.ResumeLayout(false);
-            this.dynamicContainer.PerformLayout();
-            this.topNavContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

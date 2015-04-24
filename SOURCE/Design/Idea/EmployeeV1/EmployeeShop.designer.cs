@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Item",
             "Sub Item"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "Item",
             "Sub Item"}, -1);
             this.label6 = new System.Windows.Forms.Label();
@@ -54,30 +54,18 @@
             this.cartListView = new System.Windows.Forms.ListView();
             this.purchaseBtn = new System.Windows.Forms.Button();
             this.itemsListView = new System.Windows.Forms.ListView();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.dynamicContainer.SuspendLayout();
-            this.topNavContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.SuspendLayout();
             // 
             // dynamicContainer
             // 
-            this.dynamicContainer.Controls.Add(this.textBox1);
-            this.dynamicContainer.Location = new System.Drawing.Point(9, 195);
-            this.dynamicContainer.Size = new System.Drawing.Size(788, 527);
-            // 
-            // topNavContainer
-            // 
-            this.topNavContainer.Controls.Add(this.pictureBox11);
-            this.topNavContainer.Location = new System.Drawing.Point(9, 13);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(440, 388);
+            this.label6.Location = new System.Drawing.Point(447, 238);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 17);
             this.label6.TabIndex = 64;
@@ -86,7 +74,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 393);
+            this.label3.Location = new System.Drawing.Point(27, 243);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 17);
             this.label3.TabIndex = 63;
@@ -94,7 +82,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(212, 270);
+            this.textBox3.Location = new System.Drawing.Point(219, 120);
             this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(113, 22);
@@ -102,7 +90,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(212, 239);
+            this.textBox2.Location = new System.Drawing.Point(219, 89);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(113, 22);
@@ -110,7 +98,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(7, 165);
+            this.textBox1.Location = new System.Drawing.Point(23, 182);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(89, 22);
@@ -119,7 +107,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = global::Design.Properties.Resources.addMoney;
-            this.pictureBox7.Location = new System.Drawing.Point(124, 335);
+            this.pictureBox7.Location = new System.Drawing.Point(131, 185);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(64, 47);
@@ -130,7 +118,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 335);
+            this.label1.Location = new System.Drawing.Point(34, 185);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 17);
@@ -140,7 +128,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(157, 274);
+            this.label5.Location = new System.Drawing.Point(164, 124);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 17);
@@ -150,7 +138,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(155, 243);
+            this.label4.Location = new System.Drawing.Point(162, 93);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 17);
@@ -160,7 +148,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(48, 248);
+            this.label7.Location = new System.Drawing.Point(55, 98);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(71, 17);
@@ -170,7 +158,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Design.Properties.Resources.Employees;
-            this.pictureBox2.Location = new System.Drawing.Point(16, 219);
+            this.pictureBox2.Location = new System.Drawing.Point(23, 69);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(133, 82);
@@ -181,7 +169,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(440, 332);
+            this.label2.Location = new System.Drawing.Point(447, 182);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 17);
             this.label2.TabIndex = 53;
@@ -190,7 +178,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::Design.Properties.Resources.shop_nice;
-            this.pictureBox4.Location = new System.Drawing.Point(435, 207);
+            this.pictureBox4.Location = new System.Drawing.Point(442, 57);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(128, 128);
@@ -200,7 +188,7 @@
             // 
             // removeMultipleBtn
             // 
-            this.removeMultipleBtn.Location = new System.Drawing.Point(631, 644);
+            this.removeMultipleBtn.Location = new System.Drawing.Point(638, 494);
             this.removeMultipleBtn.Margin = new System.Windows.Forms.Padding(4);
             this.removeMultipleBtn.Name = "removeMultipleBtn";
             this.removeMultipleBtn.Size = new System.Drawing.Size(151, 28);
@@ -210,7 +198,7 @@
             // 
             // addMultipleBtn
             // 
-            this.addMultipleBtn.Location = new System.Drawing.Point(16, 644);
+            this.addMultipleBtn.Location = new System.Drawing.Point(23, 494);
             this.addMultipleBtn.Margin = new System.Windows.Forms.Padding(4);
             this.addMultipleBtn.Name = "addMultipleBtn";
             this.addMultipleBtn.Size = new System.Drawing.Size(151, 28);
@@ -220,7 +208,7 @@
             // 
             // removeOneBtn
             // 
-            this.removeOneBtn.Location = new System.Drawing.Point(371, 557);
+            this.removeOneBtn.Location = new System.Drawing.Point(378, 407);
             this.removeOneBtn.Margin = new System.Windows.Forms.Padding(4);
             this.removeOneBtn.Name = "removeOneBtn";
             this.removeOneBtn.Size = new System.Drawing.Size(56, 28);
@@ -230,7 +218,7 @@
             // 
             // addOneBtn
             // 
-            this.addOneBtn.Location = new System.Drawing.Point(371, 453);
+            this.addOneBtn.Location = new System.Drawing.Point(378, 303);
             this.addOneBtn.Margin = new System.Windows.Forms.Padding(4);
             this.addOneBtn.Name = "addOneBtn";
             this.addOneBtn.Size = new System.Drawing.Size(56, 28);
@@ -241,8 +229,8 @@
             // cartListView
             // 
             this.cartListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3});
-            this.cartListView.Location = new System.Drawing.Point(435, 415);
+            listViewItem1});
+            this.cartListView.Location = new System.Drawing.Point(442, 265);
             this.cartListView.Margin = new System.Windows.Forms.Padding(4);
             this.cartListView.Name = "cartListView";
             this.cartListView.Size = new System.Drawing.Size(345, 221);
@@ -251,7 +239,7 @@
             // 
             // purchaseBtn
             // 
-            this.purchaseBtn.Location = new System.Drawing.Point(341, 644);
+            this.purchaseBtn.Location = new System.Drawing.Point(348, 494);
             this.purchaseBtn.Margin = new System.Windows.Forms.Padding(4);
             this.purchaseBtn.Name = "purchaseBtn";
             this.purchaseBtn.Size = new System.Drawing.Size(100, 28);
@@ -262,32 +250,24 @@
             // itemsListView
             // 
             this.itemsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem4});
-            this.itemsListView.Location = new System.Drawing.Point(16, 415);
+            listViewItem2});
+            this.itemsListView.Location = new System.Drawing.Point(23, 265);
             this.itemsListView.Margin = new System.Windows.Forms.Padding(4);
             this.itemsListView.Name = "itemsListView";
             this.itemsListView.Size = new System.Drawing.Size(345, 221);
             this.itemsListView.TabIndex = 45;
             this.itemsListView.UseCompatibleStateImageBehavior = false;
             // 
-            // pictureBox11
-            // 
-            this.pictureBox11.Image = global::Design.Properties.Resources.LOGO_Proshot;
-            this.pictureBox11.Location = new System.Drawing.Point(7, 8);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(203, 167);
-            this.pictureBox11.TabIndex = 65;
-            this.pictureBox11.TabStop = false;
-            // 
             // EmployeeShop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(810, 685);
+            this.ClientSize = new System.Drawing.Size(817, 541);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label5);
@@ -306,7 +286,6 @@
             this.Name = "EmployeeShop";
             this.Text = "EmployeeShop";
             this.Load += new System.EventHandler(this.EmployeeShop_Load);
-            this.Controls.SetChildIndex(this.dynamicContainer, 0);
             this.Controls.SetChildIndex(this.itemsListView, 0);
             this.Controls.SetChildIndex(this.purchaseBtn, 0);
             this.Controls.SetChildIndex(this.cartListView, 0);
@@ -322,18 +301,14 @@
             this.Controls.SetChildIndex(this.label5, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.pictureBox7, 0);
+            this.Controls.SetChildIndex(this.textBox1, 0);
             this.Controls.SetChildIndex(this.textBox2, 0);
             this.Controls.SetChildIndex(this.textBox3, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.label6, 0);
-            this.Controls.SetChildIndex(this.topNavContainer, 0);
-            this.dynamicContainer.ResumeLayout(false);
-            this.dynamicContainer.PerformLayout();
-            this.topNavContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -361,7 +336,6 @@
         private System.Windows.Forms.ListView cartListView;
         private System.Windows.Forms.Button purchaseBtn;
         private System.Windows.Forms.ListView itemsListView;
-        private System.Windows.Forms.PictureBox pictureBox11;
 
 
     }
