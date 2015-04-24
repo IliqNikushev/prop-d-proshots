@@ -285,6 +285,9 @@
     <EmbeddedResource Include="Idea\EmployeeInterface\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Idea\EmployeeInterface\Store.resx">
+      <DependentUpon>Store.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Idea\EmployeeV1\EmployeeITDesk.resx">
       <DependentUpon>EmployeeITDesk.cs</DependentUpon>
     </EmbeddedResource>
@@ -559,6 +562,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\remMoney.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_desk_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_desk_list.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

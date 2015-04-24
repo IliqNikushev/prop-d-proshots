@@ -45,8 +45,8 @@
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.dynamicContainer.SuspendLayout();
             this.topNavContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -57,14 +57,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.SuspendLayout();
             // 
             // dynamicContainer
             // 
             this.dynamicContainer.Controls.Add(this.label9);
-            this.dynamicContainer.Controls.Add(this.pictureBox9);
             this.dynamicContainer.Controls.Add(this.label3);
             this.dynamicContainer.Controls.Add(this.pictureBox8);
             this.dynamicContainer.Controls.Add(this.pictureBox6);
@@ -81,8 +80,10 @@
             this.dynamicContainer.Controls.Add(this.pictureBox2);
             this.dynamicContainer.Controls.Add(this.pictureBox3);
             this.dynamicContainer.Controls.Add(this.pictureBox4);
+            this.dynamicContainer.Controls.Add(this.pictureBox9);
             this.dynamicContainer.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.dynamicContainer.Size = new System.Drawing.Size(1024, 612);
+            this.dynamicContainer.Controls.SetChildIndex(this.pictureBox9, 0);
             this.dynamicContainer.Controls.SetChildIndex(this.pictureBox4, 0);
             this.dynamicContainer.Controls.SetChildIndex(this.pictureBox3, 0);
             this.dynamicContainer.Controls.SetChildIndex(this.pictureBox2, 0);
@@ -99,7 +100,6 @@
             this.dynamicContainer.Controls.SetChildIndex(this.pictureBox6, 0);
             this.dynamicContainer.Controls.SetChildIndex(this.pictureBox8, 0);
             this.dynamicContainer.Controls.SetChildIndex(this.label3, 0);
-            this.dynamicContainer.Controls.SetChildIndex(this.pictureBox9, 0);
             this.dynamicContainer.Controls.SetChildIndex(this.label9, 0);
             // 
             // topNavContainer
@@ -283,23 +283,12 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(169, 417);
+            this.label9.Location = new System.Drawing.Point(240, 425);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(52, 17);
             this.label9.TabIndex = 38;
             this.label9.Text = "History";
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.Image = global::Design.Properties.Resources._256;
-            this.pictureBox9.Location = new System.Drawing.Point(165, 314);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(128, 128);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox9.TabIndex = 37;
-            this.pictureBox9.TabStop = false;
             // 
             // pictureBox11
             // 
@@ -309,6 +298,17 @@
             this.pictureBox11.Size = new System.Drawing.Size(203, 167);
             this.pictureBox11.TabIndex = 8;
             this.pictureBox11.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = global::Design.Properties.Resources.appointment;
+            this.pictureBox9.Location = new System.Drawing.Point(164, 314);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(128, 128);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox9.TabIndex = 39;
+            this.pictureBox9.TabStop = false;
             // 
             // Home
             // 
@@ -329,8 +329,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -354,7 +354,7 @@
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.PictureBox pictureBox9;
     }
 }

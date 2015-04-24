@@ -241,7 +241,7 @@
             this.ClientSize = new System.Drawing.Size(472, 518);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Home";
-            this.Text = "Home";
+            this.Text = "`";
             this.dynamicContainer.ResumeLayout(false);
             this.dynamicContainer.PerformLayout();
             this.topNavContainer.ResumeLayout(false);

@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
             "Item",
             "Sub Item"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
             "Item",
             "Sub Item"}, -1);
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -246,7 +246,7 @@
             // cartListView
             // 
             this.cartListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3});
+            listViewItem5});
             this.cartListView.Location = new System.Drawing.Point(586, 386);
             this.cartListView.Margin = new System.Windows.Forms.Padding(4);
             this.cartListView.Name = "cartListView";
@@ -267,7 +267,7 @@
             // itemsListView
             // 
             this.itemsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem4});
+            listViewItem6});
             this.itemsListView.Location = new System.Drawing.Point(21, 387);
             this.itemsListView.Margin = new System.Windows.Forms.Padding(4);
             this.itemsListView.Name = "itemsListView";
@@ -323,7 +323,7 @@
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.label1);
             this.Name = "EmployeeITDesk";
-            this.Text = "EmployeeITDesk";
+            this.Text = ",";
             this.Controls.SetChildIndex(this.dynamicContainer, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.pictureBox7, 0);
