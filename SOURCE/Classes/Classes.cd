@@ -264,12 +264,9 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Job.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Employer" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Classes.AppointmentTask" Collapsed="true">
     <Position X="2" Y="3.5" Width="1.5" />
@@ -283,13 +280,6 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAIAAIAAAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>RestockableItem.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Classes.Employer" Collapsed="true">
-    <Position X="14.75" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQACAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Employer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.RestockSelection" Collapsed="true">
@@ -312,8 +302,20 @@
   </Class>
   <Class Name="Classes.Database">
     <Position X="16.5" Y="3.75" Width="1.5" />
+    <NestedTypes>
+      <Class Name="Classes.Database.UnableToConnectException" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Database.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Classes.Database.InvalidSQLException" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Database.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>MEBAAFAAAAABoQAAAAABCCAoAAAAEAABQgkAAEEACgA=</HashCode>
+      <HashCode>AECEABAAACApoQgAEkAACDAASAAAGCAAEgEACUEACgA=</HashCode>
       <FileName>Database.cs</FileName>
     </TypeIdentifier>
   </Class>

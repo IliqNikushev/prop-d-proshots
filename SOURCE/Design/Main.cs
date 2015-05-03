@@ -31,7 +31,6 @@ namespace Design
         {
            // new Idea.Login(Idea.Login.For.Employee).Show();
             Classes.Database.GetAdmin("user","pass");
-
         }
 
         private void button1_Click(object sender, EventArgs e)

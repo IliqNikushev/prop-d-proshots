@@ -89,13 +89,11 @@ namespace Classes
 
         public static User Authenticate(string name, string password)
         {
-            return null;
             return Database.GetUser(name, password);
         }
 
         public static User Authenticate(string id)
         {
-            return null;
             return Database.GetUser(id);
         }
     }

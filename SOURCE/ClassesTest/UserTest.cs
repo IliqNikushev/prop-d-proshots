@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Classes
 {
     [TestClass]
-    public class UserTest : PowerDependantTest
+    public class UserTest : UnitTest
     {
         public const string VALID_USER_ID = "123abc";
         public const string INVALID_USER_ID = "invalid";
@@ -57,18 +57,6 @@ namespace Classes
         [TestMethod]
         public void UserHireNotEnoughCredits()
         {
-        }
-
-        [TestMethod]
-        public override void OnPowerFailure()
-        {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod]
-        public override void OnConnectionFailure()
-        {
-            throw new NotImplementedException();
         }
     }
 }

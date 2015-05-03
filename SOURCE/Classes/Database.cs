@@ -10,104 +10,225 @@ namespace Classes
     using Command = MySql.Data.MySqlClient.MySqlCommand;
     public static class Database
     {
-        private static Connection connection = new Connection("server=athena01.fhict.local;database=dbi317294;uid=dbi317294;password=NBD7TnUwhT");
-        public static List<Visitor> GetVisitors
+        const string C_Server = "athena01.fhict.local";
+        const string C_DataBase = "dbi317294";
+        const string C_UserID = "dbi317294";
+        const string C_Password = "NBD7TnUwhT";
+        static string connectionString = string.Format(
+                    "server={0};database={1};uid={2};password={3}",
+                    C_Server, C_DataBase, C_UserID, C_Password
+                );
+
+        public static bool CanConnect
         {
             get
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                using (Connection c = new Connection(connectionString))
+                {
+                    try
+                    {
+                        c.Open();
+                        c.Close();
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                }
+                return true;
             }
         }
 
-        public static List<Employee> GetEmployees
+        public static void ExecuteSQL(string sql)
         {
-            get
+            using (Connection connection = new Connection(connectionString))
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                Command c = new Command(sql, connection);
+                try
+                {
+                    connection.Open();
+                    c.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    if (!CanConnect)
+                        throw new UnableToConnectException();
+                    throw new InvalidSQLException(ex.Message + "\n" + sql, ex);
+                }
             }
         }
 
-        public static List<Landmark> GetLandmarks
+        public static Reader ExecuteSQLWithResult(string sql)
+        {
+            Reader r = null;
+            using (Connection connection = new Connection(connectionString))
+            {
+                Command c = new Command(sql, connection);
+                try
+                {
+                    connection.Open();
+                    r = c.ExecuteReader();
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    if (!CanConnect)
+                        throw new UnableToConnectException();
+                    throw new InvalidSQLException(ex.Message + "\n" + sql, ex);
+                }
+            }
+            return r;
+        }
+
+        public static List<Visitor> Visitors
         {
             get
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                return GetAll<Visitor>("Visitors Join Users on Visitors.user_id = Users.id");
             }
         }
 
-        public static List<Job> GetJobs
+        public static List<Employee> Employees
         {
             get
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                return GetAll<Employee>("Employees Join Users on Employees.user_id = Users.id");
             }
         }
 
-        public static List<ShopJob> GetShops
+        public static List<Landmark> Landmarks
         {
             get
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                return GetAll<Landmark>("Landmarks l Join LandmarkType t on l.TYPE = t.ID");
             }
         }
 
-        public static List<PurchasableItem> GetPurchasableItems
+        public static List<Job> Jobs
         {
             get
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                return GetAll<Job>("Jobs");
             }
         }
 
-        public static List<Appointment> GetAppointments
+        public static List<ShopJob> Shops
         {
             get
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                return GetWhere<ShopJob>("Landmarks", "Landmarks.type ='shop'");
             }
         }
 
-        public static List<Warning> GetWarning
+        public static List<PurchasableItem> PurchasableItems
         {
             get
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                return GetAll<PurchasableItem>("PurchasableItems");
             }
         }
 
-        public static List<TentAreaLandmark> GetFreeTentAreas
+        public static List<Appointment> Appointments
         {
             get
             {
-                throw new System.NotImplementedException();
+                return GetAll<Appointment>("Appointments");
             }
-            set
+        }
+
+        public static List<Warning> Warning
+        {
+            get
             {
+                return GetAll<Warning>("Warnings");
             }
+        }
+
+        public static List<TentAreaLandmark> FreeTentAreas
+        {
+            get
+            {
+                return GetWhere<TentAreaLandmark>("Landmarks l Join Tents t on l.id = t.landmark_id", "t.rented_by is null");
+            }
+        }
+
+        public static List<Tent> GetVisitorTent(Visitor visitor)
+        {
+            return GetWhere<Tent>(
+                "Tents Join TentPeople on Tents.id = TentPeople.tent_id",
+                "Tents.bookedBy = " + visitor.Id + " or TentPeople.visitor_id = " + visitor.Id);
+        }
+
+        public static List<RentableItemHistory> GetVisitorRentedItems(Visitor visitor)
+        {
+            return GetWhere<RentableItemHistory>(
+                 "RentableItemHistories h Join RentableItems r on h.item_id = r.id",
+                 "h.rented_by = " + visitor.Id);
+        }
+
+        public static List<RentableItemHistory> GetVisitorNotReturnedItems(Visitor visitor)
+        {
+            return GetWhere<RentableItemHistory>(
+                 "RentableItemHistories h Join RentableItems r on h.item_id = r.id",
+                 "h.rented_by = " + visitor.Id + " and r.returned_by is NULL");
+        }
+
+        public static List<Receipt> GetVisitorPurchases(Visitor visitor)
+        {
+            return GetWhere<Receipt>(
+                 "Receipts r Join ReceiptItems i on r.id = i.receipt_id Join PurchasableItems p on i.item_id = p.id",
+                 "r.purchased_by = " + visitor.Id);
+        }
+
+        public static List<Appointment> GetVisitorAppointments(Visitor visitor)
+        {
+            return GetWhere<Appointment>(
+                 "Appointments a Join AppointmentTasks t on a.id = t.appointment_id",
+                 "a.appointed_by = " + visitor.Id);
+        }
+
+        public static List<EmployeeAction> GetEmployeeActions(Employee employee)
+        {
+            return GetWhere<EmployeeAction>("EmployeeActions",
+               "EmployeeActions.employee_id = '" + employee.Id);
+        }
+
+        public static Employee GetEmployee(string userName, string password)
+        {
+            return GetWhere<Employee>("Employees Join Users on Users.id = Employees.user_id",
+               "Users.userName = '" + userName + "' and Users.password = '" + password + "'").FirstOrDefault();
+        }
+
+        public static Visitor GetVisitor(string userName, string password)
+        {
+            return GetWhere<Visitor>("Visitors Join Users on Users.id = Visitors.user_id",
+               "Users.userName = '" + userName + "' and Users.password = '" + password + "'").FirstOrDefault();
+        }
+
+        public static AdminUser GetAdmin(string userName, string password)
+        {
+            return GetWhere<AdminUser>("AdminUsers Join Users on Users.id = AdminUsers.user_id",
+                "Users.userName = '" + userName + "' and Users.password = '" + password + "'").FirstOrDefault();
+        }
+
+        public static User GetUser(string username, string password)
+        {
+            string tableName = GetTableForUser();
+
+            return GetWhere(typeof(User), tableName, "Users.password = '" + password + "' and Users.username = '" + username + "'").FirstOrDefault() as User;
+        }
+
+        public static User GetUser(string id)
+        {
+            string tableName = GetTableForUser();
+
+            return GetWhere(typeof(User), tableName, "Users.id = '" + id + "')").FirstOrDefault() as User;
+        }
+
+        public static List<Deposit> GetVisitorTopUps(Visitor visitor)
+        {
+            return GetWhere<Deposit>("PayPalDeposits d", "d.visitor_id = " + visitor.Id);
         }
 
         private static List<T> GetAll<T>(string tableName) where T:class
@@ -186,88 +307,6 @@ namespace Classes
             return GetWhere(typeof(T), tableName, where).Select(x=>x as T).ToList();
         }
 
-        public static void ExecuteSQL(string sql)
-        {
-            Command c = new Command(sql, connection);
-
-            c.ExecuteNonQuery();
-        }
-
-        public static Reader ExecuteSQLWithResult(string sql)
-        {
-            sql = "SELECT * FROM USER";
-            Command c = new Command(sql, connection);
-            connection.Open();
-            var r = c.ExecuteReader();
-            connection.Close();
-            return r;
-        }
-
-        public static List<Tent> GetVisitorTent(Visitor visitor)
-        {
-            return GetWhere<Tent>(
-                "Tents Join TentPeople on Tents.id = TentPeople.tent_id",
-                "Tents.bookedBy = " + visitor.Id + " or TentPeople.visitor_id = " + visitor.Id);
-        }
-
-        public static List<RentableItem> GetVisitorRentedItems(Visitor visitor)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public static List<RentableItem> GetVisitorPurchases(Visitor visitor)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public static List<RentableItem> GetVisitorAppointments(Visitor visitor)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public static void GetEmployeeJob(Employee employee)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public static List<EmployeeAction> GetEmployeeActions(Employee employee)
-        {
-            return GetWhere<EmployeeAction>("EmployeeActions",
-               "EmployeeActions.employee_id = '" + employee.Id);
-        }
-
-        public static Employee GetEmployee(string userName, string password)
-        {
-            return GetWhere<Employee>("Employees Join Users on Users.id = Employees.user_id",
-               "Users.userName = '" + userName + "' and Users.password = '" + password + "'").FirstOrDefault();
-        }
-
-        public static Visitor GetVisitor(string userName, string password)
-        {
-            return GetWhere<Visitor>("Visitors Join Users on Users.id = Visitors.user_id",
-               "Users.userName = '" + userName + "' and Users.password = '" + password + "'").FirstOrDefault();
-        }
-
-        public static AdminUser GetAdmin(string userName, string password)
-        {
-            return GetWhere<AdminUser>("AdminUsers Join Users on Users.id = AdminUsers.user_id",
-                "Users.userName = '" + userName + "' and Users.password = '" + password + "'").FirstOrDefault();
-        }
-
-        public static User GetUser(string username, string password)
-        {
-            string tableName = GetTableForUser();
-
-            return GetWhere(typeof(User), tableName, "Users.password = '" + password + "' and Users.username = '" + username + "'").FirstOrDefault() as User;
-        }
-
-        public static User GetUser(string id)
-        {
-            string tableName = GetTableForUser();
-
-            return GetWhere(typeof(User),tableName, "Users.id = '" + id + "')").FirstOrDefault() as User;
-        }
-
         private static string GetTableForUser()
         {
             string tableName = "Users";
@@ -277,19 +316,14 @@ namespace Classes
             return tableName;
         }
 
-        public static List<RentableItem> GetVisitorNotReturnedItems()
+        public class UnableToConnectException : Exception
         {
-            throw new System.NotImplementedException();
+            public UnableToConnectException() { }
         }
 
-        public static void GetJob()
+        public class InvalidSQLException : Exception
         {
-            throw new System.NotImplementedException();
-        }
-
-        public static List<RentableItem> GetVisitorTopUps()
-        {
-            throw new System.NotImplementedException();
+            public InvalidSQLException(string sql, Exception ex) : base(sql, ex) { }
         }
     }
 }

@@ -29,12 +29,16 @@ namespace Design.Idea
 
         private void Authenticate(string name, string password)
         {
-            //check the database
             LoggedInUser = Classes.User.Authenticate(name, password);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!Classes.Database.CanConnect)
+            {
+                MessageBox.Show("Unable to connect to database");
+                return;
+            }
             string username = "";
             string password = "";
             Authenticate(username, password);
