@@ -10,7 +10,7 @@ namespace Classes
     using Command = MySql.Data.MySqlClient.MySqlCommand;
     public static class Database
     {
-        private static Connection connection = new Connection("");
+        private static Connection connection = new Connection("server=athena01.fhict.local;database=dbi317294;uid=dbi317294;password=NBD7TnUwhT");
         public static List<Visitor> GetVisitors
         {
             get
@@ -195,9 +195,12 @@ namespace Classes
 
         public static Reader ExecuteSQLWithResult(string sql)
         {
+            sql = "SELECT * FROM USER";
             Command c = new Command(sql, connection);
-
-            return c.ExecuteReader();
+            connection.Open();
+            var r = c.ExecuteReader();
+            connection.Close();
+            return r;
         }
 
         public static List<Tent> GetVisitorTent(Visitor visitor)
