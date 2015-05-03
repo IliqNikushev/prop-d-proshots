@@ -1,3 +1,45 @@
+<?php
+        session_start();
+	require('connect.php');
+        error_reporting(E_ERROR | E_PARSE);
+    
+if ($_POST['Login'])
+{
+//3. If the form is submitted or not.
+//3.1 If the form is submitted
+if (isset($_POST['username']) and isset($_POST['password'])){
+//3.1.1 Assigning posted values to variables.
+$username = $_POST['username'];
+$password = $_POST['password'];
+//3.1.2 Checking the values are existing in the database or not
+$query = "SELECT * FROM `user` WHERE username='$username' and password='$password'";
+ 
+$result = mysql_query($query) or die(mysql_error());
+$count = mysql_num_rows($result);
+//3.1.2 If the posted values are equal to the database values, then session will be created for the user.
+if ($count == 1){
+$_SESSION['username'] = $username;
+}else{
+//3.1.3 If the login credentials doesn't match, he will be shown with an error message.
+$msg = "Invalid Login Credentials.";
+}
+}
+//3.1.4 if the user is logged in Greets the user with message
+if (isset($_SESSION['username'])){
+$username = $_SESSION['username'];
+
+}
+$date_of_expiry = time() + 60 * 60 * 24 ;
+setcookie( "username", "$username", $date_of_expiry ); 
+}
+
+if ($_POST['Logout'])
+{
+session_destroy();
+header("Location: index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,11 +79,11 @@
 $(document).ready(function(){
 
 	$("#Login-Panel").hide();
-		 
+	$("#Logout").hide();	 
 	$("#Login-Button").click(function(){
 		 $("#Login-Button").hide();
 		 $("#Login-Panel").show();
-
+                 
     });
 });
 </script> 
@@ -64,57 +106,98 @@ $(document).ready(function(){
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			
-				<ul class="nav navbar-nav navbar-left" id="Left-Navbar">
+		<ul class="nav navbar-nav navbar-left" id="Left-Navbar">
+
+<?php
+        if (isset($_SESSION['username'])){
+?>
+<script> 
+$(document).ready(function(){
+
+	$("#Login-Panel").hide();
+        $("#Login-Button").hide();
+        $("#Login-Panel-2").hide();
+        $("#Logout").show();
+        
+        $("#Logout").click(function(){
+	location.reload(true);
+    });
+
+});
+</script> 
+<?php
+        }
+?>
+
+                                    
 				<div id="Login-Panel">
+                                <form action="" method="POST">
+                                    
+                                <input type="text" name="username" placeholder="Username">
 
-                    <input type="text" name="Username" placeholder="Username">
 
-
-                    <input type="password" name="Password" placeholder="Password">
+                                <input type="password" name="password" placeholder="Password">
 
 					
-                    <input type="submit" name="Login" value="Login">
-
+                                <input id="Login-Button-1" type="submit" name="Login" value="Login">
+					
+				</form>
 					
 					<br>
 					  
 				</div>
+                                <div id="Login-Panel-2">
 				<button class="link" id="Login-Button" >Login</button>
-				<a  href="Register.html" id="Register" >Register</a>
-				<a  href="Forgotten.html" id="Forgotten-password" >Forgotten password</a>
+                                <a  href="Register.php" id="Register" >Register</a>
+				<a  href="Forgotten.php" id="Forgotten-password" >Forgotten password</a>
+                                </div>
+                                <form id="Logout" action="" method="POST">
+                                <div style="color: gray">
+                                Hi , <a href="Profile.php" style="color: white"><?php 
+                                if (isset($_COOKIE['username'])) {
+                                    $username = $_COOKIE['username'];
+                                    echo $_COOKIE['username'];
+                                   }
+                                   else{
+                                    echo $username;   
+                                   }
+                                ?></a>&nbsp&nbsp&nbsp
+                                <input type="submit" name="Logout" value="Logout">
+                                </div>
+                                </form>
                 </ul>
 				
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
 					<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Event<b class="caret"></b></a>
 					<ul class="dropdown-menu " >
-					<li><a href="Visitors.html" >Info</a></li>
-					<li><a href="Location.html" >Location</a></li>
-					<li><a href="Tickets.html" >Tickets</a></li>
-					<li><a href="Reservation.html" >Camping spot</a></li>
+					<li><a href="Visitors.php" >Info</a></li>
+                                        <li><a href="Location.php" >Location</a></li>
+					<li><a href="Tickets.php" >Tickets</a></li>
+					<li><a href="Reservation.php" >Camping spot</a></li>
 					</ul>
 					</li>
                     <li>
-                        <a href="Schedule.html">Schedule</a>
+                        <a href="Schedule.php">Schedule</a>
                     </li>
 					<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Leagues<b class="caret"></b></a>
 					<ul class="dropdown-menu " >
-					<li><a href="RoboCup Soccer.html" >RoboCup Soccer</a></li>
-					<li><a href="RoboCup Rescue.html" >RoboCup Rescue</a></li>
-					<li><a href="RoboCupJunior.html" >RoboCupJunior </a></li>
-					<li><a href="RoboCup@Home.html" >RoboCup@Home </a></li>
-					<li><a href="RoboCup@Work.html" >RoboCup@Work </a></li>
+					<li><a href="RoboCup Soccer.php" >RoboCup Soccer</a></li>
+					<li><a href="RoboCup Rescue.php" >RoboCup Rescue</a></li>
+					<li><a href="RoboCupJunior.php" >RoboCupJunior </a></li>
+					<li><a href="RoboCup@Home.php" >RoboCup@Home </a></li>
+					<li><a href="RoboCup@Work.php" >RoboCup@Work </a></li>
 					</ul>
 					</li>
 					<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
 					<ul class="dropdown-menu" >
-					<li><a href="Sponsors.html">Sponsors</a></li>
-					<li><a href="Contact Information.html">Contact Information</a></li>
+					<li><a href="Sponsors.php">Sponsors</a></li>
+					<li><a href="Contact Information.php">Contact Information</a></li>
 					</ul>
 					</li>
                 </ul>
@@ -149,18 +232,18 @@ $(document).ready(function(){
 
     </div>
 	
-	<div id="Elements-Placement">
+	<div id="Elements-Placement-2">
 	<div class="container" id="PicturesHeading">
 	<div>Photos</div>
 	</div>
 	
 	<div class="container" id="Pictures">
-	 <a href="img/RoboCup-1.jpg"><img src="img/RoboCup-1.jpg"     alt="IMG"     title="IMG1" height="65" width="95"/></a>
-	 	 <a href="img/RoboCup-2.jpg"><img src="img/RoboCup-2.jpg"     alt="IMG"     title="IMG2" height="65" width="95"/></a>
-		 	 <a href="img/RoboCup-3.jpg"><img src="img/RoboCup-3.jpg"     alt="IMG"     title="IMG3" height="65" width="95"/></a>
-			 	 <a href="img/RoboCup-4.jpg"><img src="img/RoboCup-4.jpg"     alt="IMG"     title="IMG4" height="65" width="95"/></a>
-				 	<a href="img/RoboCup-5.jpg"><img src="img/RoboCup-5.jpg"     alt="IMG"     title="IMG5" height="65" width="95"/></a>
-						 <a href="img/RoboCup-6.jpg"><img src="img/RoboCup-6.jpg"     alt="IMG"     title="IMG6" height="65" width="95"/></a>
+	 <a href="img/RoboCup-1.jpg"><img src="img/RoboCup-1.jpg"     alt="IMG"     title="IMG1" width="30%"/></a>
+	 	 <a href="img/RoboCup-2.jpg"><img src="img/RoboCup-2.jpg"     alt="IMG"     title="IMG2" width="30%"/></a>
+		 	 <a href="img/RoboCup-3.jpg"><img src="img/RoboCup-3.jpg"     alt="IMG"     title="IMG3" width="30%"/></a>
+			 	 <a href="img/RoboCup-4.jpg"><img src="img/RoboCup-4.jpg"     alt="IMG"     title="IMG4" width="30%"/></a>
+				 	<a href="img/RoboCup-5.jpg"><img src="img/RoboCup-5.jpg"     alt="IMG"     title="IMG5" width="30%"/></a>
+						 <a href="img/RoboCup-6.jpg"><img src="img/RoboCup-6.jpg"     alt="IMG"     title="IMG6" width="30%"/></a>
 	</div>
 	
 	<div class="container" id="TwitterHeading">
@@ -191,8 +274,6 @@ $(document).ready(function(){
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="js/clean-blog.min.js"></script>
 
 </body>
 
