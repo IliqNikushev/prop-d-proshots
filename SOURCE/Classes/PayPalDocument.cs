@@ -10,7 +10,7 @@ namespace Classes
     /// <summary>
     /// Document received from PayPal to inform about transactions ( deposits )
     /// </summary>
-    public class PayPalDocument
+    public class PayPalDocument : Record
     {
         const string DATE_FORMAT = "YYYY/MM/dd/HH:mm:SS";
 

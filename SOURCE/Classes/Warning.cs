@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Classes
 {
-    public class Warning
+    public class Warning : Record
     {
         public Warning(WarningType type, string details)
         {

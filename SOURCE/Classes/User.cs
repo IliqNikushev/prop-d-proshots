@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public abstract class User 
+    public abstract class User : Record 
     {
         public string FirstName { get; private set; }
         public string LastName { get; private set; }

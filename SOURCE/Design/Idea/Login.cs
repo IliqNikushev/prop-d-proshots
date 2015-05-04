@@ -18,7 +18,8 @@ namespace Design.Idea
         {
             this.forWho = forWho;
             InitializeComponent();
-
+            if (!Classes.Database.CanConnect)
+                MessageBox.Show("Unable to connect to database");
             // for who is visitor -> show the 'show your identificator'
         }
 
@@ -37,11 +38,11 @@ namespace Design.Idea
             if (!Classes.Database.CanConnect)
             {
                 MessageBox.Show("Unable to connect to database");
-                return;
+                //UNCOMMENT WHEN USING DATABASE return;
             }
             string username = "";
             string password = "";
-            Authenticate(username, password);
+            //UNCOMMENT WHEN USING DATABASE Authenticate(username, password);
             if (forWho == For.Admin)
                 new AdministratorInterface.Home().Show();
             else if (forWho == For.Employee)

@@ -10,6 +10,8 @@ namespace Classes
     using Command = MySql.Data.MySqlClient.MySqlCommand;
     public static class Database
     {
+        public static Action<Exception> OnUnableToProcessSQL;
+
         const string C_Server = "athena01.fhict.local";
         const string C_DataBase = "dbi317294";
         const string C_UserID = "dbi317294";
@@ -18,6 +20,43 @@ namespace Classes
                     "server={0};database={1};uid={2};password={3}",
                     C_Server, C_DataBase, C_UserID, C_Password
                 );
+
+        static Dictionary<Type, string> tables = new Dictionary<Type, string>()
+        {
+            { typeof(EmployeeAction), "EmployeeActions"},
+            { typeof(Appointment), "Appointments a Join AppointmentTasks t on a.id = t.appointment_id"},
+            { typeof(Receipt), "Receipts r Join ReceiptItems i on r.id = i.receipt_id Join PurchasableItems p on i.item_id = p.id"},
+            { typeof(RentableItemHistory), "RentableItemHistories h Join RentableItems r on h.item_id = r.id"},
+            { typeof(Tent), "Tents t Join TentPeople p on t.id = p.tent_id"},
+            { typeof(TentAreaLandmark), "Landmarks l Join Tents t on l.id = t.landmark_id"},
+            { typeof(Warning), "Warnings"},
+            { typeof(PurchasableItem), "PurchasableItems"},
+            { typeof(Landmark), "Landmarks"},
+            { typeof(Job), "Jobs"},
+            { typeof(Deposit), "PayPalDeposits"},
+            { typeof(AppointmentTask), "AppointmentTasks"},
+            { typeof(AppointedItem), "AppointedItems"},
+            { typeof(LogMessage), "Logs"},
+            { typeof(RentableItem), "RentableItems"},
+            { typeof(PayPalDocument), "PayPalDocuments"},
+            { typeof(RestockSelection), "Restocks"},
+            { typeof(Visitor), "Users u Join Visitors v on u.id = v.user_id"},
+            { typeof(Employee), "Users u Join Employees v on u.id = e.user_id"},
+            { typeof (AdminUser), "Users u Join AdminUser a on u.id = a.user_id"}
+        };
+
+        public static IEnumerable<Type> notTableDefinedRecords
+        {
+            get
+            {
+                return System.Reflection.Assembly.GetExecutingAssembly().GetTypes().
+                    Where(x => x.IsSubclassOf(typeof(Record))).
+                    Where(x => !tables.ContainsKey(x)).
+                    Where(x => !x.IsSubclassOf(typeof(User)) && !x.IsAbstract).
+                    Where(x => !x.IsSubclassOf(typeof(Job))).
+                    Where(x => !x.IsSubclassOf(typeof(Landmark)));
+            }
+        }
 
         public static bool CanConnect
         {
@@ -39,24 +78,25 @@ namespace Classes
             }
         }
 
-        public static void ExecuteSQL(string sql)
+        public static int ExecuteSQL(string sql)
         {
+            int rowsAffected = 0;
             using (Connection connection = new Connection(connectionString))
             {
                 Command c = new Command(sql, connection);
                 try
                 {
                     connection.Open();
-                    c.ExecuteNonQuery();
+                    rowsAffected = c.ExecuteNonQuery();
                     connection.Close();
                 }
                 catch (Exception ex)
                 {
-                    if (!CanConnect)
-                        throw new UnableToConnectException();
-                    throw new InvalidSQLException(ex.Message + "\n" + sql, ex);
+                    if (OnUnableToProcessSQL != null)
+                        OnUnableToProcessSQL(ex);
                 }
             }
+            return rowsAffected;
         }
 
         public static Reader ExecuteSQLWithResult(string sql)
@@ -73,9 +113,8 @@ namespace Classes
                 }
                 catch (Exception ex)
                 {
-                    if (!CanConnect)
-                        throw new UnableToConnectException();
-                    throw new InvalidSQLException(ex.Message + "\n" + sql, ex);
+                    if(OnUnableToProcessSQL != null)
+                        OnUnableToProcessSQL(ex);
                 }
             }
             return r;
@@ -85,7 +124,7 @@ namespace Classes
         {
             get
             {
-                return GetAll<Visitor>("Visitors Join Users on Visitors.user_id = Users.id");
+                return GetAll<Visitor>();
             }
         }
 
@@ -93,7 +132,7 @@ namespace Classes
         {
             get
             {
-                return GetAll<Employee>("Employees Join Users on Employees.user_id = Users.id");
+                return GetAll<Employee>();
             }
         }
 
@@ -101,7 +140,7 @@ namespace Classes
         {
             get
             {
-                return GetAll<Landmark>("Landmarks l Join LandmarkType t on l.TYPE = t.ID");
+                return GetAll<Landmark>();
             }
         }
 
@@ -109,7 +148,7 @@ namespace Classes
         {
             get
             {
-                return GetAll<Job>("Jobs");
+                return GetAll<Job>();
             }
         }
 
@@ -117,7 +156,7 @@ namespace Classes
         {
             get
             {
-                return GetWhere<ShopJob>("Landmarks", "Landmarks.type ='shop'");
+                return GetWhere<ShopJob>("Landmarks.type ='shop'");
             }
         }
 
@@ -125,7 +164,7 @@ namespace Classes
         {
             get
             {
-                return GetAll<PurchasableItem>("PurchasableItems");
+                return GetAll<PurchasableItem>();
             }
         }
 
@@ -133,7 +172,7 @@ namespace Classes
         {
             get
             {
-                return GetAll<Appointment>("Appointments");
+                return GetAll<Appointment>();
             }
         }
 
@@ -141,7 +180,7 @@ namespace Classes
         {
             get
             {
-                return GetAll<Warning>("Warnings");
+                return GetAll<Warning>();
             }
         }
 
@@ -149,91 +188,73 @@ namespace Classes
         {
             get
             {
-                return GetWhere<TentAreaLandmark>("Landmarks l Join Tents t on l.id = t.landmark_id", "t.rented_by is null");
+                return GetWhere<TentAreaLandmark>("t.rented_by is null");
             }
         }
 
         public static List<Tent> GetVisitorTent(Visitor visitor)
         {
-            return GetWhere<Tent>(
-                "Tents Join TentPeople on Tents.id = TentPeople.tent_id",
-                "Tents.bookedBy = " + visitor.Id + " or TentPeople.visitor_id = " + visitor.Id);
+            return GetWhere<Tent>("Tents.bookedBy = " + visitor.Id + " or TentPeople.visitor_id = " + visitor.Id);
         }
 
         public static List<RentableItemHistory> GetVisitorRentedItems(Visitor visitor)
         {
-            return GetWhere<RentableItemHistory>(
-                 "RentableItemHistories h Join RentableItems r on h.item_id = r.id",
-                 "h.rented_by = " + visitor.Id);
+            return GetWhere<RentableItemHistory>("h.rented_by = " + visitor.Id);
         }
 
         public static List<RentableItemHistory> GetVisitorNotReturnedItems(Visitor visitor)
         {
-            return GetWhere<RentableItemHistory>(
-                 "RentableItemHistories h Join RentableItems r on h.item_id = r.id",
-                 "h.rented_by = " + visitor.Id + " and r.returned_by is NULL");
+            return GetWhere<RentableItemHistory>("h.rented_by = " + visitor.Id + " and r.returned_by is NULL");
         }
 
         public static List<Receipt> GetVisitorPurchases(Visitor visitor)
         {
-            return GetWhere<Receipt>(
-                 "Receipts r Join ReceiptItems i on r.id = i.receipt_id Join PurchasableItems p on i.item_id = p.id",
-                 "r.purchased_by = " + visitor.Id);
+            return GetWhere<Receipt>("r.purchased_by = " + visitor.Id);
         }
 
         public static List<Appointment> GetVisitorAppointments(Visitor visitor)
         {
-            return GetWhere<Appointment>(
-                 "Appointments a Join AppointmentTasks t on a.id = t.appointment_id",
-                 "a.appointed_by = " + visitor.Id);
+            return GetWhere<Appointment>("a.appointed_by = " + visitor.Id);
         }
 
         public static List<EmployeeAction> GetEmployeeActions(Employee employee)
         {
-            return GetWhere<EmployeeAction>("EmployeeActions",
-               "EmployeeActions.employee_id = '" + employee.Id);
+            return GetWhere<EmployeeAction>("EmployeeActions.employee_id = '" + employee.Id);
         }
 
         public static Employee GetEmployee(string userName, string password)
         {
-            return GetWhere<Employee>("Employees Join Users on Users.id = Employees.user_id",
-               "Users.userName = '" + userName + "' and Users.password = '" + password + "'").FirstOrDefault();
+            return GetWhere<Employee>("Users.userName = '" + userName + "' and Users.password = '" + password + "'").FirstOrDefault();
         }
 
         public static Visitor GetVisitor(string userName, string password)
         {
-            return GetWhere<Visitor>("Visitors Join Users on Users.id = Visitors.user_id",
-               "Users.userName = '" + userName + "' and Users.password = '" + password + "'").FirstOrDefault();
+            return GetWhere<Visitor>("Users.userName = '" + userName + "' and Users.password = '" + password + "'").FirstOrDefault();
         }
 
         public static AdminUser GetAdmin(string userName, string password)
         {
-            return GetWhere<AdminUser>("AdminUsers Join Users on Users.id = AdminUsers.user_id",
-                "Users.userName = '" + userName + "' and Users.password = '" + password + "'").FirstOrDefault();
+            return GetWhere<AdminUser>("Users.userName = '" + userName + "' and Users.password = '" + password + "'").FirstOrDefault();
         }
 
         public static User GetUser(string username, string password)
         {
-            string tableName = GetTableForUser();
-
-            return GetWhere(typeof(User), tableName, "Users.password = '" + password + "' and Users.username = '" + username + "'").FirstOrDefault() as User;
+            return GetWhere<User>("Users.password = '" + password + "' and Users.username = '" + username + "'").FirstOrDefault() as User;
         }
 
         public static User GetUser(string id)
         {
-            string tableName = GetTableForUser();
-
-            return GetWhere(typeof(User), tableName, "Users.id = '" + id + "')").FirstOrDefault() as User;
+            return GetWhere<User>("Users.id = '" + id + "')").FirstOrDefault() as User;
         }
 
         public static List<Deposit> GetVisitorTopUps(Visitor visitor)
         {
-            return GetWhere<Deposit>("PayPalDeposits d", "d.visitor_id = " + visitor.Id);
+            return GetWhere<Deposit>("d.visitor_id = " + visitor.Id);
         }
 
-        private static List<T> GetAll<T>(string tableName) where T:class
+        private static List<T> GetAll<T>() where T : class
         {
-            return GetWhere<T>(tableName, "");
+            return GetWhere<T>("");
         }
 
         private static object GetRow(Type t, Reader reader)
@@ -283,8 +304,9 @@ namespace Classes
             return new AdminUser(id, firstName, lastName, userName, email);
         }
 
-        private static List<object> GetWhere(Type t, string tableName, string where)
+        private static List<object> GetWhere(Type t, string where)
         {
+            string tableName = GetTableFor(t);
             Reader reader = ExecuteSQLWithResult("Select * From " + tableName + (where != "" ? " Where " + where : ""));
 
             List<object> result = new List<object>();
@@ -302,28 +324,16 @@ namespace Classes
             return result;
         }
 
-        private static List<T> GetWhere<T>(string tableName, string where) where T : class
+        private static List<T> GetWhere<T>(string where) where T : class
         {
-            return GetWhere(typeof(T), tableName, where).Select(x=>x as T).ToList();
+            return GetWhere(typeof(T), where).Select(x=>x as T).ToList();
         }
 
-        private static string GetTableForUser()
+        private static string GetTableFor(Type t)
         {
-            string tableName = "Users";
-            tableName += " Join Visitors on Users.id = Visitors.user_id";
-            tableName += " Employees on Users.id = Employees.user_id";
-            tableName += " Administrators on Users.id = Administrators.user_id";
-            return tableName;
-        }
-
-        public class UnableToConnectException : Exception
-        {
-            public UnableToConnectException() { }
-        }
-
-        public class InvalidSQLException : Exception
-        {
-            public InvalidSQLException(string sql, Exception ex) : base(sql, ex) { }
+            if (tables.ContainsKey(t))
+                return tables[t];
+            throw new NotImplementedException("Table for " + t.Name + " not implemented");
         }
     }
 }

@@ -29,10 +29,26 @@ namespace Design.Idea
 
         public Menu()
         {
+            if (Classes.Database.OnUnableToProcessSQL == null)
+                Classes.Database.OnUnableToProcessSQL = LogException;
             InitializeComponent();
 
             this.FormClosed += (x, y) => MainMenu = null;
             this.Disposed += (x, y) => Menus.Clear();
+        }
+
+        private void LogException(Exception ex)
+        {
+            string message = "";
+            if (Classes.Database.CanConnect)
+            {
+                //process exception type and message -> what is the issue
+                message = ex.GetType().Name.Replace("Exception", "\n") + ex.Message;
+
+            }
+            else
+                message = "Unable to connect to the database";
+            MessageBox.Show(message);
         }
 
         new public void Show()

@@ -5,4 +5,7 @@ using System.Text;
 
 namespace Classes
 {
+    public abstract class Record
+    {
+    }
 }

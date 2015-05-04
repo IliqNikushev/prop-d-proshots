@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Classes
 {
-    public abstract class Landmark
+    public abstract class Landmark : Record
     {
         public Landmark(string id, string label, string description, int x, int y)
         {

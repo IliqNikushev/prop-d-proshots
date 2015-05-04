@@ -8,12 +8,14 @@ namespace Design
 {
     abstract class MapPoint
     {
-        public const int IconSize = 32;
+        public const int IconSize = 16;
         private Classes.Landmark Landmark;
         public string Label { get { return this.Landmark.Label; } }
         public string Description { get { return this.Landmark.Description; } }
         public int X { get { return this.Landmark.X; } }
         public int Y { get { return this.Landmark.Y; } }
+
+        protected abstract System.Drawing.Bitmap Image { get; }
 
         private System.Windows.Forms.PictureBox marker;
 
@@ -43,12 +45,8 @@ namespace Design
 
         public void AddToMap(System.Windows.Forms.Control map)
         {
-            System.Drawing.Bitmap image = null;
-            if (this.GetType() == typeof(ShopExample))
-                image = Design.Properties.Resources.Back;
-
-            if (image == null)
-                throw new InvalidOperationException("Unknown type to make a marker to : " + this.GetType().Name);
+            System.Drawing.Bitmap image = this.Image;
+#warning TODO:Add classes to use the map points
 
             System.Windows.Forms.Label onHover = new System.Windows.Forms.Label();
             onHover.Text = this.Label;
@@ -82,5 +80,10 @@ namespace Design
         public ShopExample(int x, int y, string label, string description)
             : base(x, y, label, description)
         { }
+
+        protected override System.Drawing.Bitmap Image
+        {
+            get { return Design.Properties.Resources.Back;}
+        }
     }
 }

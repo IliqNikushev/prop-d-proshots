@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Classes
 {
-    public class RentableItemHistory
+    public class RentableItemHistory : Record
     {
         public RentableItemHistory(RentableItem item, Visitor rentedBy)
         {

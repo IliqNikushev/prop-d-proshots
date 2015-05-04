@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public class Receipt
+    public class Receipt : Record
     {
         public List<PurchaseSelection> Items { get; private set; }
         public DateTime PurchasedOn { get; private set; }

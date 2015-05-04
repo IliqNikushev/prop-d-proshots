@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Classes
 {
-    public class AppointmentTask
+    public class AppointmentTask : Record
     {
         public AppointmentTask(string name, decimal price, string description)
         {

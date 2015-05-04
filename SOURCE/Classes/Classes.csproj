@@ -52,7 +52,6 @@
     <Compile Include="Deposit.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeAction.cs" />
-    <Compile Include="Employer.cs" />
     <Compile Include="EventLandmark.cs" />
     <Compile Include="Exceptions\InvalidPayPalLogFileException.cs" />
     <Compile Include="Exceptions\InvalidShopException.cs" />
@@ -65,6 +64,7 @@
     <Compile Include="PayPalMachine.cs" />
     <Compile Include="PCDoctorJob.cs" />
     <Compile Include="Landmark.cs" />
+    <Compile Include="Record.cs" />
     <Compile Include="RentableItem.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="PayPalDocument.cs" />

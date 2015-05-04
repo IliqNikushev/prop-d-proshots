@@ -15,6 +15,9 @@ namespace Design
         public Main()
         {
             InitializeComponent();
+            IEnumerable<Type> notTableDefined = Classes.Database.notTableDefinedRecords;
+            if(notTableDefined.Any())
+                MessageBox.Show("Not table defined records:\n"+string.Join("\n", Classes.Database.notTableDefinedRecords));
         }
 
         private void adminGUIBtn_Click(object sender, EventArgs e)
@@ -29,8 +32,7 @@ namespace Design
 
         private void employeeGUIBtn_Click(object sender, EventArgs e)
         {
-           // new Idea.Login(Idea.Login.For.Employee).Show();
-            Classes.Database.GetAdmin("user","pass");
+           new Idea.Login(Idea.Login.For.Employee).Show();
         }
 
         private void button1_Click(object sender, EventArgs e)

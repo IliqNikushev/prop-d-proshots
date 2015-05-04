@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public abstract class Item
+    public abstract class Item : Record
     {
         #region examples
         /*    
