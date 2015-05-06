@@ -18,6 +18,17 @@ namespace Classes
             }
         }
 
+        public decimal Price
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         public void Restock(int amount)
         {
             this.InStock += amount;
@@ -31,8 +42,9 @@ namespace Classes
         }
 
         public RestockableItem(int id, decimal price, string brand, string model, string type, int inStock)
-            : base(id, price, brand, model, type)
+            : base(id, brand, model, type)
         {
+            this.Price = price;
             this.InStock = InStock;
         }
     }

@@ -43,6 +43,8 @@ namespace Design.Idea
             string username = "";
             string password = "";
             //UNCOMMENT WHEN USING DATABASE Authenticate(username, password);
+            //if(LoggedInUser == null)
+            //{ //if valid sql invalid credentials; else - invalid sql message already logged 
             if (forWho == For.Admin)
                 new AdministratorInterface.Home().Show();
             else if (forWho == For.Employee)

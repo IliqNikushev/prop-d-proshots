@@ -13,7 +13,7 @@
   <Class Name="Classes.Item" Collapsed="true">
     <Position X="1.5" Y="9.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAgAAAAAAAAAAAAAAAAAAAAQgAAAABAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAQgAAAABAAA=</HashCode>
       <FileName>Item.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -271,7 +271,7 @@
   <Class Name="Classes.RestockableItem" Collapsed="true">
     <Position X="3.5" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAIAAIAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAQAAAAAAAAAIAAIAAAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>RestockableItem.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -296,7 +296,7 @@
   <Class Name="Classes.Database" Collapsed="true">
     <Position X="17.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AECEIBAAACApoQhAEkAACTAASAAAGCAAEgEACUEACgI=</HashCode>
+      <HashCode>AECEIBAEACAZoQhAEkEACTAASAAAGCAAEwEAKUMACgI=</HashCode>
       <FileName>Database.cs</FileName>
     </TypeIdentifier>
   </Class>

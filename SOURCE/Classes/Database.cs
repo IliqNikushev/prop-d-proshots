@@ -10,7 +10,7 @@ namespace Classes
     using Command = MySql.Data.MySqlClient.MySqlCommand;
     public static class Database
     {
-        public static Action<Exception> OnUnableToProcessSQL;
+        public static Action<Exception, string> OnUnableToProcessSQL;
 
         const string C_Server = "athena01.fhict.local";
         const string C_DataBase = "dbi317294";
@@ -21,29 +21,69 @@ namespace Classes
                     C_Server, C_DataBase, C_UserID, C_Password
                 );
 
+        public static class View
+        {
+            public const string Shops = "Select * from Shops";
+            public const string PayPalMachines = "Select * from unknown";
+        }
+
+        static Dictionary<Type, string> views = new Dictionary<Type, string>()
+        {
+            {typeof(Landmark), View.Shops},
+            {typeof(PayPalMachine), View.PayPalMachines} 
+        };
+
         static Dictionary<Type, string> tables = new Dictionary<Type, string>()
         {
             { typeof(EmployeeAction), "EmployeeActions"},
             { typeof(Appointment), "Appointments a Join AppointmentTasks t on a.id = t.appointment_id"},
-            { typeof(Receipt), "Receipts r Join ReceiptItems i on r.id = i.receipt_id Join PurchasableItems p on i.item_id = p.id"},
-            { typeof(RentableItemHistory), "RentableItemHistories h Join RentableItems r on h.item_id = r.id"},
-            { typeof(Tent), "Tents t Join TentPeople p on t.id = p.tent_id"},
-            { typeof(TentAreaLandmark), "Landmarks l Join Tents t on l.id = t.landmark_id"},
+            { typeof(Receipt), "Receipts r Join ReceiptItems i on r.id = i.receipt_id Join ShopItems s on i.item_id = s.item_id"},
+            { typeof(RentableItemHistory), "RentableItemHistories h Join RentableItems r on h.item_id = r.item_id"},
+            { typeof(Tent), "Tents t Join TentPeople p on t.location = p.tent_id"},
+            { typeof(TentAreaLandmark), "Tents_All"},
             { typeof(Warning), "Warnings"},
             { typeof(PurchasableItem), "PurchasableItems"},
             { typeof(Landmark), "Landmarks"},
             { typeof(Job), "Jobs"},
             { typeof(Deposit), "PayPalDeposits"},
             { typeof(AppointmentTask), "AppointmentTasks"},
-            { typeof(AppointedItem), "AppointedItems"},
+            { typeof(AppointedItem), "Items_Appointed"},
             { typeof(LogMessage), "Logs"},
             { typeof(RentableItem), "RentableItems"},
             { typeof(PayPalDocument), "PayPalDocuments"},
             { typeof(RestockSelection), "Restocks"},
             { typeof(Visitor), "Users u Join Visitors v on u.id = v.user_id"},
-            { typeof(Employee), "Users u Join Employees v on u.id = e.user_id"},
-            { typeof (AdminUser), "Users u Join AdminUser a on u.id = a.user_id"}
+            { typeof(Employee), "Users u Join Employees e on u.id = e.user_id"},
+            { typeof(AdminUser), "Users u where u.type = 'admin'"}
         };
+        public static List<string> consistencyExceptions;
+        public static void CheckConsistency()
+        {
+            consistencyExceptions = new List<string>();
+            foreach (var table in tables)
+            {
+                try
+                {
+                    ExecuteSQL("Select * from " + table.Value, true);
+                }
+                catch (Exception ex)
+                {
+                    consistencyExceptions.Add(ex.GetType().Name.Replace("Exception",":")+ex.Message+"\n"+table.Value);
+                }
+            }
+
+            foreach (var table in views)
+            {
+                try
+                {
+                    ExecuteSQL(table.Value, true);
+                }
+                catch (Exception ex)
+                {
+                    consistencyExceptions.Add(ex.GetType().Name.Replace("Exception", ":") + ex.Message + "\n" + table.Value);
+                }
+            }
+        }
 
         public static IEnumerable<Type> notTableDefinedRecords
         {
@@ -52,6 +92,7 @@ namespace Classes
                 return System.Reflection.Assembly.GetExecutingAssembly().GetTypes().
                     Where(x => x.IsSubclassOf(typeof(Record))).
                     Where(x => !tables.ContainsKey(x)).
+                    Where(x=> !views.ContainsKey(x)).
                     Where(x => !x.IsSubclassOf(typeof(User)) && !x.IsAbstract).
                     Where(x => !x.IsSubclassOf(typeof(Job))).
                     Where(x => !x.IsSubclassOf(typeof(Landmark)));
@@ -78,7 +119,7 @@ namespace Classes
             }
         }
 
-        public static int ExecuteSQL(string sql)
+        public static int ExecuteSQL(string sql, bool testing = false)
         {
             int rowsAffected = 0;
             using (Connection connection = new Connection(connectionString))
@@ -93,31 +134,35 @@ namespace Classes
                 catch (Exception ex)
                 {
                     if (OnUnableToProcessSQL != null)
-                        OnUnableToProcessSQL(ex);
+                        OnUnableToProcessSQL(ex, sql);
+                    if (testing)
+                        throw;
                 }
             }
             return rowsAffected;
         }
 
-        public static Reader ExecuteSQLWithResult(string sql)
+        public static void ExecuteSQLWithResult(string sql, Action<Reader> resultCallback, bool testing = false)
         {
-            Reader r = null;
             using (Connection connection = new Connection(connectionString))
             {
                 Command c = new Command(sql, connection);
                 try
                 {
                     connection.Open();
-                    r = c.ExecuteReader();
+                    Reader result = c.ExecuteReader();
+                    if (resultCallback == null) throw new NotImplementedException("Do not know what to do with \n" + sql);
+                    resultCallback(result);
                     connection.Close();
                 }
                 catch (Exception ex)
                 {
                     if(OnUnableToProcessSQL != null)
-                        OnUnableToProcessSQL(ex);
+                        OnUnableToProcessSQL(ex, sql);
+                    if (testing)
+                        throw;
                 }
             }
-            return r;
         }
 
         public static List<Visitor> Visitors
@@ -304,23 +349,32 @@ namespace Classes
             return new AdminUser(id, firstName, lastName, userName, email);
         }
 
-        private static List<object> GetWhere(Type t, string where)
-        {
-            string tableName = GetTableFor(t);
-            Reader reader = ExecuteSQLWithResult("Select * From " + tableName + (where != "" ? " Where " + where : ""));
+        static List<object> processingList;
+        static Type processType = typeof(int);
 
-            List<object> result = new List<object>();
+        private static void ProcessReader(Reader reader)
+        {
+            Type t = processType;
+            processingList = new List<object>();
             using (reader)
             {
-                if (!reader.HasRows)
-                    return result;
-
                 while (reader.Read())
                 {
                     object row = GetRow(t, reader);
-                    result.Add(row);
+                    processingList.Add(row);
                 }
             }
+        }
+
+        private static List<object> GetWhere(Type t, string where)
+        {
+            string tableName = GetTableFor(t);
+            processType = t;
+            ExecuteSQLWithResult("Select * From " + tableName + (where != "" ? " Where " + where : ""), ProcessReader);
+
+            List<object> result = new List<object>(processingList);
+            processingList.Clear();
+            processingList = null;
             return result;
         }
 
@@ -333,6 +387,8 @@ namespace Classes
         {
             if (tables.ContainsKey(t))
                 return tables[t];
+            if (views.ContainsKey(t))
+                return views[t];
             throw new NotImplementedException("Table for " + t.Name + " not implemented");
         }
     }

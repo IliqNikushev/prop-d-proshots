@@ -29,15 +29,22 @@ namespace Design.Idea
 
         public Menu()
         {
-            if (Classes.Database.OnUnableToProcessSQL == null)
-                Classes.Database.OnUnableToProcessSQL = LogException;
+            if (MainMenu == null)
+            {
+                Classes.Database.CheckConsistency();
+                if (Classes.Database.consistencyExceptions.Count > 0)
+                    LogException(new Exception(), string.Join("\n", Classes.Database.consistencyExceptions));
+                if (Classes.Database.OnUnableToProcessSQL == null)
+                    Classes.Database.OnUnableToProcessSQL = LogException;
+            }
+            
             InitializeComponent();
 
             this.FormClosed += (x, y) => MainMenu = null;
             this.Disposed += (x, y) => Menus.Clear();
         }
 
-        private void LogException(Exception ex)
+        private void LogException(Exception ex, string sql)
         {
             string message = "";
             if (Classes.Database.CanConnect)
@@ -48,7 +55,7 @@ namespace Design.Idea
             }
             else
                 message = "Unable to connect to the database";
-            MessageBox.Show(message);
+            MessageBox.Show(message +"\n"+sql);
         }
 
         new public void Show()
