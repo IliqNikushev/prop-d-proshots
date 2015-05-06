@@ -296,7 +296,7 @@
   <Class Name="Classes.Database" Collapsed="true">
     <Position X="17.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AECEIBAEACAZoQhAEkEACTAASAAAGCAAEwEAKUMACgI=</HashCode>
+      <HashCode>AECEIBAEACAZoQhAEkEACTAASAAAGCAAEwEAKUEACgI=</HashCode>
       <FileName>Database.cs</FileName>
     </TypeIdentifier>
   </Class>

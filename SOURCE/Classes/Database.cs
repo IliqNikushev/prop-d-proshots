@@ -21,18 +21,6 @@ namespace Classes
                     C_Server, C_DataBase, C_UserID, C_Password
                 );
 
-        public static class View
-        {
-            public const string Shops = "Select * from Shops";
-            public const string PayPalMachines = "Select * from unknown";
-        }
-
-        static Dictionary<Type, string> views = new Dictionary<Type, string>()
-        {
-            {typeof(Landmark), View.Shops},
-            {typeof(PayPalMachine), View.PayPalMachines} 
-        };
-
         static Dictionary<Type, string> tables = new Dictionary<Type, string>()
         {
             { typeof(EmployeeAction), "EmployeeActions"},
@@ -71,18 +59,6 @@ namespace Classes
                     consistencyExceptions.Add(ex.GetType().Name.Replace("Exception",":")+ex.Message+"\n"+table.Value);
                 }
             }
-
-            foreach (var table in views)
-            {
-                try
-                {
-                    ExecuteSQL(table.Value, true);
-                }
-                catch (Exception ex)
-                {
-                    consistencyExceptions.Add(ex.GetType().Name.Replace("Exception", ":") + ex.Message + "\n" + table.Value);
-                }
-            }
         }
 
         public static IEnumerable<Type> notTableDefinedRecords
@@ -92,7 +68,6 @@ namespace Classes
                 return System.Reflection.Assembly.GetExecutingAssembly().GetTypes().
                     Where(x => x.IsSubclassOf(typeof(Record))).
                     Where(x => !tables.ContainsKey(x)).
-                    Where(x=> !views.ContainsKey(x)).
                     Where(x => !x.IsSubclassOf(typeof(User)) && !x.IsAbstract).
                     Where(x => !x.IsSubclassOf(typeof(Job))).
                     Where(x => !x.IsSubclassOf(typeof(Landmark)));
@@ -387,8 +362,6 @@ namespace Classes
         {
             if (tables.ContainsKey(t))
                 return tables[t];
-            if (views.ContainsKey(t))
-                return views[t];
             throw new NotImplementedException("Table for " + t.Name + " not implemented");
         }
     }

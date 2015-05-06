@@ -31,11 +31,14 @@ namespace Design.Idea
         {
             if (MainMenu == null)
             {
-                Classes.Database.CheckConsistency();
-                if (Classes.Database.consistencyExceptions.Count > 0)
-                    LogException(new Exception(), string.Join("\n", Classes.Database.consistencyExceptions));
-                if (Classes.Database.OnUnableToProcessSQL == null)
-                    Classes.Database.OnUnableToProcessSQL = LogException;
+                if (Classes.Database.CanConnect)
+                {
+                    Classes.Database.CheckConsistency();
+                    if (Classes.Database.consistencyExceptions.Count > 0)
+                        LogException(new Exception(), string.Join("\n", Classes.Database.consistencyExceptions));
+                    if (Classes.Database.OnUnableToProcessSQL == null)
+                        Classes.Database.OnUnableToProcessSQL = LogException;
+                }
             }
             
             InitializeComponent();
