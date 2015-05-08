@@ -12,6 +12,9 @@ namespace Design.Idea
 {
     public partial class Store : Form
     {
+        public Classes.ShopJob Shop { get; private set; }
+        public Classes.Visitor ActiveVisitor { get; private set; }
+
         private const int iconSize = 64;
         private const int labelHeight = 16;
         private const int itemHeight = iconSize + labelHeight * 5;
@@ -26,11 +29,15 @@ namespace Design.Idea
             Random r = new Random();
             for (int i = 0; i < 30; i++)
             {
-                items.Add(new ShopItem("Back", i + 1, r.Next(5000) / 1000m));
+                items.Add(new ShopItem(new Classes.PurchasableItem(0, r.Next(5000) / 1000m, "", "Back","<>", i+1, (i+1)/2)));
             }
 
             InitializeComponent();
-            ShopItem example = new ShopItem("Back", 5, 1m);
+
+            totalNumberLbl.Text = "0" + currency;
+            totalCountLbl.Text = "0";
+
+            ShopItem example = new ShopItem(new Classes.PurchasableItem(0, 0, "", "Back","<>", 0, 0));
             this.Controls.Add(GenerateItem(exampleLbl.Left, exampleLbl.Top, example));
 
             foreach (var item in example.PanelAssosiated.Controls)
@@ -87,6 +94,9 @@ namespace Design.Idea
 
             pictureBox7_Click(null, null);
         }
+
+        //todo listen for visitor
+        //activeVisitor = phidgitVisitor
 
         void verticalBar_Scroll(object sender, ScrollEventArgs e)
         {
@@ -184,14 +194,16 @@ namespace Design.Idea
                 if (e.KeyChar != '\b')
                 {
                     if (e.KeyChar == (char)Keys.Return)
+                    {
                         item.UpdateTo(int.Parse(purchasedAmount.Text));
+                        UpdateTotal();
+                    }
                     e.KeyChar = '\0';
                 }
                 else
                     if (purchasedAmount.Text.Length <= 1 || (int.Parse(purchasedAmount.Text) == 0))
                         item.UpdateTo(0);
             }
-
         }
 
         void item_Click(object sender, EventArgs e)
@@ -213,6 +225,15 @@ namespace Design.Idea
                 item.Update(1);
             else
                 item.Update(-1);
+
+            UpdateTotal();
+        }
+
+        private void UpdateTotal()
+        {
+            IEnumerable<ShopItem> selected = this.items.Where(x => x.PurchaseTimes > 0);
+            totalItemsCountLbl.Text = selected.Sum(x=>x.PurchaseTimes).ToString();
+            totalNumberLbl.Text = selected.Sum(x => x.Total).ToString() + currency;
         }
 
         private void pictureBox7_Click(object sender, EventArgs e)
@@ -228,6 +249,21 @@ namespace Design.Idea
             pictureBox7.BackColor = DefaultBackColor;
             adding = false;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            IEnumerable<ShopItem> selectedItems = this.items.Where(x=>x.PurchaseTimes > 0);
+            IEnumerable<Classes.PurchaseSelection> selection = selectedItems.Select(x => new Classes.PurchaseSelection(x.Item, x.PurchaseTimes));
+            Classes.Receipt receipt = new Classes.Receipt(ActiveVisitor, this.Shop, selection.ToList());
+
+            //save receipt;
+
+            ActiveVisitor = null;
+
+            foreach (ShopItem item in selectedItems)
+                item.Reset();
+
+        }
     }
 
     class ShopItem
@@ -241,7 +277,7 @@ namespace Design.Idea
             {
                 if (cachedIcon == null)
                 {
-                    Bitmap b = (Bitmap)Design.Properties.Resources.ResourceManager.GetObject(this.Name);
+                    Bitmap b = (Bitmap)Design.Properties.Resources.ResourceManager.GetObject(this.Name.Replace(" ","_"));
                     if (b == null) { } // ICON NOT FOUND
                     cachedIcon = b;
                 }
@@ -255,16 +291,19 @@ namespace Design.Idea
         public Label TotalLabel;
         public Label NameLabel;
 
-        public string Name;
-        public int InStock;
-        public int PurchaseTimes;
-        public decimal Price;
+        public Classes.PurchasableItem Item { get; private set; }
+        public int PurchaseTimes { get; private set; }
 
-        public ShopItem(string name, int inStock, decimal price)
+        public string Name { get { if (Item.Brand == "" || Item.Brand == null) return Item.Model; return Item.Brand + " " + Item.Model; } }
+        public int InStock { get { return Item.InStock; } }
+        
+        public decimal Price { get { return Item.Price; } }
+        public int WarningLevel { get { return Item.WarningLevel; } }
+        public decimal Total { get { return this.Price * this.PurchaseTimes; } }
+
+        public ShopItem(Classes.PurchasableItem item)
         {
-            this.Name = name;
-            this.InStock = inStock;
-            this.Price = price;
+            this.Item = item;
         }
 
         public void Update(int times)
@@ -276,6 +315,23 @@ namespace Design.Idea
             this.PurchaseTimes = current;
             TotalLabel.Text = (((int)(Price * 100 * PurchaseTimes)/100.0f)).ToString() + currency;
             PurchaseTimesTBox.Text = this.PurchaseTimes.ToString();
+
+            int resultAfterPurchase = this.InStock - this.PurchaseTimes;
+
+            if (resultAfterPurchase <= this.WarningLevel)
+            {
+                float deltaPercent = 0;
+                if(this.WarningLevel != 0)
+                    deltaPercent = resultAfterPurchase / (float)this.WarningLevel;
+                this.PanelAssosiated.BackColor = Color.FromArgb(220, (int)(180 * deltaPercent), 0);
+            }
+            else
+            {
+                if (PurchaseTimes == 0)
+                    this.PanelAssosiated.BackColor = new Color();
+                else
+                    this.PanelAssosiated.BackColor = Color.FromArgb(220, 220, 200);
+            }
         }
 
         public void UpdateTo(int times)
@@ -283,14 +339,8 @@ namespace Design.Idea
             this.Update(times - PurchaseTimes);
         }
 
-        public void Confirm()
+        public void Reset()
         {
-            this.InStock -= this.PurchaseTimes;
-
-            //visitor.money -=
-            //new Receipt
-
-
             this.InStockLabel.Text = this.InStock.ToString();
             this.PurchaseTimes = 0;
             this.PurchaseTimesTBox.Text = "0";

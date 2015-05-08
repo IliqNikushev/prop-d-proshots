@@ -28,28 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.itemsPanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.exampleLbl = new System.Windows.Forms.Label();
             this.verticalBar = new System.Windows.Forms.VScrollBar();
+            this.button1 = new System.Windows.Forms.Button();
+            this.totalCountLbl = new System.Windows.Forms.Label();
+            this.totalNumberLbl = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.totalItemsCountLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(157, 52);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(86, 20);
-            this.textBox3.TabIndex = 42;
             // 
             // pictureBox7
             // 
@@ -65,20 +60,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(116, 55);
+            this.label5.Location = new System.Drawing.Point(116, 25);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 37;
             this.label5.Text = "Name";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(114, 30);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 13);
-            this.label4.TabIndex = 36;
-            this.label4.Text = "ID Card";
             // 
             // label7
             // 
@@ -109,13 +95,6 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(157, 27);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(86, 20);
-            this.textBox2.TabIndex = 41;
-            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Design.Properties.Resources.Employees;
@@ -129,7 +108,7 @@
             // exampleLbl
             // 
             this.exampleLbl.AutoSize = true;
-            this.exampleLbl.Location = new System.Drawing.Point(357, 3);
+            this.exampleLbl.Location = new System.Drawing.Point(434, 9);
             this.exampleLbl.Name = "exampleLbl";
             this.exampleLbl.Size = new System.Drawing.Size(46, 13);
             this.exampleLbl.TabIndex = 46;
@@ -142,20 +121,68 @@
             this.verticalBar.Size = new System.Drawing.Size(17, 286);
             this.verticalBar.TabIndex = 47;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(264, 105);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 48;
+            this.button1.Text = "Confirm";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // totalCountLbl
+            // 
+            this.totalCountLbl.AutoSize = true;
+            this.totalCountLbl.Location = new System.Drawing.Point(280, 78);
+            this.totalCountLbl.Name = "totalCountLbl";
+            this.totalCountLbl.Size = new System.Drawing.Size(31, 13);
+            this.totalCountLbl.TabIndex = 49;
+            this.totalCountLbl.Text = "Total";
+            // 
+            // totalNumberLbl
+            // 
+            this.totalNumberLbl.AutoSize = true;
+            this.totalNumberLbl.Location = new System.Drawing.Point(317, 78);
+            this.totalNumberLbl.Name = "totalNumberLbl";
+            this.totalNumberLbl.Size = new System.Drawing.Size(28, 13);
+            this.totalNumberLbl.TabIndex = 50;
+            this.totalNumberLbl.Text = "Sum";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(228, 55);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 13);
+            this.label1.TabIndex = 51;
+            this.label1.Text = "Number of items";
+            // 
+            // totalItemsCountLbl
+            // 
+            this.totalItemsCountLbl.AutoSize = true;
+            this.totalItemsCountLbl.Location = new System.Drawing.Point(317, 55);
+            this.totalItemsCountLbl.Name = "totalItemsCountLbl";
+            this.totalItemsCountLbl.Size = new System.Drawing.Size(35, 13);
+            this.totalItemsCountLbl.TabIndex = 52;
+            this.totalItemsCountLbl.Text = "Count";
+            // 
             // Store
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(599, 437);
+            this.Controls.Add(this.totalItemsCountLbl);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.totalNumberLbl);
+            this.Controls.Add(this.totalCountLbl);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.verticalBar);
             this.Controls.Add(this.exampleLbl);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.itemsPanel);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.pictureBox2);
             this.Name = "Store";
@@ -170,16 +197,18 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel itemsPanel;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label exampleLbl;
         private System.Windows.Forms.VScrollBar verticalBar;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label totalCountLbl;
+        private System.Windows.Forms.Label totalNumberLbl;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label totalItemsCountLbl;
     }
 }
