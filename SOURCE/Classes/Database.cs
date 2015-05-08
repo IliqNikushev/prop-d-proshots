@@ -264,7 +264,7 @@ namespace Classes
 
         public static User GetUser(string id)
         {
-            return GetWhere<User>("Users.id = '" + id + "')").FirstOrDefault() as User;
+            return GetWhere<User>("Visitors.rfid = " + id + ")").FirstOrDefault() as User;
         }
 
         public static List<Deposit> GetVisitorTopUps(Visitor visitor)
@@ -272,7 +272,7 @@ namespace Classes
             return GetWhere<Deposit>("d.visitor_id = " + visitor.Id);
         }
 
-        private static List<T> GetAll<T>() where T : class
+        private static List<T> GetAll<T>() where T : Record
         {
             return GetWhere<T>("");
         }
@@ -353,7 +353,7 @@ namespace Classes
             return result;
         }
 
-        private static List<T> GetWhere<T>(string where) where T : class
+        private static List<T> GetWhere<T>(string where) where T : Record
         {
             return GetWhere(typeof(T), where).Select(x=>x as T).ToList();
         }

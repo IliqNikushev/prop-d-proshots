@@ -20,6 +20,8 @@ namespace Design.Idea
             InitializeComponent();
             if (!Classes.Database.CanConnect)
                 MessageBox.Show("Unable to connect to database");
+            if (forWho == For.Visitor)
+                label1.Text += " OR Approach your card to the reader \n";
             // for who is visitor -> show the 'show your identificator'
         }
 

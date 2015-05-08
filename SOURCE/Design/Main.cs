@@ -37,7 +37,12 @@ namespace Design
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Idea.Menus.Main().SetAsActive();
+            
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            new Idea.Store().Show();
         }
     }
 }

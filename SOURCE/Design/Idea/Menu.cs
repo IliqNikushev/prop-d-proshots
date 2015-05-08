@@ -54,7 +54,6 @@ namespace Design.Idea
             {
                 //process exception type and message -> what is the issue
                 message = ex.GetType().Name.Replace("Exception", "\n") + ex.Message;
-
             }
             else
                 message = "Unable to connect to the database";
