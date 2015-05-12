@@ -17,7 +17,7 @@ namespace Classes
         const string C_UserID = "dbi317294";
         const string C_Password = "NBD7TnUwhT";
         static string connectionString = string.Format(
-                    "server={0};database={1};uid={2};password={3}",
+                    "server={0};database={1};uid={2};password={3};connect timeout=30;",
                     C_Server, C_DataBase, C_UserID, C_Password
                 );
 

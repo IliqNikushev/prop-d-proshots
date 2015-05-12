@@ -33,6 +33,7 @@ namespace Classes
 
         public RFID()
         {
+            return;
             reader = new Phidgets.RFID();
 
             this.reader.Attach += reader_Attach;
