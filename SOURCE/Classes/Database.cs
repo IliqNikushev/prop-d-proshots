@@ -42,8 +42,10 @@ namespace Classes
             { typeof(RestockSelection), "Restocks"},
             { typeof(Visitor), "Users u Join Visitors v on u.id = v.user_id"},
             { typeof(Employee), "Users u Join Employees e on u.id = e.user_id"},
-            { typeof(AdminUser), "Users u where u.type = 'admin'"}
+            { typeof(AdminUser), "Users u where u.type = 'admin'"},
+            { typeof(User), "Users"}
         };
+
         public static List<string> consistencyExceptions;
         public static void CheckConsistency()
         {
@@ -94,6 +96,11 @@ namespace Classes
             }
         }
 
+        public static int ExecuteSQL(string sql, params object[] parameters)
+        {
+            return ExecuteSQL(string.Format(sql, parameters));
+        }
+
         public static int ExecuteSQL(string sql, bool testing = false)
         {
             int rowsAffected = 0;
@@ -116,9 +123,14 @@ namespace Classes
             }
             return rowsAffected;
         }
+        public static void ExecuteSQLWithResult(string sql, Action<Reader> resultCallback, params object[] parameters)
+        {
+            ExecuteSQLWithResult(string.Format(sql, parameters), resultCallback);
+        }
 
         public static void ExecuteSQLWithResult(string sql, Action<Reader> resultCallback, bool testing = false)
         {
+            processingList = new List<object>();
             using (Connection connection = new Connection(connectionString))
             {
                 Command c = new Command(sql, connection);
@@ -214,7 +226,12 @@ namespace Classes
 
         public static List<Tent> GetVisitorTent(Visitor visitor)
         {
-            return GetWhere<Tent>("Tents.bookedBy = " + visitor.Id + " or TentPeople.visitor_id = " + visitor.Id);
+            return GetWhere<Tent>("TentPeople.visitor_id = {0}", visitor.Id);
+        }
+
+        public static List<Tent> GetVisitorBookedTent(Visitor visitor)
+        {
+            return GetWhere<Tent>("Tents.booked_by = {0}", visitor.Id);
         }
 
         public static List<RentableItemHistory> GetVisitorRentedItems(Visitor visitor)
@@ -244,32 +261,37 @@ namespace Classes
 
         public static Employee GetEmployee(string userName, string password)
         {
-            return GetWhere<Employee>("Users.userName = '" + userName + "' and Users.password = '" + password + "'").FirstOrDefault();
+            return Find<Employee>("Users.userName = '" + userName + "' and Users.password = '" + password + "'");
         }
 
-        public static Visitor GetVisitor(string userName, string password)
+        private static T GetUser<T>(string username, string password) where T : User
         {
-            return GetWhere<Visitor>("Users.userName = '" + userName + "' and Users.password = '" + password + "'").FirstOrDefault();
+            return Find<T>("Users.password = '{0}' and Users.username = '{1}'", password, username);
         }
 
-        public static AdminUser GetAdmin(string userName, string password)
+        public static Visitor GetVisitor(string username, string password)
         {
-            return GetWhere<AdminUser>("Users.userName = '" + userName + "' and Users.password = '" + password + "'").FirstOrDefault();
+            return GetUser<Visitor>(username, password);
+        }
+
+        public static AdminUser GetAdmin(string username, string password)
+        {
+            return GetUser<AdminUser>(username, password);
         }
 
         public static User GetUser(string username, string password)
         {
-            return GetWhere<User>("Users.password = '" + password + "' and Users.username = '" + username + "'").FirstOrDefault() as User;
+            return GetUser<User>(username, password);
         }
 
-        public static User GetUser(string id)
+        public static Visitor GetVisitor(string id)
         {
-            return GetWhere<User>("Visitors.rfid = " + id + ")").FirstOrDefault() as User;
+            return Find<Visitor>("Visitors.rfid = '{0}'", id);
         }
 
         public static List<Deposit> GetVisitorTopUps(Visitor visitor)
         {
-            return GetWhere<Deposit>("d.visitor_id = " + visitor.Id);
+            return GetWhere<Deposit>("d.visitor_id = {0}", visitor.Id);
         }
 
         private static List<T> GetAll<T>() where T : Record
@@ -302,26 +324,32 @@ namespace Classes
 
         private static Visitor CreateVisitor(Reader reader)
         {
-            string id = reader.GetString(0);
-            string firstName = reader.GetString(1);
-            string lastName = reader.GetString(2);
-            string userName = reader.GetString(3);
-            string email = reader.GetString(4);
-            decimal amount = reader.GetDecimal(5);
+            int id = -1;
+            string firstName, lastName, userName, email;
+            GetUser(reader,out id, out firstName, out lastName, out userName, out email);
 
-            return new Visitor(id, firstName, lastName, userName, email, amount);
+            decimal amount = reader.Get<decimal>("Amount");
+            string rfid = reader.GetStr("RFID");
+
+            return new Visitor(id, firstName, lastName, userName, email, amount, rfid);
         }
 
         private static AdminUser CreateAdmin(Reader reader)
         {
-            string id = reader.GetString(0);
-            string firstName = reader.GetString(1);
-            string lastName = reader.GetString(2);
-            string userName = reader.GetString(3);
-            string email = reader.GetString(4);
-            decimal amount = reader.GetDecimal(5);
+            int id = -1;
+            string firstName, lastName, userName, email;
+            GetUser(reader, out id, out firstName, out lastName, out userName, out email);
 
             return new AdminUser(id, firstName, lastName, userName, email);
+        }
+
+        private static void GetUser(Reader reader, out int id, out string firstName, out string lastName, out string userName, out string email)
+        {
+             id = reader.GetInt("ID");
+             firstName = reader.GetStr("FirstName");
+             lastName = reader.GetStr("LastName");
+             userName = reader.GetStr("UserName");
+             email = reader.GetStr("Email");
         }
 
         static List<object> processingList;
@@ -330,7 +358,6 @@ namespace Classes
         private static void ProcessReader(Reader reader)
         {
             Type t = processType;
-            processingList = new List<object>();
             using (reader)
             {
                 while (reader.Read())
@@ -341,21 +368,27 @@ namespace Classes
             }
         }
 
+        private static T Find<T>(string where, params object[] parameters) where T : Record
+        {
+            return GetWhere<T>(where, parameters).FirstOrDefault();
+        }
+
+        private static List<T> GetWhere<T>(string where, params object[] parameters) where T : Record
+        {
+            return GetWhere(typeof(T), string.Format(where, parameters)).Select(x => x as T).ToList();
+        }
+
         private static List<object> GetWhere(Type t, string where)
         {
             string tableName = GetTableFor(t);
             processType = t;
+
             ExecuteSQLWithResult("Select * From " + tableName + (where != "" ? " Where " + where : ""), ProcessReader);
 
             List<object> result = new List<object>(processingList);
             processingList.Clear();
             processingList = null;
             return result;
-        }
-
-        private static List<T> GetWhere<T>(string where) where T : Record
-        {
-            return GetWhere(typeof(T), where).Select(x=>x as T).ToList();
         }
 
         private static string GetTableFor(Type t)

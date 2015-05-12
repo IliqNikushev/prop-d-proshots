@@ -21,38 +21,57 @@ namespace Design.Idea
             if (!Classes.Database.CanConnect)
                 MessageBox.Show("Unable to connect to database");
             if (forWho == For.Visitor)
-                label1.Text += " OR Approach your card to the reader \n";
-            // for who is visitor -> show the 'show your identificator'
+                if (reader.IsAttached)
+                {
+                    label1.Text += " OR Approach your card to the reader \n";
+                    reader.OnDetect += Authenticate;
+                }
         }
 
         private void Authenticate(string id)
         {
-            LoggedInUser = Classes.User.Authenticate(id);
+            Authenticate(Classes.User.Authenticate(id));
         }
 
         private void Authenticate(string name, string password)
         {
-            LoggedInUser = Classes.User.Authenticate(name, password);
+            Authenticate(Classes.User.Authenticate(name, password));
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Authenticate(Classes.User user)
         {
             if (!Classes.Database.CanConnect)
             {
                 MessageBox.Show("Unable to connect to database");
-                //UNCOMMENT WHEN USING DATABASE return;
+                //uncomment when we have real users to authenticate
+                //return;
             }
-            string username = "";
-            string password = "";
-            //UNCOMMENT WHEN USING DATABASE Authenticate(username, password);
-            //if(LoggedInUser == null)
-            //{ //if valid sql invalid credentials; else - invalid sql message already logged 
+            LoggedInUser = user;
+            this.Invoke(new Action(ProccessLogin));
+        }
+
+        private void ProccessLogin()
+        {
+            if (LoggedInUser == null)
+            {
+                MessageBox.Show("Invalid credentials");
+                //uncomment when we have real users to authenticate
+                //return;
+            }
+            reader.OnDetect -= Authenticate;
             if (forWho == For.Admin)
                 new AdministratorInterface.Home().Show();
             else if (forWho == For.Employee)
                 new EmployeeInterface.Home().Show();
             else if (forWho == For.Visitor)
                 new VisitorInterface.Home().Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string username = textBox1.Text;
+            string password = textBox2.Text;
+            Authenticate(username, password);
         }
     }
 }

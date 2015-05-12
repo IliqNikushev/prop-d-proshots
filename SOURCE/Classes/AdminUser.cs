@@ -9,7 +9,7 @@ namespace Classes
     {
         public AdminUser(string username, string password) : base(username, password) { }
 
-        public AdminUser(string id, string firstName, string lastName, string username, string email)
+        public AdminUser(int id, string firstName, string lastName, string username, string email)
             : base(id, firstName, lastName, username, email)
         {
         }

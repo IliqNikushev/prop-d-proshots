@@ -7,33 +7,17 @@ namespace Classes
 {
     public class InformationKioskJob : Job
     {
-        public InformationKioskJob(string id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
+        public InformationKioskJob(string id, string label, string description, int x, int y, int availableCards) : base(id, label, description, x, y) { this.NumberOfCardsAvailable = availableCards; }
 
-        public int NumberOfCardsAvailable
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public int NumberOfCardsAvailable { get; private set; }
+        public int NumberOfCardsTaken { get; private set; }
 
-        public int NumberOfCardsTaken
+        public void GiveIDCardToVisitor(Visitor visitor, string tag)
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+            if (visitor.RFID != null)
+                throw new InvalidOperationException("User already has RFID");
 
-        public void GiveIDCardToVisitor(Visitor visitor)
-        {
-            throw new System.NotImplementedException();
+            Database.ExecuteSQL("UPDATE visitors SET rfid = '{0}' WHERE visitors.user_id = {1}", tag, visitor.Id);
         }
     }
 }

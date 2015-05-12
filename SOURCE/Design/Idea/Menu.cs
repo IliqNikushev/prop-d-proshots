@@ -12,12 +12,21 @@ namespace Design.Idea
 {
     public partial class Menu : Form
     {
+        public static bool IsInDebug
+        {
+            get
+            {
+               return System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv";
+            }
+        }
         protected static Classes.User LoggedInUser = null;
 
         protected static Menu MainMenu;
         private static List<Menu> Menus = new List<Menu>();
 
         private List<Control> controls = null;
+
+        protected Classes.RFID reader;
 
         protected virtual List<Control> Inherited
         {
@@ -31,20 +40,34 @@ namespace Design.Idea
         {
             if (MainMenu == null)
             {
-                if (Classes.Database.CanConnect)
+                if (!IsInDebug)
                 {
-                    Classes.Database.CheckConsistency();
-                    if (Classes.Database.consistencyExceptions.Count > 0)
-                        LogException(new Exception(), string.Join("\n", Classes.Database.consistencyExceptions));
-                    if (Classes.Database.OnUnableToProcessSQL == null)
-                        Classes.Database.OnUnableToProcessSQL = LogException;
+                    if (Classes.Database.CanConnect)
+                    {
+                        Classes.Database.CheckConsistency();
+                        if (Classes.Database.consistencyExceptions.Count > 0)
+                            LogException(new Exception(), string.Join("\n", Classes.Database.consistencyExceptions));
+                        if (Classes.Database.OnUnableToProcessSQL == null)
+                            Classes.Database.OnUnableToProcessSQL = LogException;
+                    }
+
+                    reader = new Classes.RFID();
+                    reader.OnAttach += (x) => { };
+                    reader.OnDetach += (x) => { };
+                    reader.OnDetect += (x) => MessageBox.Show("RFID found," + x);
+                    reader.OnDetectEnd += (x) => MessageBox.Show("RFID lost, "+ x );
+                    reader.OnError += (x) => MessageBox.Show("RFID ERROR, " + x.Description);
+
+                    reader.OnAttach += (x) => reader.ToggleLED();
+
+                    this.FormClosed += (x, y) => { MainMenu = null; reader.Dispose(); };
+                    this.Disposed += (x, y) => Menus.Clear();
                 }
             }
             
             InitializeComponent();
 
-            this.FormClosed += (x, y) => MainMenu = null;
-            this.Disposed += (x, y) => Menus.Clear();
+            
         }
 
         private void LogException(Exception ex, string sql)
@@ -78,9 +101,7 @@ namespace Design.Idea
             foreach (Control control in this.controls)
                     control.Visible = false;
             foreach (Control control in this.Inherited)
-            {
                 control.Visible = true;
-            }
             this.Controls.Clear();
         }
 
