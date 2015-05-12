@@ -49,7 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppointmentTask.cs" />
+    <Compile Include="ColumnAttribute.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="DatabaseBuild.cs" />
     <Compile Include="EmployeeActionType.cs" />
     <Compile Include="AdminUser.cs" />
     <Compile Include="AppointedItem.cs" />

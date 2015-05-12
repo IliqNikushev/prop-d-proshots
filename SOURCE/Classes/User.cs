@@ -12,10 +12,11 @@ namespace Classes
         public string LastName { get; private set; }
         public string FullName { get { return this.FirstName + " " + this.LastName; } }
         public int Id { get; private set; }
-        public virtual bool IsAuthenticated { get { return this.Id != null; } }
+        public virtual bool IsAuthenticated { get { return this.Id != 0; } }
         public string Username { get; private set; }
         public string Password { get; private set; }
         public string Email { get; private set; }
+        public string Picture { get; private set; }
 
         private User(User user)
         {
@@ -24,7 +25,7 @@ namespace Classes
             BuildFrom(user);
         }
 
-        public User(int id, string firstName, string lastName, string username, string email)
+        public User(int id, string firstName, string lastName, string username, string email, string picture)
         {
             this.Id = id;
             this.FirstName = firstName;

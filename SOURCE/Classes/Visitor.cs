@@ -13,7 +13,8 @@ namespace Classes
         public Visitor(string identificator) : base(identificator) { }
         public Visitor(string username, string password) : base(username, password) { }
 
-        public Visitor(int id, string firstName, string lastName, string username, string email, decimal amount, string rfid) : base(id,firstName,lastName,username,email)
+        public Visitor(int id, string firstName, string lastName, string username, string email, string picture, decimal amount, string rfid)
+            : base(id, firstName, lastName, username, email, picture)
         {
             this.RFID = rfid;
             this.Amount = amount;

@@ -9,8 +9,8 @@ namespace Classes
     {
         public AdminUser(string username, string password) : base(username, password) { }
 
-        public AdminUser(int id, string firstName, string lastName, string username, string email)
-            : base(id, firstName, lastName, username, email)
+        public AdminUser(int id, string firstName, string lastName, string username, string email, string picture)
+            : base(id, firstName, lastName, username, email, picture)
         {
         }
 

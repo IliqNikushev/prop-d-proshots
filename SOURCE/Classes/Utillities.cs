@@ -26,5 +26,25 @@ namespace Classes
         {
             return reader.Get<int>(name);
         }
+
+        public static IEnumerable<string> GetColumns(this MySql.Data.MySqlClient.MySqlDataReader reader)
+        {
+            string[] result = new string[reader.FieldCount];
+            for (int i = 0; i < result.Length; i++)
+                result[i] = reader.GetName(i);
+            return result;
+        }
+
+        public static List<System.Reflection.PropertyInfo> GetAllProperties(this Type type)
+        {
+            List<System.Reflection.PropertyInfo> properties = new List<System.Reflection.PropertyInfo>();
+            Type current = type;
+            while (current != typeof(object))
+            {
+                properties.AddRange(current.GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public).Where(x => x.CanRead && x.CanWrite));
+                current = current.BaseType;
+            }
+            return properties;
+        }
     }
 }

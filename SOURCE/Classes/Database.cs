@@ -8,7 +8,7 @@ namespace Classes
     using Reader = MySql.Data.MySqlClient.MySqlDataReader;
     using Connection = MySql.Data.MySqlClient.MySqlConnection;
     using Command = MySql.Data.MySqlClient.MySqlCommand;
-    public static class Database
+    public static partial class Database
     {
         public static Action<Exception, string> OnUnableToProcessSQL;
 
@@ -46,10 +46,17 @@ namespace Classes
             { typeof(User), "Users"}
         };
 
+        public static IEnumerable<Type> TypesThatDoNotHaveBuildDefinition { get { return System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x => x.IsSubclassOf(typeof(Record))); } }
+
         public static List<string> consistencyExceptions;
         public static void CheckConsistency()
         {
             consistencyExceptions = new List<string>();
+
+            foreach (Type record in TypesThatDoNotHaveBuildDefinition)
+                if (!recordBuildDefinitions.ContainsKey(record))
+                    consistencyExceptions.Add("Don't know how to build " + record.Name);
+
             foreach (var table in tables)
             {
                 try
@@ -60,6 +67,58 @@ namespace Classes
                 {
                     consistencyExceptions.Add(ex.GetType().Name.Replace("Exception",":")+ex.Message+"\n"+table.Value);
                 }
+            }
+
+            foreach (var type in System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x=>x.IsSubclassOf(typeof(Record))))
+            {
+                if (tables.ContainsKey(type))
+                {
+                    List<System.Reflection.PropertyInfo> properties = type.GetAllProperties();
+                    HashSet<string> found = null;
+                    ExecuteSQLWithResult("Select * from " + tables[type], (x) => found = new HashSet<string>(x.GetColumns().Select(y => y.ToLower())));
+                    HashSet<string> current = new HashSet<string>(properties.Select(x =>
+                        {
+                            string name = x.Name.ToLower();
+                            object[] columnDefinition = x.GetCustomAttributes(typeof(ColumnAttribute), true);
+                            if (columnDefinition.Length != 0)
+                                name = (columnDefinition[0] as ColumnAttribute).Name.ToLower();
+                            return name;
+                        }));
+
+                    foreach (string column in found)
+                        if (!current.Contains(column))
+                            consistencyExceptions.Add(type.Name + "." + column + " Not found locally");
+
+                    foreach (string column in current)
+                        if (!found.Contains(column))
+                            consistencyExceptions.Add(type.Name + "." + column + " Not found server side");
+
+                    if (type.GetConstructor(properties.Select(x => x.PropertyType).ToArray()) == null)
+                    {
+                        string constructor = string.Join(", ", properties.Select(x => x.PropertyType + " " + x.Name.Substring(0, 1).ToLower() + x.Name.Substring(1)));
+                        string initialize = string.Join("\n", properties.Select(x => "this." + x.Name + " = " + x.Name.Substring(0, 1).ToLower() + x.Name.Substring(1)));
+
+                        consistencyExceptions.Add("Default Constructor not found for " + type.Name);
+                        consistencyExceptions.Add("public " + type.Name + "(" + constructor.
+                            Replace("System.Int32", "int").
+                            Replace("System.Double", "double").
+                            Replace("System.Boolean", "bool").
+                            Replace("System.Bool", "bool").
+                            Replace("System.Object", "object").
+                            Replace("System.Char", "char").
+                            Replace("System.Decimal", "decimal").
+                            Replace("System.String", "string")
+                            + ")\r\n{\r\n" + initialize + "\r\n}");
+                    }
+                }
+                else
+                    consistencyExceptions.Add("Table not found for " + type.Name);
+            }
+
+            using (System.IO.StreamWriter sw = new System.IO.StreamWriter("consistency.txt"))
+            {
+                foreach (var item in consistencyExceptions)
+                    sw.WriteLine(item);
             }
         }
 
@@ -299,57 +358,26 @@ namespace Classes
             return GetWhere<T>("");
         }
 
+        
+
         private static object GetRow(Type t, Reader reader)
         {
             object result = null;
-
-            if (t == typeof(Visitor))
-                result = CreateVisitor(reader);
-            else if (t == typeof(AdminUser))
-                result = CreateAdmin(reader);
-            else if (t == typeof(User))
-            {
-                string type = reader.GetString("type");
-                if (type == "visitor")
-                    result = CreateVisitor(reader);
-                else if (type == "admin")
-                    result = CreateAdmin(reader);
-                else throw new NotImplementedException();
-            }
-            else
-                throw new System.NotImplementedException();
+            if(!recordBuildDefinitions.ContainsKey(t))
+                throw new NotImplementedException("Do not know how to build "  + t.Name);
+            result = recordBuildDefinitions[t](reader);
 
             return result;
         }
 
-        private static Visitor CreateVisitor(Reader reader)
-        {
-            int id = -1;
-            string firstName, lastName, userName, email;
-            GetUser(reader,out id, out firstName, out lastName, out userName, out email);
-
-            decimal amount = reader.Get<decimal>("Amount");
-            string rfid = reader.GetStr("RFID");
-
-            return new Visitor(id, firstName, lastName, userName, email, amount, rfid);
-        }
-
-        private static AdminUser CreateAdmin(Reader reader)
-        {
-            int id = -1;
-            string firstName, lastName, userName, email;
-            GetUser(reader, out id, out firstName, out lastName, out userName, out email);
-
-            return new AdminUser(id, firstName, lastName, userName, email);
-        }
-
-        private static void GetUser(Reader reader, out int id, out string firstName, out string lastName, out string userName, out string email)
+        private static void GetUser(Reader reader, out int id, out string firstName, out string lastName, out string userName, out string email, out string picture)
         {
              id = reader.GetInt("ID");
              firstName = reader.GetStr("FirstName");
              lastName = reader.GetStr("LastName");
              userName = reader.GetStr("UserName");
              email = reader.GetStr("Email");
+             picture = reader.GetStr("Picture");
         }
 
         static List<object> processingList;

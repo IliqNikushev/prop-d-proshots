@@ -20,7 +20,7 @@ namespace Classes
         public void ToggleLED() { if (this.IsAttached) reader.LED = !reader.LED; }
 
         public string Type { get { return reader.Type; } }
-
+        //todo : check before usage if it is connected
         public int Version { get { return reader.Version; } }
         public int SerialNumber { get { return reader.SerialNumber; } }
         public string Name { get { return reader.Name; } }
@@ -50,12 +50,16 @@ namespace Classes
 
         private void Activate()
         {
+            if (!this.IsAttached) return;
+
             if (!LEDIsActive) ToggleLED();
             if (!AntennaIsActive) ToggleAntena();
         }
 
         private void DeActivate()
         {
+            if (!this.IsAttached) return;
+
             if (LEDIsActive) ToggleLED();
             if (AntennaIsActive) ToggleAntena();
         }

@@ -19,6 +19,7 @@ namespace Design.Idea
                return System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv";
             }
         }
+
         protected static Classes.User LoggedInUser = null;
 
         protected static Menu MainMenu;
@@ -42,14 +43,9 @@ namespace Design.Idea
             {
                 if (!IsInDebug)
                 {
-                    if (Classes.Database.CanConnect)
-                    {
-                        Classes.Database.CheckConsistency();
-                        if (Classes.Database.consistencyExceptions.Count > 0)
-                            LogException(new Exception(), string.Join("\n", Classes.Database.consistencyExceptions));
+                    if(MainMenu == null)
                         if (Classes.Database.OnUnableToProcessSQL == null)
                             Classes.Database.OnUnableToProcessSQL = LogException;
-                    }
 
                     reader = new Classes.RFID();
                     reader.OnAttach += (x) => { };
@@ -66,8 +62,6 @@ namespace Design.Idea
             }
             
             InitializeComponent();
-
-            
         }
 
         private void LogException(Exception ex, string sql)

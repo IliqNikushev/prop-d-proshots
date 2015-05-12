@@ -11,38 +11,12 @@ namespace Classes
         {
             throw new System.NotImplementedException();
         }
-    
-        public string Name
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
 
-        public decimal Price
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public string Description
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public int ID { get; private set; }
+        [Column("appointment_id")]
+        public Appointment Appointment{get; private set;}
+        public string Name { get; private set; }
+        public decimal Price { get; private set; }
+        public string Description { get; private set; }
     }
 }
