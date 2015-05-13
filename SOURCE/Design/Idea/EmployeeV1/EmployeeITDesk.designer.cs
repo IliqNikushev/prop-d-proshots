@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Item",
             "Sub Item"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "Item",
             "Sub Item"}, -1);
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -57,34 +57,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            
-            
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dynamicContainer
-            // 
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.addOneBtn);
-            this.Controls.Add(this.removeOneBtn);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.purchaseBtn);
-            // 
-            // topNavContainer
-            // 
-            this.Controls.Add(this.pictureBox11);
             // 
             // textBox3
             // 
@@ -243,7 +220,7 @@
             // cartListView
             // 
             this.cartListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3});
+            listViewItem1});
             this.cartListView.Location = new System.Drawing.Point(586, 386);
             this.cartListView.Margin = new System.Windows.Forms.Padding(4);
             this.cartListView.Name = "cartListView";
@@ -264,7 +241,7 @@
             // itemsListView
             // 
             this.itemsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem4});
+            listViewItem2});
             this.itemsListView.Location = new System.Drawing.Point(21, 387);
             this.itemsListView.Margin = new System.Windows.Forms.Padding(4);
             this.itemsListView.Name = "itemsListView";
@@ -300,7 +277,7 @@
             // pictureBox11
             // 
             this.pictureBox11.Image = global::Design.Properties.Resources.LOGO_Proshot;
-            this.pictureBox11.Location = new System.Drawing.Point(3, 4);
+            this.pictureBox11.Location = new System.Drawing.Point(688, 4);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(203, 167);
             this.pictureBox11.TabIndex = 74;
@@ -319,16 +296,23 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.addOneBtn);
+            this.Controls.Add(this.removeOneBtn);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.purchaseBtn);
+            this.Controls.Add(this.pictureBox11);
             this.Name = "EmployeeITDesk";
             this.Text = "EmployeeITDesk";
-            this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.pictureBox7, 0);
-            this.Controls.SetChildIndex(this.textBox1, 0);
-            this.Controls.SetChildIndex(this.itemsListView, 0);
-            this.Controls.SetChildIndex(this.cartListView, 0);
-            this.Controls.SetChildIndex(this.addMultipleBtn, 0);
-            this.Controls.SetChildIndex(this.label4, 0);
-            this.Controls.SetChildIndex(this.label3, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
