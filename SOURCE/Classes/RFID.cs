@@ -92,6 +92,7 @@ namespace Classes
 
         public void Dispose()
         {
+            return;
             this.reader.Attach -= reader_Attach;
             this.reader.Detach -= reader_Detach;
             this.reader.Tag -= reader_Tag;

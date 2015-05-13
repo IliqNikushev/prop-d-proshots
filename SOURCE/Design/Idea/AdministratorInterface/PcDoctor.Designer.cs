@@ -28,138 +28,190 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
-            // label4
+            // pictureBox11
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(88, 109);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Pc-Doctor";
+            this.pictureBox11.Image = global::Design.Properties.Resources.LOGO_Proshot;
+            this.pictureBox11.Location = new System.Drawing.Point(235, 2);
+            this.pictureBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(203, 167);
+            this.pictureBox11.TabIndex = 27;
+            this.pictureBox11.TabStop = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButton3);
+            this.groupBox1.Controls.Add(this.listBox1);
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.pictureBox9);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.pictureBox7);
+            this.groupBox1.Location = new System.Drawing.Point(5, 144);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(440, 601);
+            this.groupBox1.TabIndex = 28;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(207, 109);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(36, 479);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.Size = new System.Drawing.Size(63, 17);
             this.label1.TabIndex = 20;
-            this.label1.Text = "Finished";
+            this.label1.Text = "Camping";
             // 
-            // label2
+            // pictureBox9
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(321, 109);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 13);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "Unfinished";
+            this.pictureBox9.Image = global::Design.Properties.Resources.money;
+            this.pictureBox9.Location = new System.Drawing.Point(9, 501);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(73, 69);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox9.TabIndex = 21;
+            this.pictureBox9.TabStop = false;
             // 
-            // pictureBox2
+            // label9
             // 
-            this.pictureBox2.Image = global::Design.Properties.Resources.NotDone;
-            this.pictureBox2.Location = new System.Drawing.Point(309, 2);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(96, 104);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 21;
-            this.pictureBox2.TabStop = false;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(5, 574);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(50, 17);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Money";
             // 
-            // pictureBox1
+            // label10
             // 
-            this.pictureBox1.Image = global::Design.Properties.Resources.Yes_check;
-            this.pictureBox1.Location = new System.Drawing.Point(195, 2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(96, 104);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 19;
-            this.pictureBox1.TabStop = false;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(343, 574);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(90, 17);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "Total Visitors";
             // 
-            // pictureBox3
+            // label8
             // 
-            this.pictureBox3.Image = global::Design.Properties.Resources.Back;
-            this.pictureBox3.Location = new System.Drawing.Point(2, 2);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(38, 32);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 18;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(147, 574);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(138, 17);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Number of Warnings";
             // 
-            // pictureBox5
+            // pictureBox7
             // 
-            this.pictureBox5.Image = global::Design.Properties.Resources.repair17;
-            this.pictureBox5.Location = new System.Drawing.Point(76, 2);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(96, 104);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 10;
-            this.pictureBox5.TabStop = false;
+            this.pictureBox7.Image = global::Design.Properties.Resources.warning38;
+            this.pictureBox7.Location = new System.Drawing.Point(175, 501);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(65, 62);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 11;
+            this.pictureBox7.TabStop = false;
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(9, 138);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(9, 139);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(480, 212);
-            this.listBox1.TabIndex = 23;
+            this.listBox1.Size = new System.Drawing.Size(411, 260);
+            this.listBox1.TabIndex = 30;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(138, 56);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(96, 21);
+            this.radioButton2.TabIndex = 29;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Unfinished";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(9, 56);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(82, 21);
+            this.radioButton1.TabIndex = 28;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Finished";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(265, 56);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(89, 21);
+            this.radioButton3.TabIndex = 33;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Delivered";
+            this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // PcDoctor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(496, 366);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.pictureBox5);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ClientSize = new System.Drawing.Size(1023, 704);
+            this.Controls.Add(this.pictureBox11);
+            this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PcDoctor";
             this.Text = "PcDoctor";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            this.Controls.SetChildIndex(this.groupBox1, 0);
+            this.Controls.SetChildIndex(this.pictureBox11, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+
     }
 }

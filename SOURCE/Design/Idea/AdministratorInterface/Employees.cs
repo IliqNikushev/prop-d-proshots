@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Design.Idea.AdministratorInterface
 {
-    public partial class Employees : SubMenuBase
+    public partial class Employees : HomePageWithMap
     {
-        public Employees(Form parent) : base(parent)
+        public Employees(Form parent) : base()
         {
             InitializeComponent();
         }
@@ -20,6 +20,11 @@ namespace Design.Idea.AdministratorInterface
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

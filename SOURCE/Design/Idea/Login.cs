@@ -21,7 +21,7 @@ namespace Design.Idea
             if (!Classes.Database.CanConnect)
                 MessageBox.Show("Unable to connect to database");
             if (forWho == For.Visitor)
-                if (reader.IsAttached)
+               if(false)// if (reader.IsAttached)
                 {
                     label1.Text += " OR Approach your card to the reader \n";
                     reader.OnDetect += Authenticate;

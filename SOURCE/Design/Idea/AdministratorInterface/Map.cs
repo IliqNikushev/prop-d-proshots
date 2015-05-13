@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Design.Idea.AdministratorInterface
 {
-    public partial class Map : ShopSubMenu
+    public partial class Map : SubMenuBase
     {
         public Map(Form parent) : base(parent)
         {

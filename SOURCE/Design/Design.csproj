@@ -61,6 +61,18 @@
     <Compile Include="Idea\AdministratorInterface\Employees.Designer.cs">
       <DependentUpon>Employees.cs</DependentUpon>
     </Compile>
+    <Compile Include="Idea\AdministratorInterface\SubMenu\ShopInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\AdministratorInterface\SubMenu\ShopInformation.Designer.cs">
+      <DependentUpon>ShopInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idea\AdministratorInterface\SubMenu\Shops.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\AdministratorInterface\SubMenu\Shops.Designer.cs">
+      <DependentUpon>Shops.cs</DependentUpon>
+    </Compile>
     <Compile Include="Idea\AdministratorInterface\Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,12 +96,6 @@
     </Compile>
     <Compile Include="Idea\AdministratorInterface\ServiceDesk.Designer.cs">
       <DependentUpon>ServiceDesk.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Idea\AdministratorInterface\ShopSubMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Idea\AdministratorInterface\ShopSubMenu.Designer.cs">
-      <DependentUpon>ShopSubMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Idea\AdministratorInterface\Camping.cs">
       <SubType>Form</SubType>
@@ -266,6 +272,15 @@
     <Compile Include="SubMenuBase.designer.cs">
       <DependentUpon>SubMenuBase.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Idea\AdministratorInterface\Camping.resx">
+      <DependentUpon>Camping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\AdministratorInterface\SubMenu\ShopInformation.resx">
+      <DependentUpon>ShopInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\AdministratorInterface\SubMenu\Shops.resx">
+      <DependentUpon>Shops.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Idea\EmployeeInterface\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
@@ -295,9 +310,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\AdministratorInterface\ServiceDesk.resx">
       <DependentUpon>ServiceDesk.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Idea\AdministratorInterface\ShopSubMenu.resx">
-      <DependentUpon>ShopSubMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\AdministratorInterface\Visitors.resx">
       <DependentUpon>Visitors.cs</DependentUpon>
@@ -537,6 +549,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\info_desk_list.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mcdonalds.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KFC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BurgerKing.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

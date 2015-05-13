@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label4 = new System.Windows.Forms.Label();
+            this.QuantityLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,14 +39,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label4
+            // QuantityLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(118, 45);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
-            this.label4.TabIndex = 32;
-            this.label4.Text = "Quantity";
+            this.QuantityLabel.AutoSize = true;
+            this.QuantityLabel.Location = new System.Drawing.Point(118, 45);
+            this.QuantityLabel.Name = "QuantityLabel";
+            this.QuantityLabel.Size = new System.Drawing.Size(46, 13);
+            this.QuantityLabel.TabIndex = 32;
+            this.QuantityLabel.Text = "Quantity";
             // 
             // label3
             // 
@@ -128,7 +128,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.QuantityLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -143,7 +143,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label QuantityLabel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

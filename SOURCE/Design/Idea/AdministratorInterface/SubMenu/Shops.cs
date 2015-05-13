@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Idea.AdministratorInterface
+namespace Design.Idea.AdministratorInterface.SubMenu
 {
-    public partial class Home : HomePageWithMap
+    public partial class Shops : HomePageWithMap
     {
-        public Home() { InitializeComponent(); }
+        public Shops() { InitializeComponent(); }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -49,7 +49,7 @@ namespace Design.Idea.AdministratorInterface
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            new SubMenu.Shops().Show();
+            //new ShopSubMenu(this).Show();
         }
 
         private void label3_Click(object sender, EventArgs e)

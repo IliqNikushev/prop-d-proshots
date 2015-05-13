@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Design.Idea.AdministratorInterface
 {
-    public partial class Camping : SubMenuBase
+    public partial class Camping : HomePageWithMap
     {
-        public Camping(Form parent) : base(parent)
+        public Camping(Form parent) : base()
         {
             InitializeComponent();
         }

@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace Design.Idea.AdministratorInterface
 {
-    public partial class Calendar : SubMenuBase
+    public partial class Calendar : HomePageWithMap
     {
-        public Calendar(Form parent) : base(parent)
+        public Calendar(Form parent) : base()
         {
             InitializeComponent();
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            this.Close();
+            
         }
     }
 }
