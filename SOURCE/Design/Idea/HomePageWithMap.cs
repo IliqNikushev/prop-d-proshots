@@ -183,9 +183,7 @@ namespace Design.Idea
         {
             base.OnSet();
             foreach (var item in this.OnAutoComplete)
-            {
                 item.Value.ListBox.Visible = false;
-            }
             if (pictureBox10.Visible)
             {
                 MainMenu.Width -= pictureBox10.Width;

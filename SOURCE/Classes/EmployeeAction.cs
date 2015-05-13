@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Classes
 {
-    public class EmployeeAction
+    public class EmployeeAction : Record
     {
         public EmployeeAction(Employee employee, EmployeeActionType type)
         {

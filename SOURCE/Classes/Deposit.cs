@@ -9,7 +9,7 @@ namespace Classes
     /// <summary>
     /// Deposit made by Paypal Transaction
     /// </summary>
-    public class Deposit
+    public class Deposit : Record
     {
         public string ID { get; private set; }
         public decimal Amount { get; private set; }

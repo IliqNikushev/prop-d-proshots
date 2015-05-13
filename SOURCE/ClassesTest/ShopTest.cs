@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Classes
 {
     [TestClass]
-    public class ShopTest : PowerDependantTest
+    public class ShopTest : UnitTest
     {
         public const string VALID_SHOP_ID = "3";
         public const string INVALID_SHOP_ID = "-1";
@@ -83,18 +83,6 @@ namespace Classes
         [TestMethod]
         public void UserPurchasesWithNotEnoughCredits()
         {
-        }
-
-        [TestMethod]
-        public override void OnPowerFailure()
-        {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod]
-        public override void OnConnectionFailure()
-        {
-            throw new NotImplementedException();
         }
     }
 }

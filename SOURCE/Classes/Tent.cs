@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Classes
 {
-    public class Tent
+    public class Tent : Record
     {
         public Tent(Visitor bookedBy, params Visitor[] people)
         {

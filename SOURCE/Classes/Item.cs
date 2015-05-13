@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public abstract class Item
+    public abstract class Item : Record
     {
         #region examples
         /*    
@@ -18,13 +18,11 @@ namespace Classes
         public string Brand { get; private set; }
         public string Model { get; private set; }
         public string Type { get; private set; }
-        public decimal Price { get; private set; }
         //public Image Icon{get; private set;}
        
-        public Item(int id, decimal price, string brand, string model, string type)
+        public Item(int id, string brand, string model, string type)
         {
             this.ID = id;
-            this.Price = price;
             this.Brand = brand;
             this.Model = model;
             this.Type = type;

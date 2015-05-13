@@ -6,46 +6,17 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public abstract class User 
+    public abstract class User : Record 
     {
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string FullName { get { return this.FirstName + " " + this.LastName; } }
-        public string Id { get; private set; }
-        public virtual bool IsAuthenticated { get { return this.Id != null; } }
-
-        public string Username
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public string Password
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public string Email
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public int Id { get; private set; }
+        public virtual bool IsAuthenticated { get { return this.Id != 0; } }
+        public string Username { get; private set; }
+        public string Password { get; private set; }
+        public string Email { get; private set; }
+        public string Picture { get; private set; }
 
         private User(User user)
         {
@@ -54,7 +25,7 @@ namespace Classes
             BuildFrom(user);
         }
 
-        public User(string id, string firstName, string lastName, string username, string email)
+        public User(int id, string firstName, string lastName, string username, string email, string picture)
         {
             this.Id = id;
             this.FirstName = firstName;
@@ -89,14 +60,12 @@ namespace Classes
 
         public static User Authenticate(string name, string password)
         {
-            return null;
             return Database.GetUser(name, password);
         }
 
-        public static User Authenticate(string id)
+        public static Visitor Authenticate(string id)
         {
-            return null;
-            return Database.GetUser(id);
+            return Database.GetVisitor(id);
         }
     }
 }

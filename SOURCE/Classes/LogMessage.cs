@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Classes
 {
-    public class LogMessage
+    public class LogMessage : Record
     {
         public LogMessage(string name, string description)
         {

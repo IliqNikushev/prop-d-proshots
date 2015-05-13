@@ -20,16 +20,5 @@ namespace Classes
             {
             }
         }
-
-        public Employer Employer
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Classes
 {
-    public class Appointment
+    public class Appointment : Record
     {
         public Appointment(AppointedItem item, Visitor visitor)
         {

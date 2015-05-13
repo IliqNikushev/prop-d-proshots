@@ -68,14 +68,14 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(171, 41);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Enter you credentials OR Approach your card to the reader";
+            this.label1.Text = "Enter you credentials";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pictureBox11
             // 
             this.pictureBox11.Image = global::Design.Properties.Resources.LOGO_Proshot;
             this.pictureBox11.Location = new System.Drawing.Point(74, 0);
-            this.pictureBox11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox11.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(152, 136);
             this.pictureBox11.TabIndex = 8;
@@ -91,7 +91,7 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox11);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Login";
             this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();

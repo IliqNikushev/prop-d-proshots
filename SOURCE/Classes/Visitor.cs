@@ -8,12 +8,15 @@ namespace Classes
     public class Visitor : User
     {
         public decimal Amount { get; private set; }
+        public string RFID { get; private set; }
 
         public Visitor(string identificator) : base(identificator) { }
         public Visitor(string username, string password) : base(username, password) { }
 
-        public Visitor(string id, string firstName, string lastName, string username, string email, decimal amount) : base(id,firstName,lastName,username,email)
+        public Visitor(int id, string firstName, string lastName, string username, string email, string picture, decimal amount, string rfid)
+            : base(id, firstName, lastName, username, email, picture)
         {
+            this.RFID = rfid;
             this.Amount = amount;
         }
 

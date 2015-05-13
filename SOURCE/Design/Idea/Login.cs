@@ -18,32 +18,60 @@ namespace Design.Idea
         {
             this.forWho = forWho;
             InitializeComponent();
-
-            // for who is visitor -> show the 'show your identificator'
+            if (!Classes.Database.CanConnect)
+                MessageBox.Show("Unable to connect to database");
+            if (forWho == For.Visitor)
+                if (reader.IsAttached)
+                {
+                    label1.Text += " OR Approach your card to the reader \n";
+                    reader.OnDetect += Authenticate;
+                }
         }
 
         private void Authenticate(string id)
         {
-            LoggedInUser = Classes.User.Authenticate(id);
+            Authenticate(Classes.User.Authenticate(id));
         }
 
         private void Authenticate(string name, string password)
         {
-            //check the database
-            LoggedInUser = Classes.User.Authenticate(name, password);
+            Authenticate(Classes.User.Authenticate(name, password));
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Authenticate(Classes.User user)
         {
-            string username = "";
-            string password = "";
-            Authenticate(username, password);
+            if (!Classes.Database.CanConnect)
+            {
+                MessageBox.Show("Unable to connect to database");
+                //uncomment when we have real users to authenticate
+                //return;
+            }
+            LoggedInUser = user;
+            this.Invoke(new Action(ProccessLogin));
+        }
+
+        private void ProccessLogin()
+        {
+            if (LoggedInUser == null)
+            {
+                MessageBox.Show("Invalid credentials");
+                //uncomment when we have real users to authenticate
+                //return;
+            }
+            reader.OnDetect -= Authenticate;
             if (forWho == For.Admin)
                 new AdministratorInterface.Home().Show();
             else if (forWho == For.Employee)
                 new EmployeeInterface.Home().Show();
             else if (forWho == For.Visitor)
                 new VisitorInterface.Home().Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string username = textBox1.Text;
+            string password = textBox2.Text;
+            Authenticate(username, password);
         }
     }
 }

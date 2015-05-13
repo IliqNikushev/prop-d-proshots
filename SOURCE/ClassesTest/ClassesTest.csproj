@@ -53,11 +53,8 @@
   <ItemGroup>
     <Compile Include="ShopTest.cs" />
     <Compile Include="PayPalDocumentTest.cs" />
-    <Compile Include="Databases\Database.cs" />
-    <Compile Include="Databases\OnlineDatabase.cs" />
-    <Compile Include="Databases\OfflineDatabase.cs" />
+    <Compile Include="Databases\DatabaseTest.cs" />
     <Compile Include="UnitTest.cs" />
-    <Compile Include="PowerDependantTest.cs" />
     <Compile Include="UserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
