@@ -1,11 +1,19 @@
 <?php
         require('Login.php');
         require('Head.php');
+        
+         if ($_POST['Payment']){
+        require('Payment.php');
+}
 ?>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script> 
 $(document).ready(function(){
+    
+$("Document").change(function(){
+
+});
 
 	$("#Login-Panel").hide();
 	$("#Logout").hide();	 
@@ -99,18 +107,23 @@ function Add() {
     
     var TicketsTextHeight = $('#TicketsText').height();
     $('#TicketsText').height(TicketsTextHeight + 30);
+    
+var MyRows = $('table#table').find('tbody').find('tr');
+var users = [];
+for (var i = 0; i < MyRows.length; i++) {
+var Fname = $(MyRows[i]).find('td:eq(0)').html();
+var Lname = $(MyRows[i]).find('td:eq(1)').html();
+var Email = $(MyRows[i]).find('td:eq(2)').html();
+users.push({FirstName:Fname,LastName:Lname,Email:Email});
+}
+$.post("Payment.php", {users: users})
     }
     else{
         $('#Message').text("All fields must be filled!");
     }
 }
 function Remove() {
-var MyRows = $('table#table').find('tbody').find('tr');
-for (var i = 0; i < MyRows.length; i++) {
-var FName = $(MyRows[i]).find('td:eq(0)').html();
-var Lname = $(MyRows[i]).find('td:eq(1)').html();
-var Email = $(MyRows[i]).find('td:eq(2)').html();
-$.post("Payment.php", {FirstName: FName,LastName: Lname,Email: Email}, function(x){console.log(x)})}
+
 
 }
 </script>
@@ -150,7 +163,10 @@ $Price = 0;
 
 	 					
 			<hr/>
-			<div id="Tickets_div">Tickets: <?php echo  $Tickets ?></div> 
+			<div id="Tickets_div">Tickets: <?php echo  $Tickets ?></div><br>
+                        
+			<div id="Price_div">Price:  <?php  echo  $Price ?> euro<br></div><br>
+
                         <script>
                             var Tickets = <?php echo  json_encode($Tickets) ?>;
                             function Update_Tickets() {
@@ -159,12 +175,6 @@ $Price = 0;
                                         jQuery('#Tickets_div').html('Tickets: ');
                                         $('#Tickets_div').append(TicketsF);
                             }
-                             
-                            
-                        </script><br>
-                        
-			<div id="Price_div">Price:  <?php  echo  $Price ?> euro<br><br></div>
-                        <script>
                             function Update_Price() {
                                         
                                         var Price = (((Tickets).length + $('#table tr').length) - 1) * 55 + " euro";
@@ -172,9 +182,8 @@ $Price = 0;
                                         $('#Price_div').append(Price);
                                         
                             }
-                                        
+                            
                         </script>
-                        
 			</div>
 
     </div>

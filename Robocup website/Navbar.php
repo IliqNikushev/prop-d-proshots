@@ -41,7 +41,8 @@ $(document).ready(function(){
                                 </div>
                                 <form id="Logout" action="" method="POST">
                                 <div style="color: gray">
-                                Hi , <a href="Profile.php" style="color: white"><?php 
+                                <li class="dropdown">Welcome,&nbsp
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: lightblue"><?php 
                                 if (isset($_COOKIE['username'])) { 
                                     $username_cookie = $_COOKIE['username'];
                                 if ($username_cookie == $username) { 
@@ -57,8 +58,15 @@ $(document).ready(function(){
                                    else{
                                     echo $username;   
                                    }
-                                ?></a>&nbsp&nbsp&nbsp
-                                <input type="submit" name="Logout" value="Logout">
+                                ?><b class="caret"></b></a>
+					<ul class="dropdown-menu " style="text-align: center">
+                                            <li><a href="Profile.php" >Settings</a></li>
+                                            <li><a href="Balance.php" >Balance</a></li>
+                                            <li><a href="Booked.php" >Booked Items</a></li>
+                                            <li><input type="submit" name="Logout" value="Logout"></li>
+					</ul>
+                                    &nbsp&nbsp<input type="submit" name="Logout" value="Logout">
+					</li> 
                                 </div>
                                 </form>
                 </ul>
@@ -94,9 +102,6 @@ $(document).ready(function(){
 					<ul class="dropdown-menu" >
 					<li><a href="Sponsors.php">Sponsors</a></li>
 					<li><a href="Contact Information.php">Contact Information</a></li>
-                                        <li><a href="Balance.php">Balance</a></li>
-					<li><a href="Booked.php">Booked Items</a></li>
-					<li><a href="Profile.php">Profile</a></li>
 					</ul>
 					</li>
                 </ul>

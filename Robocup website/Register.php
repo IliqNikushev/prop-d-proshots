@@ -13,8 +13,7 @@
         $Username = $_POST['Username'];
         $Password = $_POST['Password'];
         $Type = 1;
-        $Ticket = 0;
-        $query = "INSERT INTO `users` (FirstName,LastName, Email, Username, Password , Type, Ticket) VALUES ('$FirstName', '$LastName', '$Email', '$Username', '$Password', '$Type', '$Ticket')";
+        $query = "INSERT INTO `users` (FirstName,LastName, Email, Username, Password , Type ) VALUES ('$FirstName', '$LastName', '$Email', '$Username', '$Password', '$Type')";
         
         
         $query1 = mysql_query("SELECT Username FROM Users WHERE Username='$Username'");
@@ -30,6 +29,26 @@
   else {
       $msg = "User Created Successfully.";
       $result = mysql_query($query);
+      
+
+                                    $query3 = "SELECT ID FROM `users` WHERE username='$Username'";
+                                    $result1 = mysql_query($query3);
+                                    while ($row = mysql_fetch_assoc($result1)) {
+     $rows[] = $row;
+}
+    
+}
+
+
+foreach($rows as $row) {
+
+$UserID = $row["ID"];
+$Balance = 0;
+$Ticket = 1;
+}
+$query4 = "INSERT INTO `visitors` (User_ID, Balance, Ticket) VALUES ('$UserID', '$Balance', '$Ticket')";
+$result2 = mysql_query($query4);
+      
       if($a = mysql_error())
       {
           $msg = mysql_error();
@@ -41,7 +60,6 @@
     
     
     }
-}
 ?>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -122,7 +140,7 @@ $(document).ready(function(){
                         <input required pattern=".{4,25}" title="from 4 to 25 characters" type="password" name="Password" placeholder="Password"><br><br>
 			
 			<div style="display: inline-block; width:16%"><b>Confirm Password: </b></div>
-                        <input required onChange="checkPasswordMatch();" type="password" name="Cpassword" placeholder="Confirm Password"><br><br>
+                        <input required type="password" name="Cpassword" placeholder="Confirm Password"><br><br>
                         
 			<div style="display: inline-block; width:16%"><b>Email: </b></div>
 			<input required pattern=".{6,25}" title="from 6 to 25 characters" type="email" name="Email" placeholder="Email"><br><br>
