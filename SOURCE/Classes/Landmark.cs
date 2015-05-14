@@ -7,7 +7,7 @@ namespace Classes
 {
     public abstract class Landmark : Record
     {
-        public Landmark(string id, string label, string description, int x, int y)
+        public Landmark(int id, string label, string description, int x, int y)
         {
             this.ID = id;
             this.Label = label;
@@ -20,6 +20,6 @@ namespace Classes
         public int Y { get; private set; }
         public string Label { get; private set; }
         public string Description { get; private set; }
-        public string ID { get; private set; }
+        public int ID { get; private set; }
     }
 }

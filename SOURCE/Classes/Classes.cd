@@ -28,21 +28,21 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>PurchasableItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.User" Collapsed="true">
     <Position X="5.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgACAEAAACAAAIAAAQAAAAIgAAAAAAACAAAAAAAAAAg=</HashCode>
+      <HashCode>AAACAEAAACAAAIAAAQAAAAIgAAAAAAACAAAAAAAAAAg=</HashCode>
       <FileName>User.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.Visitor" Collapsed="true">
     <Position X="5.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAACAACAAAAAAAAAAEAAAAAA=</HashCode>
+      <HashCode>AAAAgAQAAAAAAAACAAgAAAAAACAAAAAAAAAAEAAAAAA=</HashCode>
       <FileName>Visitor.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -54,7 +54,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>CgAAEAgAIAAAAAAAAAAAAAIAAAACAAAAAAAQAAAAAAA=</HashCode>
+      <HashCode>CAAAEAgAIAAAAAAAAAAAAAIAAAACAAAAAAAQAAAAAAA=</HashCode>
       <FileName>Employee.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -64,18 +64,17 @@
   <Class Name="Classes.Receipt" Collapsed="true">
     <Position X="8.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAAAACAAAAAAAAAAAAACAAgAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAgiAAAAAgAAAAAAACAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>Receipt.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Visitor" />
       <Property Name="Shop" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Classes.PayPalDocument" Collapsed="true">
     <Position X="6.5" Y="8.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAgCAAAAAQAAAAAAAAAAAAAAAgAAAAAIAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAQAiAAAAAAAAAAAAAAAAAABIAAAAAAAAAA=</HashCode>
       <FileName>PayPalDocument.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -89,17 +88,14 @@
   <Class Name="Classes.Warning" Collapsed="true">
     <Position X="3.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAggAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Warning.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Type" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Classes.Appointment" Collapsed="true">
     <Position X="1.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAECFAAAAASAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <HashCode>AAAAECFAAAAAwAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
       <FileName>Appointment.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -120,7 +116,7 @@
   <Class Name="Classes.Tent" Collapsed="true">
     <Position X="4.75" Y="11.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAQEgAAAAAAAAAAAAAAAQAAAAAAAAAAQAA=</HashCode>
+      <HashCode>AAAUAAAAAQAQkkAAAAMAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
       <FileName>Tent.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -170,11 +166,11 @@
       <FileName>ShopJob.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Classes.PurchaseSelection" Collapsed="true">
+  <Class Name="Classes.ReceiptItem" Collapsed="true">
     <Position X="8.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAEAAAAAAIAAAAAAAAAAAA=</HashCode>
-      <FileName>PurchaseSelection.cs</FileName>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAEAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>ReceiptItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.LogMessage" Collapsed="true">
@@ -208,7 +204,7 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AgAAAAAgAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAgAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>AdminUser.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -243,7 +239,7 @@
   <Class Name="Classes.InformationKioskJob" Collapsed="true">
     <Position X="14.5" Y="9.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQCAAAA=</HashCode>
+      <HashCode>AAAAAABAAgAQAIAAAAAAAAAAABAAAAAAAAAAAQCAAAA=</HashCode>
       <FileName>InformationKioskJob.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -264,7 +260,7 @@
   <Class Name="Classes.AppointmentTask" Collapsed="true">
     <Position X="2.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAQAggAAAAAAAAAQAQAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>AppointmentTask.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -275,17 +271,17 @@
       <FileName>RestockableItem.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Classes.RestockSelection" Collapsed="true">
+  <Class Name="Classes.RestockItem" Collapsed="true">
     <Position X="9" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAEAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAQAAAAIAAAEAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>RestockSelection.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Classes.RentableItemHistory" Collapsed="true">
     <Position X="4.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIACAAAAACAAAAAAIAAAAAAAAAAAAAEAAAEQAAAAA=</HashCode>
+      <HashCode>AAAoACAAAAACEAAAAAIAAAAAAAAAAAAAEAAAEQAAAAA=</HashCode>
       <FileName>RentableItemHistory.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -296,7 +292,7 @@
   <Class Name="Classes.Database" Collapsed="true">
     <Position X="17.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AECEIBAEACAZoQhAEkEACTAASAAAGCAAEwEAKUEACgI=</HashCode>
+      <HashCode>gEDFIBA0AyAboSjIEkMATTwBS8FJWCSAM4GAaUECT4I=</HashCode>
       <FileName>Database.cs</FileName>
     </TypeIdentifier>
   </Class>

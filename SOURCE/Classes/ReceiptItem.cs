@@ -6,20 +6,17 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public class PurchaseSelection
+    public class ReceiptItem : Record
     {
-        public PurchasableItem Item { get; private set; }
+        public int ID { get; private set; }
+        public ShopItem Item { get; private set; }
         public int Times { get; private set; }
 
-        public PurchaseSelection(PurchasableItem item, int times)
+        public ReceiptItem(int id, ShopItem item, int times)
         {
+            this.ID = id;
             this.Item = item;
             this.Times = times;
-        }
-
-        public void Purchase()
-        {
-            this.Item.Purchase(this.Times);
         }
     }
 }

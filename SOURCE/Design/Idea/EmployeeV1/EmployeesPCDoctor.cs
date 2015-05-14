@@ -15,11 +15,30 @@ namespace Design.Idea.EmployeeInterface
         public EmployeesPCDoctor()
         {
             InitializeComponent();
+
+            List<Classes.Appointment> appointments = Classes.Database.Appointments;
+            
+            foreach (var item in appointments)
+            {
+                this.listBox1.Items.Add(item);
+            }
         }
 
         private void topNavContainer_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void AddAppointment()
+        {
+        }
+
+        private void ViewAppointment()
+        {
+        }
+
+        private void EditAppointment()
+        {
         }
     }
 }

@@ -7,10 +7,20 @@ namespace Classes
 {
     public class InformationKioskJob : Job
     {
-        public InformationKioskJob(string id, string label, string description, int x, int y, int availableCards) : base(id, label, description, x, y) { this.NumberOfCardsAvailable = availableCards; }
+        public InformationKioskJob(int id, int x, int y) : base(id, "Information desk", "Here you can get information about the event and your card", x, y) { }
 
-        public int NumberOfCardsAvailable { get; private set; }
-        public int NumberOfCardsTaken { get; private set; }
+        private int numberOfCardsTaken, numberOfCardsTotal;
+
+        public int NumberOfCardsAvailable {get{return this.NumberOfCardsTotal - this.NumberOfCardsTaken;}}
+        public int NumberOfCardsTaken {get {return this.numberOfCardsTaken;}}
+        public int NumberOfCardsTotal { get { return this.numberOfCardsTotal; } }
+
+        public void RefreshCards()
+        {
+            Database.MiscTable misc = Database.Misc;
+            this.numberOfCardsTotal = misc.NumberOfCardsTotal;
+            this.numberOfCardsTaken = misc.NumberOfCardsTaken;
+        }
 
         public void GiveIDCardToVisitor(Visitor visitor, string tag)
         {
@@ -18,6 +28,8 @@ namespace Classes
                 throw new InvalidOperationException("User already has RFID");
 
             Database.ExecuteSQL("UPDATE visitors SET rfid = '{0}' WHERE visitors.user_id = {1}", tag, visitor.Id);
+
+            this.RefreshCards();
         }
     }
 }

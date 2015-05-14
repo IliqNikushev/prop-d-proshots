@@ -29,7 +29,7 @@ namespace Design.Idea
             Random r = new Random();
             for (int i = 0; i < 30; i++)
             {
-                items.Add(new ShopItem(new Classes.PurchasableItem(0, r.Next(5000) / 1000m, "", "Back","<>", i+1, (i+1)/2)));
+                items.Add(new ShopItem(new Classes.ShopItem(0, r.Next(5000) / 1000m, "", "Back","<>", i+1, (i+1)/2, null)));
             }
 
             InitializeComponent();
@@ -37,7 +37,7 @@ namespace Design.Idea
             totalNumberLbl.Text = "0" + currency;
             totalCountLbl.Text = "0";
 
-            ShopItem example = new ShopItem(new Classes.PurchasableItem(0, 0, "", "Back","<>", 0, 0));
+            ShopItem example = new ShopItem(new Classes.ShopItem(0, 0, "", "Back","<>", 0, 0, null));
             this.Controls.Add(GenerateItem(exampleLbl.Left, exampleLbl.Top, example));
 
             foreach (var item in example.PanelAssosiated.Controls)
@@ -253,8 +253,8 @@ namespace Design.Idea
         private void button1_Click(object sender, EventArgs e)
         {
             IEnumerable<ShopItem> selectedItems = this.items.Where(x=>x.PurchaseTimes > 0);
-            IEnumerable<Classes.PurchaseSelection> selection = selectedItems.Select(x => new Classes.PurchaseSelection(x.Item, x.PurchaseTimes));
-            Classes.Receipt receipt = new Classes.Receipt(ActiveVisitor, this.Shop, selection.ToList());
+            IEnumerable<Classes.ReceiptItem> selection = selectedItems.Select(x => new Classes.ReceiptItem(0, x.Item, x.PurchaseTimes));
+            //Classes.Receipt receipt = new Classes.Receipt(ActiveVisitor, this.Shop, selection.ToList());
 
             //save receipt;
 
@@ -291,7 +291,7 @@ namespace Design.Idea
         public Label TotalLabel;
         public Label NameLabel;
 
-        public Classes.PurchasableItem Item { get; private set; }
+        public Classes.ShopItem Item { get; private set; }
         public int PurchaseTimes { get; private set; }
 
         public string Name { get { if (Item.Brand == "" || Item.Brand == null) return Item.Model; return Item.Brand + " " + Item.Model; } }
@@ -301,7 +301,7 @@ namespace Design.Idea
         public int WarningLevel { get { return Item.WarningLevel; } }
         public decimal Total { get { return this.Price * this.PurchaseTimes; } }
 
-        public ShopItem(Classes.PurchasableItem item)
+        public ShopItem(Classes.ShopItem item)
         {
             this.Item = item;
         }

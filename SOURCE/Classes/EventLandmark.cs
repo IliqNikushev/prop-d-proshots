@@ -7,7 +7,7 @@ namespace Classes
 {
     public class EventLandmark : Landmark
     {
-        public EventLandmark(string id, string label, string description, int x, int y, System.DateTime timeStart, DateTime timeEnd) : base(id, label, description, x, y) { }
+        public EventLandmark(int id, string label, string description, int x, int y, System.DateTime timeStart, DateTime timeEnd) : base(id, label, description, x, y) { }
 
         public DateTime TimeStart
         {

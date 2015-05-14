@@ -7,31 +7,15 @@ namespace Classes
 {
     public class Warning : Record
     {
-        public Warning(WarningType type, string details)
+        public Warning(int id, string name, string description)
         {
-            throw new System.NotImplementedException();
-        }
-    
-        public WarningType Type
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            this.ID = id;
+            this.Name = name;
+            this.Description = description;
         }
 
-        public int Details
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public int ID { get; private set; }
+        public string Name { get; private set; }
+        public string Description { get; private set; }
     }
 }

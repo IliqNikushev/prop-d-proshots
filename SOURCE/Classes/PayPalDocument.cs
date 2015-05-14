@@ -14,19 +14,18 @@ namespace Classes
     {
         const string DATE_FORMAT = "YYYY/MM/dd/HH:mm:SS";
 
-        public decimal AccountNumber{get;private set;}
-        public DateTime DateStart{get;private set;}
-        public DateTime DateEnd { get; private set; }
-        public Deposit[] Deposits { get; private set; }
+        public int ID{get;private set;}
+        public DateTime Date{get;private set;}
+        public string Raw { get; private set; }
+        public List<Deposit> Deposits { get { return Database.Where<Deposit>("Deposits.paypal_document_id = {0}", this.ID); } }
 
-        public PayPalDocument(decimal accountNumber, DateTime dateStart, DateTime dateEnd, Deposit[] deposits)
+        public PayPalDocument(int ID, DateTime date, string raw)
         {
-            this.AccountNumber = accountNumber;
-            this.DateStart = dateStart;
-            this.DateEnd = dateEnd;
-            this.Deposits = deposits;
+            this.ID = ID;
+            this.Date = date;
+            this.Raw = raw;
         }
-
+        /*
         public static PayPalDocument Parse(string text)
         {
             return Parse(text.Split('\n'));
@@ -71,6 +70,6 @@ namespace Classes
             }
 
             return new PayPalDocument(bankAccountNumber, dateStart, dateEnd, deposits);
-        }
+        }*/
     }
 }

@@ -8,14 +8,9 @@ namespace Classes
 {
     public class PurchasableItem : RestockableItem
     {
-        public PurchasableItem(int id, decimal price, string brand, string model, string type, int inStock, int warningLevel)
-            : base(id, price, brand, model, type, inStock, warningLevel)
+        public PurchasableItem(int id, decimal price, string brand, string model, string type, int inStock)
+            : base(id, price, brand, model, type, inStock)
         {
-        }
-
-        public void Purchase(int amount)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

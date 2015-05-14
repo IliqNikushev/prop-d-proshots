@@ -8,7 +8,6 @@ namespace Classes
     public abstract class RestockableItem : Item
     {
         public int InStock { get;private set;}
-        public int WarningLevel { get; private set; }
         public decimal Price { get; private set; }
 
         public void Restock(int amount)
@@ -23,12 +22,11 @@ namespace Classes
             this.InStock -= amount;
         }
 
-        public RestockableItem(int id, decimal price, string brand, string model, string type, int inStock, int warningLevel)
+        public RestockableItem(int id, decimal price, string brand, string model, string type, int inStock)
             : base(id, brand, model, type)
         {
             this.Price = price;
             this.InStock = inStock;
-            this.WarningLevel = warningLevel;
         }
     }
 }

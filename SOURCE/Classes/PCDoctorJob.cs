@@ -7,7 +7,7 @@ namespace Classes
 {
     public class PCDoctorJob : Job
     {
-        public PCDoctorJob(string id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
+        public PCDoctorJob(int id, int x, int y) : base(id, "PC DOCTOR", "Here you can give your equipment for repair or diagnosis", x, y) { }
 
         public List<Appointment> Appointments
         {
@@ -26,9 +26,6 @@ namespace Classes
             {
                 throw new System.NotImplementedException();
             }
-            set
-            {
-            }
         }
 
         public List<Appointment> NotCompletedAppointments
@@ -36,9 +33,6 @@ namespace Classes
             get
             {
                 throw new System.NotImplementedException();
-            }
-            set
-            {
             }
         }
 

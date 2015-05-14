@@ -11,18 +11,18 @@ namespace Classes
     /// </summary>
     public class Deposit : Record
     {
-        public string ID { get; private set; }
+        public int ID { get; private set; }
         public decimal Amount { get; private set; }
 
         public Visitor Visitor
         {
             get
             {
-                return new Visitor(this.ID);
+                return Database.Find<Visitor>("user_id = {0}", this.ID);
             }
         }
 
-        public Deposit(string id, decimal amount)
+        public Deposit(int id, decimal amount)
         {
             this.ID = id;
             this.Amount = amount;

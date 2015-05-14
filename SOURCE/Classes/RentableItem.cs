@@ -8,8 +8,8 @@ namespace Classes
 {
     public class RentableItem : RestockableItem
     {
-        public RentableItem(int id, decimal price, string brand, string model, string type, int inStock, int warningLevel)
-            : base(id, price, brand, model, type, inStock, warningLevel)
+        public RentableItem(int id, decimal price, string brand, string model, string type, int inStock)
+            : base(id, price, brand, model, type, inStock)
         {
             
         }

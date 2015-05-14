@@ -7,7 +7,7 @@ namespace Classes
 {
     public class AppointmentTask : Record
     {
-        public AppointmentTask(string name, decimal price, string description)
+        public AppointmentTask(int id, string name, decimal price, string description, Appointment appointment = null)
         {
             throw new System.NotImplementedException();
         }

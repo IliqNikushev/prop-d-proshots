@@ -47,7 +47,7 @@ namespace Classes
         [TestMethod]
         public void UserIsInvalid()
         {
-            shop.Purchase(UserTest.INVALID_USER_ID, new List<PurchaseSelection>());
+            shop.Purchase(UserTest.INVALID_USER_ID, new List<ReceiptItem>());
         }
 
         [TestMethod]

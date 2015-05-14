@@ -12,9 +12,21 @@ namespace Design.Idea.EmployeeInterface
 {
     public partial class EmployeeITDesk : Menu
     {
+        List<Classes.RentableItem> selectedItems = new List<Classes.RentableItem>();
+        List<Classes.RentableItem> AllItems;
+
         public EmployeeITDesk()
         {
             InitializeComponent();
+        }
+
+        private void purchaseBtn_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void addMultipleBtn_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

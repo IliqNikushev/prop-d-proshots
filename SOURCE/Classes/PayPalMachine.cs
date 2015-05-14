@@ -7,7 +7,7 @@ namespace Classes
 {
     public class PayPalMachine : Landmark
     {
-        public PayPalMachine(string id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
+        public PayPalMachine(int id, int x, int y) : base(id, "PayPal machine", "PayPal machine to top-up your event account", x, y) { }
 
         public void TopUp(Visitor visitor, decimal amount)
         {

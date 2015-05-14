@@ -10,6 +10,28 @@ namespace Classes
     using Command = MySql.Data.MySqlClient.MySqlCommand;
     public static partial class Database
     {
+        public class MiscTable
+        {
+            public int NumberOfCardsTotal;
+            public int NumberOfCardsTaken;
+
+            public MiscTable(int numberOfCardsTotal, int numberOfCardsTaken)
+            {
+                this.NumberOfCardsTaken = numberOfCardsTotal;
+                this.NumberOfCardsTaken = numberOfCardsTaken;
+            }
+        }
+
+        public static MiscTable Misc
+        {
+            get
+            {
+                MiscTable misc = null;
+                ExecuteSQLWithResult("Select Total, Taken from Misc", (x) => misc = new MiscTable(x.Get<int>("Total"), x.Get<int>("Taken")));
+                return misc;
+            }
+        }
+
         public static Action<Exception, string> OnUnableToProcessSQL;
 
         const string C_Server = "athena01.fhict.local";
@@ -21,101 +43,203 @@ namespace Classes
                     C_Server, C_DataBase, C_UserID, C_Password
                 );
 
-        static Dictionary<Type, string> tables = new Dictionary<Type, string>()
+        static Dictionary<Type, Table> tables = new Dictionary<Type, Table>()
         {
-            { typeof(EmployeeAction), "EmployeeActions"},
-            { typeof(Appointment), "Appointments a Join AppointmentTasks t on a.id = t.appointment_id"},
-            { typeof(Receipt), "Receipts r Join ReceiptItems i on r.id = i.receipt_id Join ShopItems s on i.item_id = s.item_id"},
-            { typeof(RentableItemHistory), "RentableItemHistories h Join RentableItems r on h.item_id = r.item_id"},
-            { typeof(Tent), "Tents t Join TentPeople p on t.location = p.tent_id"},
-            { typeof(TentAreaLandmark), "Tents_All"},
-            { typeof(Warning), "Warnings"},
-            { typeof(PurchasableItem), "PurchasableItems"},
-            { typeof(Landmark), "Landmarks"},
-            { typeof(Job), "Jobs"},
-            { typeof(Deposit), "PayPalDeposits"},
-            { typeof(AppointmentTask), "AppointmentTasks"},
-            { typeof(AppointedItem), "Items_Appointed"},
-            { typeof(LogMessage), "Logs"},
-            { typeof(RentableItem), "RentableItems"},
-            { typeof(PayPalDocument), "PayPalDocuments"},
-            { typeof(RestockSelection), "Restocks"},
-            { typeof(Visitor), "Users u Join Visitors v on u.id = v.user_id"},
-            { typeof(Employee), "Users u Join Employees e on u.id = e.user_id"},
-            { typeof(AdminUser), "Users u where u.type = 'admin'"},
-            { typeof(User), "Users"}
+            {typeof(AdminUser), new Table("Admins").Copy<User>()},
+            {typeof(AppointedItem), new Table("Items_Appointed").Copy<Item>()},
+            {typeof(Appointment), new Table("Appointments", "description", "id").
+                Join<AppointedItem>("JOIN", "Items_Appointed.id = Appointments.appointed_item", "item")},
+            {typeof(AppointmentTask), new Table("AppointmentTasks", "id", "name", "description", "price").
+                Join<Appointment>("JOIN", "AppointmentTasks.appointment_ID = Appointments.id", "appointment")},
+            {typeof(Deposit), new Table("PayPalDeposits", "id", "amount", "date").
+                Join<PayPalDocument>("JOIN", "PayPalDeposits.paypal_document_id = PayPalDocuments.id", "document")},
+            {typeof(Employee), new Table("Employees", "job").
+                Join<User>("JOIN", "Employees.user_id = Users.id", "").
+                Join<Landmark>("JOIN", "Landmarks.id = Employees.workplace_id", "workplace")},
+            {typeof(EmployeeAction), new Table("EmployeeActions", "date", "action", "id").
+                Join<Employee>("JOIN", "Employees.user_id = EmployeeActions.employee_id", "employee")},
+            {typeof(EventLandmark), new Table("Landmarks where Landmarks.type = 'event'").Copy<Landmark>()},
+            {typeof(FoodAndDrinkShopJob), new Table("Landmarks where Landmarks.type = 'food-and-drink'", "id", "x", "y")},
+            {typeof(GeneralShopJob), new Table("Landmarks where landmarks.type = 'general'").Copy<FoodAndDrinkShopJob>()},
+            {typeof(InformationKioskJob), new Table("Landmarks where Landmarks.type = 'info'").Copy<FoodAndDrinkShopJob>()},
+            {typeof(Item), new Table("Items", "brand", "model", "id", "type", "description" )},
+            {typeof(ITServiceJob), new Table("Landmarks where Landmarks.type = 'it'").Copy<FoodAndDrinkShopJob>()},
+            {typeof(Job), new Table("Landmarks where Landmarks.type in (Select Jobs.name from Jobs)").Copy<FoodAndDrinkShopJob>()},
+            {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type")},
+            {typeof(LogMessage), new Table("Logs", "id", "date", "description", "name")},
+            {typeof(PayPalDocument), new Table("PayPalDocuments", "id", "date", "raw")},
+            {typeof(PayPalMachine), new Table("Landmarks where Landmarks.type = 'paypal'").Copy<FoodAndDrinkShopJob>()},
+            {typeof(PCDoctorJob), new Table("Landmarks where landmarks.type = 'pc-doctor'").Copy<FoodAndDrinkShopJob>()},
+            {typeof(ShopItem), new Table("ShopItems", "quantity", "id", "warningAmount").
+                Join<Item>("JOIN" ,"ShopItems.item_id = Items.id", "item").
+                Join<ShopJob>("JOIN" ,"Shops.id = Shopitems.shop_id", "shop")},
+            {typeof(Receipt), new Table("Receipts", "id", "purchasedOn").
+                Join<Visitor>("JOIN", "Receipts.purchasedby = Visitors.user_id", "purchasedby")},
+            {typeof(ReceiptItem), new Table("ReceiptItems", "id", "totalAmount", "pricePerItem").
+                Join<Receipt>("JOIN", "Receipts.id = ReceiptItems.receipt_id", "receipt").
+                Join<ShopItem>("JOIN", "ShopItems.item_id = ReceiptItems.item_id", "item")},
+            {typeof(RentableItem), new Table("RentableItems", "price", "inStock").
+                Join<Item>("Join", "RentableItems.item_id = Items.id", "")},
+            {typeof(RentableItemHistory), new Table("RentableItemHistories", "returnedAt", "rentedAt", "notes", "rentedTill").
+                Join<RentableItem>("JOIN", "RentableItemHistories.item_id = RentableItems.item_id", "item").
+                Join<Visitor>("JOIN", "RentableItemHistories.returnedBy = Visitors.user_id", "returnedBy").
+                Join<Visitor>("JOIN", "RentableItemHistories.rentedBy = rentedBy.user_id", "rentedBy", "rentedBy")},
+            {typeof(Restock), new Table("Restocks", "id", "date")},
+            {typeof(RestockableItem), new Table("Items Where Items.type != 'appointment'", "id", "brand", "model", "type", "description")},
+            {typeof(RestockItem), new Table("RestockItems", "quantity", "pricePerItem", "total").
+                Join<Restock>("JOIN", "Restocks.id = RestockItems.restock_id", "restock").
+                Join<ShopItem>("JOIN", "ShopItems.item_id = RestockItems.item_id", "item")},
+            {typeof(ShopJob), new Table("Shops", "id", "label", "description", "x", "y", "type")},
+            {typeof(Tent), new Table("Tents", "bookedOn", "bookedTill", "isPayed").
+                Join<Visitor>("JOIN", "Tents.bookedBy = Visitors.user_id", "v").
+                Join<TentAreaLandmark>("JOIN", "Tents_ALL.id = Tents.location", "location")},
+            {typeof(TentAreaLandmark), new Table("Tents_All").Copy<FoodAndDrinkShopJob>()},
+            {typeof(User), new Table("Users", "id", "firstName", "lastName", "email", "password")},
+            {typeof(Visitor), new Table("Visitors", "balance", "picture", "ticket").Join<User>("JOIN", "Users.id = Visitors.user_id", "")},
+            {typeof(Warning), new Table("Warnings", "id", "name", "description")},
         };
-
-        public static IEnumerable<Type> TypesThatDoNotHaveBuildDefinition { get { return System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x => x.IsSubclassOf(typeof(Record))); } }
 
         public static List<string> consistencyExceptions;
         public static void CheckConsistency()
         {
+            System.IO.StreamWriter sw = new System.IO.StreamWriter("sql.txt");
+            using (sw)
+            {
+                sw.WriteLine("");
+            }
             consistencyExceptions = new List<string>();
-
-            foreach (Type record in TypesThatDoNotHaveBuildDefinition)
-                if (!recordBuildDefinitions.ContainsKey(record))
-                    consistencyExceptions.Add("Don't know how to build " + record.Name);
 
             foreach (var table in tables)
             {
                 try
                 {
-                    ExecuteSQL("Select * from " + table.Value, true);
+                    ExecuteSQL("Select " + table.Value.ToString(), true);
                 }
                 catch (Exception ex)
                 {
-                    consistencyExceptions.Add(ex.GetType().Name.Replace("Exception",":")+ex.Message+"\n"+table.Value);
+                    consistencyExceptions.Add(ex.GetType().Name.Replace("Exception",":")+ex.Message+"\r\n"+table.Value.ToString());
+                }
+            }
+            foreach (var type in System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x=>x.IsSubclassOf(typeof(Record))))
+            {
+                if (!recordBuildDefinitions.ContainsKey(type))
+                {
+                    List<System.Reflection.PropertyInfo> properties = type.GetAllProperties();
+                    IEnumerable<string> fields = properties.Select(x => 
+                    {
+                        string t = x.PropertyType.ToString().
+                        Replace("System.Int32", "int").
+                        Replace("System.Double", "double").
+                        Replace("System.Boolean", "bool").
+                        Replace("System.Bool", "bool").
+                        Replace("System.Object", "object").
+                        Replace("System.Char", "char").
+                        Replace("System.Decimal", "decimal").
+                        Replace("System.String", "string");
+
+                        return t + " " + x.Name.Lowerize() + " = " + "reader.Get<"+t+">(\""+x.Name+"\");";
+                    });
+
+                    consistencyExceptions.Add("Don't know how to build " + type.Name);
+                    consistencyExceptions.Add(string.Join("\r\n", fields));
+                    consistencyExceptions.Add("return new " + type +"(" + string.Join(", ", properties.Select(x=>x.Name.Lowerize())) + ");");
+                    consistencyExceptions.Add("");
                 }
             }
 
-            foreach (var type in System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x=>x.IsSubclassOf(typeof(Record))))
+            consistencyExceptions.Add("");
+
+            foreach (var type in System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x => x.IsSubclassOf(typeof(Record))))
             {
                 if (tables.ContainsKey(type))
                 {
                     List<System.Reflection.PropertyInfo> properties = type.GetAllProperties();
+
                     HashSet<string> found = null;
-                    ExecuteSQLWithResult("Select * from " + tables[type], (x) => found = new HashSet<string>(x.GetColumns().Select(y => y.ToLower())));
+                    ExecuteSQLWithResult("Select " + tables[type], (x) => found = new HashSet<string>(x.GetColumns().Select(y => y.ToLower())), true);
                     HashSet<string> current = new HashSet<string>(properties.Select(x =>
                         {
-                            string name = x.Name.ToLower();
+                            string name = x.Name;
                             object[] columnDefinition = x.GetCustomAttributes(typeof(ColumnAttribute), true);
                             if (columnDefinition.Length != 0)
-                                name = (columnDefinition[0] as ColumnAttribute).Name.ToLower();
-                            return name;
+                                name = (columnDefinition[0] as ColumnAttribute).Name;
+                            return name.ToLower();
                         }));
 
                     foreach (string column in found)
                         if (!current.Contains(column))
                             consistencyExceptions.Add(type.Name + "." + column + " Not found locally");
+                    consistencyExceptions.Add("");
 
                     foreach (string column in current)
                         if (!found.Contains(column))
                             consistencyExceptions.Add(type.Name + "." + column + " Not found server side");
 
-                    if (type.GetConstructor(properties.Select(x => x.PropertyType).ToArray()) == null)
+                    consistencyExceptions.Add("");
+                    System.Reflection.ConstructorInfo[] constructors = type.GetConstructors();
+                    Dictionary<Type, int> constructorRequiredTypes = new Dictionary<Type, int>();
+                    foreach (var property in properties)
                     {
-                        string constructor = string.Join(", ", properties.Select(x => x.PropertyType + " " + x.Name.Substring(0, 1).ToLower() + x.Name.Substring(1)));
-                        string initialize = string.Join("\n", properties.Select(x => "this." + x.Name + " = " + x.Name.Substring(0, 1).ToLower() + x.Name.Substring(1)));
+                        if (!constructorRequiredTypes.ContainsKey(property.PropertyType))
+                            constructorRequiredTypes.Add(property.PropertyType, 0);
+                        constructorRequiredTypes[property.PropertyType] += 1;
+                    }
 
-                        consistencyExceptions.Add("Default Constructor not found for " + type.Name);
-                        consistencyExceptions.Add("public " + type.Name + "(" + constructor.
-                            Replace("System.Int32", "int").
-                            Replace("System.Double", "double").
-                            Replace("System.Boolean", "bool").
-                            Replace("System.Bool", "bool").
-                            Replace("System.Object", "object").
-                            Replace("System.Char", "char").
-                            Replace("System.Decimal", "decimal").
-                            Replace("System.String", "string")
-                            + ")\r\n{\r\n" + initialize + "\r\n}");
+                    Dictionary<Type, int> constructorRequiredTypesCopy = new Dictionary<Type, int>(constructorRequiredTypes);
+                    bool isFound = true;
+                    foreach (var constructor in type.GetConstructors())
+                    {
+                        foreach (var parameter in constructor.GetParameters())
+                        {
+                            if (!constructorRequiredTypes.ContainsKey(parameter.ParameterType))
+                            {
+                                isFound = false;
+                                break;
+                            }
+                            constructorRequiredTypes[parameter.ParameterType] -= 1;
+                            if (constructorRequiredTypes[parameter.ParameterType] < 0)
+                            {
+                                isFound = false;
+                                break;
+                            }
+                        }
+                        foreach (var item in constructorRequiredTypes)
+                        {
+                            if (item.Value > 0)
+                            {
+                                isFound = false;
+                                break;
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            IEnumerable<KeyValuePair<string, string>> fields = properties.Select(x => new KeyValuePair<string, string>(
+                                x.PropertyType.ToString().
+                                    Replace("System.Int32", "int").
+                                    Replace("System.Double", "double").
+                                    Replace("System.Boolean", "bool").
+                                    Replace("System.Bool", "bool").
+                                    Replace("System.Object", "object").
+                                    Replace("System.Char", "char").
+                                    Replace("System.Decimal", "decimal").
+                                    Replace("System.String", "string"), x.Name));
+
+                            string constructorStr = string.Join(", ", fields.Select(x => x.Key + " " + x.Value.Lowerize()));
+                            string initialize = string.Join("\r\n", properties.Select(x => "this." + x.Name + " = " + x.Name.Lowerize() + ";"));
+
+                            consistencyExceptions.Add("Default Constructor not found for " + type.Name);
+                            consistencyExceptions.Add(string.Join("\r\n", constructorRequiredTypes.Select(x => x.Key + " => " + x.Value)));
+                            consistencyExceptions.Add("public " + type.Name + "(" + constructorStr + ")\r\n{\r\n" + initialize + "\r\n}");
+                            break;
+                        }
+                        constructorRequiredTypes = new Dictionary<Type, int>(constructorRequiredTypesCopy);
                     }
                 }
                 else
                     consistencyExceptions.Add("Table not found for " + type.Name);
             }
 
-            using (System.IO.StreamWriter sw = new System.IO.StreamWriter("consistency.txt"))
+            using (sw = new System.IO.StreamWriter("consistency.txt"))
             {
                 foreach (var item in consistencyExceptions)
                     sw.WriteLine(item);
@@ -162,6 +286,11 @@ namespace Classes
 
         public static int ExecuteSQL(string sql, bool testing = false)
         {
+            System.IO.StreamWriter sw = new System.IO.StreamWriter("sql.txt", true);
+            using (sw)
+            {
+                sw.WriteLine(sql);
+            }
             int rowsAffected = 0;
             using (Connection connection = new Connection(connectionString))
             {
@@ -189,6 +318,12 @@ namespace Classes
 
         public static void ExecuteSQLWithResult(string sql, Action<Reader> resultCallback, bool testing = false)
         {
+            System.IO.StreamWriter sw = new System.IO.StreamWriter("sql.txt", true);
+            using (sw)
+            {
+                sw.WriteLine(sql);
+            }
+
             processingList = new List<object>();
             using (Connection connection = new Connection(connectionString))
             {
@@ -215,7 +350,7 @@ namespace Classes
         {
             get
             {
-                return GetAll<Visitor>();
+                return All<Visitor>();
             }
         }
 
@@ -223,7 +358,7 @@ namespace Classes
         {
             get
             {
-                return GetAll<Employee>();
+                return All<Employee>();
             }
         }
 
@@ -231,7 +366,7 @@ namespace Classes
         {
             get
             {
-                return GetAll<Landmark>();
+                return All<Landmark>();
             }
         }
 
@@ -239,7 +374,7 @@ namespace Classes
         {
             get
             {
-                return GetAll<Job>();
+                return All<Job>();
             }
         }
 
@@ -255,7 +390,7 @@ namespace Classes
         {
             get
             {
-                return GetAll<PurchasableItem>();
+                return All<PurchasableItem>();
             }
         }
 
@@ -263,7 +398,7 @@ namespace Classes
         {
             get
             {
-                return GetAll<Appointment>();
+                return All<Appointment>();
             }
         }
 
@@ -271,7 +406,7 @@ namespace Classes
         {
             get
             {
-                return GetAll<Warning>();
+                return All<Warning>();
             }
         }
 
@@ -281,6 +416,11 @@ namespace Classes
             {
                 return GetWhere<TentAreaLandmark>("t.rented_by is null");
             }
+        }
+
+        public static Tent GetTent(TentAreaLandmark landmark)
+        {
+            return Find<Tent>("location = {0}", landmark.ID);
         }
 
         public static List<Tent> GetVisitorTent(Visitor visitor)
@@ -353,31 +493,14 @@ namespace Classes
             return GetWhere<Deposit>("d.visitor_id = {0}", visitor.Id);
         }
 
-        private static List<T> GetAll<T>() where T : Record
-        {
-            return GetWhere<T>("");
-        }
-
-        
-
         private static object GetRow(Type t, Reader reader)
         {
             object result = null;
             if(!recordBuildDefinitions.ContainsKey(t))
                 throw new NotImplementedException("Do not know how to build "  + t.Name);
-            result = recordBuildDefinitions[t](reader);
+            result = recordBuildDefinitions[t](reader, "");
 
             return result;
-        }
-
-        private static void GetUser(Reader reader, out int id, out string firstName, out string lastName, out string userName, out string email, out string picture)
-        {
-             id = reader.GetInt("ID");
-             firstName = reader.GetStr("FirstName");
-             lastName = reader.GetStr("LastName");
-             userName = reader.GetStr("UserName");
-             email = reader.GetStr("Email");
-             picture = reader.GetStr("Picture");
         }
 
         static List<object> processingList;
@@ -396,9 +519,29 @@ namespace Classes
             }
         }
 
-        private static T Find<T>(string where, params object[] parameters) where T : Record
+        public static List<T> Where<T>(string wherePattern, params object[] parameters) where T : Record
+        {
+            return GetWhere<T>(wherePattern, parameters);
+        }
+
+        public static List<T> GetAll<T>() where T : Record
+        {
+            return All<T>();
+        }
+
+        public static List<T> All<T>() where T : Record
+        {
+            return GetWhere<T>("");
+        }
+
+        public static T Find<T>(string where, params object[] parameters) where T : Record
         {
             return GetWhere<T>(where, parameters).FirstOrDefault();
+        }
+
+        public static T Get<T>(string where, params object[] parameters) where T : Record
+        {
+            return Find<T>(where, parameters);
         }
 
         private static List<T> GetWhere<T>(string where, params object[] parameters) where T : Record
@@ -408,10 +551,10 @@ namespace Classes
 
         private static List<object> GetWhere(Type t, string where)
         {
-            string tableName = GetTableFor(t);
+            Table tableName = tables[t];
             processType = t;
 
-            ExecuteSQLWithResult("Select * From " + tableName + (where != "" ? " Where " + where : ""), ProcessReader);
+            ExecuteSQLWithResult(tableName + (where != "" ? " Where " + where : ""), ProcessReader);
 
             List<object> result = new List<object>(processingList);
             processingList.Clear();
@@ -419,11 +562,169 @@ namespace Classes
             return result;
         }
 
-        private static string GetTableFor(Type t)
+        private static Table GetTableFor(Type t)
         {
             if (tables.ContainsKey(t))
                 return tables[t];
             throw new NotImplementedException("Table for " + t.Name + " not implemented");
+        }
+
+        class Table
+        {
+            class JoinTable
+            {
+                public Table Table { get { return tables[TableType]; } }
+                public Type TableType;
+                public string Prefix;
+                public string on;
+                public string On
+                {
+                    get
+                    {
+                        if (this.Alias == null) return this.on;
+                        return this.on.Replace(this.Table.Name + ".", this.Alias + ".");
+                    }
+                    set { this.on = value; }
+                }
+                public string Alias;
+                public string Name { get { if (this.Alias == null) return Table.Name; return Table.Name + " " + Alias; } }
+                public string Type;
+
+                public JoinTable(Type tableType, string type, string prefix, string on, string alias = null)
+                {
+                    this.TableType = tableType;
+                    this.Type = type;
+                    this.Prefix = prefix;
+                    if (this.Prefix != "") this.Prefix += "_";
+                    this.on = on;
+                    this.Alias = alias;
+                }
+
+                public IEnumerable<string> Fields
+                {
+                    get
+                    {
+                        if (this.Alias != null)
+                            return Table.Fields.Select(x => x.Replace(Table.Name + ".", Alias + ".") + " " + Prefix + x.Split('.').Last());
+                        return Table.Fields.Select(x => x + " " + Prefix + x.Split('.').Last());
+                    }
+                }
+
+                public string FieldsStr
+                {
+                    get
+                    {
+                        if (this.Alias != null)
+                            return string.Join(", ", Table.Fields.Select(x => x.Replace(Table.Name + ".", Alias + ".") + " " + Prefix + x.Split('.').Last()));
+                        return string.Join(", ", Table.Fields.Select(x => x + " " + Prefix + x.Split('.').Last()));
+                    }
+                }
+            }
+
+            public string Name;
+            public string Extra = "";
+            public List<string> Fields;
+            List<JoinTable> joins = new List<JoinTable>();
+            List<Type> CopyFrom = new List<Type>();
+            public Table(string name, params string[] fields)
+            {
+                this.Name = name;
+                if (this.Name.IndexOf(" ") != -1)
+                {
+                    this.Extra = this.Name.Substring(this.Name.IndexOf(" "));
+                    this.Name = this.Name.Substring(0, this.Name.IndexOf(" "));
+                }
+                this.Fields = new List<string>(fields.Select(x => this.Name + "." + x));
+            }
+
+            public Table Join<T>(string type, string on, string prefix, string alias = null) where T : Record
+            {
+                this.joins.Add(new JoinTable(typeof(T), type, prefix, on, alias));
+                return this;
+            }
+
+            public Table Copy<T>()
+            {
+                this.CopyFrom.Add(typeof(T));
+                return this;
+            }
+
+            public override string ToString()
+            {
+                string name = this.Name + this.Extra;
+                if (this.CopyFrom.Count != 0)
+                {
+                    foreach (Type copy in this.CopyFrom)
+                        this.Fields.AddRange(tables[copy].Fields.Select(x => x.Replace(tables[copy].Name + ".", this.Name + ".")));
+                    this.CopyFrom.Clear();
+                }
+                string fields = string.Join(", ", this.Fields.Select(x => x + " " + x.Split('.').Last()));
+                if (this.joins.Count != 0)
+                {
+                    HashSet<string> usedJoins = new HashSet<string>();
+                    foreach (var join in this.joins)
+                        ProcessJoin(join, ref name, ref fields, usedJoins, join, new List<JoinTable>());
+
+                    foreach (var join in this.joins)
+                        if (join.Table.Extra != null)
+                            name += "\r\n" + join.Table.Extra;
+                }
+                return fields + "\r\nfrom\r\n" + name;
+            }
+
+            private void ProcessJoin(JoinTable join, ref string name, ref string fields, HashSet<string> usedJoins, JoinTable main, List<JoinTable> parents)
+            {
+                string oldAlias = join.Alias;
+
+                int i = 0;
+                if (usedJoins.Contains(join.Name))
+                {
+                    string alias = oldAlias;
+                    if (alias == null)
+                        alias = join.Table.Name;
+
+                    if (join.Prefix != null && join.Prefix != "")
+                        alias = join.Table.Name + "_" + join.Prefix.Replace("_", "");
+                    else
+                        if (main.Prefix != null && main.Prefix != "")
+                            alias = join.Table.Name + "_" + main.Prefix.Replace("_", "");
+                    join.Alias = alias;
+                    while (usedJoins.Contains(join.Name))
+                        join.Alias = alias + "_" + (i++);
+                }
+                string oldPrefix = join.Prefix;
+
+                string oldOn = join.on;
+                foreach (var item in parents)
+                    if (item.Alias != null && item.Alias != "")
+                        if (join.On.Contains(item.Table.Name + "."))
+                            join.On = join.On.Replace(item.Table.Name + ".", item.Alias + ".");
+
+                usedJoins.Add(join.Name);
+                name += "\r\n" + join.Type + " " + join.Name + " On " + join.On;
+                {
+                    string fs = fields;
+                    if (join.Fields.Where(x => fs.Contains(x.Split(' ').Last())).Any())
+                        if (parents.Count > 0)
+                            if (join.Prefix == "")
+                            {
+                                join.Prefix = string.Join("_", parents.Select(x => x.Prefix == null ? x.Alias == null ? x.Table.Name : x.Alias : x.Prefix.Replace("_", "")).Where(x => x.Length > 0));
+                                if (join.Prefix.Last() != '_')
+                                    join.Prefix += "_";
+                            }
+                    string f = join.FieldsStr;
+                    fields += f.Trim().Length > 0 ? "\r\n, " + f : "";
+                }
+
+                parents.Add(join);
+
+                if (join.Table.joins.Count > 0)
+                    foreach (var item in join.Table.joins)
+                        ProcessJoin(item, ref name, ref fields, usedJoins, main, new List<JoinTable>(parents));
+                join.Prefix = oldPrefix;
+                join.Alias = oldAlias;
+                join.On = oldOn;
+            }
         }
     }
 }

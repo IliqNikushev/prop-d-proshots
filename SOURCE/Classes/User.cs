@@ -16,47 +16,16 @@ namespace Classes
         public string Username { get; private set; }
         public string Password { get; private set; }
         public string Email { get; private set; }
-        public string Picture { get; private set; }
 
-        private User(User user)
-        {
-            if(user == null)
-                throw new Exceptions.InvalidUserException();
-            BuildFrom(user);
-        }
-
-        public User(int id, string firstName, string lastName, string username, string email, string picture)
+        public User(int id, string firstName, string lastName, string username,string password, string email)
         {
             this.Id = id;
             this.FirstName = firstName;
             this.LastName = lastName;
+            this.Password = password;
             this.Username = username;
             this.Email = email;
         }
-
-        public User(string identificator) : this(Authenticate(identificator))
-        {
-        }
-
-        public User(string username, string password) : this(Authenticate(username, password))
-        {
-        }
-
-        private void BuildFrom(User user)
-        {
-            if (user.GetType() != this.GetType())
-                throw new InvalidCastException("User is not of correct type");
-
-            this.FirstName = user.FirstName;
-            this.LastName = user.LastName;
-            this.Id = user.Id;
-            this.Username = user.Username;
-            this.Password = user.Password;
-
-            OnBuildFrom(user);
-        }
-
-        protected abstract void OnBuildFrom(User user);
 
         public static User Authenticate(string name, string password)
         {

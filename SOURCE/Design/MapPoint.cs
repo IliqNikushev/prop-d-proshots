@@ -34,7 +34,7 @@ namespace Design
         //temporary constructor
         public MapPoint(int x, int y, string label, string description)
         {
-            this.Landmark = new Classes.EventLandmark("-1", label, description, x, y, DateTime.Today, DateTime.Today);
+            this.Landmark = new Classes.EventLandmark(-1, label, description, x, y, DateTime.Today, DateTime.Today);
         }
 
         //temporary constructor

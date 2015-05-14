@@ -7,63 +7,26 @@ namespace Classes
 {
     public class Appointment : Record
     {
-        public Appointment(AppointedItem item, Visitor visitor)
+        public Appointment(int id, AppointedItem item, Visitor visitor, DateTime completedOn, bool isReturned)
         {
-            throw new System.NotImplementedException();
-        }
-    
-        public Visitor Visitor
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            this.ID = id;
+            this.AppointedItem = item;
+            this.Visitor = Visitor;
+            this.CompletedOn = completedOn;
+            this.IsReturned = isReturned;
         }
 
-        public AppointedItem AppointedItem
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public int ID { get; private set; }
+        public Visitor Visitor { get; private set; }
+        public AppointedItem AppointedItem { get; private set; }
+        public DateTime CompletedOn { get; private set; }
+        public bool IsReturned { get; private set; }
 
         public List<AppointmentTask> Tasks
         {
             get
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public DateTime CompletedOn
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public bool Returned
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                return Database.Where<AppointmentTask>("AppointmentTasks.appointment_id = {0}", this.ID);
             }
         }
 

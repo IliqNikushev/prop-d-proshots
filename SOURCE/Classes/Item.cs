@@ -14,6 +14,7 @@ namespace Classes
         */
         #endregion
 
+        [Column("Item_id")]
         public int ID { get; private set; }
         public string Brand { get; private set; }
         public string Model { get; private set; }
