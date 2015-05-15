@@ -12,20 +12,30 @@
         $Email = $_POST['Email'];
         $Username = $_POST['Username'];
         $Password = $_POST['Password'];
-        $Type = 1;
+        $CPassword = $_POST['CPassword'];
+        $Type = 'visitor';
+    if($Password == $CPassword){
+        
+    
         $query = "INSERT INTO `users` (FirstName,LastName, Email, Username, Password , Type ) VALUES ('$FirstName', '$LastName', '$Email', '$Username', '$Password', '$Type')";
         
         
         $query1 = mysql_query("SELECT Username FROM Users WHERE Username='$Username'");
         $query2 = mysql_query("SELECT Email FROM Users WHERE Email='$Email'");
         
-  if (mysql_num_rows($query1)>0 || mysql_num_rows($query2)>0)
+     if (mysql_num_rows($query1)>0 && mysql_num_rows($query2)>0)
   {
-     $msg = "User Already Exist.";
-  }else if ($_POST['Password']!= $_POST['Cpassword'])
-    {
-     $msg = "Passwords did not match! Try again.";
-    }
+     $msg = "Username and Email already exist.";
+  }
+  
+  elseif (mysql_num_rows($query1)>0)
+  {
+     $msg = "Username already exist.";
+  }
+   elseif (mysql_num_rows($query2)>0)
+  {
+     $msg = "Email already exist.";
+  }
   else {
       $msg = "User Created Successfully.";
       $result = mysql_query($query);
@@ -44,21 +54,17 @@ foreach($rows as $row) {
 
 $UserID = $row["ID"];
 $Balance = 0;
-$Ticket = 1;
+$Ticket = 0;
 }
 $query4 = "INSERT INTO `visitors` (User_ID, Balance, Ticket) VALUES ('$UserID', '$Balance', '$Ticket')";
 $result2 = mysql_query($query4);
       
-      if($a = mysql_error())
-      {
-          $msg = mysql_error();
-          
-      }
             
          }
-    
-    
-    
+ else {
+          $msg = "password doesn't match! Try again.";   
+         }
+    }
     }
 ?>
 
@@ -123,12 +129,12 @@ $(document).ready(function(){
 			
 			<div id="RegisterText">
 			
-			Please direct all general registration questions and inquiries via email to Help.RoboCup2015@gmail.com.<br><br>
+			Please direct all general registration questions and inquiries via email to Help.RoboCup2015@gmail.com.<br>* required<br><br>
 			
 			<form id="Register-Form" action="" method="POST">
 			
 			<div style="display: inline-block; width:16%"><b>Username: </b></div>
-                        <input required pattern=".{3,25}" title="from 3 to 25 characters" type="text" name="Username" placeholder="Username"><br><br>
+                        <input required pattern=".{3,25}" title="from 3 to 25 characters" type="text" name="Username" placeholder="Username"> *<br><br>
 			
 			<div style="display: inline-block; width:16%"><b>First Name: </b></div>
 			<input type="text" pattern=".{1,25}" title="maximum 25 characters" name="FirstName" placeholder="First Name"><br><br>
@@ -137,13 +143,13 @@ $(document).ready(function(){
 			<input type="text" pattern=".{1,25}" title="maximum 25 characters" name="LastName" placeholder="Last Name"><br><br>
 			
 			<div style="display: inline-block; width:16%"><b>Password: </b></div>
-                        <input required pattern=".{4,25}" title="from 4 to 25 characters" type="password" name="Password" placeholder="Password"><br><br>
+                        <input required pattern=".{4,25}" title="from 4 to 25 characters" type="password" name="Password" placeholder="Password"> *<br><br>
 			
 			<div style="display: inline-block; width:16%"><b>Confirm Password: </b></div>
-                        <input required type="password" name="Cpassword" placeholder="Confirm Password"><br><br>
+                        <input required type="password" name="CPassword" placeholder="Confirm Password"> *<br><br>
                         
 			<div style="display: inline-block; width:16%"><b>Email: </b></div>
-			<input required pattern=".{6,25}" title="from 6 to 25 characters" type="email" name="Email" placeholder="Email"><br><br>
+			<input required pattern=".{6,25}" title="from 6 to 25 characters" type="email" name="Email" placeholder="Email"> *<br><br>
 			
 			
                         <input class="btn register" type="submit" name="Register" value="Register" /><br><br>

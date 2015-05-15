@@ -1,5 +1,4 @@
 <?php
-require('connect.php');
 if ($_POST['Save_changes'])
 {
 
@@ -25,7 +24,6 @@ if ($_POST['Save_changes'])
         $query = "UPDATE `users` SET `Password`='$Password' WHERE users.Username='".$User."'";
         $result = mysql_query($query);
         }
-        echo json_encode();    
     
 }
 

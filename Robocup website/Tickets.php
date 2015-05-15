@@ -1,10 +1,7 @@
 <?php
         require('Login.php');
         require('Head.php');
-        
-         if ($_POST['Payment']){
-        require('Payment.php');
-}
+        require('Tickets_SQL.php');
 ?>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -116,7 +113,7 @@ var Lname = $(MyRows[i]).find('td:eq(1)').html();
 var Email = $(MyRows[i]).find('td:eq(2)').html();
 users.push({FirstName:Fname,LastName:Lname,Email:Email});
 }
-$.post("Payment.php", {users: users})
+$.post("Tickets_SQL.php", {users: users})
     }
     else{
         $('#Message').text("All fields must be filled!");
@@ -145,20 +142,6 @@ function Remove() {
 
 		<input type="submit" name="Payment" value="Continue to Payment"><br><br>
                 </form>
-<?php
-if (isset($_SESSION['username'])){
-$query = "SELECT Ticket FROM users WHERE username='$username_cookie'";
-$result = mysql_query($query);
-$value  = mysql_result($result, 0);
-if ($value == 0){
-$Tickets = "1";
-$Price = 55;
-}else{
-$Tickets = "0";
-$Price = 0;
-}
-}
-?>
                 
 
 	 					
@@ -168,16 +151,17 @@ $Price = 0;
 			<div id="Price_div">Price:  <?php  echo  $Price ?> euro<br></div><br>
 
                         <script>
-                            var Tickets = <?php echo  json_encode($Tickets) ?>;
+                            var Has_Ticket = parseInt(<?php echo  json_encode($Tickets) ?>);
+
                             function Update_Tickets() {
-                                        
-                                        var TicketsF = ((Tickets).length + $('#table tr').length)-1;
+                                        var People = parseInt($('#table tr').length);  
+                                        var Tickets = (Has_Ticket + People)-1;
                                         jQuery('#Tickets_div').html('Tickets: ');
-                                        $('#Tickets_div').append(TicketsF);
+                                        $('#Tickets_div').append(Tickets);
                             }
                             function Update_Price() {
-                                        
-                                        var Price = (((Tickets).length + $('#table tr').length) - 1) * 55 + " euro";
+                                        var People = parseInt($('#table tr').length);  
+                                        var Price = ((Has_Ticket + People1) - 1) * 55 + " euro";
                                         jQuery('#Price_div').html('Price: ');
                                         $('#Price_div').append(Price);
                                         

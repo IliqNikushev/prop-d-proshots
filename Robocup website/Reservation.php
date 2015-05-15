@@ -125,12 +125,12 @@ $(document).ready(function(){
 			<div id="ReservationText">
 			
 			To reserve a camping spot for the weekend you need to be registered.<br>
-			You can add additional visitors for the camping spot but they also need to be registered.<br>
+			You can add additional visitors for the camping spot but they need to be registered //and also have a ticket//.<br>
 			The price for  reserving a camping spot is 30 euro plus 20 euro for every additional visitor per day.<br><br>
 
 <?php
                                          
-                                    $query4 = "SELECT ID FROM `landmarks`";
+                                    $query4 = "SELECT ID FROM `landmarks` WHERE Type='1'";
                                     $result4 = mysql_query($query4) or die(mysql_error());
                                     while ($row = mysql_fetch_assoc($result4)) {
      $rows[] = $row;
@@ -207,25 +207,20 @@ echo "</option>";
 			
 			<input type="submit" name="Reservation" value="Continue to Payment"><br><br>
                         
-			</form>
-                        
                             <script>
                             
                             $( "#Camping_spot" ).change(function() {
                             Update_Price();
-                            var TentID = $('#Camping_spot').val();
                             $.post("Reservation_SQL.php", {TentID: TentID});
                             });
                             
                             $( "#Number_of_days" ).change(function() {
                             Update_Price();
-                            var Days = $('#Number_of_days').val();
                             $.post("Reservation_SQL.php", {Days: Days});
                             });
                             
                             $( "#Additional_visitors" ).change(function() {
                             Update_Price()
-                            var Visitors = $('#Additional_visitors').val();
                             $.post("Reservation_SQL.php", {Visitors: Visitors});
                             });
                             
@@ -245,6 +240,9 @@ echo "</option>";
                                         
                             }
                             </script>
+                        
+			</form>
+                        
 
                         
 			<div id="Price_div">Price:  <?php  echo  $Price ?><br></div><br>

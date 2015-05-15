@@ -62,6 +62,8 @@ $(document).ready(function(){
 					<ul class="dropdown-menu " style="text-align: center">
                                             <li><a href="Profile.php" >Settings</a></li>
                                             <li><a href="Balance.php" >Balance</a></li>
+                                            <li><a href="Tickets.php" >Tickets</a></li>
+                                            <li><a href="Reservation.php" >Camping spot</a></li>
                                             <li><a href="Booked.php" >Booked Items</a></li>
                                             <li><input type="submit" name="Logout" value="Logout"></li>
 					</ul>
@@ -80,8 +82,6 @@ $(document).ready(function(){
 					<ul class="dropdown-menu " >
 					<li><a href="Visitors.php" >Info</a></li>
                                         <li><a href="Location.php" >Location</a></li>
-					<li><a href="Tickets.php" >Tickets</a></li>
-					<li><a href="Reservation.php" >Camping spot</a></li>
 					</ul>
 					</li>
                     <li>

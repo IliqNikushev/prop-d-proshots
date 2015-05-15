@@ -1,5 +1,4 @@
 <?php
-require('connect.php');
 if ($_POST['Reservation'])
 {   
     
@@ -14,11 +13,23 @@ if ($_POST['Reservation'])
 foreach($rows1 as $row1) {
 $BuyerID = $row1["ID"];
 }
-
-    $query1 = "INSERT INTO `tents` (location, BookedBy) VALUES ('$location','$BuyerID')";
+    $Days = $_POST["Days"];
+    
+    $BookedOn = 
+    
+    $BookedTill;
+    if($Days == 1){
+      $BookedTill = "2015-05-15";  
+    }elseif($Days == 2){
+      $BookedTill = "2015-05-16";  
+    }elseif($Days == 3){
+      $BookedTill = "2015-05-17";  
+    }
+    
+    $BookedOn = date("Y-m-d");
+    $IsPayed = 1;
+    $query1 = "INSERT INTO `tents` (location, BookedBy, BookedOn, IsPayed, BookedTill) VALUES ('$location','$BuyerID','$BookedOn','$IsPayed','$BookedTill')";
     $result1 = mysql_query($query1);
-
-$Days = $_POST["Days"];
 
 
 $Visitors =$_POST["Visitors"];
@@ -36,7 +47,7 @@ foreach($rows2 as $row2) {
 $VisitorID = $row2["ID"];
 }
     
-    $query3 = "INSERT INTO `tentpeople` (Tent_ID , Visitor_ID, CheckedInTime) VALUES ('$location', '$VisitorID', NULL)";
+    $query3 = "INSERT INTO `tentpeople` (Tent_ID , Visitor_ID) VALUES ('$location', '$VisitorID')";
     $result3 = mysql_query($query3);
 }
 
@@ -45,6 +56,6 @@ $VisitorID = $row2["ID"];
           $msg = mysql_error();
           
       }
-
+      
 }
 

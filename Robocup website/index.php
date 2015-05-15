@@ -101,9 +101,8 @@ $(document).ready(function(){
         ?>
         <div class="row" id="Index-Info">
 				<h2>
-                <a href="tickets.html">You can buy tickets for Robocup 2015! Click here for the details.</a>
+                                    <a href="Register.php">You can buy tickets and reserve a camping spot for Robocup 2015! After registering.</a>
 				</h2>
-				<p>You can also <a href="reservation.html">reserve a camping spot</a> for Robocup 2015 from our website!</p>
 				<p>RoboCup is a worldwide project.  The goal of the project is: Build a soccer playing robot that looks like a human and that can win from the human world champion in 2050! The knowledge about robotics which is obtained, is shared within the RoboCup teams so the technology improves very fast. By using soccer as a subject, many people will get interested in the RoboCup.</p>
 				<p><img src="img/RoboCup-1.jpg"   alt="IMG"   title="IMG1" height="100%" width="100%"/></p>
         </div>
