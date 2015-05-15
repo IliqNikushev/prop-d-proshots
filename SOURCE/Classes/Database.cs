@@ -48,7 +48,8 @@ namespace Classes
             {typeof(AdminUser), new Table("Admins").Copy<User>()},
             {typeof(AppointedItem), new Table("Items_Appointed").Copy<Item>()},
             {typeof(Appointment), new Table("Appointments", "description", "id").
-                Join<AppointedItem>("JOIN", "Items_Appointed.id = Appointments.appointed_item", "item")},
+                Join<AppointedItem>("JOIN", "Items_Appointed.id = Appointments.appointed_item", "item").
+                Join<Visitor>("JOIN", "Appointments.appointed_by = Visitors.user_id", "appointed_by")},
             {typeof(AppointmentTask), new Table("AppointmentTasks", "id", "name", "description", "price").
                 Join<Appointment>("JOIN", "AppointmentTasks.appointment_ID = Appointments.id", "appointment")},
             {typeof(Deposit), new Table("PayPalDeposits", "id", "amount", "date").
@@ -58,19 +59,20 @@ namespace Classes
                 Join<Landmark>("JOIN", "Landmarks.id = Employees.workplace_id", "workplace")},
             {typeof(EmployeeAction), new Table("EmployeeActions", "date", "action", "id").
                 Join<Employee>("JOIN", "Employees.user_id = EmployeeActions.employee_id", "employee")},
-            {typeof(EventLandmark), new Table("Landmarks where Landmarks.type = 'event'").Copy<Landmark>()},
-            {typeof(FoodAndDrinkShopJob), new Table("Landmarks where Landmarks.type = 'food-and-drink'", "id", "x", "y")},
+            {typeof(EventLandmark), new Table("Events", "timeStart", "timeEnd").
+                Join<Landmark>("JOIN", "Landmarks.id = Events.location", "")},
+            {typeof(FoodAndDrinkShopJob), new Table("Landmarks where Landmarks.type = 'food and drink'", "id", "x", "y", "label", "description")},
             {typeof(GeneralShopJob), new Table("Landmarks where landmarks.type = 'general'").Copy<FoodAndDrinkShopJob>()},
-            {typeof(InformationKioskJob), new Table("Landmarks where Landmarks.type = 'info'").Copy<FoodAndDrinkShopJob>()},
+            {typeof(InformationKioskJob), new Table("Landmarks where Landmarks.type = 'info'").Copy<ITServiceJob>()},
             {typeof(Item), new Table("Items", "brand", "model", "id", "type", "description" )},
-            {typeof(ITServiceJob), new Table("Landmarks where Landmarks.type = 'it'").Copy<FoodAndDrinkShopJob>()},
-            {typeof(Job), new Table("Landmarks where Landmarks.type in (Select Jobs.name from Jobs)").Copy<FoodAndDrinkShopJob>()},
+            {typeof(ITServiceJob), new Table("Landmarks where Landmarks.type = 'it'", "id", "x", "y")},
+            {typeof(Job), new Table("Landmarks where Landmarks.type in (Select Jobs.name from Jobs)").Copy<ITServiceJob>()},
             {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type")},
             {typeof(LogMessage), new Table("Logs", "id", "date", "description", "name")},
             {typeof(PayPalDocument), new Table("PayPalDocuments", "id", "date", "raw")},
-            {typeof(PayPalMachine), new Table("Landmarks where Landmarks.type = 'paypal'").Copy<FoodAndDrinkShopJob>()},
-            {typeof(PCDoctorJob), new Table("Landmarks where landmarks.type = 'pc-doctor'").Copy<FoodAndDrinkShopJob>()},
-            {typeof(ShopItem), new Table("ShopItems", "quantity", "id", "warningAmount").
+            {typeof(PayPalMachine), new Table("Landmarks where Landmarks.type = 'paypal'").Copy<ITServiceJob>()},
+            {typeof(PCDoctorJob), new Table("Landmarks where landmarks.type = 'pc-doctor'").Copy<ITServiceJob>()},
+            {typeof(ShopItem), new Table("ShopItems", "quantity", "id", "warningAmount", "price").
                 Join<Item>("JOIN" ,"ShopItems.item_id = Items.id", "item").
                 Join<ShopJob>("JOIN" ,"Shops.id = Shopitems.shop_id", "shop")},
             {typeof(Receipt), new Table("Receipts", "id", "purchasedOn").
@@ -91,9 +93,9 @@ namespace Classes
                 Join<ShopItem>("JOIN", "ShopItems.item_id = RestockItems.item_id", "item")},
             {typeof(ShopJob), new Table("Shops", "id", "label", "description", "x", "y", "type")},
             {typeof(Tent), new Table("Tents", "bookedOn", "bookedTill", "isPayed").
-                Join<Visitor>("JOIN", "Tents.bookedBy = Visitors.user_id", "v").
+                Join<Visitor>("JOIN", "Tents.bookedBy = Visitors.user_id", "bookedBy").
                 Join<TentAreaLandmark>("JOIN", "Tents_ALL.id = Tents.location", "location")},
-            {typeof(TentAreaLandmark), new Table("Tents_All").Copy<FoodAndDrinkShopJob>()},
+            {typeof(TentAreaLandmark), new Table("Tents_All").Copy<ITServiceJob>()},
             {typeof(User), new Table("Users", "id", "firstName", "lastName", "email", "password")},
             {typeof(Visitor), new Table("Visitors", "balance", "picture", "ticket").Join<User>("JOIN", "Users.id = Visitors.user_id", "")},
             {typeof(Warning), new Table("Warnings", "id", "name", "description")},
@@ -156,7 +158,15 @@ namespace Classes
                     List<System.Reflection.PropertyInfo> properties = type.GetAllProperties();
 
                     HashSet<string> found = null;
-                    ExecuteSQLWithResult("Select " + tables[type], (x) => found = new HashSet<string>(x.GetColumns().Select(y => y.ToLower())), true);
+                    try
+                    {
+                        ExecuteSQLWithResult("Select " + tables[type], (x) => found = new HashSet<string>(x.GetColumns().Select(y => y.ToLower())), true);
+                    }
+                    catch (Exception ex)
+                    {
+                        consistencyExceptions.Add(ex.GetType().Name.Replace("Exception", ":") + ex.Message + "\r\n" + tables[type]);
+                        continue;
+                    }
                     HashSet<string> current = new HashSet<string>(properties.Select(x =>
                         {
                             string name = x.Name;
@@ -289,7 +299,10 @@ namespace Classes
             System.IO.StreamWriter sw = new System.IO.StreamWriter("sql.txt", true);
             using (sw)
             {
+                sw.WriteLine(DateTime.Today + ">>>");
                 sw.WriteLine(sql);
+                sw.WriteLine("<<<");
+                sw.WriteLine("");
             }
             int rowsAffected = 0;
             using (Connection connection = new Connection(connectionString))
@@ -321,7 +334,10 @@ namespace Classes
             System.IO.StreamWriter sw = new System.IO.StreamWriter("sql.txt", true);
             using (sw)
             {
+                sw.WriteLine(DateTime.Today + ">>>");
                 sw.WriteLine(sql);
+                sw.WriteLine("<<<");
+                sw.WriteLine("");
             }
 
             processingList = new List<object>();
@@ -554,7 +570,7 @@ namespace Classes
             Table tableName = tables[t];
             processType = t;
 
-            ExecuteSQLWithResult(tableName + (where != "" ? " Where " + where : ""), ProcessReader);
+            ExecuteSQLWithResult("Select " + tableName + (where != "" ? " Where " + where : ""), ProcessReader);
 
             List<object> result = new List<object>(processingList);
             processingList.Clear();

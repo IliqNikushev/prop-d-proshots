@@ -14,6 +14,7 @@ namespace Design
     {
         public Main()
         {
+            var q = Classes.Database.All<Classes.ShopItem>();
             InitializeComponent();
             IEnumerable<Type> notTableDefined = Classes.Database.notTableDefinedRecords;
             if(notTableDefined.Any())

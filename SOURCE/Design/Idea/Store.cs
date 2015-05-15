@@ -29,7 +29,7 @@ namespace Design.Idea
             Random r = new Random();
             for (int i = 0; i < 30; i++)
             {
-                items.Add(new ShopItem(new Classes.ShopItem(0, r.Next(5000) / 1000m, "", "Back","<>", i+1, (i+1)/2, null)));
+                items.Add(new ShopItem(new Classes.ShopItem(0, r.Next(5000) / 1000m, "", "Back","<>","", i+1, (i+1)/2, null)));
             }
 
             InitializeComponent();
@@ -37,7 +37,7 @@ namespace Design.Idea
             totalNumberLbl.Text = "0" + currency;
             totalCountLbl.Text = "0";
 
-            ShopItem example = new ShopItem(new Classes.ShopItem(0, 0, "", "Back","<>", 0, 0, null));
+            ShopItem example = new ShopItem(new Classes.ShopItem(0, 0, "", "Back","<>","", 0, 0, null));
             this.Controls.Add(GenerateItem(exampleLbl.Left, exampleLbl.Top, example));
 
             foreach (var item in example.PanelAssosiated.Controls)
@@ -253,7 +253,7 @@ namespace Design.Idea
         private void button1_Click(object sender, EventArgs e)
         {
             IEnumerable<ShopItem> selectedItems = this.items.Where(x=>x.PurchaseTimes > 0);
-            IEnumerable<Classes.ReceiptItem> selection = selectedItems.Select(x => new Classes.ReceiptItem(0, x.Item, x.PurchaseTimes));
+            IEnumerable<Classes.ReceiptItem> selection = selectedItems.Select(x => new Classes.ReceiptItem(0, x.Item,null, x.PurchaseTimes,0));
             //Classes.Receipt receipt = new Classes.Receipt(ActiveVisitor, this.Shop, selection.ToList());
 
             //save receipt;

@@ -31,7 +31,7 @@ namespace Classes
             return reader.Get<int>(name);
         }
 
-        public static IEnumerable<string> GetColumns(this MySql.Data.MySqlClient.MySqlDataReader reader, params string[] names)
+        public static IEnumerable<string> GetColumns(this MySql.Data.MySqlClient.MySqlDataReader reader)
         {
             string[] result = new string[reader.FieldCount];
             for (int i = 0; i < result.Length; i++)

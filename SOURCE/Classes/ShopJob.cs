@@ -9,11 +9,11 @@ namespace Classes
     {
         public ShopJob(int id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
 
-        public List<Classes.PurchasableItem> Items
+        public List<Classes.ShopItem> Items
         {
             get
             {
-                return Database.Where<PurchasableItem>("shop_id = {0}", this.ID);
+                return Database.Where<Classes.ShopItem>("shop_id = {0}", this.ID);
             }
         }
 
