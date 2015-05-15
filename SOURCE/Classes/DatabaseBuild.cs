@@ -64,8 +64,9 @@ namespace Classes
             string brand = reader.GetStr(prefix + "Brand");
             string model = reader.GetStr(prefix + "Model");
             string type = reader.GetStr(prefix + "Type");
+            string group = reader.GetStr(prefix + "igroup");
             string description = reader.GetStr(prefix + "description");
-            return new AppointedItem(iD, brand, model, type, description);
+            return new AppointedItem(iD, brand, model, type, group, description);
         }
 
         private static Appointment CreateAppointment(Reader reader, string prefix)
@@ -90,15 +91,17 @@ namespace Classes
 
         private static Item CreateItem(Reader reader, string prefix)
         {
-            string type = reader.GetStr(prefix + "type");
-            if (type == "appointment")
+            //todo this should not be even called
+            throw new InvalidOperationException();
+            string group = reader.GetStr(prefix + "igroup");
+            if (group == "appointment")
                 return CreateAppointedItem(reader, prefix);
-            if (type == "rent")
+            if (group == "rent")
                 return CreateRentableItem(reader, prefix);
-            if (type == "purchase")
-                return CreatePurchasableItem(reader, prefix);
+            
+            return CreatePurchasableItem(reader, prefix);
             //todo ETC
-            throw new NotImplementedException("UNKNOWN ITEM " + type);
+            throw new NotImplementedException("UNKNOWN ITEM " + group);
         }
 
         private static Deposit CreateDeposit(Reader reader, string prefix)
@@ -131,8 +134,10 @@ namespace Classes
             return new EmployeeAction(id, date, employee, action);
         }
 
-        private static object CreateLandmark(Reader reader, string prefix)
+        private static Landmark CreateLandmark(Reader reader, string prefix)
         {
+            //todo this should not be even called
+            throw new InvalidOperationException();
             string type = reader.GetStr(prefix + "type");
             if (type == "paypal")
                 return CreatePayPalMachine(reader, prefix);
@@ -158,6 +163,8 @@ namespace Classes
 
         private static Job CreateJob(Reader reader, string prefix)
         {
+            //todo this should not be even called
+            throw new InvalidOperationException();
             string type = reader.GetStr(prefix + "type");
             if (type == "food and drink")
                 return CreateFoodAndDrinkShopJob(reader, prefix);
@@ -195,8 +202,9 @@ namespace Classes
             string brand = reader.GetStr(prefix + "item_Brand");
             string model = reader.GetStr(prefix + "item_Model");
             string type = reader.GetStr(prefix + "item_Type");
+            string group = reader.GetStr(prefix + "item_iGroup");
             string description = reader.GetStr(prefix + "item_description");
-            return new Classes.ShopItem(iD, price, brand, model, type,description, inStock, warningLevel, shop);
+            return new Classes.ShopItem(iD, price, brand, model, type, group,description, inStock, warningLevel, shop);
         }
 
         private static FoodAndDrinkShopJob CreateFoodAndDrinkShopJob(Reader reader, string prefix)
@@ -274,8 +282,9 @@ namespace Classes
             string brand = reader.GetStr(prefix + "Brand");
             string model = reader.GetStr(prefix + "Model");
             string type = reader.GetStr(prefix + "Type");
+            string group = reader.GetStr(prefix + "iGroup");
             string description = reader.GetStr(prefix + "description");
-            return new RentableItem(iD, price, brand, model, type,description, inStock);
+            return new RentableItem(iD, price, brand, model, type, group,description, inStock);
         }
 
         private static PayPalDocument CreatePayPalDocument(Reader reader, string prefix)
@@ -294,9 +303,10 @@ namespace Classes
             int iD = reader.Get<int>(prefix + "ID");
             string brand = reader.GetStr(prefix+"Brand");
             string model = reader.GetStr(prefix + "Model");
-            string type = reader.GetStr(prefix + "type"); //todo should be item group ??
+            string type = reader.GetStr(prefix + "type");
+            string group = reader.GetStr(prefix + "igroup");
             string description = reader.GetStr(prefix + "description");
-            return new PurchasableItem(iD, price, brand, model, type, description, inStock);
+            return new PurchasableItem(iD, price, brand, model, type, group, description, inStock);
         }
 
         private static Receipt CreateReceipt(Reader reader, string prefix)
@@ -356,7 +366,7 @@ namespace Classes
 
         private static void CreateUser(Reader reader, out int id, out string firstName, out string lastName, out string userName, out string password, out string email, string prefix)
         {
-            id = reader.GetInt(prefix + "ID");
+            id = reader.Get<int>(prefix + "ID");
             firstName = reader.GetStr(prefix + "FirstName");
             lastName = reader.GetStr(prefix + "LastName");
             userName = reader.GetStr(prefix + "UserName");
@@ -382,7 +392,7 @@ namespace Classes
             string firstName, lastName, userName, password, email;
             CreateUser(reader, out id, out firstName, out lastName, out userName, out password, out email, prefix);
 
-            decimal amount = reader.Get<decimal>(prefix + "Amount");
+            decimal amount = reader.Get<decimal>(prefix + "balance");
             string rfid = reader.GetStr(prefix + "RFID");
             bool ticket = reader.Get<bool>(prefix + "Ticket");
             string picture = reader.GetStr(prefix + "picture");

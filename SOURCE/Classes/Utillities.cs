@@ -12,7 +12,8 @@ namespace Classes
         {
             name = name.ToLower();
             for (int i = 0; i < reader.FieldCount; i++)
-			    if(reader.GetName(i).ToLower().EndsWith(name)) return (T)reader.GetValue(i);
+			    if(reader.GetName(i).ToLower().EndsWith(name))
+                    return (T)reader.GetValue(i);
 			
             throw new KeyNotFoundException("Column not found, "+ name);
         }
@@ -21,9 +22,21 @@ namespace Classes
         {
             name = name.ToLower();
             for (int i = 0; i < reader.FieldCount; i++)
-                if (reader.GetName(i).ToLower().EndsWith(name)) return reader.GetString(i);
+            {
+                if (reader.GetName(i).ToLower().EndsWith(name))
+                    if(reader.GetValue(i).GetType() == typeof(System.DBNull))
+                        return null;
+                    else
+                        return reader.GetString(i);
+            }
 
             throw new KeyNotFoundException("Column not found, " + name);
+        }
+
+        public static T Apply<T>(this T t, Action<T> a)
+        {
+            a(t);
+            return t;
         }
 
         public static int GetInt(this MySql.Data.MySqlClient.MySqlDataReader reader, string name)

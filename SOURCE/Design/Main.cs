@@ -14,6 +14,8 @@ namespace Design
     {
         public Main()
         {
+            var qqq = Classes.Database.All<Classes.User>();
+            var qq = Classes.Database.All<Classes.Item>();
             var q = Classes.Database.All<Classes.ShopItem>();
             InitializeComponent();
             IEnumerable<Type> notTableDefined = Classes.Database.notTableDefinedRecords;

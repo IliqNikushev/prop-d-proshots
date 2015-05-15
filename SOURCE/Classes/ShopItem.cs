@@ -10,8 +10,8 @@ namespace Classes
     {
         public ShopJob Shop { get; private set; }
         public int WarningLevel { get; private set; }
-        public ShopItem(int id, decimal price, string brand, string model, string type, string description, int inStock, int warningLevel, ShopJob shop)
-            : base(id, price, brand, model, type,description, inStock)
+        public ShopItem(int id, decimal price, string brand, string model, string type, string group, string description, int inStock, int warningLevel, ShopJob shop)
+            : base(id, price, brand, model, type, group,description, inStock)
         {
             this.Shop = shop;
             this.WarningLevel = warningLevel;

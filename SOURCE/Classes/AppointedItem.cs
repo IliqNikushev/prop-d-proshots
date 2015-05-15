@@ -7,6 +7,6 @@ namespace Classes
 {
     public class AppointedItem : Item
     {
-        public AppointedItem(int id, string brand, string model, string type, string description) : base(id, brand, model, type, description) { }
+        public AppointedItem(int id, string brand, string model, string type, string group, string description) : base(id, brand, model, type, group, description) { }
     }
 }
