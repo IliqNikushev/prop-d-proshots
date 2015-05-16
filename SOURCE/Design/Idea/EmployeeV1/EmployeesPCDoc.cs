@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Idea.EmployeeInterface
+namespace Design.Idea.EmployeeV1
 {
-    public partial class EmployeeITDesk : Menu
+    public partial class EmployeesPCDoc : Form
     {
-        List<Classes.RentableItem> selectedItems = new List<Classes.RentableItem>();
-        List<Classes.RentableItem> AllItems;
-
-        public EmployeeITDesk()
+        public EmployeesPCDoc()
         {
             InitializeComponent();
         }
-
-        
     }
 }

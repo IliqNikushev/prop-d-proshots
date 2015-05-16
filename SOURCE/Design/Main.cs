@@ -14,14 +14,15 @@ namespace Design
     {
         public Main()
         {
-            var qqq = Classes.Database.All<Classes.User>();
-            var qq = Classes.Database.All<Classes.Item>();
-            var q = Classes.Database.All<Classes.ShopItem>();
+            //var qqq = Classes.Database.All<Classes.User>();
+            //var qq = Classes.Database.All<Classes.Item>();
+            //var q = Classes.Database.All<Classes.ShopItem>();
             InitializeComponent();
             IEnumerable<Type> notTableDefined = Classes.Database.notTableDefinedRecords;
             if(notTableDefined.Any())
                 MessageBox.Show("Not table defined records:\n"+string.Join("\n", Classes.Database.notTableDefinedRecords));
 
+            if(false)
             if(!Idea.Menu.IsInDebug)
                 if (Classes.Database.CanConnect)
                 {
