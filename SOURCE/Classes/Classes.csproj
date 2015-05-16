@@ -95,6 +95,7 @@
     <Compile Include="WarningType.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Classes.cd" />
     <None Include="ClassCodeMap.dgml" />
   </ItemGroup>

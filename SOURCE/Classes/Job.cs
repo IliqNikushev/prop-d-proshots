@@ -10,11 +10,11 @@ namespace Classes
     {
         public Job(int id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
 
-        public int Employees
+        public List<Employee> Employees
         {
             get
             {
-                throw new System.NotImplementedException();
+                return Database.Where<Employee>("Employees.workplace_id = {0}", this.ID);
             }
         }
     }

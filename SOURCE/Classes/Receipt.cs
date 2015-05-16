@@ -18,7 +18,7 @@ namespace Classes
                     if (this.ID == 0) 
                         this.items = new List<ReceiptItem>(); 
                     else
-                        this.items = Database.Where<ReceiptItem>("PurchasedItems.receipt_id = {0}", this.ID);
+                        this.items = Database.Where<ReceiptItem>("ReceiptItems.receipt_id = {0}", this.ID);
                 return this.items;
             }
         }

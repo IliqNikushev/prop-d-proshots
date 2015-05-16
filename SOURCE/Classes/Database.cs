@@ -13,9 +13,9 @@ namespace Classes
         public class MiscTable
         {
             public int NumberOfCardsTotal;
-            public int NumberOfCardsTaken;
+            public long NumberOfCardsTaken;
 
-            public MiscTable(int numberOfCardsTotal, int numberOfCardsTaken)
+            public MiscTable(int numberOfCardsTotal, long numberOfCardsTaken)
             {
                 this.NumberOfCardsTaken = numberOfCardsTotal;
                 this.NumberOfCardsTaken = numberOfCardsTaken;
@@ -27,7 +27,7 @@ namespace Classes
             get
             {
                 MiscTable misc = null;
-                ExecuteSQLWithResult("Select Total, Taken from Misc", (x) => misc = new MiscTable(x.Get<int>("Total"), x.Get<int>("Taken")));
+                ExecuteSQLWithResult("Select Total, Taken from Misc LIMIT 1", (x) => { if (x.Read()) misc = new MiscTable(x.Get<int>("Total"), x.Get<long>("Taken")); else misc = new MiscTable(-1, - 1); });
                 return misc;
             }
         }
@@ -561,7 +561,8 @@ namespace Classes
             if(!recordBuildDefinitions.ContainsKey(t))
                 throw new NotImplementedException("Do not know how to build "  + t.Name);
 
-            result = recordBuildDefinitions[t](reader, "");
+            result = recordBuildDefinitions[t](reader, "", false);
+            reader.ClearPrefixes();
 
             return result;
         }
@@ -624,7 +625,7 @@ namespace Classes
                 Table newTable = new Table(tables[typeof(Employee)]).Join<Visitor>("LEFT JOIN", "Users.id = Visitors.user_id", "","", false);
                 foreach (var table in newTable.Joins)
                 {
-                    if (table.Name.IndexOf("Users") == 0)
+                    if (table.Name == tables[typeof(User)].Name)
                         table.Type = "RIGHT JOIN";
                     else
                         table.Type = "LEFT JOIN";
@@ -632,41 +633,34 @@ namespace Classes
                 return GetWhere(t, "Select " + newTable.ToString(), string.Format(where, parameters)).Select(x => x as T).ToList();
             }
 
-            if (t == typeof(Landmark))
-            {
-                // for events
-            }
-
-            /*
-            if (t.IsAbstract)
-            {
-                List<T> result = new List<T>();
-
-                Queue<Type> derived = new Queue<Type>(System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x => x.BaseType == t));
-                while (derived.Count > 0)
-                {
-                    Type toProcess = derived.Dequeue();
-                    if(toProcess.IsAbstract)
-                        foreach (var item in new Queue<Type>(System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x => x.BaseType == derived)))
-                            derived.Enqueue(item);
-                    else
-                        result.AddRange(GetWhere(toProcess
-                }
-                return result;
-            }*/
-            
-            /*
             if (t == typeof(Item))
             {
-                List<Table> targets = new List<Table>();
-                targets.Add(typeof(
-
-                GetWhere(t, string.Format("Select {0}\nFrom\n{1}\n{2}", tempFields, tempTables, tempWhere), string.Format(where, parameters));
+                Table newTable = new Table(tables[typeof(Item)]).
+                    Join<ShopItem>("LEFT JOIN", "ShopItems.item_id = Items_all.id", "shop_item","",false).
+                    Join<ShopJob>("JOIN" ,"Shops.id = Shopitems.shop_id", "shop_shop").
+                    Join<RentableItem>("LEFT JOIN", "RentableItems.item_id = Items_ALL.id", "rent", "", false);
+                foreach (var table in newTable.Joins)
+                    if (table.Name != tables[typeof(Item)].Name)
+                        table.Type = "LEFT JOIN";
+                
+                return GetWhere(t, "Select " + newTable.ToString(), string.Format(where, parameters)).Select(x => x as T).ToList();
             }
-             * */
 
-            //if (t == typeof(User))
-            //    return GetWhere(t, "Select * from User_ALL").Select(x=>x as T).ToList();
+            if (t == typeof(Landmark))
+            {
+                Table newTable = new Table(tables[typeof(EventLandmark)]);
+                foreach (var table in newTable.Joins)
+                {
+                    if (table.Name == tables[typeof(Landmark)].Name)
+                        table.Type = "RIGHT JOIN";
+                    else
+                        table.Type = "LEFT JOIN";
+                }
+                return GetWhere(t, "Select " + newTable.ToString(), string.Format(where, parameters)).Select(x => x as T).ToList();
+            }
+
+            if (t.IsAbstract && t != typeof(Job))
+                throw new NotImplementedException("ABSTRACT TYPE REQUESTED AT DATABASE: " + t.Name);
 
             return GetWhere(t, string.Format(where, parameters)).Select(x => x as T).ToList();
         }
