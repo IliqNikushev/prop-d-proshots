@@ -75,7 +75,6 @@
     <Compile Include="RentableItem.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="PayPalDocument.cs" />
-    <Compile Include="PurchasableItem.cs" />
     <Compile Include="Receipt.cs" />
     <Compile Include="ReceiptItem.cs" />
     <Compile Include="Job.cs" />

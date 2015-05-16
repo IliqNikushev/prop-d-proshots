@@ -11,14 +11,18 @@ namespace Classes
         [Column("Restock_id")]
         public Restock Restock { get; private set; }
 
-        public PurchasableItem Item { get; private set; }
+        public ShopItem Item { get; private set; }
         public int Times { get; private set; }
+        public decimal PricePerItem { get; private set; }
+        public decimal Total { get; private set; }
 
-        public RestockItem(PurchasableItem item, int times, Restock restock)
+        public RestockItem(ShopItem item, int times, Restock restock, decimal pricePerItem, decimal total)
         {
             this.Item = item;
             this.Times = times;
             this.Restock = restock;
+            this.PricePerItem = pricePerItem;
+            this.Total = total;
         }
 
         public void Execute()

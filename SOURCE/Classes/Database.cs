@@ -43,12 +43,23 @@ namespace Classes
                     C_Server, C_DataBase, C_UserID, C_Password
                 );
 
+        private static System.Reflection.Assembly assembly;
+        public static System.Reflection.Assembly Assembly
+        {
+            get
+            {
+                if (assembly == null)
+                    assembly = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetTypes().Where(y => y == typeof(Record)).Any()).First();
+                return assembly;
+            }
+        }
+
         static Dictionary<Type, Table> tables = new Dictionary<Type, Table>()
         {
             {typeof(AdminUser), new Table("Admins").
                 Copy<User>()},
             {typeof(AppointedItem), new Table("Items_Appointed").Copy<Item>()},
-            {typeof(Appointment), new Table("Appointments", "description", "id").
+            {typeof(Appointment), new Table("Appointments", "description", "id", "completedOn", "isReturned").
                 Join<AppointedItem>("JOIN", "Items_Appointed.id = Appointments.appointed_item", "item").
                 Join<Visitor>("JOIN", "Appointments.appointed_by = Visitors.user_id", "appointed_by")},
             {typeof(AppointmentTask), new Table("AppointmentTasks", "id", "name", "description", "price").
@@ -71,7 +82,7 @@ namespace Classes
             {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type")},
             {typeof(LogMessage), new Table("Logs", "id", "date", "description", "name")},
             {typeof(PayPalDocument), new Table("PayPalDocuments", "id", "date", "raw")},
-            {typeof(PayPalMachine), new Table("Landmarks_Paypal'").Copy<ITServiceJob>()},
+            {typeof(PayPalMachine), new Table("Landmarks_Paypal").Copy<ITServiceJob>()},
             {typeof(PCDoctorJob), new Table("Landmarks_PCDoctor").Copy<ITServiceJob>()},
             {typeof(ShopItem), new Table("ShopItems", "quantity", "id", "warningAmount", "price").
                 Join<Item>("JOIN" ,"ShopItems.item_id = Items_ALL.id", "item").
@@ -123,7 +134,7 @@ namespace Classes
                         consistencyExceptions.Add(ex.GetType().Name.Replace("Exception", ":") + ex.Message + "\r\n" + table.Value.ToString());
                     }
                 }
-                foreach (var type in System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x => x.IsSubclassOf(typeof(Record))))
+                foreach (var type in Assembly.GetTypes().Where(x => x.IsSubclassOf(typeof(Record))))
                 {
                     if (!recordBuildDefinitions.ContainsKey(type))
                     {
@@ -152,7 +163,7 @@ namespace Classes
 
                 consistencyExceptions.Add("");
 
-                foreach (var type in System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x => x.IsSubclassOf(typeof(Record))))
+                foreach (var type in Assembly.GetTypes().Where(x => x.IsSubclassOf(typeof(Record))))
                 {
                     if (tables.ContainsKey(type))
                     {
@@ -270,7 +281,7 @@ namespace Classes
         {
             get
             {
-                return System.Reflection.Assembly.GetExecutingAssembly().GetTypes().
+                return Assembly.GetTypes().
                     Where(x => x.IsSubclassOf(typeof(Record))).
                     Where(x => !tables.ContainsKey(x)).
                     Where(x => !x.IsSubclassOf(typeof(User)) && !x.IsAbstract).
@@ -325,7 +336,7 @@ namespace Classes
                     LogResult(ex.GetType().Name + " \n " + ex.Message);
                     if (OnUnableToProcessSQL != null)
                         OnUnableToProcessSQL(ex, sql);
-                    if (testing)
+                    if (testing || buildTesting)
                         throw;
                 }
             }
@@ -370,7 +381,7 @@ namespace Classes
                     LogResult(ex.GetType().Name + " \n " + ex.Message);
                     if(OnUnableToProcessSQL != null)
                         OnUnableToProcessSQL(ex, sql);
-                    if (testing)
+                    if (testing || buildTesting)
                         throw;
                 }
             }
@@ -437,11 +448,11 @@ namespace Classes
             }
         }
 
-        public static List<PurchasableItem> PurchasableItems
+        public static List<ShopItem> PurchasableItems
         {
             get
             {
-                return All<PurchasableItem>();
+                return All<ShopItem>();
             }
         }
 
@@ -549,6 +560,7 @@ namespace Classes
             object result = null;
             if(!recordBuildDefinitions.ContainsKey(t))
                 throw new NotImplementedException("Do not know how to build "  + t.Name);
+
             result = recordBuildDefinitions[t](reader, "");
 
             return result;
@@ -560,11 +572,22 @@ namespace Classes
         private static void ProcessReader(Reader reader)
         {
             Type t = processType;
-            while (reader.Read())
+            if (buildTesting)
             {
-                object row = GetRow(t, reader);
-                processingList.Add(row);
+                if (!BuildTestingResults.ContainsKey(t))
+                {
+                    BuildTestingResults.Add(t, new BuildResult());
+                    currentTesting = t;
+                    AddBuildTestFound(reader);
+                }
+                GetRow(t, reader);
             }
+            else
+                while (reader.Read())
+                {
+                    object row = GetRow(t, reader);
+                    processingList.Add(row);
+                }
         }
 
         public static List<T> Where<T>(string wherePattern, params object[] parameters) where T : Record
@@ -712,9 +735,9 @@ namespace Classes
                 {
                     get
                     {
-                        if (this.Alias != null)
-                            return Table.Fields.Select(x => x.Replace(Table.Name + ".", Alias + ".") + " " + Prefix + x.Split('.').Last());
-                        return Table.Fields.Select(x => x + " " + Prefix + x.Split('.').Last());
+                        if (this.Alias == null || this.Alias == "")
+                            return Table.Fields.Select(x => x + " " + Prefix + x.Split('.').Last());
+                        return Table.Fields.Select(x => x.Replace(Table.Name + ".", Alias + ".") + " " + Prefix + x.Split('.').Last());
                     }
                 }
 
@@ -722,9 +745,7 @@ namespace Classes
                 {
                     get
                     {
-                        if (this.Alias == null || this.Alias == "")
-                            return string.Join(", ", Table.Fields.Select(x => x + " " + Prefix + x.Split('.').Last()));
-                         return string.Join(", ", Table.Fields.Select(x => x.Replace(Table.Name + ".", Alias + ".") + " " + Prefix + x.Split('.').Last()));
+                        return string.Join(", ", this.Fields);
                     }
                 }
 
@@ -736,7 +757,17 @@ namespace Classes
 
             public string Name;
             public string Extra = "";
-            public List<string> Fields;
+            private List<string> fields = null;
+            public List<string> Fields
+            {
+                get
+                {
+                    if (this.fields.Count == 0)
+                        ApplyCopy();
+                    return this.fields;
+                }
+                private set { this.fields = value; }
+            }
             public List<JoinTable> Joins = new List<JoinTable>();
             List<Type> CopyFrom = new List<Type>();
             public Table(string name, params string[] fields)
@@ -775,9 +806,9 @@ namespace Classes
             {
                 if (this.CopyFrom.Count != 0)
                 {
-                    IEnumerable<string> current = this.Fields.Select(x=>x.ToLower());;
+                    IEnumerable<string> current = this.fields.Select(x=>x.ToLower());;
                     foreach (Type copy in this.CopyFrom)
-                        this.Fields.AddRange(tables[copy].Fields.Select(x => x.Replace(tables[copy].Name + ".", this.Name + ".")).Where(x=>!current.Contains(x.ToLower())));
+                        this.fields.AddRange(tables[copy].Fields.Select(x => x.Replace(tables[copy].Name + ".", this.Name + ".")).Where(x=>!current.Contains(x.ToLower())));
                     this.CopyFrom.Clear();
                 }
             }
@@ -832,14 +863,16 @@ namespace Classes
                 name += "\r\n" + join.Type + " " + join.Name + " On " + join.On;
                 {
                     string fs = fields;
-                    if (join.Fields.Where(x => fs.Contains(x.Split(' ').Last())).Any())
-                        if (parents.Count > 0)
-                            if (join.Prefix == "")
-                            {
-                                join.Prefix = string.Join("_", parents.Select(x => x.Prefix == null ? x.Alias == null ? x.Table.Name : x.Alias : x.Prefix.Replace("_", "")).Where(x => x.Length > 0));
-                                if (join.Prefix.Last() != '_')
-                                    join.Prefix += "_";
-                            }
+                    if (parents.Count > 0)
+                    {
+                        JoinTable x = parents.Last();
+                        join.Prefix = x.Prefix == null ? x.Alias == null ? x.Table.Name : x.Alias : x.Prefix;
+                        if (join.Prefix.Last() != '_')
+                            join.Prefix += "_";
+
+                        join.Prefix += oldPrefix;
+                        join.Prefix = join.Prefix.Replace("__", "_");
+                    }
                     string f = join.FieldsStr;
                     fields += f.Trim().Length > 0 ? "\r\n, " + f : "";
                 }

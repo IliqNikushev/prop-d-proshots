@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Classes
-{
+{/*
     [TestClass]
     public class UserTest : UnitTest
     {
@@ -58,5 +58,5 @@ namespace Classes
         public void UserHireNotEnoughCredits()
         {
         }
-    }
+    }*/
 }

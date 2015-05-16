@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public class ShopItem : PurchasableItem
+    public class ShopItem : RestockableItem
     {
         public ShopJob Shop { get; private set; }
         public int WarningLevel { get; private set; }

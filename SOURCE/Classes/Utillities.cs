@@ -8,29 +8,58 @@ namespace Classes
 {
     public static class Utillities
     {
-        public static T Get<T>(this MySql.Data.MySqlClient.MySqlDataReader reader, string name) where T:struct
+        public static T Get<T>(this MySql.Data.MySqlClient.MySqlDataReader reader, string name) where T : struct
         {
+            if (Database.buildTesting)
+                Database.AddBuildTestSearch(name);
             name = name.ToLower();
             for (int i = 0; i < reader.FieldCount; i++)
-			    if(reader.GetName(i).ToLower().EndsWith(name))
+                if (reader.GetName(i).ToLower().EndsWith(name))
+                {
+                    if (Database.buildTesting)
+                    {
+                        Database.AddBuildTestFind(name);
+                        try { reader.GetValue(0); }
+                        catch { return default(T); }
+                        if (reader.GetValue(i).GetType() != typeof(T))
+                            Database.AddBuildTestTypeMissmatch(name, typeof(T), reader.GetValue(i).GetType());
+                    }
                     return (T)reader.GetValue(i);
-			
-            throw new KeyNotFoundException("Column not found, "+ name);
+                }
+
+            if (Database.buildTesting)
+                return default(T);
+            throw new KeyNotFoundException("Column not found, " + name + "\n" + string.Join(", ", reader.GetColumns()));
         }
 
         public static string GetStr(this MySql.Data.MySqlClient.MySqlDataReader reader, string name)
         {
+            if (Database.buildTesting)
+                Database.AddBuildTestSearch(name);
             name = name.ToLower();
             for (int i = 0; i < reader.FieldCount; i++)
             {
                 if (reader.GetName(i).ToLower().EndsWith(name))
-                    if(reader.GetValue(i).GetType() == typeof(System.DBNull))
+                {
+                    if (Database.buildTesting)
+                    {
+                        Database.AddBuildTestFind(name);
+                        try { reader.GetValue(0); }
+                        catch { return null; }
+                        if (reader.GetValue(i).GetType() != typeof(string))
+                            Database.AddBuildTestTypeMissmatch(name, typeof(string), reader.GetValue(i).GetType());
+                    }
+
+                    if (reader.GetValue(i).GetType() == typeof(System.DBNull))
                         return null;
                     else
                         return reader.GetString(i);
+                }
             }
 
-            throw new KeyNotFoundException("Column not found, " + name);
+            if (Database.buildTesting)
+                return null;
+            throw new KeyNotFoundException("Column not found, " + name + "\n" + string.Join(", ", reader.GetColumns()));
         }
 
         public static T Apply<T>(this T t, Action<T> a)

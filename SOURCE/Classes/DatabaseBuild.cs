@@ -11,6 +11,14 @@ namespace Classes
     using Command = MySql.Data.MySqlClient.MySqlCommand;
     public static partial class Database
     {
+        public static IEnumerable<Type> notBuildDefinedRecords
+        {
+            get
+            {
+                return System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x => x.IsSubclassOf(typeof(Record))).Where(x => !recordBuildDefinitions.ContainsKey(x));
+            }
+        }
+
         private static Dictionary<Type, Func<Reader, string, object>> recordBuildDefinitions = new Dictionary<Type, Func<Reader, string, object>>()
         {
             {typeof(AdminUser), CreateAdmin},
@@ -32,7 +40,6 @@ namespace Classes
             {typeof(PayPalDocument), CreatePayPalDocument},
             {typeof(PayPalMachine), CreatePayPalMachine},
             {typeof(PCDoctorJob), CreatePCDoctorJob},
-            {typeof(PurchasableItem), CreatePurchasableItem},
             {typeof(Receipt), CreateReceipt},
             {typeof(RentableItem), CreateRentableItem},
             {typeof(RentableItemHistory), CreateRentableItemHistory},
@@ -54,7 +61,7 @@ namespace Classes
             int id = -1;
             string firstName, lastName, userName, password, email;
             CreateUser(reader, out id, out firstName, out lastName, out userName, out password, out email, prefix);
-
+            string type = reader.GetStr(prefix+"type");
             return new AdminUser(id, firstName, lastName, userName, password, email);
         }
 
@@ -76,7 +83,8 @@ namespace Classes
             int id = reader.Get<int>(prefix + "id");
             System.DateTime completedOn = reader.Get<System.DateTime>(prefix + "CompletedOn");
             bool isReturned = reader.Get<bool>(prefix + "IsReturned");
-            return new Appointment(id, appointedItem, visitor, completedOn, isReturned);
+            string description = reader.GetStr(prefix + "description");
+            return new Appointment(id, appointedItem, visitor, completedOn, isReturned, description);
         }
 
         private static AppointmentTask CreateAppointmentTask(Reader reader, string prefix)
@@ -98,8 +106,6 @@ namespace Classes
                 return CreateAppointedItem(reader, prefix);
             if (group == "rent")
                 return CreateRentableItem(reader, prefix);
-            
-            return CreatePurchasableItem(reader, prefix);
             //todo ETC
             throw new NotImplementedException("UNKNOWN ITEM " + group);
         }
@@ -179,6 +185,7 @@ namespace Classes
             string label = reader.GetStr(prefix + "Label");
             string description = reader.GetStr(prefix + "Description");
             int iD = reader.Get<int>(prefix + "ID");
+            string type = reader.GetStr(prefix+"type");
             return new ShopJob(iD, label, description, x, y);
         }
 
@@ -199,6 +206,7 @@ namespace Classes
             int inStock = reader.Get<int>(prefix + "quantity");
             decimal price = reader.Get<decimal>(prefix + "Price");
             int iD = reader.Get<int>(prefix + "item_ID");
+            int iDd = reader.Get<int>(prefix + "id");
             string brand = reader.GetStr(prefix + "item_Brand");
             string model = reader.GetStr(prefix + "item_Model");
             string type = reader.GetStr(prefix + "item_Type");
@@ -214,6 +222,7 @@ namespace Classes
             string label = reader.GetStr(prefix + "Label");
             string description = reader.GetStr(prefix + "Description");
             int iD = reader.Get<int>(prefix + "ID");
+            string type = reader.GetStr(prefix + "type");
             return new FoodAndDrinkShopJob(iD, label, description, x, y);
         }
 
@@ -224,6 +233,7 @@ namespace Classes
             string label = reader.GetStr(prefix + "Label");
             string description = reader.GetStr(prefix + "Description");
             int iD = reader.Get<int>(prefix + "ID");
+            string type = reader.GetStr(prefix + "type");
             return new GeneralShopJob(iD, label, description, x, y);
         }
 
@@ -295,20 +305,6 @@ namespace Classes
             return new PayPalDocument(id, date, raw);
         }
 
-        private static PurchasableItem CreatePurchasableItem(Reader reader, string prefix)
-        {
-            //todo remove this
-            int inStock = reader.Get<int>(prefix + "InStock");
-            decimal price = reader.Get<decimal>(prefix + "Price");
-            int iD = reader.Get<int>(prefix + "ID");
-            string brand = reader.GetStr(prefix+"Brand");
-            string model = reader.GetStr(prefix + "Model");
-            string type = reader.GetStr(prefix + "type");
-            string group = reader.GetStr(prefix + "igroup");
-            string description = reader.GetStr(prefix + "description");
-            return new PurchasableItem(iD, price, brand, model, type, group, description, inStock);
-        }
-
         private static Receipt CreateReceipt(Reader reader, string prefix)
         {
             System.DateTime purchasedOn = reader.Get<System.DateTime>(prefix + "PurchasedOn");
@@ -339,10 +335,12 @@ namespace Classes
         private static RestockItem CreateRestockItem(Reader reader, string prefix)
         {
             Restock restock = CreateRestock(reader, prefix + "restock_");
-            PurchasableItem item = CreatePurchasableItem(reader, prefix + "item_");
+            ShopItem item = CreateShopItem(reader, prefix + "item_");
             int times = reader.Get<int>(prefix + "quantity");
-            //todo price per item?
-            return new RestockItem(item, times, restock);
+            decimal pricePerItem = reader.Get<decimal>(prefix + "pricePerItem");
+            decimal total = reader.Get<decimal>(prefix + "total");
+            int itemID = reader.Get<int>(prefix + "item_id");
+            return new RestockItem(item, times, restock, pricePerItem, total);
         }
 
         private static Tent CreateTent(Reader reader, string prefix)
@@ -372,11 +370,13 @@ namespace Classes
             userName = reader.GetStr(prefix + "UserName");
             password = reader.GetStr(prefix + "Password");
             email = reader.GetStr(prefix + "Email");
+            string type = reader.GetStr(prefix + "type");
         }
 
         private static User CreateUser(Reader reader, string prefix)
         {
             string type = reader.GetStr(prefix + "Type");
+
             if (type == "visitor")
                 return CreateVisitor(reader, prefix);
             if (type == "admin")
@@ -396,7 +396,7 @@ namespace Classes
             string rfid = reader.GetStr(prefix + "RFID");
             bool ticket = reader.Get<bool>(prefix + "Ticket");
             string picture = reader.GetStr(prefix + "picture");
-
+            
             return new Visitor(id, firstName, lastName, userName, password, email, picture, amount, rfid, ticket);
         }
 
@@ -406,6 +406,40 @@ namespace Classes
             string name = reader.GetStr(prefix + "Name");
             string description = reader.GetStr(prefix + "Description");
             return new Warning(iD, name, description);
+        }
+
+        public class BuildResult
+        {
+            public List<string> Search = new List<string>();
+            public Dictionary<string, KeyValuePair<Type, Type>> Found = new Dictionary<string, KeyValuePair<Type, Type>>();
+        }
+
+        public static Dictionary<Type, BuildResult> BuildTestingResults = new Dictionary<Type, BuildResult>();
+        public static bool buildTesting = false;
+        static Type currentTesting;
+        public static void AddBuildTestTypeMissmatch(string name, Type wanted, Type received)
+        {
+            BuildTestingResults[currentTesting].Found[name.ToLower()] = new KeyValuePair<Type, Type>(wanted, received);
+        }
+
+        public static void AddBuildTestFind(string name)
+        {
+            name = name.ToLower();
+            if (BuildTestingResults[currentTesting].Found.ContainsKey(name)) return;
+            BuildTestingResults[currentTesting].Found.Add(name, new KeyValuePair<Type, Type>(typeof(Record), typeof(Record)));
+        }
+
+        public static void AddBuildTestSearch(string name)
+        {
+            name = name.ToLower();
+            if (BuildTestingResults[currentTesting].Search.Contains(name)) return;
+            BuildTestingResults[currentTesting].Search.Add(name);
+        }
+
+        public static void AddBuildTestFound(Reader reader)
+        {
+            foreach (var item in reader.GetColumns())
+                AddBuildTestFind(item);
         }
     }
 }

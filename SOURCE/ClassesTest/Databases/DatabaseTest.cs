@@ -1,5 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Classes
 {
@@ -13,55 +15,92 @@ namespace Classes
         }
 
         [TestMethod]
-        public void ConnectFailedNotExistingDatabase()
+        public void GetUser()
         {
+            User user = Database.Find<User>("Limit 1");
+
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
-        public void ConnectFailedWrongProvider()
+        public void GetAllUsers()
         {
+            List<User> result = Database.All<User>();
+
+            Assert.IsTrue(result.Count > 0);
         }
 
         [TestMethod]
-        public void GetSingleItem()
+        public void GetAllUsersHasAdmins()
         {
-        }
-            //Assert that it is retrieved
-            //Assert that it's value is correct
+            List<User> result = Database.All<User>();
 
-        [TestMethod]
-        public void GetMultipleItems()
-        {
+            Assert.IsTrue(result.Where(x=>x is AdminUser).Any());
         }
 
         [TestMethod]
-        public void UpdateSingleItem()
+        public void GetAllUsersHasEmployees()
         {
+            List<User> result = Database.All<User>();
+
+            Assert.IsTrue(result.Where(x => x is Employee).Any());
         }
 
         [TestMethod]
-        public void UpdateMultipleItems()
+        public void GetAllAdmins()
         {
+            List<AdminUser> result = Database.All<AdminUser>();
+
+            Assert.IsTrue(result.Count > 0);
         }
 
         [TestMethod]
-        public void HandleValidPayPalDocument()
+        public void GetAllEmployees()
         {
+            List<Employee> result = Database.All<Employee>();
+
+            Assert.IsTrue(result.Count > 0);
         }
 
         [TestMethod]
-        public void HandleInvalidPayPalDocument()
+        public void AllRecordsCanBeBuilt()
         {
+            Assert.IsFalse(Database.notBuildDefinedRecords.Any());
         }
 
         [TestMethod]
-        public void HandlePayPalDocumentPowerFailure()
+        public void AllRecordsHaveTable()
         {
+            Assert.IsFalse(Database.notTableDefinedRecords.Any());
         }
 
         [TestMethod]
-        public void HandlePayPalDocumentConnectionFailure()
+        public void AllRecordsBuildDefinitionHaveColumns()
         {
+            List<KeyValuePair<Type, Exception>> errors = new List<KeyValuePair<Type, Exception>>();
+            Type database = typeof(Database);
+            System.Reflection.MethodInfo all = database.GetMethod("All");
+            Assert.IsTrue(all != null);
+            Database.buildTesting = true;
+            foreach (var type in Classes.Database.Assembly.GetTypes().Where(x => x.IsSubclassOf(typeof(Record))))
+                try
+                {
+                    all.MakeGenericMethod(type).Invoke(null, new object[] { });
+                }
+                catch (Exception ex) { errors.Add(new KeyValuePair<Type, Exception>(type, ex.InnerException)); }
+            
+            foreach (var item in Database.BuildTestingResults)
+            {
+                if (errors.Where(x => x.Key == item.Key).Any()) continue;
+
+                string receivedNotProcessed = string.Join(", ", item.Value.Found.Keys.Where(x => !item.Value.Search.Contains(x)));
+                string notRequested = string.Join(", ", item.Value.Search.Where(x => !item.Value.Found.ContainsKey(x)));
+
+                Assert.IsTrue(item.Value.Found.Keys.Count == item.Value.Search.Count, "[{0}]\nMissmatch in search / find\nRECEIVED NOT PROCESSED:\n{1}\nNOT REQUESTED:\n{2}\n{3}/{4}", item.Key, receivedNotProcessed, notRequested, item.Value.Found.Keys.Count, item.Value.Search.Count);
+                Assert.IsFalse(item.Value.Found.Where(x => x.Value.Key != x.Value.Value).Any(), "[{0}]\nMissmatch in types\n{1}",item.Key, string.Join("\n", item.Value.Found.Select(x=>x.Key + " => Expected:" + x.Value.Key + " GOT:" + x.Value.Value)));
+            }
+
+            Assert.IsTrue(errors.Count == 0, "\nErrors during testing : \n" + string.Join("\n",errors.Select(x=>x.Key.Name + "\n" + x.Value.GetType().Name + "\n" + x.Value.Message + "\n"+x.Value.StackTrace)));
         }
     }
 }

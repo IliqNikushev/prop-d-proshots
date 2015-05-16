@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Classes
-{
+{/*
     [TestClass]
     public class ShopTest : UnitTest
     {
@@ -84,5 +84,5 @@ namespace Classes
         public void UserPurchasesWithNotEnoughCredits()
         {
         }
-    }
+    }*/
 }
