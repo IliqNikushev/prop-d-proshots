@@ -1,16 +1,15 @@
 <?php
-        require('Login.php');
         require('Head.php');
+        require('Login.php');
         require('Tickets_SQL.php');
+
 ?>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script> 
 $(document).ready(function(){
-    
-$("Document").change(function(){
-
-});
+    Update_Tickets()
+    Update_Price()
 
 	$("#Login-Panel").hide();
 	$("#Logout").hide();	 
@@ -74,7 +73,7 @@ $("Document").change(function(){
 			After entering information for the additional visitors they will recive a message with information about their registration.<br><br>
 			
 			 Visitors:<br><br>
-                         <form>
+                         <div>
 			<b>First Name</b><br>
 			<input id="Visitors_FirstName" type="text" pattern=".{1,25}" title="maximum 25 characters" name="FirstName" placeholder="First Name"><br>
 			
@@ -89,8 +88,35 @@ $("Document").change(function(){
                         
                         <button type="button" onclick="Add(),Update_Tickets(),Update_Price()">Add visitor</button>
                         <button type="button" onclick="Remove()">Remove  visitor</button><br>
-			</form>
-<script>        
+			</div>
+
+                
+                
+                         <form id="Tickets-Form" action="" method="POST">
+		<table id="table" border="1" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                          </tbody>
+		</table>
+		
+
+		<input id="PaymentBtn" type="submit" name="Ticket_payment" value="Continue to Payment"><br><br>
+                
+	 		</form>			
+			<hr/>
+			<div id="Tickets_div">Tickets: <?php echo  $Tickets ?></div><br>
+                        
+			<div id="Price_div" >Price:  <?php  echo  $Price ?> euro<br></div><br>
+
+                        
+                        <script>     
+                            
 function Add() {
     var table  = document.getElementById("table").getElementsByTagName('tbody')[0];
     if($('#Visitors_FirstName').val() !== "" && $('#Visitors_LastName').val() !== "" && $('#Visitors_Email').val() !== ""){
@@ -105,15 +131,19 @@ function Add() {
     var TicketsTextHeight = $('#TicketsText').height();
     $('#TicketsText').height(TicketsTextHeight + 30);
     
+    
 var MyRows = $('table#table').find('tbody').find('tr');
 var users = [];
+console.log(users);
 for (var i = 0; i < MyRows.length; i++) {
 var Fname = $(MyRows[i]).find('td:eq(0)').html();
 var Lname = $(MyRows[i]).find('td:eq(1)').html();
 var Email = $(MyRows[i]).find('td:eq(2)').html();
 users.push({FirstName:Fname,LastName:Lname,Email:Email});
 }
-$.post("Tickets_SQL.php", {users: users})
+$.post("Tickets_tempusers.php", {users: users})
+
+
     }
     else{
         $('#Message').text("All fields must be filled!");
@@ -123,34 +153,7 @@ function Remove() {
 
 
 }
-</script>
-
-                
-                <form id="Tickets-Form" action="" method="POST">
-		<table id="table" border="1" style="width:100%">
-                    <thead>
-                      <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                          </tbody>
-		</table>
-		
-
-		<input type="submit" name="Payment" value="Continue to Payment"><br><br>
-                </form>
-                
-
-	 					
-			<hr/>
-			<div id="Tickets_div">Tickets: <?php echo  $Tickets ?></div><br>
-                        
-			<div id="Price_div">Price:  <?php  echo  $Price ?> euro<br></div><br>
-
-                        <script>
+                            
                             var Has_Ticket = parseInt(<?php echo  json_encode($Tickets) ?>);
 
                             function Update_Tickets() {
@@ -161,13 +164,16 @@ function Remove() {
                             }
                             function Update_Price() {
                                         var People = parseInt($('#table tr').length);  
-                                        var Price = ((Has_Ticket + People1) - 1) * 55 + " euro";
+                                        var Price  = ((Has_Ticket + People) - 1) * 55;
                                         jQuery('#Price_div').html('Price: ');
-                                        $('#Price_div').append(Price);
+                                        $('#Price_div').append(Price + " euro");
+                                        $.post("Tickets_Pay.php", { Pay:Price } );
                                         
                             }
-                            
+ 
                         </script>
+                       <div id="name_f"></div>
+
 			</div>
 
     </div>
@@ -183,7 +189,6 @@ function Remove() {
     <?php
         require('Footer.php');
     ?>
-
 
 </body>
 
