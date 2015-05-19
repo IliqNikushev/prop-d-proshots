@@ -75,11 +75,18 @@ namespace Classes
         }
 
         [TestMethod]
+        public void MiscTableExists()
+        {
+            Assert.AreEqual(5,Classes.Database.Misc.NumberOfCardsTotal);
+        }
+
+        [TestMethod]
         public void AllRecordsBuildDefinitionHaveColumns()
         {
             List<KeyValuePair<Type, Exception>> errors = new List<KeyValuePair<Type, Exception>>();
             Type database = typeof(Database);
-            System.Reflection.MethodInfo all = database.GetMethod("All");
+            string methodName = new Func<List<Classes.Record>>(Classes.Database.All<Classes.Record>).Method.Name;
+            System.Reflection.MethodInfo all = database.GetMethod(methodName);
             Assert.IsTrue(all != null);
             Database.buildTesting = true;
             foreach (var type in Classes.Database.Assembly.GetTypes().Where(x => x.IsSubclassOf(typeof(Record))))
@@ -100,7 +107,15 @@ namespace Classes
                 Assert.IsFalse(item.Value.Found.Where(x => x.Value.Key != x.Value.Value).Any(), "[{0}]\nMissmatch in types\n{1}",item.Key, string.Join("\n", item.Value.Found.Select(x=>x.Key + " => Expected:" + x.Value.Key + " GOT:" + x.Value.Value)));
             }
 
-            Assert.IsTrue(errors.Count == 0, "\nErrors during testing : \n" + string.Join("\n",errors.Select(x=>x.Key.Name + "\n" + x.Value.GetType().Name + "\n" + x.Value.Message + "\n"+x.Value.StackTrace)));
+            Assert.IsTrue(0 == errors.
+                Where(x=>!(x.Key == typeof(RestockableItem) && x.Value.Message.StartsWith("ABSTRACT TYPE REQUESTED"))).
+                Where(x => !(x.Key == typeof(Job) && x.Value.Message == ("Unknown job type "))).
+                Where(x => !(x.Key == typeof(Landmark) && x.Value.Message == ("Unknown landmark type "))).
+                Where(x => !(x.Key == typeof(EmployeeAction) && x.Value.Message == ("Unknown job type "))).
+                Where(x => !(x.Key == typeof(Employee) && x.Value.Message == ("Unknown job type "))).
+                Where(x => !(x.Key == typeof(User) && x.Value.Message == ("Unknown job type "))).
+                Count(),
+                "\n"+errors.Count + " Errors during testing : \n" + string.Join("\n",errors.Select(x=>x.Key.Name + "\n" + x.Value.GetType().Name + "\n" + x.Value.Message + "\n"+x.Value.StackTrace)));
         }
     }
 }

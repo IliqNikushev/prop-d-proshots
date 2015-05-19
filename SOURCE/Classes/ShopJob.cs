@@ -13,7 +13,7 @@ namespace Classes
         {
             get
             {
-                return Database.Where<Classes.ShopItem>("shop_id = {0}", this.ID);
+                return Database.Where<Classes.ShopItem>("ShopItems.shop_id = {0}", this.ID);
             }
         }
 

@@ -1,6 +1,6 @@
 <?php
-        require('Login.php');
         require('Head.php');
+        require('Login.php');
         require('Reservation_SQL.php');
 ?>
 
@@ -127,19 +127,30 @@ $(document).ready(function(){
 			To reserve a camping spot for the weekend you need to be registered.<br>
 			You can add additional visitors for the camping spot but they need to be registered //and also have a ticket//.<br>
 			The price for  reserving a camping spot is 30 euro plus 20 euro for every additional visitor per day.<br><br>
-
+<form id="Reservation-Form" action="" method="POST">
 <?php
+                                    
+                                        $query13 = "SELECT location FROM tents";
+                                        $result13 = mysql_query($query13);
+                                        while ($row4 = mysql_fetch_assoc($result13)) {
+     $rows4[] = $row3;
+}
+
+foreach($rows4 as $row3) {
+
+$Tent = $row4["location"];
+}
+    
                                          
-                                    $query4 = "SELECT ID FROM `landmarks` WHERE Type='1'";
-                                    $result4 = mysql_query($query4) or die(mysql_error());
-                                    while ($row = mysql_fetch_assoc($result4)) {
+                                    $query5 = "SELECT ID FROM `landmarks` WHERE (Type='tent' AND ID!='$Tent')";
+                                    $result5 = mysql_query($query5) or die(mysql_error());
+                                    while ($row = mysql_fetch_assoc($result5)) {
      $rows[] = $row;
 }
 
 
                                     
 ?>
-<form id="Reservation-Form" action="" method="POST">
 			Select camping spot:
                         <select name="TentID" id="Camping_spot">
                         <option value="" selected></option>

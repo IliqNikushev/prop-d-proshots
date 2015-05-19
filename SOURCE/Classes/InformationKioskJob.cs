@@ -9,10 +9,11 @@ namespace Classes
     {
         public InformationKioskJob(int id, int x, int y) : base(id, "Information desk", "Here you can get information about the event and your card", x, y) { }
 
-        private int numberOfCardsTaken, numberOfCardsTotal;
+        private long numberOfCardsTaken;
+        private int numberOfCardsTotal;
 
-        public int NumberOfCardsAvailable {get{return this.NumberOfCardsTotal - this.NumberOfCardsTaken;}}
-        public int NumberOfCardsTaken {get {return this.numberOfCardsTaken;}}
+        public long NumberOfCardsAvailable {get{return this.NumberOfCardsTotal - this.NumberOfCardsTaken;}}
+        public long NumberOfCardsTaken {get {return this.numberOfCardsTaken;}}
         public int NumberOfCardsTotal { get { return this.numberOfCardsTotal; } }
 
         public void RefreshCards()

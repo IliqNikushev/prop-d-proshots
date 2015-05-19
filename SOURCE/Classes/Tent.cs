@@ -7,7 +7,6 @@ namespace Classes
 {
     public class Tent : Record
     {
-        public int ID{get; private set;}
         public TentAreaLandmark Location { get; private set; }
         public DateTime BookedOn { get; private set; }
         public bool IsPayed { get; private set; }
@@ -20,7 +19,7 @@ namespace Classes
         {
             get
             {
-                return 30 + NumberOfPeople * 6;
+                return 30 + NumberOfPeople * 20;
             }
         }
 
@@ -29,9 +28,8 @@ namespace Classes
             get { return BookedFor.Length; }
         }
 
-        public Tent(int id, TentAreaLandmark location, DateTime bookedOn, bool isPayed, DateTime bookedTill, Visitor bookedBy, params Visitor[] bookedFor)
+        public Tent(TentAreaLandmark location, DateTime bookedOn, bool isPayed, DateTime bookedTill, Visitor bookedBy, params Visitor[] bookedFor)
         {
-            this.ID = id;
             this.Location = location;
             this.BookedOn = bookedOn;
             this.IsPayed = isPayed;

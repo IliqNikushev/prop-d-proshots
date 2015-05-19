@@ -11,20 +11,14 @@ namespace Classes
 
         public List<Appointment> Appointments
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get { return Database.Appointments; }
         }
 
         public List<Appointment> NotReturnedAppointments
         {
             get
             {
-                throw new System.NotImplementedException();
+                return Database.Where<Appointment>("Appointments.isReturned = 1");
             }
         }
 
@@ -32,7 +26,7 @@ namespace Classes
         {
             get
             {
-                throw new System.NotImplementedException();
+                return Database.Where<Appointment>("Appointments.completedOn is NULL");
             }
         }
 

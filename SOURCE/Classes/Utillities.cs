@@ -8,58 +8,134 @@ namespace Classes
 {
     public static class Utillities
     {
-        public static T Get<T>(this MySql.Data.MySqlClient.MySqlDataReader reader, string name) where T : struct
-        {
-            if (Database.buildTesting)
-                Database.AddBuildTestSearch(name);
-            name = name.ToLower();
-            for (int i = 0; i < reader.FieldCount; i++)
-                if (reader.GetName(i).ToLower().EndsWith(name))
-                {
-                    if (Database.buildTesting)
-                    {
-                        Database.AddBuildTestFind(name);
-                        try { reader.GetValue(0); }
-                        catch { return default(T); }
-                        if (reader.GetValue(i).GetType() != typeof(T))
-                            Database.AddBuildTestTypeMissmatch(name, typeof(T), reader.GetValue(i).GetType());
-                    }
-                    return (T)reader.GetValue(i);
-                }
+        private static Dictionary<MySql.Data.MySqlClient.MySqlDataReader, Stack<string>> prefixes = new Dictionary<MySql.Data.MySqlClient.MySqlDataReader, Stack<string>>();
+        private static Dictionary<MySql.Data.MySqlClient.MySqlDataReader, Stack<string>> distinctPrefixes = new Dictionary<MySql.Data.MySqlClient.MySqlDataReader, Stack<string>>();
 
-            if (Database.buildTesting)
-                return default(T);
-            throw new KeyNotFoundException("Column not found, " + name + "\n" + string.Join(", ", reader.GetColumns()));
+        public static void ClearPrefixes(this MySql.Data.MySqlClient.MySqlDataReader reader)
+        {
+            if (prefixes.ContainsKey(reader))
+                prefixes.Remove(reader);
+            if (distinctPrefixes.ContainsKey(reader))
+                distinctPrefixes.Remove(reader);
         }
 
-        public static string GetStr(this MySql.Data.MySqlClient.MySqlDataReader reader, string name)
+        public static void AddDistinctPrefix(this MySql.Data.MySqlClient.MySqlDataReader reader, string prefix)
         {
+            if (!distinctPrefixes.ContainsKey(reader))
+                distinctPrefixes.Add(reader, new Stack<string>());
+            if(prefix != "")
+                if (prefix.Last() != '_') prefix += "_";
+            distinctPrefixes[reader].Push(prefix.ToLower());
+        }
+
+         public static void RemoveDistinctPrefix(this MySql.Data.MySqlClient.MySqlDataReader reader)
+         {
+             if (distinctPrefixes.ContainsKey(reader))
+                 if (distinctPrefixes[reader].Count > 0)
+                     distinctPrefixes[reader].Pop();
+         }
+
+        public static void AddPrefix(this MySql.Data.MySqlClient.MySqlDataReader reader, string prefix)
+        {
+            if (!prefixes.ContainsKey(reader))
+                prefixes.Add(reader, new Stack<string>());
+            if (prefix != "")
+                if (prefix.Last() != '_') prefix += "_";
+            prefixes[reader].Push(prefix.ToLower());
+        }
+
+        public static void RemovePrefix(this MySql.Data.MySqlClient.MySqlDataReader reader)
+        {
+            if (prefixes.ContainsKey(reader))
+                if(prefixes[reader].Count > 0)
+                    prefixes[reader].Pop();
+        }
+
+        private static string Prefix(this MySql.Data.MySqlClient.MySqlDataReader reader)
+        {
+            if (prefixes.ContainsKey(reader))
+                return string.Join("", prefixes[reader].Reverse());
+            return "";
+        }
+
+        private static string DistinctPrefix(this MySql.Data.MySqlClient.MySqlDataReader reader)
+        {
+            if (distinctPrefixes.ContainsKey(reader))
+                return string.Join("", distinctPrefixes[reader].Reverse());
+            return "";
+        }
+
+        private static object Get(this MySql.Data.MySqlClient.MySqlDataReader reader, string n, object defaultValue)
+        {
+            string name = "";
+
+            if(distinctPrefixes.ContainsKey(reader))
+                if (distinctPrefixes[reader].Where(x=>x.Trim().Length>0).Count() > 0)
+                {
+                    name = reader.DistinctPrefix() + reader.Prefix() + n.ToLower();
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        if (reader.GetName(i).ToLower() == name)
+                        {
+                            if (Database.buildTesting)
+                                Database.AddBuildTestSearch(name);
+
+                            if (Database.buildTesting)
+                            {
+                                Database.AddBuildTestFind(name);
+                                try { reader.GetValue(0); }
+                                catch { return defaultValue; }
+                                if (reader.GetValue(i).GetType() != defaultValue.GetType())
+                                    Database.AddBuildTestTypeMissmatch(name, typeof(string), reader.GetValue(i).GetType());
+                            }
+
+                            if (reader.GetValue(i).GetType() == typeof(System.DBNull))
+                                return defaultValue;
+                            else
+                                return reader.GetValue(i);
+                        }
+                    }
+                }
+
+            name = reader.Prefix() + n.ToLower();
+
             if (Database.buildTesting)
                 Database.AddBuildTestSearch(name);
-            name = name.ToLower();
+
             for (int i = 0; i < reader.FieldCount; i++)
             {
-                if (reader.GetName(i).ToLower().EndsWith(name))
+                if (reader.GetName(i).ToLower() == name)
                 {
                     if (Database.buildTesting)
                     {
                         Database.AddBuildTestFind(name);
                         try { reader.GetValue(0); }
-                        catch { return null; }
-                        if (reader.GetValue(i).GetType() != typeof(string))
+                        catch { return defaultValue; }
+                        if (reader.GetValue(i).GetType() != defaultValue.GetType())
                             Database.AddBuildTestTypeMissmatch(name, typeof(string), reader.GetValue(i).GetType());
                     }
 
                     if (reader.GetValue(i).GetType() == typeof(System.DBNull))
-                        return null;
+                        return defaultValue;
                     else
-                        return reader.GetString(i);
+                        return reader.GetValue(i);
                 }
             }
 
+
             if (Database.buildTesting)
-                return null;
+                return defaultValue;
             throw new KeyNotFoundException("Column not found, " + name + "\n" + string.Join(", ", reader.GetColumns()));
+        }
+
+        public static T Get<T>(this MySql.Data.MySqlClient.MySqlDataReader reader, string name) where T : struct
+        {
+            return (T)reader.Get(name, default(T));
+        }
+
+        public static string GetStr(this MySql.Data.MySqlClient.MySqlDataReader reader, string name)
+        {
+            return reader.Get(name, "") as string;
         }
 
         public static T Apply<T>(this T t, Action<T> a)
