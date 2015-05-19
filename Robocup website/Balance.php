@@ -78,9 +78,6 @@ $(document).ready(function(){
 			</select><br><br>
 			<input type="submit" name="Balance_load" value="Continue to Payment"><br><br>
 			
-                            <script>
-                            $.post("Balance_SQL.php", {Amount: Amount});
-                            </script>
                         
 			</form>
         

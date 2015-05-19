@@ -1,6 +1,22 @@
 <?php
         require('Login.php');
         require('Head.php');
+        
+        if (isset($_SESSION['username'])){
+        $username = $_SESSION['username'];
+        $query = "SELECT ID FROM `users` WHERE username='$username'";
+        $result = mysql_query($query);
+        while ($row = mysql_fetch_assoc($result)) {
+     $rows[] = $row;
+}
+    
+foreach($rows as $row) {
+$UserID = $row["ID"];
+}
+
+        
+        }
+        
 ?>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -63,11 +79,27 @@ $(document).ready(function(){
 			</div>
 			
 	<div id="BookedText">
+            <?php
+                                         
+                                    $query5 = "SELECT Description FROM items WHERE ID=5";
+                                    $result5 = mysql_query($query5) or die(mysql_error());
+                                    while ($row = mysql_fetch_assoc($result5)) {
+     $rows[] = $row;
+}
+
+
+                                    
+?>
 		Booked items<br>
 		<select name="sometext" size="15" id="TextBox">
-		<option>item1</option>
-		<option>item2</option>
-		<option>item3</option>
+<?php
+
+foreach($rows as $row) {
+echo "<option value='0'>";
+echo $row["Description"];
+echo "</option>";
+}
+?>
 		</select>
 	</div>
 
