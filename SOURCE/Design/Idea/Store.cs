@@ -35,7 +35,6 @@ namespace Design.Idea
             InitializeComponent();
 
             totalNumberLbl.Text = "0" + currency;
-            totalCountLbl.Text = "0";
 
             ShopItem example = new ShopItem(new Classes.ShopItem(0, 0, "", "Back","<>","","", 0, 0, null));
             this.Controls.Add(GenerateItem(exampleLbl.Left, exampleLbl.Top, example));
@@ -121,6 +120,7 @@ namespace Design.Idea
 
             Label name = new Label();
             name.Text = i.Name;
+            
 #warning check if every item fits in the label;
             name.Top = icon.Height;
 
@@ -253,20 +253,23 @@ namespace Design.Idea
         private void button1_Click(object sender, EventArgs e)
         {
             IEnumerable<ShopItem> selectedItems = this.items.Where(x=>x.PurchaseTimes > 0);
-            IEnumerable<Classes.ReceiptItem> selection = selectedItems.Select(x => new Classes.ReceiptItem(0, x.Item,null, x.PurchaseTimes,0));
+            IEnumerable<Classes.ReceiptItem> selection = selectedItems.Select(x => new Classes.ReceiptItem(0, x.Item, null, x.PurchaseTimes,0));
+
+            new StoreConfirm(selectedItems).Show();
+
             //Classes.Receipt receipt = new Classes.Receipt(ActiveVisitor, this.Shop, selection.ToList());
 
             //save receipt;
 
-            ActiveVisitor = null;
+            //ActiveVisitor = null;
 
-            foreach (ShopItem item in selectedItems)
-                item.Reset();
+            //foreach (ShopItem item in selectedItems)
+                //item.Reset();
 
         }
     }
 
-    class ShopItem
+    public class ShopItem
     {
         public const char currency = '€';
         Bitmap cachedIcon = null;
@@ -345,6 +348,45 @@ namespace Design.Idea
             this.PurchaseTimes = 0;
             this.PurchaseTimesTBox.Text = "0";
             this.TotalLabel.Text = "0" + currency;
+        }
+    }
+
+    public class ItemsCollection
+    {
+        public VScrollBar Bar;
+        public Panel panel;
+        public IEnumerable<Control> Controls;
+        public int X;
+        public int Y;
+
+        public ItemsCollection(Control parent, VScrollBar verticalBar, int neededHeight,IEnumerable<Control> controls, int x = 0, int y = 0)
+        {
+            this.Bar = verticalBar;
+            this.X = x;
+            this.Y = y;
+
+            Panel holder = new Panel();
+            
+            this.panel = new Panel();
+            holder.Controls.Add(panel);
+            parent.Controls.Add(holder);
+
+            holder.Left = x;
+            holder.Top = y;
+            holder.Height = verticalBar.Height;
+            panel.Height = neededHeight;
+
+            foreach (Control control in controls)
+                control.Parent = panel;
+
+            if (neededHeight > verticalBar.Height)
+            {
+                verticalBar.Visible = true;
+                verticalBar.Maximum = neededHeight - verticalBar.Height;
+                verticalBar.Scroll += (xx,yy) => this.panel.Top = -verticalBar.Value;
+            }
+            else
+                verticalBar.Visible = false;
         }
     }
 }

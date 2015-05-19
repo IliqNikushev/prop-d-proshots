@@ -185,6 +185,12 @@
     <Compile Include="Idea\Store.Designer.cs">
       <DependentUpon>Store.cs</DependentUpon>
     </Compile>
+    <Compile Include="Idea\StoreConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\StoreConfirm.Designer.cs">
+      <DependentUpon>StoreConfirm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Idea\VisitorInterface\View\EmployeesPCDoctor.designer.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -307,6 +313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\StoreConfirm.resx">
+      <DependentUpon>StoreConfirm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
