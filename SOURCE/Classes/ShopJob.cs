@@ -32,5 +32,10 @@ namespace Classes
             //return new Receipt(user, this, items);
             return null;
         }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -22,5 +22,10 @@ namespace Classes
             this.Receipt = receipt;
             this.PricePerItem = pricePerItem;
         }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

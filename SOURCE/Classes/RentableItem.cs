@@ -19,5 +19,10 @@ namespace Classes
             renter.Rent(this);
             RentableItemHistory history = new RentableItemHistory(this, renter);
         }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

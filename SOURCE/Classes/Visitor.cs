@@ -37,5 +37,10 @@ namespace Classes
             //balance = 0
             //check if all items are returned
         }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

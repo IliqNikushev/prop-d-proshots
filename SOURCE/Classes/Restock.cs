@@ -23,5 +23,10 @@ namespace Classes
             foreach (RestockItem item in this.Items)
                 item.Execute();
         }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

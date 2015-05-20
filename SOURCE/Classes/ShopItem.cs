@@ -16,5 +16,10 @@ namespace Classes
             this.Shop = shop;
             this.WarningLevel = warningLevel;
         }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

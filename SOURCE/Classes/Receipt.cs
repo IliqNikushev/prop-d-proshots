@@ -32,5 +32,10 @@ namespace Classes
             this.ID = id;
             this.PurchasedOn = purchasedOn;
         }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

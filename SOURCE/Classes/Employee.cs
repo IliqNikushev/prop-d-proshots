@@ -61,5 +61,10 @@ namespace Classes
             throw new System.NotImplementedException();
             //this.Actions.Add(new EmployeeAction(this, EmployeeActionType.ShiftEnd));
         }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -3,6 +3,35 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Classes
 {
+    
+    [TestClass]
+    public class PayPalDocumentTest : RecordTest
+    {
+        [TestMethod]
+        public override void DatabaseSave()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
+        public override void DatabaseCreate()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
+        public override void DatabaseGet()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
+        public override void DatabaseUpdate()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    /*
     [TestClass]
     public class PayPalDocumentTest
     {
@@ -100,5 +129,5 @@ namespace Classes
         public void InvalidDepositTooSmall()
         {
         }
-    }
+    }*/
 }

@@ -29,5 +29,10 @@ namespace Classes
         {
             this.Item.Restock(this.Times);
         }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
