@@ -161,6 +161,7 @@
     <Compile Include="Idea\HomePageWithMap.Designer.cs">
       <DependentUpon>HomePageWithMap.cs</DependentUpon>
     </Compile>
+    <Compile Include="Idea\ItemsCollection.cs" />
     <Compile Include="Idea\Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +180,7 @@
     <Compile Include="Idea\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Idea\ShopItem.cs" />
     <Compile Include="Idea\Store.cs">
       <SubType>Form</SubType>
     </Compile>
