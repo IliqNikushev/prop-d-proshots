@@ -13,5 +13,10 @@ namespace Classes
         {
             throw new System.NotImplementedException();
         }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

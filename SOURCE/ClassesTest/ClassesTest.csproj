@@ -51,7 +51,43 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ShopTest.cs" />
+    <Compile Include="RecordTest.cs" />
+    <Compile Include="AdminUserTest.cs" />
+    <Compile Include="ItemTest.cs" />
+    <Compile Include="DepositTest.cs" />
+    <Compile Include="EmployeeTest.cs" />
+    <Compile Include="JobTest.cs" />
+    <Compile Include="LandmarkTest.cs" />
+    <Compile Include="EventLandmarkTest.cs" />
+    <Compile Include="EmployeeActionTest.cs" />
+    <Compile Include="FoodAndDrinkShopJobTest.cs" />
+    <Compile Include="GeneralShopJobTest.cs" />
+    <Compile Include="InformationKioskJobTest.cs" />
+    <Compile Include="AppointmentItemTest.cs" />
+    <Compile Include="ITServiceJobTest.cs" />
+    <Compile Include="LogMessageTest.cs" />
+    <Compile Include="PayPalMachineTest.cs" />
+    <Compile Include="PCDoctorJobTest.cs" />
+    <Compile Include="ReceiptTest.cs" />
+    <Compile Include="RentableItemTest.cs" />
+    <Compile Include="RentableItemHistoryTest.cs" />
+    <Compile Include="RestockTest.cs" />
+    <Compile Include="ShopItemTest.cs" />
+    <Compile Include="ReceiptItemTest.cs" />
+    <Compile Include="AppointmentTest.cs" />
+    <Compile Include="RestockableItemTest.cs" />
+    <Compile Include="TentTest.cs" />
+    <Compile Include="AppointmentTaskTest.cs" />
+    <Compile Include="TentAreaLandmarkTest.cs" />
+    <Compile Include="RestockItemTest.cs" />
+    <Compile Include="RFIDTest.cs" />
+    <Compile Include="MiscTableTest.cs" />
+    <Compile Include="TableTest.cs" />
+    <Compile Include="JoinTableTest.cs" />
+    <Compile Include="_Tests.cs" />
+    <Compile Include="VisitorTest.cs" />
+    <Compile Include="WarningTest.cs" />
+    <Compile Include="ShopJobTest.cs" />
     <Compile Include="PayPalDocumentTest.cs" />
     <Compile Include="Databases\DatabaseTest.cs" />
     <Compile Include="UnitTest.cs" />
@@ -64,6 +100,7 @@
       <Name>Classes</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

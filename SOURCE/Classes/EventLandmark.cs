@@ -15,5 +15,10 @@ namespace Classes
 
         public DateTime TimeStart { get; private set; }
         public DateTime TimeEnd { get; private set; }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

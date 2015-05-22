@@ -20,5 +20,10 @@ namespace Classes
         public DateTime Date { get; private set; }
 
         public string Action{get; private set;}
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

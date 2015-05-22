@@ -68,6 +68,8 @@ namespace Design.Idea.EmployeeInterface
                 box.Width = 84;
                 rent.Click += (xx, yy) => 
                 {
+                    //items[item].rentedTimes+=1;
+                    //foreach items.... item.rent(active visitor)
                     //item.InStock -= 1;
                     cartListView.Items.Add(item.Brand+ " " + item.Model + " rented at " + DateTime.Now + " until "+ date.Value + " for " + item.Price + " euros an hour");
                 };

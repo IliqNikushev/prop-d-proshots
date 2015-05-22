@@ -32,5 +32,10 @@ namespace Classes
 
             this.RefreshCards();
         }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

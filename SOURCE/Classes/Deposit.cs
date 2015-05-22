@@ -36,5 +36,10 @@ namespace Classes
             this.Date = date;
             this.Document = document;
         }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

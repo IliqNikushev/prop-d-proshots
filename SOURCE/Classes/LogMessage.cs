@@ -19,5 +19,10 @@ namespace Classes
             this.Name = name;
             this.Description = description;
         }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

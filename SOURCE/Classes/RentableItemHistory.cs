@@ -45,5 +45,10 @@ namespace Classes
             this.ReturnedAt = DateTime.Now;
             this.Notes += notes;
         }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -81,7 +81,7 @@
     <Compile Include="RentableItemHistory.cs" />
     <Compile Include="Restock.cs" />
     <Compile Include="RestockableItem.cs" />
-    <Compile Include="RestockSelection.cs" />
+    <Compile Include="RestockItem.cs" />
     <Compile Include="RFID.cs" />
     <Compile Include="ShopItem.cs" />
     <Compile Include="ShopJob.cs" />

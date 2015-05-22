@@ -2,7 +2,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Classes
-{/*
+{
+    [TestClass]
+    public abstract class UserTest : RecordTest
+    {
+    }
+    /*
     [TestClass]
     public class UserTest : UnitTest
     {

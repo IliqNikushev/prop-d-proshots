@@ -30,5 +30,17 @@ namespace Classes
         {
             //check if he has this item
         }
+
+        public void CloseAccount()
+        {
+            //user no longer will be able to login
+            //balance = 0
+            //check if all items are returned
+        }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

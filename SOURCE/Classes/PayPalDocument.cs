@@ -25,6 +25,11 @@ namespace Classes
             this.Date = date;
             this.Raw = raw;
         }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
         /*
         public static PayPalDocument Parse(string text)
         {

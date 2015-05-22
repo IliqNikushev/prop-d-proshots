@@ -21,5 +21,10 @@ namespace Classes
                 return Database.GetTent(this);
             }
         }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
