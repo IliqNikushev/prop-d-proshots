@@ -14,10 +14,56 @@
         $Password = $_POST['Password'];
         $CPassword = $_POST['CPassword'];
         $Type = 'visitor';
+        $upload	= true ;
+	$image_name = '' ;
+                
+                
+                if(isset($_FILES['image']) && $_FILES['image']['size'] != 0){
+			function check_file_name($file_name ,$file_extension ,$base_url){
+				$f_name = str_replace('=' ,'' ,base64_encode($file_name.time())) ;
+				if(file_exists($base_url.$f_name.'.'.$file_extension)){
+					check_file_name($f_name ,$file_extension ,$base_url) ;
+				}else{
+					return $f_name.'.'.$file_extension ;
+				}
+			}
+			
+			$allowedExts = array("jpg", "jpeg", "gif", "png" ,"image/pjpeg" ,"image/gif" ,"image/jpeg" ,"image/png");
+			$image_ext = explode("." ,$_FILES['image']['name']) ;
+			if(count($image_ext) != 2){
+				$image_extt = $image_ext[count($image_ext)-1] ;
+			}else{
+				$image_extt = $image_ext[1] ;
+			}
+			if (!in_array($_FILES["image"]["type"] ,$allowedExts)){
+				$image_message = 'file extension not allowed' ;
+				$upload = false ;
+			}else{
+				if($_FILES['image']['error'] > 0){
+					$image_message = 'error in file upload' ;
+					$upload = false ;
+				}else{
+					$image_name = check_file_name($_FILES['image']['name'] ,$image_extt ,'user_images/') ;
+					if(move_uploaded_file($_FILES["image"]["tmp_name"],'user_images/'.$image_name)){
+						$image_message = 'upload success' ;
+						$upload = true ;
+					}else{
+						$image_message = 'error in upload image' ;
+						$upload = false ;
+					}
+				}
+			}
+	
+		}
+                if(!$upload){
+			$msg = 'error in upload <br />'. $image_message ;
+		}
+                
+                
     if($Password == $CPassword){
         
     
-        $query = "INSERT INTO `users` (FirstName,LastName, Email, Username, Password , Type ) VALUES ('$FirstName', '$LastName', '$Email', '$Username', '$Password', '$Type')";
+        $query = "INSERT INTO `users` (FirstName,LastName, Email, Username, Password , Type ,`Picture`) VALUES ('$FirstName', '$LastName', '$Email', '$Username', '$Password', '$Type' ,'{$image_name}')";
         
         
         $query1 = mysql_query("SELECT Username FROM Users WHERE Username='$Username'");
@@ -151,6 +197,8 @@ $(document).ready(function(){
 			<div style="display: inline-block; width:16%"><b>Email: </b></div>
 			<input required pattern=".{6,25}" title="from 6 to 25 characters" type="email" name="Email" placeholder="Email"> *<br><br>
 			
+                        <div style="display: inline-block; width:16%" for="image:">Image</div>
+			<input type="file" name="image" id="image" class="input-xlarge" /><br><br>
 			
                         <input class="btn register" type="submit" name="Register" value="Register" /><br><br>
 		

@@ -1,15 +1,15 @@
 <?php
+
         require('Head.php');
         require('Login.php');
         require('Tickets_SQL.php');
-
 ?>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 <script> 
 $(document).ready(function(){
-    Update_Tickets()
-    Update_Price()
 
 	$("#Login-Panel").hide();
 	$("#Logout").hide();	 
@@ -58,8 +58,10 @@ $(document).ready(function(){
     <!-- Main Content -->
     <div id="Elements-Placement">
         <?php
-	if(isset($msg) & !empty($msg)){
-		echo $msg;
+        
+	if(isset($_COOKIE['msg']) & !empty($_COOKIE['msg'])){ 
+		echo $_COOKIE['msg'];
+                $_COOKIE['msg'] = "";
 	}
         ?>
 			<div id="Heading">
@@ -71,28 +73,25 @@ $(document).ready(function(){
 			You can buy ticket for yourself and for you friends.<br>
 			The price of one ticket is 55 euro.<br>
 			After entering information for the additional visitors they will recive a message with information about their registration.<br><br>
-			
+                       
 			 Visitors:<br><br>
-                         <div>
 			<b>First Name</b><br>
 			<input id="Visitors_FirstName" type="text" pattern=".{1,25}" title="maximum 25 characters" name="FirstName" placeholder="First Name"><br>
 			
 			<b>Last Name</b><br>
 			<input id="Visitors_LastName" type="text" pattern=".{1,25}" title="maximum 25 characters" name="LastName" placeholder="Last Name"><br>
 			
-			<b>Email</b><br>
-			<input id="Visitors_Email" required pattern=".{6,25}" title="from 6 to 25 characters" type="email" name="Email" placeholder="Email"><br><br>
+                        <b>Email</b><br>
+			<input id="Visitors_Email" type="email"   name="field"   placeholder="Email"><br><br>
                         
                         <div id="Message">
                         </div>
                         
                         <button type="button" onclick="Add(),Update_Tickets(),Update_Price()">Add visitor</button>
-                        <button type="button" onclick="Remove()">Remove  visitor</button><br>
-			</div>
-
+                        <button type="button" onclick="Remove(),Update_Tickets(),Update_Price()">Remove  visitor</button><br>
                 
                 
-                         <form id="Tickets-Form" action="" method="POST">
+                         
 		<table id="table" border="1" style="width:100%">
                     <thead>
                       <tr>
@@ -105,22 +104,39 @@ $(document).ready(function(){
                           </tbody>
 		</table>
 		
-
-		<input id="PaymentBtn" type="submit" name="Ticket_payment" value="Continue to Payment"><br><br>
+                            
+                             <input id="PaymentBtn" type="button" name="Ticket_payment" value="Continue to Payment" onclick="return  Send_post()"><br><br>
                 
-	 		</form>			
+                            
 			<hr/>
 			<div id="Tickets_div">Tickets: <?php echo  $Tickets ?></div><br>
                         
-			<div id="Price_div" >Price:  <?php  echo  $Price ?> euro<br></div><br>
+			<div id="Price_div" >Price:  <?php  echo  $Price ?><br></div><br>
 
                         
-                        <script>     
-                            
+                        <script>  
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+$( "#Visitors_Email" ).validate({
+  rules: {
+    field: {
+      required: true,
+      email: true
+    }
+  }
+});
+
+       var count = 0;                     
 function Add() {
-    var table  = document.getElementById("table").getElementsByTagName('tbody')[0];
+    if(0 == 0){
+
+    count = count+1;
+var table  = document.getElementById("table").getElementsByTagName('tbody')[0];
     if($('#Visitors_FirstName').val() !== "" && $('#Visitors_LastName').val() !== "" && $('#Visitors_Email').val() !== ""){
     var row = table.insertRow(table.rows.length);
+    row.setAttribute('id',count);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
@@ -130,28 +146,18 @@ function Add() {
     
     var TicketsTextHeight = $('#TicketsText').height();
     $('#TicketsText').height(TicketsTextHeight + 30);
-    
-    
-var MyRows = $('table#table').find('tbody').find('tr');
-var users = [];
-console.log(users);
-for (var i = 0; i < MyRows.length; i++) {
-var Fname = $(MyRows[i]).find('td:eq(0)').html();
-var Lname = $(MyRows[i]).find('td:eq(1)').html();
-var Email = $(MyRows[i]).find('td:eq(2)').html();
-users.push({FirstName:Fname,LastName:Lname,Email:Email});
+
 }
-$.post("Tickets_tempusers.php", {users: users})
-
-
-    }
     else{
         $('#Message').text("All fields must be filled!");
     }
+    }
 }
+
 function Remove() {
-
-
+    
+$('#'+count).remove();
+count = count-1;
 }
                             
                             var Has_Ticket = parseInt(<?php echo  json_encode($Tickets) ?>);
@@ -162,16 +168,41 @@ function Remove() {
                                         jQuery('#Tickets_div').html('Tickets: ');
                                         $('#Tickets_div').append(Tickets);
                             }
+                            
+                               var Price = 0; 
+                            
+                            
                             function Update_Price() {
                                         var People = parseInt($('#table tr').length);  
-                                        var Price  = ((Has_Ticket + People) - 1) * 55;
+                                        Price  = ((Has_Ticket + People) - 1) * 55;
+                                        
                                         jQuery('#Price_div').html('Price: ');
-                                        $('#Price_div').append(Price + " euro");
-                                        $.post("Tickets_Pay.php", { Pay:Price } );
+                                        
+                                        $('#Price_div').append(Price);
+                                        
                                         
                             }
- 
+                            function Send_post() {
+		
+                 
+                 
+                 var MyRows = $('table#table').find('tbody').find('tr');
+var users = [];
+console.log(users);
+for (var i = 0; i < MyRows.length; i++) {
+var Fname = $(MyRows[i]).find('td:eq(0)').html();
+var Lname = $(MyRows[i]).find('td:eq(1)').html();
+var Email = $(MyRows[i]).find('td:eq(2)').html();
+users.push({FirstName:Fname,LastName:Lname,Email:Email});
+}
+
+
+        $.post("Tickets_Pay.php", {users: users,Has_Ticket: Has_Ticket},function(data){window.location.pathname = "Prop/Tickets.php"});
+   
+    
+    }
                         </script>
+                        	
                        <div id="name_f"></div>
 
 			</div>
@@ -189,7 +220,7 @@ function Remove() {
     <?php
         require('Footer.php');
     ?>
-
+    
 </body>
 
 </html>
