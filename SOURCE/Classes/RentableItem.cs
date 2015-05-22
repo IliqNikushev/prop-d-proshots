@@ -19,5 +19,7 @@ namespace Classes
             renter.Rent(this);
             RentableItemHistory history = new RentableItemHistory(this, renter);
         }
+
+
     }
 }
