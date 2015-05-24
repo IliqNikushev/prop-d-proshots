@@ -153,24 +153,8 @@ padding-top: 2.5%;
 padding-bottom: 2.5%;
 }
 
-#TwitterHeading{
-	background-color: white;
-	position: relative;
-	width: 95%;
-    padding: 1px;
-    border: 1px solid ;
-	top: 15px;
-}
-#Twitter{
-	background-color: white;
-	position: relative;
-	top: -20px;
-	width: 95%;
-	height: 450px;
-    padding: 15px;
-    border: 1px solid ;
-	top: 15px;
-}
+
+
 
 
 #Leagues-back-arrow {
@@ -360,9 +344,10 @@ padding-bottom: 2.5%;
 	text-align: center;
 }
 
-#TextBox {
+#ItemsList {
 	background-color: white;
-	width: 650px;
+	width: 90%;
+        heigh: 250px;
 	position: relative;
     padding: 25px;
     border: 1px solid ;

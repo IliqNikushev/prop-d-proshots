@@ -87,6 +87,5 @@ $result12 = mysql_query($query12);
       }
       }
       }
-      echo json_encode($query10);
 }
 
