@@ -9,7 +9,7 @@ namespace Classes
     {
         public TentAreaLandmark Location { get; private set; }
         public DateTime BookedOn { get; private set; }
-        public bool IsPayed { get; private set; }
+        public bool IsPaid { get; private set; }
         public DateTime BookedTill { get; private set; }
         public Visitor BookedBy { get; private set; }
         private Visitor[] bookedFor;
@@ -32,7 +32,7 @@ namespace Classes
         {
             this.Location = location;
             this.BookedOn = bookedOn;
-            this.IsPayed = isPayed;
+            this.IsPaid = isPayed;
             this.BookedTill = bookedTill;
             this.BookedBy = bookedBy;
             this.bookedFor = bookedFor;

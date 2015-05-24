@@ -8,14 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Design.Idea
+namespace App_Common
 {
     public partial class HomePageWithMap : HomePage
     {
-        private MapPoint[] pointableItems = new MapPoint[]{
-            new ShopExample(0,0,"KFC", "Fried chicken"),
-            new ShopExample(100,100,"MC Donalds", "Fast Food"),
-            new ShopExample(200,200,"Doctor", "Fast and Easy doctor repairs")
+        private MapPoint[] points = new MapPoint[]{
         };
 
         protected override List<Control> Inherited
@@ -49,7 +46,7 @@ namespace Design.Idea
             int mapX = mapArea.Left;
             int mapY = mapArea.Top;
 
-            mapArea.Image = Properties.Resources.Park_English;
+            mapArea.Image = global::App_Common.Properties.Resources.Park_English;
             PictureBox holder = new PictureBox();
             holder.Size = new Size(mapArea.Size.Width, mapArea.Size.Height);
 
@@ -57,25 +54,25 @@ namespace Design.Idea
             holder.Top = mapY;
             this.Controls.Add(holder);
 
-            SetParent(holder, pictureBox10);
+            SetParent(holder, mapHolder);
 
-            SetParent(ZoomInBtn, pictureBox10);
-            SetParent(zoomOutBtn, pictureBox10);
-            SetParent(zoomTb, pictureBox10);
-            SetParent(zoomOnItemsBtn, pictureBox10);
-            SetParent(resetZoomBtn, pictureBox10);
-            SetParent(findByNameLbl, pictureBox10);
-            SetParent(findByNameTb, pictureBox10);
-            SetParent(findByTypeLbl, pictureBox10);
-            SetParent(findByTypeTb, pictureBox10);
-            
+            SetParent(ZoomInBtn, mapHolder);
+            SetParent(zoomOutBtn, mapHolder);
+            SetParent(zoomTb, mapHolder);
+            SetParent(zoomOnItemsBtn, mapHolder);
+            SetParent(resetZoomBtn, mapHolder);
+            SetParent(findByNameLbl, mapHolder);
+            SetParent(findByNameTb, mapHolder);
+            SetParent(findByTypeLbl, mapHolder);
+            SetParent(findByTypeTb, mapHolder);
+
             mapArea.Parent = holder;
             mapArea.Left = 0;
             mapArea.Top = 0;
 
             holder.BringToFront();
             mapArea.BringToFront();
-            foreach (MapPoint pointable in pointableItems)
+            foreach (MapPoint pointable in points)
                 pointable.AddToMap(mapArea);
 
             mapArea.MouseDown += (x, mouse) =>
@@ -120,7 +117,7 @@ namespace Design.Idea
                 holder.Refresh();
             };
 
-            AddAutoCompleteTo(zoomTb, 
+            AddAutoCompleteTo(zoomTb,
                 (e) =>
                 {
                     if (e.KeyChar > '9' || e.KeyChar < '0')
@@ -139,7 +136,7 @@ namespace Design.Idea
                 },
                 (selection) =>
                 {
-                    SetZoom(float.Parse(selection.ToString().Replace("%","")) / 100);
+                    SetZoom(float.Parse(selection.ToString().Replace("%", "")) / 100);
                 });
 
             var pointableTypes = System.Reflection.Assembly.GetExecutingAssembly().GetTypes().
@@ -148,20 +145,20 @@ namespace Design.Idea
             findByTypeTb.AutoCompleteCustomSource.Add("All");
 
             findByTypeTb.AutoCompleteCustomSource.AddRange(
-                pointableTypes.Select(x=>x.Name).ToArray()
+                pointableTypes.Select(x => x.Name).ToArray()
             );
 
-            AddAutoCompleteTo(findByTypeTb, 
-                (e) => 
+            AddAutoCompleteTo(findByTypeTb,
+                (e) =>
                 {
                     if (e.KeyChar == (char)Keys.Return)
                     {
                         SetNameSearchCollection(findByTypeTb.Text);
                         e.KeyChar = '\0';
                     }
-                },(selection) => SetNameSearchCollection(selection.ToString()));
+                }, (selection) => SetNameSearchCollection(selection.ToString()));
 
-            AddAutoCompleteTo(findByNameTb, 
+            AddAutoCompleteTo(findByNameTb,
                 (e) =>
                 {
                     if (e.KeyChar == (char)Keys.Return)
@@ -184,10 +181,10 @@ namespace Design.Idea
             base.OnSet();
             foreach (var item in this.OnAutoComplete)
                 item.Value.ListBox.Visible = false;
-            if (pictureBox10.Visible)
+            if (mapHolder.Visible)
             {
-                MainMenu.Width -= pictureBox10.Width;
-                pictureBox10.Visible = false;
+                MainMenu.Width -= mapHolder.Width;
+                mapHolder.Visible = false;
             }
         }
 
@@ -257,7 +254,7 @@ namespace Design.Idea
                 listBox.Items.Clear();
                 foreach (var item in localList.OrderByDescending(x => x.ToLower().StartsWith(text)))
                     if (!listBox.Items.Contains(item))
-		                listBox.Items.Add(item);
+                        listBox.Items.Add(item);
 
                 listBox.Visible = true;
                 listBox.SelectedIndex = -1;
@@ -283,8 +280,8 @@ namespace Design.Idea
         private void ChangeZoom(float amount)
         {
             if (wantedZoom + amount < 1) amount = 1 - wantedZoom;
-            if(amount == 0) return;
-            
+            if (amount == 0) return;
+
             //example : change from 1.1 to 1.2
             float target = wantedZoom + amount; //1.2
             float current = zoom; // 1.1
@@ -301,7 +298,7 @@ namespace Design.Idea
 
             zoomTb.Text = (wantedZoom * 100) + "%";
 
-            
+
             if (wantedZoom == 1) resetZoomBtn.Visible = false;
         }
 
@@ -317,9 +314,9 @@ namespace Design.Idea
             type = type.ToLower();
             if (type == "none")
             {
-                foreach (var item in pointableItems)
+                foreach (var item in points)
                     item.HideInMap();
-                 return;
+                return;
             }
             else
                 collection = GetVisibleItemsOnMap(type, label);
@@ -344,15 +341,15 @@ namespace Design.Idea
             IEnumerable<MapPoint> collection = new MapPoint[0];
             if (type == "all")
                 if (label == "")
-                    collection = pointableItems;
+                    collection = points;
                 else
-                    collection = (pointableItems.Where(x => x.Label.ToLower() == label));
+                    collection = (points.Where(x => x.Label.ToLower() == label));
             else
                 if (type != "none")
                     if (label == "")
-                        collection = pointableItems.Where(x => x.GetType().Name.ToLower() == type);
+                        collection = points.Where(x => x.GetType().Name.ToLower() == type);
                     else
-                        collection = pointableItems.Where(x => x.GetType().Name.ToLower() == type && x.Label.ToLower() == label);
+                        collection = points.Where(x => x.GetType().Name.ToLower() == type && x.Label.ToLower() == label);
             return collection;
         }
 
@@ -394,7 +391,7 @@ namespace Design.Idea
         {
             if (state)
             {
-                int sum = pictureBox10.Height + pictureBox10.Top;
+                int sum = mapHolder.Height + mapHolder.Top;
                 if (MainMenu.Height < sum)
                     MainMenu.Height = sum;
             }
@@ -402,10 +399,10 @@ namespace Design.Idea
 
         private void ToggleMap()
         {
-            pictureBox10.Visible = !pictureBox10.Visible;
-            OnTogglingMap(pictureBox10.Visible);
+            mapHolder.Visible = !mapHolder.Visible;
+            OnTogglingMap(mapHolder.Visible);
 
-            MainMenu.Width += pictureBox10.Width * (pictureBox10.Visible ? 1 : -1);
+            MainMenu.Width += mapHolder.Width * (mapHolder.Visible ? 1 : -1);
         }
 
         private void mapBtn_Click(object sender, EventArgs e)

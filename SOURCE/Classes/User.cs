@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public abstract class User : Record 
+    public abstract class User : Record, IComparable<User>, IEquatable<User>, IEqualityComparer<User>
     {
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
@@ -35,6 +35,26 @@ namespace Classes
         public static Visitor Authenticate(string id)
         {
             return Database.GetVisitor(id);
+        }
+
+        public int CompareTo(User other)
+        {
+            return this.Id.CompareTo(other.Id);
+        }
+
+        public bool Equals(User other)
+        {
+            return this.Id == other.Id;
+        }
+
+        public bool Equals(User x, User y)
+        {
+            return x.Id == y.Id;
+        }
+
+        public int GetHashCode(User obj)
+        {
+            return this.Id;
         }
     }
 }
