@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CampingMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CampingMenu.Designer.cs">
+      <DependentUpon>CampingMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="CheckIn-OutForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -52,6 +58,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CampingMenu.resx">
+      <DependentUpon>CampingMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CheckIn-OutForm.resx">
       <DependentUpon>CheckIn-OutForm.cs</DependentUpon>
     </EmbeddedResource>

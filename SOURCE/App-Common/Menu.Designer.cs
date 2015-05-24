@@ -1,6 +1,6 @@
-﻿namespace App_Camps
+﻿namespace App_Common
 {
-    partial class CampingLoginForm
+    partial class Menu
     {
         /// <summary>
         /// Required designer variable.
@@ -28,36 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(232, 123);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // CampingLoginForm
+            // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 277);
-            this.Controls.Add(this.button1);
-            this.Name = "CampingLoginForm";
-            this.Text = "Camping Check-in/out";
-            this.Controls.SetChildIndex(this.button1, 0);
+            this.ClientSize = new System.Drawing.Size(284, 80);
+            this.Name = "Menu";
+            this.Text = "MenuBase";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
     }
 }
-

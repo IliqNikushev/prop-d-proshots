@@ -320,7 +320,7 @@ namespace Classes
 
         public static int ExecuteSQL(string sql, params object[] parameters)
         {
-            return ExecuteSQL(string.Format(sql, parameters));
+            return ExecuteSQL(string.Format(sql, parameters.Select(x=>{if(x is string)return x.ToString().Replace("'", "''"); return x;})));
         }
 
         public static int ExecuteSQL(string sql, bool testing = false)
@@ -352,7 +352,7 @@ namespace Classes
         }
         public static void ExecuteSQLWithResult(string sql, Action<Reader> resultCallback, params object[] parameters)
         {
-            ExecuteSQLWithResult(string.Format(sql, parameters), resultCallback);
+            ExecuteSQLWithResult(string.Format(sql, parameters.Select(x => { if (x is string)return x.ToString().Replace("'", "''"); return x; })), resultCallback);
         }
 
         public static void ExecuteSQLWithResult(string sql, Action<Reader> readerCallback, bool testing = false)
