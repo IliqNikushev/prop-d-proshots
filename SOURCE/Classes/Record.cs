@@ -7,6 +7,8 @@ namespace Classes
 {
     public abstract class Record
     {
+        protected string Table { get { return Database.TableNameFor(this.GetType()); } }
         public abstract void Save();
+        public abstract void Update();
     }
 }

@@ -8,41 +8,161 @@ namespace Classes
 {
     public class RFID : IDisposable
     {
-        private Phidgets.RFID reader;
-        public bool IsAttached { get { return reader.Attached; } }
+        
+        public static bool HasDrivers
+        {
+            get
+            {
+                try
+                {
+                    new Phidgets.RFID();
+                }
+                catch { return false; }
+                return true;
+            }
+        }
         public event Action<Phidgets.RFID> OnAttach = (x) => { };
         public event Action<Phidgets.RFID> OnDetach = (x) => { };
         public event Action<string> OnDetect = (x) => { };
         public event Action<string> OnDetectEnd = (x) => { };
         public event Action<Phidgets.Events.ErrorEventArgs> OnError = (x) => { };
 
-        public void ToggleAntena() { if (this.IsAttached) reader.Antenna = !reader.Antenna; }
-        public void ToggleLED() { if (this.IsAttached) reader.LED = !reader.LED; }
+        private Phidgets.RFID reader;
+        public bool IsAttached
+        {
+            get
+            {
+                if (reader == null)
+                    return false;
+                return reader.Attached;
+            }
+        }
 
-        public string Type { get { return reader.Type; } }
-        //todo : check before usage if it is connected
-        public int Version { get { return reader.Version; } }
-        public int SerialNumber { get { return reader.SerialNumber; } }
-        public string Name { get { return reader.Name; } }
-        public bool LEDIsActive { get { return reader.LED; } }
-        public string Label { get { return reader.Label; } }
-        public Phidgets.Phidget.PhidgetID ID { get { return reader.ID; } }
-        public string LastTag { get { return reader.LastTag; } }
-        public bool AntennaIsActive { get { return reader.Antenna; } }
-        public string Address { get { return reader.Address; } }
+        public void ToggleAntena() 
+        { 
+            if (this.IsAttached)
+                reader.Antenna = !reader.Antenna; 
+        }
+
+        public void ToggleLED() 
+        { 
+            if (this.IsAttached)
+                reader.LED = !reader.LED; 
+        }
+        
+        public string Type
+        {
+            get
+            {
+                if (!this.IsAttached)
+                    return "";
+                return reader.Type;
+            }
+        }
+
+        public int Version
+        {
+            get
+            {
+                if (!this.IsAttached)
+                    return -1;
+                return reader.Version;
+            }
+        }
+
+        public int SerialNumber
+        {
+            get
+            {
+                if (!this.IsAttached)
+                    return -1;
+                return reader.SerialNumber;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                if (!this.IsAttached)
+                    return "";
+                return reader.Name;
+            }
+        }
+
+        public bool LEDIsActive
+        {
+            get
+            {
+                if (!this.IsAttached)
+                    return false;
+                return reader.LED;
+            }
+        }
+
+        public string Label
+        {
+            get
+            {
+                if (!this.IsAttached)
+                    return "";
+                return reader.Label;
+            }
+        }
+
+        public Phidgets.Phidget.PhidgetID ID
+        {
+            get
+            {
+                if (!this.IsAttached)
+                    return Phidgets.Phidget.PhidgetID.RFID_2OUTPUT_READ_WRITE;
+                return reader.ID;
+            }
+        }
+
+        public string LastTag
+        {
+            get
+            {
+                if (!this.IsAttached)
+                    return "";
+                return reader.LastTag;
+            }
+        }
+
+        public bool AntennaIsActive
+        {
+            get
+            {
+                if (!this.IsAttached)
+                    return false;
+                return reader.Antenna;
+            }
+        }
+
+        public string Address
+        {
+            get
+            {
+                if (!this.IsAttached)
+                    return "";
+                return reader.Address;
+            }
+        }
 
         public RFID()
         {
-            return;
-            reader = new Phidgets.RFID();
+            if (!HasDrivers)
+                return;
 
+            reader = new Phidgets.RFID();
+            reader.open(-1);
             this.reader.Attach += reader_Attach;
             this.reader.Detach += reader_Detach;
             this.reader.Tag += reader_Tag;
             this.reader.TagLost += reader_TagLost;
             this.reader.Error += reader_Error;
 
-            reader.open(-1);
             this.OnError = (x) => this.Dispose();
 
             this.OnAttach += (x) => Activate();
@@ -92,7 +212,9 @@ namespace Classes
 
         public void Dispose()
         {
-            return;
+            if (this.reader == null)
+                return;
+
             this.reader.Attach -= reader_Attach;
             this.reader.Detach -= reader_Detach;
             this.reader.Tag -= reader_Tag;

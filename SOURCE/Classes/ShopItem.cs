@@ -21,5 +21,10 @@ namespace Classes
         {
             throw new NotImplementedException();
         }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

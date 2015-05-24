@@ -114,6 +114,14 @@ namespace Classes
             {typeof(Warning), new Table("Warnings", "id", "name", "description")},
         };
 
+        public static string TableNameFor(Type type)
+        {
+            if (tables.ContainsKey(type))
+                return tables[type].Name;
+
+            throw new KeyNotFoundException("NOT CORRECT TYPE REQUESTED");
+        }
+
         public static List<string> consistencyExceptions;
 
         static Database() { System.IO.StreamWriter sw = new System.IO.StreamWriter("sql.txt"); using (sw) { } }
