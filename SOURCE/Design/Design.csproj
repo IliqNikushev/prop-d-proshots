@@ -284,6 +284,12 @@
     <EmbeddedResource Include="Idea\EmployeeInterface\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Idea\EmployeeInterface\PCDoctor.resx">
+      <DependentUpon>PCDoctor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\EmployeeInterface\Rent.resx">
+      <DependentUpon>Rent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Idea\EmployeeInterface\Store.resx">
       <DependentUpon>Store.cs</DependentUpon>
     </EmbeddedResource>
@@ -558,6 +564,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BurgerKing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Button-Back-3-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Button-Back-3-5121.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Back1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

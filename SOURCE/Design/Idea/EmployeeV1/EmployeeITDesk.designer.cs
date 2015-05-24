@@ -41,9 +41,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -56,6 +53,9 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -81,7 +81,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(32, 332);
+            this.textBox1.Location = new System.Drawing.Point(11, 187);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(89, 22);
@@ -90,7 +90,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 311);
+            this.label1.Location = new System.Drawing.Point(11, 166);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 17);
@@ -127,10 +127,124 @@
             this.label7.TabIndex = 36;
             this.label7.Text = "Profile Pic";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(418, 130);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(92, 17);
+            this.label6.TabIndex = 44;
+            this.label6.Text = "IT Loan Desk";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(356, 365);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(95, 17);
+            this.label3.TabIndex = 73;
+            this.label3.Text = "Rented items;";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(25, 365);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 17);
+            this.label4.TabIndex = 72;
+            this.label4.Text = "Items:";
+            // 
+            // addMultipleBtn
+            // 
+            this.addMultipleBtn.Location = new System.Drawing.Point(21, 616);
+            this.addMultipleBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.addMultipleBtn.Name = "addMultipleBtn";
+            this.addMultipleBtn.Size = new System.Drawing.Size(151, 28);
+            this.addMultipleBtn.TabIndex = 70;
+            this.addMultipleBtn.Text = "Add Multiple";
+            this.addMultipleBtn.UseVisualStyleBackColor = true;
+            // 
+            // removeOneBtn
+            // 
+            this.removeOneBtn.Location = new System.Drawing.Point(201, 332);
+            this.removeOneBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.removeOneBtn.Name = "removeOneBtn";
+            this.removeOneBtn.Size = new System.Drawing.Size(56, 28);
+            this.removeOneBtn.TabIndex = 69;
+            this.removeOneBtn.Text = "<";
+            this.removeOneBtn.UseVisualStyleBackColor = true;
+            // 
+            // addOneBtn
+            // 
+            this.addOneBtn.Location = new System.Drawing.Point(261, 332);
+            this.addOneBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.addOneBtn.Name = "addOneBtn";
+            this.addOneBtn.Size = new System.Drawing.Size(56, 28);
+            this.addOneBtn.TabIndex = 68;
+            this.addOneBtn.Text = ">";
+            this.addOneBtn.UseVisualStyleBackColor = true;
+            // 
+            // cartListView
+            // 
+            this.cartListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.cartListView.Location = new System.Drawing.Point(323, 387);
+            this.cartListView.Margin = new System.Windows.Forms.Padding(4);
+            this.cartListView.Name = "cartListView";
+            this.cartListView.Size = new System.Drawing.Size(187, 221);
+            this.cartListView.TabIndex = 67;
+            this.cartListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // purchaseBtn
+            // 
+            this.purchaseBtn.Location = new System.Drawing.Point(215, 368);
+            this.purchaseBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.purchaseBtn.Name = "purchaseBtn";
+            this.purchaseBtn.Size = new System.Drawing.Size(100, 28);
+            this.purchaseBtn.TabIndex = 66;
+            this.purchaseBtn.Text = "Purchase";
+            this.purchaseBtn.UseVisualStyleBackColor = true;
+            // 
+            // itemsListView
+            // 
+            this.itemsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem2});
+            this.itemsListView.Location = new System.Drawing.Point(21, 387);
+            this.itemsListView.Margin = new System.Windows.Forms.Padding(4);
+            this.itemsListView.Name = "itemsListView";
+            this.itemsListView.Size = new System.Drawing.Size(192, 221);
+            this.itemsListView.TabIndex = 65;
+            this.itemsListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(214, 293);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker1.TabIndex = 74;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(212, 273);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(71, 17);
+            this.label8.TabIndex = 75;
+            this.label8.Text = "End Date:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(212, 237);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(120, 17);
+            this.label9.TabIndex = 76;
+            this.label9.Text = "Start Date: Today";
+            // 
             // pictureBox7
             // 
             this.pictureBox7.Image = global::Design.Properties.Resources.addMoney;
-            this.pictureBox7.Location = new System.Drawing.Point(129, 311);
+            this.pictureBox7.Location = new System.Drawing.Point(108, 166);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(64, 47);
@@ -159,120 +273,6 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 34;
             this.pictureBox3.TabStop = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(418, 130);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(92, 17);
-            this.label6.TabIndex = 44;
-            this.label6.Text = "IT Loan Desk";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(601, 365);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 17);
-            this.label3.TabIndex = 73;
-            this.label3.Text = "Rented items;";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 365);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 17);
-            this.label4.TabIndex = 72;
-            this.label4.Text = "Items:";
-            // 
-            // addMultipleBtn
-            // 
-            this.addMultipleBtn.Location = new System.Drawing.Point(21, 616);
-            this.addMultipleBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.addMultipleBtn.Name = "addMultipleBtn";
-            this.addMultipleBtn.Size = new System.Drawing.Size(151, 28);
-            this.addMultipleBtn.TabIndex = 70;
-            this.addMultipleBtn.Text = "Add Multiple";
-            this.addMultipleBtn.UseVisualStyleBackColor = true;
-            // 
-            // removeOneBtn
-            // 
-            this.removeOneBtn.Location = new System.Drawing.Point(361, 348);
-            this.removeOneBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.removeOneBtn.Name = "removeOneBtn";
-            this.removeOneBtn.Size = new System.Drawing.Size(56, 28);
-            this.removeOneBtn.TabIndex = 69;
-            this.removeOneBtn.Text = "<";
-            this.removeOneBtn.UseVisualStyleBackColor = true;
-            // 
-            // addOneBtn
-            // 
-            this.addOneBtn.Location = new System.Drawing.Point(421, 348);
-            this.addOneBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.addOneBtn.Name = "addOneBtn";
-            this.addOneBtn.Size = new System.Drawing.Size(56, 28);
-            this.addOneBtn.TabIndex = 68;
-            this.addOneBtn.Text = ">";
-            this.addOneBtn.UseVisualStyleBackColor = true;
-            // 
-            // cartListView
-            // 
-            this.cartListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
-            this.cartListView.Location = new System.Drawing.Point(586, 386);
-            this.cartListView.Margin = new System.Windows.Forms.Padding(4);
-            this.cartListView.Name = "cartListView";
-            this.cartListView.Size = new System.Drawing.Size(345, 221);
-            this.cartListView.TabIndex = 67;
-            this.cartListView.UseCompatibleStateImageBehavior = false;
-            // 
-            // purchaseBtn
-            // 
-            this.purchaseBtn.Location = new System.Drawing.Point(368, 384);
-            this.purchaseBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.purchaseBtn.Name = "purchaseBtn";
-            this.purchaseBtn.Size = new System.Drawing.Size(100, 28);
-            this.purchaseBtn.TabIndex = 66;
-            this.purchaseBtn.Text = "Purchase";
-            this.purchaseBtn.UseVisualStyleBackColor = true;
-            // 
-            // itemsListView
-            // 
-            this.itemsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
-            this.itemsListView.Location = new System.Drawing.Point(21, 387);
-            this.itemsListView.Margin = new System.Windows.Forms.Padding(4);
-            this.itemsListView.Name = "itemsListView";
-            this.itemsListView.Size = new System.Drawing.Size(345, 221);
-            this.itemsListView.TabIndex = 65;
-            this.itemsListView.UseCompatibleStateImageBehavior = false;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(359, 275);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker1.TabIndex = 74;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(357, 255);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 17);
-            this.label8.TabIndex = 75;
-            this.label8.Text = "End Date:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(357, 219);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(120, 17);
-            this.label9.TabIndex = 76;
-            this.label9.Text = "Start Date: Today";
             // 
             // pictureBox11
             // 

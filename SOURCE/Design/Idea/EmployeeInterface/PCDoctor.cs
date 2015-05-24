@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Design.Idea.EmployeeInterface
 {
-    public partial class PCDoctor : Home
+    public partial class PCDoctor : HomePageWithMap
     {
         public PCDoctor()
         {
             InitializeComponent();
+        }
+
+        private void cartListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

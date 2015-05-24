@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Design.Idea.EmployeeInterface
 {
-    public partial class Rent : Home
+    public partial class Rent : HomePageWithMap
     {
         public Rent()
         {
