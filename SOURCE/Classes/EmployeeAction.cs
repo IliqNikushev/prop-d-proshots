@@ -7,31 +7,28 @@ namespace Classes
 {
     public class EmployeeAction : Record
     {
-        public EmployeeAction(Employee employee, EmployeeActionType type)
+        public EmployeeAction(int id, DateTime date, Employee employee, string action)
         {
-            throw new System.NotImplementedException();
-        }
-    
-        public Employee Employee
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            this.ID = id;
+            this.Date = date;
+            this.Employee = employee;
+            this.Action = action;
         }
 
-        public EmployeeActionType Type
+        public int ID { get; private set; }
+        public Employee Employee { get; private set; }
+        public DateTime Date { get; private set; }
+
+        public string Action{get; private set;}
+
+        public override void Save()
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            throw new NotImplementedException();
+        }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

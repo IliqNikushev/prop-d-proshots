@@ -14,11 +14,15 @@ namespace Design
     {
         public Main()
         {
+            //var qqq = Classes.Database.All<Classes.User>();
+            //var qq = Classes.Database.All<Classes.Item>();
+            //var q = Classes.Database.All<Classes.ShopItem>();
             InitializeComponent();
             IEnumerable<Type> notTableDefined = Classes.Database.notTableDefinedRecords;
             if(notTableDefined.Any())
                 MessageBox.Show("Not table defined records:\n"+string.Join("\n", Classes.Database.notTableDefinedRecords));
 
+            if(false)
             if(!Idea.Menu.IsInDebug)
                 if (Classes.Database.CanConnect)
                 {
@@ -51,7 +55,9 @@ namespace Design
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            new Idea.Store().Show();
+            //new Idea.Store().Show();
+            new Idea.EmployeeInterface.EmployeeITDesk().Show();
+
         }
     }
 }

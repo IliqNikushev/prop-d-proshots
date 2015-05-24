@@ -1,6 +1,7 @@
 <?php
         require('Login.php');
         require('Head.php');
+        require('Profile_SQL.php');
 ?>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -64,26 +65,30 @@ $(document).ready(function(){
 			
 			<div id="ProfileText">
 			
-			You can change your details by entering new in the fields below.<br><br><br>
-			
+			You can change your details by entering new in the fields.<br><br><br>
+                        
+			<form id="Profile-Form" action="" method="POST">
+                            
 			<div style="display: inline-block; width:16%"><b>First Name: </b></div>
-			<input type="text" name="First Name" placeholder="First Name"><br><br>
+			<input type="text" pattern=".{1,25}" title="maximum 25 characters" name="FirstName" placeholder="First Name"><br><br>
 			
 			<div style="display: inline-block; width:16%"><b>Last Name: </b></div>
-			<input type="text" name="Last Name" placeholder="Last Name"><br><br>
+			<input type="text" pattern=".{1,25}" title="maximum 25 characters" name="LastName" placeholder="Last Name"><br><br>
 			
 			<div style="display: inline-block; width:16%"><b>Password: </b></div>
-			<input type="password" name="Password" placeholder="Password"><br><br>
+                        <input  pattern=".{4,25}" title="from 4 to 25 characters" type="password" name="Password" placeholder="Password"><br><br>
 			
 			<div style="display: inline-block; width:16%"><b>Confirm Password: </b></div>
-			<input type="password" name="Confirm Password" placeholder="Confirm Password"><br><br>
-			
+                        <input type="password" name="Cpassword" placeholder="Confirm Password"><br><br>
+                        
 			<div style="display: inline-block; width:16%"><b>Email: </b></div>
-			<input type="email" name="Email" placeholder="Email"><br><br>
+			<input  pattern=".{6,25}" title="from 6 to 25 characters" type="email" name="Email" placeholder="Email"><br><br>
 			
 			
-			<input type="submit" name="change" value="Save changes"><br><br>
+			<input type="submit" name="Save_changes" value="Save changes"><br><br>
 			
+                        </form>
+                        
 			</div>
 
     </div>

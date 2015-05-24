@@ -8,8 +8,8 @@ namespace Classes
 {
     public class RentableItem : RestockableItem
     {
-        public RentableItem(int id, decimal price, string brand, string model, string type, int inStock, int warningLevel)
-            : base(id, price, brand, model, type, inStock, warningLevel)
+        public RentableItem(int id, decimal price, string brand, string model, string type, string group,string description, int inStock)
+            : base(id, price, brand, model, type, group,description, inStock)
         {
             
         }
@@ -18,6 +18,16 @@ namespace Classes
         {
             renter.Rent(this);
             RentableItemHistory history = new RentableItemHistory(this, renter);
+        }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

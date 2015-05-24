@@ -6,18 +6,26 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public class RestockSelection : Record
+    public class RestockItem : Record
     {
-        public PurchasableItem Item { get; private set; }
-        public int Times { get; private set; }
+        [Column("Restock_id")]
+        public Restock Restock { get; private set; }
 
-        public RestockSelection(PurchasableItem item, int times)
+        public ShopItem Item { get; private set; }
+        public int Times { get; private set; }
+        public decimal PricePerItem { get; private set; }
+        public decimal Total { get; private set; }
+
+        public RestockItem(ShopItem item, int times, Restock restock, decimal pricePerItem, decimal total)
         {
             this.Item = item;
             this.Times = times;
+            this.Restock = restock;
+            this.PricePerItem = pricePerItem;
+            this.Total = total;
         }
 
-        public void Restock()
+        public void Execute()
         {
             this.Item.Restock(this.Times);
         }

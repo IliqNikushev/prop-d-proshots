@@ -143,29 +143,19 @@ namespace Design.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Back2 {
+            get {
+                object obj = ResourceManager.GetObject("Back2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BurgerKing {
             get {
                 object obj = ResourceManager.GetObject("BurgerKing", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Button_Back_3_512 {
-            get {
-                object obj = ResourceManager.GetObject("Button-Back-3-512", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Button_Back_3_5121 {
-            get {
-                object obj = ResourceManager.GetObject("Button-Back-3-5121", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -236,6 +226,16 @@ namespace Design.Properties {
         internal static System.Drawing.Bitmap Employees1 {
             get {
                 object obj = ResourceManager.GetObject("Employees1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Employees2 {
+            get {
+                object obj = ResourceManager.GetObject("Employees2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -556,6 +556,16 @@ namespace Design.Properties {
         internal static System.Drawing.Bitmap soft4 {
             get {
                 object obj = ResourceManager.GetObject("soft4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Supermarket {
+            get {
+                object obj = ResourceManager.GetObject("Supermarket", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

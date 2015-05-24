@@ -11,11 +11,10 @@
 						 <a href="img/RoboCup-6.jpg"><img src="img/RoboCup-6.jpg"     alt="IMG"     title="IMG6" width="30%"/></a>
 	</div>
 	
-	<div class="container" id="TwitterHeading">
-	<div>Twitter</div>
-	</div>
 	
-	<div class="container" id="Twitter">
+            <br><br><header>Twitter</header>
+                    <a class="twitter-timeline"  href="https://twitter.com/ProShotsMessage" data-widget-id="601667949028585472">Tweets by @ProShotsMessage</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          
 	
-	</div>
 

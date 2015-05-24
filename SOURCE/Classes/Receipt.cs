@@ -8,40 +8,39 @@ namespace Classes
 {
     public class Receipt : Record
     {
-        public List<PurchaseSelection> Items { get; private set; }
+        public int ID { get; private set; }
+        private List<ReceiptItem> items;
+        public List<ReceiptItem> Items
+        {
+            get
+            {
+                if (this.items == null)
+                    if (this.ID == 0) 
+                        this.items = new List<ReceiptItem>(); 
+                    else
+                        this.items = Database.Where<ReceiptItem>("ReceiptItems.receipt_id = {0}", this.ID);
+                return this.items;
+            }
+        }
         public DateTime PurchasedOn { get; private set; }
+        public Visitor PurchasedBy { get; private set; }
+        public ShopJob Shop { get { return this.items.Count > 0 ? this.items[0].Item.Shop : null; } }
 
-        public Visitor Visitor
+        public Receipt(int id, Visitor visitor, DateTime purchasedOn)
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            this.PurchasedBy = visitor;
+            this.ID = id;
+            this.PurchasedOn = purchasedOn;
         }
 
-        public ShopJob Shop
+        public override void Save()
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            throw new NotImplementedException();
         }
 
-        public Receipt(Visitor visitor, ShopJob shop, List<PurchaseSelection> items)
+        public override void Update()
         {
-            this.Visitor = visitor;
-            this.Shop = shop;
-            this.Items = items;
-            this.PurchasedOn = DateTime.Now;
-
-            foreach (PurchaseSelection selection in items)
-                selection.Purchase();
+            throw new NotImplementedException();
         }
     }
 }

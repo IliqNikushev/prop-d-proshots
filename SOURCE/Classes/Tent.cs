@@ -7,63 +7,50 @@ namespace Classes
 {
     public class Tent : Record
     {
-        public Tent(Visitor bookedBy, params Visitor[] people)
-        {
-            throw new System.NotImplementedException();
-        }
-    
-        public int NumberOfPeople
-        {
-            get { return BookedFor.Length; }
-        }
-
-        public Visitor BookedBy
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public Visitor[] BookedFor
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public bool IsPaid
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public TentAreaLandmark Location { get; private set; }
+        public DateTime BookedOn { get; private set; }
+        public bool IsPayed { get; private set; }
+        public DateTime BookedTill { get; private set; }
+        public Visitor BookedBy { get; private set; }
+        private Visitor[] bookedFor;
+        public Visitor[] BookedFor { get { return bookedFor; } }
 
         public decimal Price
         {
             get
             {
-                throw new System.NotImplementedException();
+                return 30 + NumberOfPeople * 20;
             }
-            set
-            {
-            }
+        }
+
+        public int NumberOfPeople
+        {
+            get { return BookedFor.Length; }
+        }
+
+        public Tent(TentAreaLandmark location, DateTime bookedOn, bool isPayed, DateTime bookedTill, Visitor bookedBy, params Visitor[] bookedFor)
+        {
+            this.Location = location;
+            this.BookedOn = bookedOn;
+            this.IsPayed = isPayed;
+            this.BookedTill = bookedTill;
+            this.BookedBy = bookedBy;
+            this.bookedFor = bookedFor;
         }
 
         public void Pay()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

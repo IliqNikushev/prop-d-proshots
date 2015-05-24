@@ -7,27 +7,18 @@ namespace Classes
 {
     public class PCDoctorJob : Job
     {
-        public PCDoctorJob(string id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
+        public PCDoctorJob(int id, int x, int y) : base(id, "PC DOCTOR", "Here you can give your equipment for repair or diagnosis", x, y) { }
 
         public List<Appointment> Appointments
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get { return Database.Appointments; }
         }
 
         public List<Appointment> NotReturnedAppointments
         {
             get
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                return Database.Where<Appointment>("Appointments.isReturned = 1");
             }
         }
 
@@ -35,10 +26,7 @@ namespace Classes
         {
             get
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                return Database.Where<Appointment>("Appointments.completedOn is NULL");
             }
         }
 
@@ -60,6 +48,16 @@ namespace Classes
         public void AddTaskToAppointment(Appointment Appointment, AppointmentTask task)
         {
             throw new System.NotImplementedException();
+        }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

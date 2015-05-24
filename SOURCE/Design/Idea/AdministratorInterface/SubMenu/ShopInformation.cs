@@ -16,5 +16,15 @@ namespace Design.Idea.AdministratorInterface.SubMenu
         {
             InitializeComponent();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            new Shops().Show();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

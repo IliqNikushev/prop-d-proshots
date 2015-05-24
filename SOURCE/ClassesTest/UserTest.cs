@@ -4,6 +4,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Classes
 {
     [TestClass]
+    public abstract class UserTest : RecordTest
+    {
+    }
+    /*
+    [TestClass]
     public class UserTest : UnitTest
     {
         public const string VALID_USER_ID = "123abc";
@@ -58,5 +63,5 @@ namespace Classes
         public void UserHireNotEnoughCredits()
         {
         }
-    }
+    }*/
 }

@@ -7,7 +7,7 @@ namespace Classes
 {
     public class TentAreaLandmark : Landmark
     {
-        public TentAreaLandmark(string id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
+        public TentAreaLandmark(int id, int x, int y) : base(id, "Tent #"+id, "A tent location for visitors to stay in", x, y) { }
 
         public bool IsBooked
         {
@@ -18,11 +18,18 @@ namespace Classes
         {
             get
             {
-                throw new System.NotImplementedException();
+                return Database.GetTent(this);
             }
-            set
-            {
-            }
+        }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

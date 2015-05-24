@@ -8,16 +8,13 @@ namespace Classes
 {
     public abstract class Job : Landmark
     {
-        public Job(string id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
+        public Job(int id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
 
-        public int Employees
+        public List<Employee> Employees
         {
             get
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                return Database.Where<Employee>("Employees.workplace_id = {0}", this.ID);
             }
         }
     }

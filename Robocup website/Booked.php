@@ -1,6 +1,22 @@
 <?php
         require('Login.php');
         require('Head.php');
+        
+        if (isset($_SESSION['username'])){
+        $username = $_SESSION['username'];
+        $query = "SELECT ID FROM `users` WHERE username='$username'";
+        $result = mysql_query($query);
+        while ($row = mysql_fetch_assoc($result)) {
+     $rows[] = $row;
+}
+    
+foreach($rows as $row) {
+$UserID = $row["ID"];
+}
+
+        
+        }
+        
 ?>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -52,7 +68,7 @@ $(document).ready(function(){
 <header class="intro-header" style="background-image: url('img/home.jpg'); background-repeat: no-repeat; background-size: 100% 100%;" id="background-image" ></header>
 
     <!-- Main Content -->
-    <div id="Elements-Placement">
+    <div id="Elements-Placement" >
         <?php
 	if(isset($msg) & !empty($msg)){
 		echo $msg;
@@ -62,15 +78,32 @@ $(document).ready(function(){
 				<h2>Booked items</h2>
 			</div>
 			
-	<div id="BookedText">
+	<div id="BookedText" >
+            <?php
+                                         
+                                    $query5 = "SELECT Brand,Model,rentedat,rentedtill FROM items i join rentableitemhistories r on i.ID=r.item_ID WHERE ID=5 ";
+                                    $result5 = mysql_query($query5) or die(mysql_error());
+                                    while ($row1 = mysql_fetch_assoc($result5)) {
+     $rows1[] = $row1;
+}
+
+
+                                    
+?>
 		Booked items<br>
-		<select name="sometext" size="15" id="TextBox">
-		<option>item1</option>
-		<option>item2</option>
-		<option>item3</option>
+                <div style="overflow: auto;width: 100%;">
+		<select  name="mySelect" size="15" id="ItemsList">
+<?php
+
+foreach($rows1 as $row1) {
+echo "<option value='0'>";
+echo $row1["Brand"]." ".$row1["Model"]." Rented at ".$row1["rentedat"]." Rented till ".$row1["rentedtill"];
+echo "</option>";
+}
+?>
 		</select>
 	</div>
-
+</div>  
     </div>
 	
         <div id="Elements-Placement-2">

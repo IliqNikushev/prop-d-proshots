@@ -7,6 +7,16 @@ namespace Classes
 {
     public class AppointedItem : Item
     {
-        public AppointedItem(int id, string brand, string model, string type) : base(id, brand, model, type) { }
+        public AppointedItem(int id, string brand, string model, string type, string group, string description) : base(id, brand, model, type, group, description) { }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -11,21 +11,40 @@ namespace Classes
     /// </summary>
     public class Deposit : Record
     {
-        public string ID { get; private set; }
+        public int ID { get; private set; }
         public decimal Amount { get; private set; }
-
+        public DateTime Date { get; private set; }
+        public PayPalDocument Document { get; private set; }
+        Visitor visitor;
         public Visitor Visitor
         {
             get
             {
-                return new Visitor(this.ID);
+                if(visitor == null)
+                    visitor = Database.Find<Visitor>("Visitors.user_id = {0}", this.ID);
+                else
+                    if(visitor.Id != this.ID)
+                        visitor = Database.Find<Visitor>("Visitors.user_id = {0}", this.ID);
+                return visitor;
             }
         }
 
-        public Deposit(string id, decimal amount)
+        public Deposit(int id, decimal amount, DateTime date, PayPalDocument document)
         {
             this.ID = id;
             this.Amount = amount;
+            this.Date = date;
+            this.Document = document;
+        }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

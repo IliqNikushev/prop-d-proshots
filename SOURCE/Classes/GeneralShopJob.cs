@@ -7,6 +7,6 @@ namespace Classes
 {
     public class GeneralShopJob : ShopJob
     {
-        public GeneralShopJob(string id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
+        public GeneralShopJob(int id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
     }
 }

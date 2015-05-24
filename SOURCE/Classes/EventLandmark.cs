@@ -7,28 +7,23 @@ namespace Classes
 {
     public class EventLandmark : Landmark
     {
-        public EventLandmark(string id, string label, string description, int x, int y, System.DateTime timeStart, DateTime timeEnd) : base(id, label, description, x, y) { }
-
-        public DateTime TimeStart
+        public EventLandmark(int id, string label, string description, int x, int y, System.DateTime timeStart, DateTime timeEnd) : base(id, label, description, x, y) 
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            this.TimeStart = timeStart;
+            this.TimeEnd = timeEnd;
         }
 
-        public DateTime TimeEnd
+        public DateTime TimeStart { get; private set; }
+        public DateTime TimeEnd { get; private set; }
+
+        public override void Save()
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            throw new NotImplementedException();
+        }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -21,5 +21,10 @@ namespace Design.Idea.AdministratorInterface
         {
             
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            new Home().Show();
+        }
     }
 }

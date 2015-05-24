@@ -7,17 +7,18 @@ namespace Classes
 {
     public class Visitor : User
     {
-        public decimal Amount { get; private set; }
+        public decimal Balance { get; private set; }
         public string RFID { get; private set; }
+        public bool Ticket { get; private set; }
+        public string Picture { get; private set; }
 
-        public Visitor(string identificator) : base(identificator) { }
-        public Visitor(string username, string password) : base(username, password) { }
-
-        public Visitor(int id, string firstName, string lastName, string username, string email, string picture, decimal amount, string rfid)
-            : base(id, firstName, lastName, username, email, picture)
+        public Visitor(int id, string firstName, string lastName, string username, string password, string email, string picture, decimal balance, string rfid, bool ticket)
+            : base(id, firstName, lastName, username, password, email)
         {
             this.RFID = rfid;
-            this.Amount = amount;
+            this.Balance = balance;
+            this.Ticket = ticket;
+            this.Picture = picture;
         }
 
         public void Rent(RentableItem item)
@@ -30,11 +31,21 @@ namespace Classes
             //check if he has this item
         }
 
-        protected override void OnBuildFrom(User user)
+        public void CloseAccount()
         {
-            Visitor visitor = user as Visitor;
+            //user no longer will be able to login
+            //balance = 0
+            //check if all items are returned
+        }
 
-            //this.amount = visitor.amount
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

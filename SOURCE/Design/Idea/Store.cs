@@ -29,15 +29,14 @@ namespace Design.Idea
             Random r = new Random();
             for (int i = 0; i < 30; i++)
             {
-                items.Add(new ShopItem(new Classes.PurchasableItem(0, r.Next(5000) / 1000m, "", "Back","<>", i+1, (i+1)/2)));
+                items.Add(new ShopItem(new Classes.ShopItem(0, r.Next(5000) / 1000m, "", "Back","<>","","", i+1, (i+1)/2, null)));
             }
 
             InitializeComponent();
 
             totalNumberLbl.Text = "0" + currency;
-            totalCountLbl.Text = "0";
 
-            ShopItem example = new ShopItem(new Classes.PurchasableItem(0, 0, "", "Back","<>", 0, 0));
+            ShopItem example = new ShopItem(new Classes.ShopItem(0, 0, "", "Back","<>","","", 0, 0, null));
             this.Controls.Add(GenerateItem(exampleLbl.Left, exampleLbl.Top, example));
 
             foreach (var item in example.PanelAssosiated.Controls)
@@ -121,6 +120,7 @@ namespace Design.Idea
 
             Label name = new Label();
             name.Text = i.Name;
+            
 #warning check if every item fits in the label;
             name.Top = icon.Height;
 
@@ -250,101 +250,36 @@ namespace Design.Idea
             adding = false;
         }
 
+        private void OnConfirmClick(StoreConfirm.State state)
+        {
+            switch (state)
+            {
+                case StoreConfirm.State.Ok:
+
+                    break;
+                case StoreConfirm.State.Cancel:
+                    break;
+                case StoreConfirm.State.Postpone:
+                    break;
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             IEnumerable<ShopItem> selectedItems = this.items.Where(x=>x.PurchaseTimes > 0);
-            IEnumerable<Classes.PurchaseSelection> selection = selectedItems.Select(x => new Classes.PurchaseSelection(x.Item, x.PurchaseTimes));
-            Classes.Receipt receipt = new Classes.Receipt(ActiveVisitor, this.Shop, selection.ToList());
+            IEnumerable<Classes.ReceiptItem> selection = selectedItems.Select(x => new Classes.ReceiptItem(0, x.Item, null, x.PurchaseTimes,0));
+
+            new StoreConfirm(selectedItems, ActiveVisitor, OnConfirmClick).Show();
+
+            //Classes.Receipt receipt = new Classes.Receipt(ActiveVisitor, this.Shop, selection.ToList());
 
             //save receipt;
 
-            ActiveVisitor = null;
+            //ActiveVisitor = null;
 
-            foreach (ShopItem item in selectedItems)
-                item.Reset();
+            //foreach (ShopItem item in selectedItems)
+                //item.Reset();
 
-        }
-    }
-
-    class ShopItem
-    {
-        public const char currency = '€';
-        Bitmap cachedIcon = null;
-
-        public Bitmap Icon
-        {
-            get
-            {
-                if (cachedIcon == null)
-                {
-                    Bitmap b = (Bitmap)Design.Properties.Resources.ResourceManager.GetObject(this.Name.Replace(" ","_"));
-                    if (b == null) { } // ICON NOT FOUND
-                    cachedIcon = b;
-                }
-                return cachedIcon;
-            }
-        }
-        public Panel PanelAssosiated;
-        public Label InStockLabel;
-        public TextBox PurchaseTimesTBox;
-        public Label PriceLabel;
-        public Label TotalLabel;
-        public Label NameLabel;
-
-        public Classes.PurchasableItem Item { get; private set; }
-        public int PurchaseTimes { get; private set; }
-
-        public string Name { get { if (Item.Brand == "" || Item.Brand == null) return Item.Model; return Item.Brand + " " + Item.Model; } }
-        public int InStock { get { return Item.InStock; } }
-        
-        public decimal Price { get { return Item.Price; } }
-        public int WarningLevel { get { return Item.WarningLevel; } }
-        public decimal Total { get { return this.Price * this.PurchaseTimes; } }
-
-        public ShopItem(Classes.PurchasableItem item)
-        {
-            this.Item = item;
-        }
-
-        public void Update(int times)
-        {
-            int current = PurchaseTimes + times;
-            if (current < 0) current = 0;
-            if (current > InStock) current = InStock; // WARN THAT THERE IS NOT ENOUGH
-
-            this.PurchaseTimes = current;
-            TotalLabel.Text = (((int)(Price * 100 * PurchaseTimes)/100.0f)).ToString() + currency;
-            PurchaseTimesTBox.Text = this.PurchaseTimes.ToString();
-
-            int resultAfterPurchase = this.InStock - this.PurchaseTimes;
-
-            if (resultAfterPurchase <= this.WarningLevel)
-            {
-                float deltaPercent = 0;
-                if(this.WarningLevel != 0)
-                    deltaPercent = resultAfterPurchase / (float)this.WarningLevel;
-                this.PanelAssosiated.BackColor = Color.FromArgb(220, (int)(180 * deltaPercent), 0);
-            }
-            else
-            {
-                if (PurchaseTimes == 0)
-                    this.PanelAssosiated.BackColor = new Color();
-                else
-                    this.PanelAssosiated.BackColor = Color.FromArgb(220, 220, 200);
-            }
-        }
-
-        public void UpdateTo(int times)
-        {
-            this.Update(times - PurchaseTimes);
-        }
-
-        public void Reset()
-        {
-            this.InStockLabel.Text = this.InStock.ToString();
-            this.PurchaseTimes = 0;
-            this.PurchaseTimesTBox.Text = "0";
-            this.TotalLabel.Text = "0" + currency;
         }
     }
 }

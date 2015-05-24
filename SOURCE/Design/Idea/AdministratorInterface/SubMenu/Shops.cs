@@ -116,5 +116,25 @@ namespace Design.Idea.AdministratorInterface.SubMenu
         {
             
         }
+
+        private void pictureBox1_Click_2(object sender, EventArgs e)
+        {
+            new Home().Show();
+        }
+
+        private void pictureBox4_Click_1(object sender, EventArgs e)
+        {
+            new ShopInformation().Show();
+        }
+
+        private void pictureBox8_Click_1(object sender, EventArgs e)
+        {
+            new ShopInformation().Show();
+        }
+
+        private void pictureBox5_Click_1(object sender, EventArgs e)
+        {
+            new ShopInformation().Show();
+        }
     }
 }

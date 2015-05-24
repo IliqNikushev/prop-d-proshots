@@ -7,16 +7,13 @@ namespace Classes
 {
     public class ITServiceJob : Job
     {
-        public ITServiceJob(string id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
+        public ITServiceJob(int id, int x, int y) : base(id, "Rent desk", "Here you can rent an item", x, y) { }
 
         public List<RentableItem> Items
         {
             get
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                return Database.All<RentableItem>();
             }
         }
 
@@ -28,6 +25,16 @@ namespace Classes
         public void ReturnItem(Classes.Visitor visitor, Item item)
         {
             throw new System.NotImplementedException();
+        }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,6 +1,7 @@
 <?php
         require('Login.php');
         require('Head.php');
+        require('Balance_SQL.php');
 ?>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -62,21 +63,24 @@ $(document).ready(function(){
 				<h2>Balance</h2>
 			</div>
 			
-			<div id="BalanceText">
-			Your current balance is:<br><br>
+			<form id="BalanceText" action="" method="POST">
+			Your current balance is: <?php echo  $Balance ?> euro<br><br>
 			You can recharge your balance using your paypal account.<br><br>
 			Please select the amount of balance you want to load:<br><br>
-			<select name="Load amount">
-			<option value="5 EUR">5 EUR</option>
-			<option value="10 EUR">10 EUR</option>
-			<option value="20 EUR">20 EUR</option>
-			<option value="30 EUR">30 EUR</option>
-			<option value="40 EUR">40 EUR</option>
-			<option value="50 EUR">50 EUR</option>
+			<select name="Amount" id="Load_amount">
+			<option value="10">10 EUR</option>
+			<option value="20">20 EUR</option>
+			<option value="30">30 EUR</option>
+			<option value="40">40 EUR</option>
+			<option value="50">50 EUR</option>
+                        <option value="100">100 EUR</option>
+                        <option value="100">150 EUR</option>
 			</select><br><br>
-			<input type="submit" name="Payment" value="Continue to Payment"><br><br>
+			<input type="submit" name="Balance_load" value="Continue to Payment"><br><br>
 			
-			</div>
+                        
+			</form>
+        
 
     </div>
 	

@@ -38,11 +38,9 @@
             this.mapBtn = new System.Windows.Forms.Button();
             this.zoomOnItemsBtn = new System.Windows.Forms.Button();
             this.resetZoomBtn = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.mapArea = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mapArea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
@@ -168,16 +166,6 @@
             this.resetZoomBtn.UseVisualStyleBackColor = true;
             this.resetZoomBtn.Click += new System.EventHandler(this.resetZoomBtn_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Design.Properties.Resources.Back1;
-            this.pictureBox1.Location = new System.Drawing.Point(1, -12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(64, 77);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 38;
-            this.pictureBox1.TabStop = false;
-            // 
             // pictureBox11
             // 
             this.pictureBox11.Image = global::Design.Properties.Resources.LOGO_Proshot;
@@ -217,7 +205,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1056, 879);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox11);
             this.Controls.Add(this.resetZoomBtn);
             this.Controls.Add(this.zoomOnItemsBtn);
@@ -234,7 +221,6 @@
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "HomePageWithMap";
             this.Text = "HomePageWithMap";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mapArea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
@@ -258,6 +244,5 @@
         private System.Windows.Forms.Button resetZoomBtn;
         private System.Windows.Forms.Button zoomOnItemsBtn;
         private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
