@@ -56,5 +56,10 @@ namespace Classes
         {
             return this.Id;
         }
+
+        public override string ToString()
+        {
+            return this.FirstName + " " + this.LastName;
+        }
     }
 }

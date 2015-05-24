@@ -39,7 +39,7 @@ namespace Classes
         const string C_UserID = "dbi317294";
         const string C_Password = "NBD7TnUwhT";
         static string connectionString = string.Format(
-                    "server={0};database={1};uid={2};password={3};connect timeout=30;",
+                    "server={0};database={1};uid={2};password={3};",
                     C_Server, C_DataBase, C_UserID, C_Password
                 );
 
@@ -89,7 +89,7 @@ namespace Classes
                 Join<ShopJob>("JOIN" ,"Shops.id = Shopitems.shop_id", "shop")},
             {typeof(Receipt), new Table("Receipts", "id", "purchasedOn").
                 Join<Visitor>("JOIN", "Receipts.purchasedby = Visitors.user_id", "purchasedby")},
-            {typeof(ReceiptItem), new Table("ReceiptItems", "id", "totalAmount", "pricePerItem").
+            {typeof(ReceiptItem), new Table("ReceiptItems", "id", "totalAmount", "pricePerItem", "times").
                 Join<Receipt>("JOIN", "Receipts.id = ReceiptItems.receipt_id", "receipt").
                 Join<ShopItem>("JOIN", "ShopItems.item_id = ReceiptItems.item_id", "item")},
             {typeof(RentableItem), new Table("RentableItems", "price", "inStock").
@@ -616,7 +616,7 @@ namespace Classes
 
         public static T Find<T>(string where, params object[] parameters) where T : Record
         {
-            return GetWhere<T>(where, parameters).FirstOrDefault();
+            return GetWhere<T>(where + " Limit 1", parameters).FirstOrDefault();
         }
 
         public static T Get<T>(string where, params object[] parameters) where T : Record

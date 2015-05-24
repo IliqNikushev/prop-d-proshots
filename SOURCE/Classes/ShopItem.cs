@@ -26,5 +26,10 @@ namespace Classes
         {
             throw new NotImplementedException();
         }
+
+        public override string ToString()
+        {
+            return this.Brand + " " + this.Model;
+        }
     }
 }

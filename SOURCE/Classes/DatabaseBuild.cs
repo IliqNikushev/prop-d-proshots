@@ -300,8 +300,9 @@ namespace Classes
             Classes.ShopItem item = CreateShopItem(reader);
             reader.RemovePrefix();
 
-            int times = reader.Get<int>("totalAmount");
+            decimal totalPrice = reader.Get<decimal>("totalAmount");
             decimal price = reader.Get<decimal>("pricePerItem");
+            int times = reader.Get<int>("times");
 
             reader.AddPrefix("receipt");
             Receipt receipt = CreateReceipt(reader);
@@ -309,7 +310,7 @@ namespace Classes
 
             reader.RemoveDistinctPrefix();
 
-            return new Classes.ReceiptItem(iD, item, receipt, times, price);
+            return new Classes.ReceiptItem(iD, item, receipt, times, price, totalPrice);
         }
 
         private static ShopItem CreateShopItem(Reader reader, string prefix="", bool abstr = false)

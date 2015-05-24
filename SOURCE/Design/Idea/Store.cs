@@ -267,7 +267,7 @@ namespace Design.Idea
         private void button1_Click(object sender, EventArgs e)
         {
             IEnumerable<ShopItem> selectedItems = this.items.Where(x=>x.PurchaseTimes > 0);
-            IEnumerable<Classes.ReceiptItem> selection = selectedItems.Select(x => new Classes.ReceiptItem(0, x.Item, null, x.PurchaseTimes,0));
+            IEnumerable<Classes.ReceiptItem> selection = selectedItems.Select(x => new Classes.ReceiptItem(0, x.Item, null, x.PurchaseTimes,0, x.Total));
 
             new StoreConfirm(selectedItems, ActiveVisitor, OnConfirmClick).Show();
 

@@ -12,7 +12,10 @@ namespace Design.Idea.AdministratorInterface.SubMenu
 {
     public partial class Shops : HomePageWithMap
     {
-        public Shops() { InitializeComponent(); }
+        public Shops()
+        {
+            InitializeComponent();
+        }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -124,7 +127,7 @@ namespace Design.Idea.AdministratorInterface.SubMenu
 
         private void pictureBox4_Click_1(object sender, EventArgs e)
         {
-            new ShopInformation().Show();
+            new ShopInformation(Classes.Database.Find<Classes.ShopJob>("Shops.id = 3")).Show();
         }
 
         private void pictureBox8_Click_1(object sender, EventArgs e)
