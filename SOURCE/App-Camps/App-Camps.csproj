@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CheckIn-OutForm.cs" />
+    <Compile Include="CheckIn-OutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="CheckIn-OutForm.Designer.cs">
       <DependentUpon>CheckIn-OutForm.cs</DependentUpon>
     </Compile>

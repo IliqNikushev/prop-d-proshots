@@ -51,7 +51,9 @@ namespace Design.Idea
 
             mapArea.Image = Properties.Resources.Park_English;
             PictureBox holder = new PictureBox();
-            holder.Size = new Size(mapArea.Size.Width, mapArea.Size.Height);
+            this.SuspendLayout();
+            holder.Width = mapArea.Width;
+            holder.Height = mapArea.Height;
 
             holder.Left = mapX;
             holder.Top = mapY;
