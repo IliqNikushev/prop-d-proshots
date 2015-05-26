@@ -12,7 +12,8 @@ namespace App_Common
 {
     public partial class HomePage : Menu
     {
-        public HomePage()
+        public HomePage(App_Common.Menu parent)
+            : base(parent)
         {
             InitializeComponent();
         }

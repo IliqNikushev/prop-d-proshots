@@ -11,15 +11,15 @@ namespace Classes
 
         public void TopUp(Visitor visitor, decimal amount)
         {
-            throw new System.NotImplementedException();
+            new LogMessage("top-up", this.ID + " " + visitor.ID + " " + amount).SendToDatabase();
         }
 
-        public override void Save()
+        protected override void Save()
         {
             throw new NotImplementedException();
         }
 
-        public override void Update()
+        protected override void Update()
         {
             throw new NotImplementedException();
         }

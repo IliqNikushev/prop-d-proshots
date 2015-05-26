@@ -26,14 +26,19 @@ namespace Classes
             this.Raw = raw;
         }
 
-        public override void Save()
+        protected override void Save()
         {
             throw new NotImplementedException();
         }
 
-        public override void Update()
+        protected override void Update()
         {
             throw new NotImplementedException();
+        }
+
+        protected override object Identifier
+        {
+            get { return ID; }
         }
         /*
         public static PayPalDocument Parse(string text)

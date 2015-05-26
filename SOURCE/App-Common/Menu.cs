@@ -20,7 +20,9 @@ namespace App_Common
             }
         }
 
-        protected static Classes.User LoggedInUser = null;
+        protected static Classes.User LoggedInUser { get; set; }
+        protected static Classes.Visitor LoggedInVisitor { get { return LoggedInUser as Classes.Visitor; } }
+        protected static Classes.Employee LoggedInEmployee { get { return LoggedInUser as Classes.Employee; } }
 
         protected static Menu MainMenu;
         private static List<Menu> Menus = new List<Menu>();
@@ -37,7 +39,14 @@ namespace App_Common
             }
         }
 
-        public Menu()
+        public Menu() : this(null)
+        {
+            if (!IsInDebug)
+                throw new InvalidOperationException("ALLOWED ONLY DURING DEBUG"); // call the other menu constructor
+            InitializeComponent();
+        }
+
+        public Menu(Menu parent)
         {
             if (MainMenu == null)
             {
@@ -67,12 +76,12 @@ namespace App_Common
             InitializeComponent();
 
             this.ControlBox = false;
+
+            this.ParentMenu = parent;
         }
 
-        new public void Show(Menu parent = null)
+        new public void Show()
         {
-            if(parent != null)
-                this.ParentMenu = parent;
             if (this == MainMenu)
                 base.Show();
             else

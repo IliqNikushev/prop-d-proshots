@@ -16,12 +16,12 @@ namespace Classes
         public DateTime TimeStart { get; private set; }
         public DateTime TimeEnd { get; private set; }
 
-        public override void Save()
+        protected override void Save()
         {
             throw new NotImplementedException();
         }
 
-        public override void Update()
+        protected override void Update()
         {
             throw new NotImplementedException();
         }

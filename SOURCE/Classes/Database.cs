@@ -12,12 +12,12 @@ namespace Classes
     {
         public class MiscTable
         {
-            public int NumberOfCardsTotal;
+            public long NumberOfCardsTotal;
             public long NumberOfCardsTaken;
 
-            public MiscTable(int numberOfCardsTotal, long numberOfCardsTaken)
+            public MiscTable(long numberOfCardsTotal, long numberOfCardsTaken)
             {
-                this.NumberOfCardsTaken = numberOfCardsTotal;
+                this.NumberOfCardsTotal = numberOfCardsTotal;
                 this.NumberOfCardsTaken = numberOfCardsTaken;
             }
         }
@@ -27,7 +27,7 @@ namespace Classes
             get
             {
                 MiscTable misc = null;
-                ExecuteSQLWithResult("Select Total, Taken from Misc LIMIT 1", (x) => { if (x.Read()) misc = new MiscTable(x.Get<int>("Total"), x.Get<long>("Taken")); else misc = new MiscTable(-1, - 1); });
+                ExecuteSQLWithResult("Select Total, Taken from Misc", (x) => { if (x.Read()) misc = new MiscTable(x.Get<long>("Total"), x.Get<long>("Taken")); else misc = new MiscTable(-1, - 1); });
                 return misc;
             }
         }
@@ -94,13 +94,13 @@ namespace Classes
                 Join<ShopItem>("JOIN", "ShopItems.item_id = ReceiptItems.item_id", "item")},
             {typeof(RentableItem), new Table("RentableItems", "price", "inStock").
                 Join<Item>("Join", "RentableItems.item_id = Items_All.id", "")},
-            {typeof(RentableItemHistory), new Table("RentableItemHistories", "returnedAt", "rentedAt", "notes", "rentedTill").
+            {typeof(RentableItemHistory), new Table("RentableItemHistories", "returnedAt", "rentedAt", "notes", "rentedTill", "id").
                 Join<RentableItem>("JOIN", "RentableItemHistories.item_id = RentableItems.item_id", "item").
                 Join<Visitor>("JOIN", "RentableItemHistories.returnedBy = Visitors.user_id", "returnedBy").
                 Join<Visitor>("JOIN", "RentableItemHistories.rentedBy = rentedBy.user_id", "rentedBy", "rentedBy")},
             {typeof(Restock), new Table("Restocks", "id", "date")},
             {typeof(RestockableItem), new Table("RestockableItems").Copy<Item>()},
-            {typeof(RestockItem), new Table("RestockItems", "quantity", "pricePerItem", "total").
+            {typeof(RestockItem), new Table("RestockItems", "quantity", "pricePerItem", "total", "id").
                 Join<Restock>("JOIN", "Restocks.id = RestockItems.restock_id", "restock").
                 Join<ShopItem>("JOIN", "ShopItems.item_id = RestockItems.item_id", "item")},
             {typeof(ShopJob), new Table("Shops", "id", "label", "description", "x", "y", "type")},
@@ -113,6 +113,11 @@ namespace Classes
                 Join<User>("JOIN", "Users.id = Visitors.user_id", "")},
             {typeof(Warning), new Table("Warnings", "id", "name", "description")},
         };
+
+        public static string TableNameFor(Record record)
+        {
+            return TableNameFor(record.GetType());
+        }
 
         public static string TableNameFor(Type type)
         {
@@ -318,9 +323,35 @@ namespace Classes
             }
         }
 
+        public static int Insert(Record record, string values, params object[] parameters)
+        {
+            if (values.Split(',').Length != parameters.Length) throw new InvalidOperationException("Value missing in parameters");
+
+            Table table = tables[record.GetType()];
+            if (table.Joins.Count > 0) throw new NotImplementedException("Nested insert not implemented");
+
+            return ExecuteSQL(
+                string.Format("Insert into {0} ({1}) values ({2})",
+                    table.Name,
+                    values,
+                    string.Join("," , FormatParameters(parameters))
+                )
+             );
+        }
+
+        public static int Update(Record record, string set, string identifier)
+        {
+            Table table = tables[record.GetType()];
+            if (table.Joins.Count > 0) throw new NotImplementedException("Nested update not implemented");
+
+            return ExecuteSQL(
+                string.Format("UPDATE {0} SET {1} WHERE {2}",
+                    table.Name, set, identifier));
+        }
+
         public static int ExecuteSQL(string sql, params object[] parameters)
         {
-            return ExecuteSQL(string.Format(sql, parameters.Select(x=>{if(x is string)return x.ToString().Replace("'", "''"); return x;})));
+            return ExecuteSQL(string.Format(sql, FormatParameters(parameters)));
         }
 
         public static int ExecuteSQL(string sql, bool testing = false)
@@ -350,9 +381,15 @@ namespace Classes
             }
             return rowsAffected;
         }
+
         public static void ExecuteSQLWithResult(string sql, Action<Reader> resultCallback, params object[] parameters)
         {
-            ExecuteSQLWithResult(string.Format(sql, parameters.Select(x => { if (x is string)return x.ToString().Replace("'", "''"); return x; })), resultCallback);
+            ExecuteSQLWithResult(string.Format(sql, FormatParameters(parameters)), resultCallback);
+        }
+
+        private static IEnumerable<object> FormatParameters(object[] parameters)
+        {
+            return parameters.Format();
         }
 
         public static void ExecuteSQLWithResult(string sql, Action<Reader> readerCallback, bool testing = false)
@@ -495,37 +532,37 @@ namespace Classes
 
         public static List<Tent> GetVisitorTent(Visitor visitor)
         {
-            return GetWhere<Tent>("TentPeople.visitor_id = {0}", visitor.Id);
+            return GetWhere<Tent>("TentPeople.visitor_id = {0}", visitor.ID);
         }
 
         public static List<Tent> GetVisitorBookedTent(Visitor visitor)
         {
-            return GetWhere<Tent>("Tents.booked_by = {0}", visitor.Id);
+            return GetWhere<Tent>("Tents.booked_by = {0}", visitor.ID);
         }
 
         public static List<RentableItemHistory> GetVisitorRentedItems(Visitor visitor)
         {
-            return GetWhere<RentableItemHistory>("h.rented_by = " + visitor.Id);
+            return GetWhere<RentableItemHistory>("h.rented_by = " + visitor.ID);
         }
 
         public static List<RentableItemHistory> GetVisitorNotReturnedItems(Visitor visitor)
         {
-            return GetWhere<RentableItemHistory>("h.rented_by = " + visitor.Id + " and r.returned_by is NULL");
+            return GetWhere<RentableItemHistory>("h.rented_by = " + visitor.ID + " and r.returned_by is NULL");
         }
 
         public static List<Receipt> GetVisitorPurchases(Visitor visitor)
         {
-            return GetWhere<Receipt>("r.purchased_by = " + visitor.Id);
+            return GetWhere<Receipt>("r.purchased_by = " + visitor.ID);
         }
 
         public static List<Appointment> GetVisitorAppointments(Visitor visitor)
         {
-            return GetWhere<Appointment>("a.appointed_by = " + visitor.Id);
+            return GetWhere<Appointment>("a.appointed_by = " + visitor.ID);
         }
 
         public static List<EmployeeAction> GetEmployeeActions(Employee employee)
         {
-            return GetWhere<EmployeeAction>("EmployeeActions.employee_id = '" + employee.Id);
+            return GetWhere<EmployeeAction>("EmployeeActions.employee_id = '" + employee.ID);
         }
 
         public static Employee GetEmployee(string userName, string password)
@@ -560,7 +597,7 @@ namespace Classes
 
         public static List<Deposit> GetVisitorTopUps(Visitor visitor)
         {
-            return GetWhere<Deposit>("d.visitor_id = {0}", visitor.Id);
+            return GetWhere<Deposit>("d.visitor_id = {0}", visitor.ID);
         }
 
         private static object GetRow(Type t, Reader reader)

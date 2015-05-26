@@ -20,14 +20,29 @@ namespace Classes
             this.Description = description;
         }
 
-        public override void Save()
+        public LogMessage(string name, string description)
         {
-            throw new NotImplementedException();
+            this.Name = name;
+            this.Description = description;
+            this.Date = DateTime.Now;
         }
 
-        public override void Update()
+        protected override void Save()
         {
-            throw new NotImplementedException();
+            Database.Insert(this, "date, name, description", this.Date, this.Name, this.Description);
+        }
+
+        protected override void Update()
+        {
+            Database.Update(this, 
+                "name = {0}, date = {1}, description = {2}".
+                Arg(this.Name, this.Date, this.Description),
+                "id = {0}".Arg(ID));
+        }
+
+        protected override object Identifier
+        {
+            get { return ID; }
         }
     }
 }

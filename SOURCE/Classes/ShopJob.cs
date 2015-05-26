@@ -30,15 +30,15 @@ namespace Classes
 
             //print receipt, send to the database
             //return new Receipt(user, this, items);
-            return null;
+            throw new NotImplementedException();
         }
 
-        public override void Save()
+        protected override void Save()
         {
             throw new NotImplementedException();
         }
 
-        public override void Update()
+        protected override void Update()
         {
             throw new NotImplementedException();
         }

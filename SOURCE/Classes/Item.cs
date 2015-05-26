@@ -32,5 +32,10 @@ namespace Classes
             this.Group = group;
             this.Description = description;
         }
+
+        protected override object Identifier
+        {
+            get { return ID; }
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace App_Camps
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CampingLoginForm());
+            Application.Run(new CampingLoginForm(null));
         }
     }
 }

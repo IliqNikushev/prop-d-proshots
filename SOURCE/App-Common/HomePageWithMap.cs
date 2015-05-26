@@ -39,7 +39,8 @@ namespace App_Common
             a.Parent = b;
         }
 
-        public HomePageWithMap()
+        public HomePageWithMap(App_Common.Menu parent)
+            : base(parent)
         {
             InitializeComponent();
 

@@ -511,6 +511,7 @@ namespace Classes
 
             System.DateTime rentedAt = reader.Get<System.DateTime>("RentedAt");
             string notes = reader.GetStr("Notes");
+            int id = reader.Get<int>("id");
             System.DateTime returnedAt = reader.Get<System.DateTime>("ReturnedAt");
             System.DateTime rentedTill = reader.Get<System.DateTime>("RentedTill");
 
@@ -520,7 +521,7 @@ namespace Classes
 
             reader.RemoveDistinctPrefix();
 
-            return new RentableItemHistory(rentedItem, rentedBy, returnedBy, rentedAt, returnedAt, rentedTill, notes);
+            return new RentableItemHistory(id, rentedItem, rentedBy, returnedBy, rentedAt, returnedAt, rentedTill, notes);
         }
 
         private static Restock CreateRestock(Reader reader, string prefix="", bool asbtr = false)
@@ -547,6 +548,7 @@ namespace Classes
             ShopItem item = CreateShopItem(reader);
             reader.RemovePrefix();
 
+            int id = reader.Get<int>("id");
             int times = reader.Get<int>("quantity");
             decimal pricePerItem = reader.Get<decimal>("pricePerItem");
             decimal total = reader.Get<decimal>("total");
@@ -554,7 +556,7 @@ namespace Classes
 
             reader.RemoveDistinctPrefix();
 
-            return new RestockItem(item, times, restock, pricePerItem, total);
+            return new RestockItem(id, item, times, restock, pricePerItem, total);
         }
 
         private static Tent CreateTent(Reader reader, string prefix="", bool asbtr = false)

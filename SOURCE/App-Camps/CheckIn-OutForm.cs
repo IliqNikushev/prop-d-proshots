@@ -12,7 +12,8 @@ namespace App_Camps
 {
     public partial class CampingLoginForm : App_Common.LoginForm
     {
-        public CampingLoginForm()
+        public CampingLoginForm(App_Common.Menu parent)
+            : base(parent)
         {
             InitializeComponent();
         }
@@ -28,13 +29,8 @@ namespace App_Camps
             List<Classes.Tent> bookedTents = Classes.Database.GetVisitorBookedTent(LoggedInUser as Classes.Visitor);
             bookedTents.AddRange(Classes.Database.GetVisitorTent(LoggedInUser as Classes.Visitor));
 
-            new CampingMenu(bookedTents).Show(this);
+            new CampingMenu(bookedTents, this).Show();
             return true;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            new CampingMenu(new List<Classes.Tent>()).Show(this);
         }
     }
 }

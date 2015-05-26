@@ -24,11 +24,13 @@ namespace Classes
         public void Rent(RentableItem item)
         {
             //check if has enough in account
+            throw new NotImplementedException();
         }
 
         public void Return(RentableItem Item)
         {
             //check if he has this item
+            throw new NotImplementedException();
         }
 
         public void CloseAccount()
@@ -36,15 +38,22 @@ namespace Classes
             //user no longer will be able to login
             //balance = 0
             //check if all items are returned
+            throw new NotImplementedException();
         }
 
-        public override void Save()
+        protected override void Save()
         {
             throw new NotImplementedException();
         }
 
-        public override void Update()
+        protected override void Update()
         {
+            throw new NotImplementedException();
+        }
+
+        public void ChangeBalanceTo(decimal amount)
+        {
+            //execute update
             throw new NotImplementedException();
         }
     }

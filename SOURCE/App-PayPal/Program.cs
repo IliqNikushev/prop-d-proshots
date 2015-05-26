@@ -16,7 +16,7 @@ namespace App_PayPal
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PayPalForm());
+            Application.Run(new WaitingForm(null));
         }
     }
 }

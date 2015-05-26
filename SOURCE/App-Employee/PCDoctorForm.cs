@@ -8,16 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace App_Admin
+namespace App_Employee
 {
-    public partial class AdminPanelForm : App_Common.LoginForm
+    public partial class PCDoctorForm : App_Common.Menu
     {
-        public AdminPanelForm(App_Common.Menu parent)
+        public PCDoctorForm(App_Common.Menu parent)
             : base(parent)
         {
             InitializeComponent();
-
-            this.ControlBox = true;
         }
     }
 }

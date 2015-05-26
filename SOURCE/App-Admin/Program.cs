@@ -16,7 +16,7 @@ namespace App_Admin
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AdminPanelForm());
+            Application.Run(new AdminPanelForm(null));
         }
     }
 }

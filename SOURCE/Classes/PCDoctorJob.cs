@@ -50,12 +50,12 @@ namespace Classes
             throw new System.NotImplementedException();
         }
 
-        public override void Save()
+        protected override void Save()
         {
             throw new NotImplementedException();
         }
 
-        public override void Update()
+        protected override void Update()
         {
             throw new NotImplementedException();
         }

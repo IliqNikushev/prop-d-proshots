@@ -14,7 +14,7 @@ namespace App_Camps
     {
         IEnumerable<Classes.Tent> bookedByVisitor;
         IEnumerable<Classes.Tent> bookedForVisitor;
-        public CampingMenu(List<Classes.Tent> tents)
+        public CampingMenu(List<Classes.Tent> tents, App_Common.Menu parent) : base(parent)
         {
             InitializeComponent();
 

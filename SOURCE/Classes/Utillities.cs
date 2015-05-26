@@ -178,5 +178,21 @@ namespace Classes
             }
             return properties;
         }
+
+        public static string Arg(this string pattern, params object[] arguments)
+        {
+            return string.Format(pattern, arguments.Format());
+        }
+
+        public static IEnumerable<object> Format(this IEnumerable<object> parameters)
+        {
+            return parameters.Select(x =>
+            {
+                if (x is string) return "'" + x.ToString().Replace("'", "''") + "'";
+                if (x is DateTime) return "'" + ((DateTime)x).ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                if (x == null) return "NULL";
+                return x;
+            });
+        }
     }
 }

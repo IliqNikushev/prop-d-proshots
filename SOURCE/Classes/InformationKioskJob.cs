@@ -10,11 +10,11 @@ namespace Classes
         public InformationKioskJob(int id, int x, int y) : base(id, "Information desk", "Here you can get information about the event and your card", x, y) { }
 
         private long numberOfCardsTaken;
-        private int numberOfCardsTotal;
+        private long numberOfCardsTotal;
 
         public long NumberOfCardsAvailable {get{return this.NumberOfCardsTotal - this.NumberOfCardsTaken;}}
         public long NumberOfCardsTaken {get {return this.numberOfCardsTaken;}}
-        public int NumberOfCardsTotal { get { return this.numberOfCardsTotal; } }
+        public long NumberOfCardsTotal { get { return this.numberOfCardsTotal; } }
 
         public void RefreshCards()
         {
@@ -28,17 +28,17 @@ namespace Classes
             if (visitor.RFID != null)
                 throw new InvalidOperationException("User already has RFID");
 
-            Database.ExecuteSQL("UPDATE visitors SET rfid = '{0}' WHERE visitors.user_id = {1}", tag, visitor.Id);
+            Database.Update(visitor, "rfid = {0}".Arg(tag), "user_id = {0}".Arg(visitor.ID));
 
             this.RefreshCards();
         }
 
-        public override void Save()
+        protected override void Save()
         {
             throw new NotImplementedException();
         }
 
-        public override void Update()
+        protected override void Update()
         {
             throw new NotImplementedException();
         }

@@ -1,6 +1,6 @@
-﻿namespace App_Employee
+﻿namespace App_PayPal
 {
-    partial class LoginForm
+    partial class WaitingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,18 +30,19 @@
         {
             this.SuspendLayout();
             // 
-            // LoginForm
+            // WaitingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 266);
-            this.Name = "LoginForm";
+            this.ClientSize = new System.Drawing.Size(284, 273);
+            this.Name = "WaitingForm";
+            this.Text = "WaitingForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
+
     }
 }
-

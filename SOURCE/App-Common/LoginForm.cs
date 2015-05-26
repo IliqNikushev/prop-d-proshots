@@ -12,15 +12,17 @@ namespace App_Common
 {
     public partial class LoginForm : Menu
     {
-        public LoginForm()
+        public LoginForm() : this(null) { }
+        public LoginForm(Menu parent) : base(parent)
         {
             InitializeComponent();
 
-            if (reader != null)
-            {
-                infoLbl.Text += " Or approach your card";
-                reader.OnDetect += Authenticate;
-            }
+            if(!IsInDebug)
+                if (reader.IsAttached)
+                {
+                    infoLbl.Text += " Or approach your card";
+                    reader.OnDetect += Authenticate;
+                }
         }
 
         protected virtual bool OnLogin() { throw new System.InvalidOperationException("Not implemented btn"); }

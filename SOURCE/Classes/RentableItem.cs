@@ -20,12 +20,12 @@ namespace Classes
             RentableItemHistory history = new RentableItemHistory(this, renter);
         }
 
-        public override void Save()
+        protected override void Save()
         {
             throw new NotImplementedException();
         }
 
-        public override void Update()
+        protected override void Update()
         {
             throw new NotImplementedException();
         }

@@ -23,7 +23,7 @@ namespace Classes
                 if(visitor == null)
                     visitor = Database.Find<Visitor>("Visitors.user_id = {0}", this.ID);
                 else
-                    if(visitor.Id != this.ID)
+                    if(visitor.ID != this.ID)
                         visitor = Database.Find<Visitor>("Visitors.user_id = {0}", this.ID);
                 return visitor;
             }
@@ -37,14 +37,19 @@ namespace Classes
             this.Document = document;
         }
 
-        public override void Save()
+        protected override void Save()
         {
             throw new NotImplementedException();
         }
 
-        public override void Update()
+        protected override void Update()
         {
             throw new NotImplementedException();
+        }
+
+        protected override object Identifier
+        {
+            get { return ID; }
         }
     }
 }

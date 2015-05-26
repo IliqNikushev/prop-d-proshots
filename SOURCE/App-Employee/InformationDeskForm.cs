@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace App_PayPal
+namespace App_Employee
 {
-    public partial class PayPalForm : Form
+    public partial class InformationDeskForm : App_Common.Menu
     {
-        public PayPalForm()
+        public InformationDeskForm(App_Common.Menu parent) : base(parent)
         {
             InitializeComponent();
         }

@@ -10,14 +10,15 @@ namespace Classes
     {
         [Column("Restock_id")]
         public Restock Restock { get; private set; }
-
+        public int ID { get; private set; }
         public ShopItem Item { get; private set; }
         public int Times { get; private set; }
         public decimal PricePerItem { get; private set; }
         public decimal Total { get; private set; }
 
-        public RestockItem(ShopItem item, int times, Restock restock, decimal pricePerItem, decimal total)
+        public RestockItem(int id, ShopItem item, int times, Restock restock, decimal pricePerItem, decimal total)
         {
+            this.ID = id;
             this.Item = item;
             this.Times = times;
             this.Restock = restock;
@@ -30,14 +31,19 @@ namespace Classes
             this.Item.Restock(this.Times);
         }
 
-        public override void Save()
+        protected override void Save()
         {
             throw new NotImplementedException();
         }
 
-        public override void Update()
+        protected override void Update()
         {
             throw new NotImplementedException();
+        }
+
+        protected override object Identifier
+        {
+            get { return ID; }
         }
     }
 }

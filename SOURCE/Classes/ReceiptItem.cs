@@ -27,12 +27,12 @@ namespace Classes
             this.TotalPrice = totalPrice;
         }
 
-        public override void Save()
+        protected override void Save()
         {
             throw new NotImplementedException();
         }
 
-        public override void Update()
+        protected override void Update()
         {
             throw new NotImplementedException();
         }
@@ -40,6 +40,11 @@ namespace Classes
         public override string ToString()
         {
             return this.Item.ToString() + string.Format(" {0} time{1} by {2}", this.Times, this.Times == 1 ? "" : "s", this.Receipt.PurchasedBy);
+        }
+
+        protected override object Identifier
+        {
+            get { return ID; }
         }
     }
 }

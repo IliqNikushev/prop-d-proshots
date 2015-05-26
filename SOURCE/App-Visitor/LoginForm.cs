@@ -12,7 +12,8 @@ namespace App_Visitor
 {
     public partial class LoginForm : App_Common.LoginForm
     {
-        public LoginForm()
+        public LoginForm(App_Common.Menu parent)
+            : base(parent)
         {
             InitializeComponent();
         }

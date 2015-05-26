@@ -7,6 +7,7 @@ namespace Classes
 {
     public class RentableItemHistory : Record
     {
+        public int ID { get; private set; }
         [Column("item_id")]
         public RentableItem RentedItem { get; private set; }
         public Visitor RentedBy { get; private set; }
@@ -23,8 +24,9 @@ namespace Classes
 
         public bool IsReturned { get { return this.IsRented && this.ReturnedAt != DateTime.MinValue; } }
 
-        public RentableItemHistory(RentableItem item, Visitor rentedBy, Visitor returnedBy, DateTime rentedAt, DateTime returnedAt, DateTime rentedTill, string notes)
+        public RentableItemHistory(int id, RentableItem item, Visitor rentedBy, Visitor returnedBy, DateTime rentedAt, DateTime returnedAt, DateTime rentedTill, string notes)
         {
+            this.ID = id;
             this.RentedItem = item;
             this.RentedBy = rentedBy;
             this.RentedAt = rentedAt;
@@ -34,7 +36,7 @@ namespace Classes
             this.Notes = notes;
         }
 
-        public RentableItemHistory(RentableItem item, Visitor rentedBy, string notes = "") : this(item,rentedBy, null, DateTime.Today, DateTime.MinValue, DateTime.Today, notes)
+        public RentableItemHistory(RentableItem item, Visitor rentedBy, string notes = "") : this(0, item,rentedBy, null, DateTime.Today, DateTime.MinValue, DateTime.Today, notes)
         {
         }
 
@@ -46,14 +48,19 @@ namespace Classes
             this.Notes += notes;
         }
 
-        public override void Save()
+        protected override void Save()
         {
             throw new NotImplementedException();
         }
 
-        public override void Update()
+        protected override void Update()
         {
             throw new NotImplementedException();
+        }
+
+        protected override object Identifier
+        {
+            get { return ID; }
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace App_PayPal
+﻿namespace App_Employee
 {
-    partial class PayPalForm
+    partial class PCDoctorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,22 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // PayPalForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(299, 261);
-            this.ControlBox = false;
-            this.Name = "PayPalForm";
-            this.Text = "PayPal deposit/withdraw";
-            this.ResumeLayout(false);
-
+            this.Text = "PCDoctorForm";
         }
 
         #endregion
-
     }
 }
-
