@@ -8,14 +8,13 @@ namespace Classes
     public class EmployeeAction : Record
     {
         public EmployeeAction(int id, DateTime date, Employee employee, string action)
+            : base(id)
         {
-            this.ID = id;
             this.Date = date;
             this.Employee = employee;
             this.Action = action;
         }
 
-        public int ID { get; private set; }
         public Employee Employee { get; private set; }
         public DateTime Date { get; private set; }
 
@@ -29,11 +28,6 @@ namespace Classes
         protected override void Update()
         {
             throw new NotImplementedException();
-        }
-
-        protected override object Identifier
-        {
-            get { return ID; }
         }
     }
 }

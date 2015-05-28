@@ -8,7 +8,6 @@ namespace Classes
 {
     public class Receipt : Record
     {
-        public int ID { get; private set; }
         private List<ReceiptItem> items;
         public List<ReceiptItem> Items
         {
@@ -27,9 +26,10 @@ namespace Classes
         public ShopJob Shop { get { return this.items.Count > 0 ? this.items[0].Item.Shop : null; } }
 
         public Receipt(int id, Visitor visitor, DateTime purchasedOn)
+            : base(id)
         {
             this.PurchasedBy = visitor;
-            this.ID = id;
+            
             this.PurchasedOn = purchasedOn;
         }
 
@@ -41,11 +41,6 @@ namespace Classes
         protected override void Update()
         {
             throw new NotImplementedException();
-        }
-
-        protected override object Identifier
-        {
-            get { return ID; }
         }
     }
 }

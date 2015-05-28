@@ -7,14 +7,12 @@ namespace Classes
 {
     public class Warning : Record
     {
-        public Warning(int id, string name, string description)
+        public Warning(int id, string name, string description) : base(id)
         {
-            this.ID = id;
             this.Name = name;
             this.Description = description;
         }
 
-        public int ID { get; private set; }
         public string Name { get; private set; }
         public string Description { get; private set; }
 
@@ -26,11 +24,6 @@ namespace Classes
         protected override void Update()
         {
             throw new NotImplementedException();
-        }
-
-        protected override object Identifier
-        {
-            get { return ID; }
         }
     }
 }

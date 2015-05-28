@@ -7,9 +7,9 @@ namespace Classes
 {
     public abstract class Landmark : Record
     {
-        public Landmark(int id, string label, string description, int x, int y)
+        public Landmark(int id, string label, string description, int x, int y) : base(id)
         {
-            this.ID = id;
+            
             this.Label = label;
             this.Description = description;
             this.X = x;
@@ -20,11 +20,15 @@ namespace Classes
         public int Y { get; private set; }
         public string Label { get; private set; }
         public string Description { get; private set; }
-        public int ID { get; private set; }
 
-        protected override object Identifier
+        protected override void Save()
         {
-            get { return ID; }
+            throw new NotImplementedException();
+        }
+
+        protected override void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

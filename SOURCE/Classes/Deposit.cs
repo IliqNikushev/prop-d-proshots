@@ -11,7 +11,6 @@ namespace Classes
     /// </summary>
     public class Deposit : Record
     {
-        public int ID { get; private set; }
         public decimal Amount { get; private set; }
         public DateTime Date { get; private set; }
         public PayPalDocument Document { get; private set; }
@@ -30,8 +29,8 @@ namespace Classes
         }
 
         public Deposit(int id, decimal amount, DateTime date, PayPalDocument document)
+            : base(id)
         {
-            this.ID = id;
             this.Amount = amount;
             this.Date = date;
             this.Document = document;
@@ -45,11 +44,6 @@ namespace Classes
         protected override void Update()
         {
             throw new NotImplementedException();
-        }
-
-        protected override object Identifier
-        {
-            get { return ID; }
         }
     }
 }

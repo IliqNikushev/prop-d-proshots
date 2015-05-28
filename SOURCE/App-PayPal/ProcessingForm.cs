@@ -28,26 +28,7 @@ namespace App_PayPal
 
             this.amountTbox.TextChanged += (x, y) => 
             {
-                decimal amount = 0;
-                if (!decimal.TryParse(this.amountTbox.Text, out amount))
-                    return;
-
-                if (addCBox.Checked)
-                    alteredBalance = amount + LoggedInVisitor.Balance;
-                else if (setCBox.Checked)
-                    alteredBalance = amount;
-                if (Difference < 0)
-                {
-                    alteredBalance = LoggedInVisitor.Balance;
-                    withdrawNotAllowedLbl.Visible = true;
-                }
-                else
-                    if (withdrawNotAllowedLbl.Visible)
-                        withdrawNotAllowedLbl.Visible = false;
-                if (setCBox.Checked)
-                    resultLbl.Text = "+" + Difference.ToString() + App_Common.Constants.Currency;
-                else
-                    resultLbl.Text = alteredBalance.ToString() + App_Common.Constants.Currency;
+                UpdateResult();
             };
 
             this.resultLbl.Text = this.balanceLbl.Text;
@@ -79,18 +60,60 @@ namespace App_PayPal
             {
                 //todo get user permission / passcode for the transaction
                 Install.Machine.TopUp(LoggedInVisitor, alteredBalance);
+                MessageBox.Show("Your request has been sent. Waiting for paypal to confirm. Check your balance in a minute");
                 this.Close();
             }
+        }
+
+        private string old = "";
+
+        private void UpdateResult()
+        {
+            decimal amount = 0;
+            if (!decimal.TryParse(this.amountTbox.Text, out amount))
+                return;
+            if(amount > 5000)
+            {
+                this.amountTbox.Text = old;
+                MessageBox.Show("The number is too big for an event of this size.");
+                return;
+            }
+            if (amount < 5)
+            {
+                this.amountTbox.Text = old;
+                MessageBox.Show("Minimum deposit is 5" + App_Common.Constants.Currency);
+                return;
+            }
+            old = this.amountTbox.Text;
+
+            if (addCBox.Checked)
+                alteredBalance = amount + LoggedInVisitor.Balance;
+            else if (setCBox.Checked)
+                alteredBalance = amount;
+            if (Difference < 0)
+            {
+                alteredBalance = LoggedInVisitor.Balance;
+                withdrawNotAllowedLbl.Visible = true;
+            }
+            else
+                if (withdrawNotAllowedLbl.Visible)
+                    withdrawNotAllowedLbl.Visible = false;
+            if (setCBox.Checked)
+                resultLbl.Text = "+" + Difference.ToString() + App_Common.Constants.Currency;
+            else
+                resultLbl.Text = alteredBalance.ToString() + App_Common.Constants.Currency;
         }
 
         private void addCBox_CheckedChanged(object sender, EventArgs e)
         {
             if (setCBox.Checked && addCBox.Checked) setCBox.Checked = false;
+            UpdateResult();
         }
 
         private void setCBox_CheckedChanged(object sender, EventArgs e)
         {
             if (setCBox.Checked && addCBox.Checked) addCBox.Checked = false;
+            UpdateResult();
         }
     }
 }

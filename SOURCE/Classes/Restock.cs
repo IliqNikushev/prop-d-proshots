@@ -8,13 +8,12 @@ namespace Classes
 {
     public class Restock : Record
     {
-        public int ID { get; private set; }
         public DateTime Date { get; private set; }
         public List<RestockItem> Items { get { return Database.Where<RestockItem>("RestockItems.restock_id = {0}", this.ID); } }
 
         public Restock(int id, DateTime date)
+            : base(id)
         {
-            this.ID = id;
             this.Date = date;
         }
 
@@ -32,11 +31,6 @@ namespace Classes
         protected override void Update()
         {
             throw new NotImplementedException();
-        }
-
-        protected override object Identifier
-        {
-            get { return ID; }
         }
     }
 }

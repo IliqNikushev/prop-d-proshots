@@ -8,8 +8,8 @@ namespace Classes
     public class Appointment : Record
     {
         public Appointment(int id, AppointedItem item, Visitor visitor, DateTime completedOn, bool isReturned, string description)
+            : base(id)
         {
-            this.ID = id;
             this.AppointedItem = item;
             this.Visitor = Visitor;
             this.CompletedOn = completedOn;
@@ -17,7 +17,6 @@ namespace Classes
             this.Description = description;
         }
 
-        public int ID { get; private set; }
         public Visitor Visitor { get; private set; }
         public AppointedItem AppointedItem { get; private set; }
         public DateTime CompletedOn { get; private set; }
@@ -50,11 +49,6 @@ namespace Classes
         protected override void Update()
         {
             throw new NotImplementedException();
-        }
-
-        protected override object Identifier
-        {
-            get { return ID; }
         }
     }
 }

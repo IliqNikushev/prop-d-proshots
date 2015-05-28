@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.profilePBox = new System.Windows.Forms.PictureBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.topUpBtn = new System.Windows.Forms.Button();
             this.amountTbox = new System.Windows.Forms.TextBox();
@@ -235,7 +234,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox profilePBox;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.Button topUpBtn;
         private System.Windows.Forms.TextBox amountTbox;

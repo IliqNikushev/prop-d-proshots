@@ -11,15 +11,14 @@ namespace Classes
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string FullName { get { return this.FirstName + " " + this.LastName; } }
-        public int ID { get; private set; }
         public virtual bool IsAuthenticated { get { return this.ID != 0; } }
         public string Username { get; private set; }
         public string Password { get; private set; }
         public string Email { get; private set; }
 
-        public User(int id, string firstName, string lastName, string username,string password, string email)
+        public User(int id, string firstName, string lastName, string username, string password, string email)
+            : base(id)
         {
-            this.ID = id;
             this.FirstName = firstName;
             this.LastName = lastName;
             this.Password = password;
@@ -62,9 +61,14 @@ namespace Classes
             return this.FirstName + " " + this.LastName;
         }
 
-        protected override object Identifier
+        protected override void Save()
         {
-            get { return ID; }
+            throw new NotImplementedException();
+        }
+
+        protected override void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

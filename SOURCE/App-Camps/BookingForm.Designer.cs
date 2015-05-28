@@ -1,6 +1,6 @@
-﻿namespace App_Visitor
+﻿namespace App_Camps
 {
-    partial class LoginForm
+    partial class BookingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,12 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // LoginForm
+            // BookingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 278);
-            this.Name = "LoginForm";
+            this.ClientSize = new System.Drawing.Size(758, 470);
+            this.Name = "BookingForm";
+            this.Text = "Book a tent";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -44,4 +45,3 @@
         #endregion
     }
 }
-

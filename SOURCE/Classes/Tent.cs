@@ -29,6 +29,7 @@ namespace Classes
         }
 
         public Tent(TentAreaLandmark location, DateTime bookedOn, bool isPayed, DateTime bookedTill, Visitor bookedBy, params Visitor[] bookedFor)
+            : base(location.ID)
         {
             this.Location = location;
             this.BookedOn = bookedOn;
@@ -51,11 +52,6 @@ namespace Classes
         protected override void Update()
         {
             throw new NotImplementedException();
-        }
-
-        protected override object Identifier
-        {
-            get { return Location.ID; }
         }
     }
 }

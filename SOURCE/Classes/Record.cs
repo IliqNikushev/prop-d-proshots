@@ -7,19 +7,23 @@ namespace Classes
 {
     public abstract class Record
     {
-        protected abstract object Identifier { get; }
+        [Column("Item_id")]
+        public int ID { get; private set; }
+
         protected bool IsNew
         {
             get
             {
-                if (Identifier.GetType().IsClass)
-                    return Identifier == null;
-                object d = Activator.CreateInstance(Identifier.GetType());
-                return Identifier.Equals(d);
+                return this.ID == 0;
             }
         }
 
         public string TableName { get { return Database.TableNameFor(this.GetType()); } }
+
+        public Record(int id)
+        {
+            this.ID = id;
+        }
 
         public void SendToDatabase()
         {

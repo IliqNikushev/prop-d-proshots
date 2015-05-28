@@ -8,12 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace App_Common
+namespace App_Camps
 {
-    public partial class HomePage : Menu
+    public partial class BookingForm : App_Common.HomePageWithMap
     {
-        public HomePage() { InitializeComponent(); }
-        public HomePage(App_Common.Menu parent)
+        public BookingForm(App_Common.Menu parent)
             : base(parent)
         {
             InitializeComponent();

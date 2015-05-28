@@ -14,14 +14,13 @@ namespace Classes
     {
         const string DATE_FORMAT = "YYYY/MM/dd/HH:mm:SS";
 
-        public int ID{get;private set;}
         public DateTime Date{get;private set;}
         public string Raw { get; private set; }
         public List<Deposit> Deposits { get { return Database.Where<Deposit>("Deposits.paypal_document_id = {0}", this.ID); } }
 
-        public PayPalDocument(int ID, DateTime date, string raw)
+        public PayPalDocument(int id, DateTime date, string raw)
+            : base(id)
         {
-            this.ID = ID;
             this.Date = date;
             this.Raw = raw;
         }
@@ -34,11 +33,6 @@ namespace Classes
         protected override void Update()
         {
             throw new NotImplementedException();
-        }
-
-        protected override object Identifier
-        {
-            get { return ID; }
         }
         /*
         public static PayPalDocument Parse(string text)

@@ -31,10 +31,5 @@ namespace Classes
         {
             throw new NotImplementedException();
         }
-
-        protected override object Identifier
-        {
-            get { return ID; }
-        }
     }
 }

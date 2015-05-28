@@ -22,23 +22,23 @@ public static class Utillities
         tbox.Text = placeHolder;
 
         tbox.SetLimit('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',', '.');
-        tbox.OnKey(',', (x, e) =>
+        tbox.OnKey('.', (x, e) =>
         {
-            if (x.Text.Split(',').Length > 1)
+            if (x.Text.Split('.').Length > 1)
                 return false;
             return true;
         });
-        tbox.OnKey('.', (x, e) =>
+        tbox.OnKey(',', (x, e) =>
         {
-            if (x.Text.Split(',').Length > 1)
+            if (x.Text.Split('.').Length > 1)
                 return false;
-            e.KeyChar = ',';
+            e.KeyChar = '.';
             return true;
         });
         //remove 0 at front
         tbox.TextChanged += (x, y) =>
         {
-            string[] split = tbox.Text.Split(',');
+            string[] split = tbox.Text.Split('.');
             if (split.Length > 1)
             {
                 int selectionStart = tbox.SelectionStart;
@@ -50,7 +50,7 @@ public static class Utillities
                 if (split[1].Length > 2)
                     split[1] = split[1][0].ToString() + split[1][1];
 
-                tbox.Text = split[0] + "," + split[1];
+                tbox.Text = split[0] + "." + split[1];
 
                 if (selectionStart > tbox.TextLength)
                     tbox.SelectionStart = tbox.TextLength;

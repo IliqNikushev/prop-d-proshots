@@ -354,6 +354,39 @@ namespace Classes
             return ExecuteSQL(string.Format(sql, FormatParameters(parameters)));
         }
 
+        public static object ExecuteScalar(string sql, params object[] parameters)
+        {
+            return ExecuteScalar(string.Format(sql, parameters));
+        }
+
+        public static object ExecuteScalar(string sql, bool testing = false)
+        {
+            LogSQL(sql);
+
+            object result = null;
+            using (Connection connection = new Connection(connectionString))
+            {
+                Command c = new Command(sql, connection);
+                try
+                {
+                    connection.Open();
+                    result = c.ExecuteScalar();
+                    connection.Close();
+
+                    LogResult(result);
+                }
+                catch (Exception ex)
+                {
+                    LogResult(ex.GetType().Name + " \n " + ex.Message);
+                    if (OnUnableToProcessSQL != null)
+                        OnUnableToProcessSQL(ex, sql);
+                    if (testing || buildTesting)
+                        throw;
+                }
+            }
+            return result;
+        }
+
         public static int ExecuteSQL(string sql, bool testing = false)
         {
             LogSQL(sql);
@@ -649,6 +682,15 @@ namespace Classes
         public static List<T> All<T>() where T : Record
         {
             return GetWhere<T>("");
+        }
+
+        public static long Count<T>(string wherePattern = "", params object[] parameters)
+        {
+            string where = "";
+            if(wherePattern != "" || wherePattern != null)
+                where = wherePattern.Arg(parameters);
+            return (long)ExecuteScalar("Select count(*) from {0}{1}",
+                tables[typeof(T)].ToString().ToLower().Split(new string[] { " from " }, StringSplitOptions.None).Last(), where);
         }
 
         public static T Find<T>(string where, params object[] parameters) where T : Record

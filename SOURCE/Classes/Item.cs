@@ -14,18 +14,16 @@ namespace Classes
         */
         #endregion
 
-        [Column("Item_id")]
-        public int ID { get; private set; }
         public string Brand { get; private set; }
         public string Model { get; private set; }
         public string Type { get; private set; }
         public string Group { get; private set; }
         public string Description { get; private set; }
         //public Image Icon{get; private set;}
-       
+
         public Item(int id, string brand, string model, string type, string group, string description)
+            : base(id)
         {
-            this.ID = id;
             this.Brand = brand;
             this.Model = model;
             this.Type = type;
@@ -33,9 +31,14 @@ namespace Classes
             this.Description = description;
         }
 
-        protected override object Identifier
+        protected override void Save()
         {
-            get { return ID; }
+            throw new NotImplementedException();
+        }
+
+        protected override void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }
