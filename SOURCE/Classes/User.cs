@@ -61,7 +61,7 @@ namespace Classes
             return this.FirstName + " " + this.LastName;
         }
 
-        protected override void Save()
+        protected override void Create()
         {
             throw new NotImplementedException();
         }

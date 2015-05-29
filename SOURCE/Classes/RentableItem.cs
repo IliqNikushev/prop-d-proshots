@@ -20,7 +20,7 @@ namespace Classes
             RentableItemHistory history = new RentableItemHistory(this, renter);
         }
 
-        protected override void Save()
+        protected override void Create()
         {
             throw new NotImplementedException();
         }

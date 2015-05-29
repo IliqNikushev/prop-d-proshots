@@ -25,7 +25,7 @@ namespace Classes
             this.Raw = raw;
         }
 
-        protected override void Save()
+        protected override void Create()
         {
             throw new NotImplementedException();
         }

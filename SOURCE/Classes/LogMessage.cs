@@ -26,7 +26,7 @@ namespace Classes
             this.Date = DateTime.Now;
         }
 
-        protected override void Save()
+        protected override void Create()
         {
             Database.Insert(this, "date, name, description", this.Date, this.Name, this.Description);
         }

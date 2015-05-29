@@ -184,15 +184,16 @@ namespace Classes
             return string.Format(pattern, arguments.Format());
         }
 
-        public static IEnumerable<object> Format(this IEnumerable<object> parameters)
+        public static object[] Format(this IEnumerable<object> parameters)
         {
             return parameters.Select(x =>
             {
                 if (x is string) return "'" + x.ToString().Replace("'", "''") + "'";
                 if (x is DateTime) return "'" + ((DateTime)x).ToString("yyyy-MM-dd HH:mm:ss") + "'";
                 if (x == null) return "NULL";
-                return x;
-            });
+                if (x is Database.Table) return (x as Database.Table).Name;
+                return x.ToString();
+            }).ToArray();
         }
     }
 }

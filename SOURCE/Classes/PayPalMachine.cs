@@ -14,7 +14,7 @@ namespace Classes
             new LogMessage("top-up", this.ID + " " + visitor.ID + " " + amount).SendToDatabase();
         }
 
-        protected override void Save()
+        protected override void Create()
         {
             throw new NotImplementedException();
         }

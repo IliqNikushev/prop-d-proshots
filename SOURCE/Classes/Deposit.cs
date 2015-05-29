@@ -36,7 +36,7 @@ namespace Classes
             this.Document = document;
         }
 
-        protected override void Save()
+        protected override void Create()
         {
             throw new NotImplementedException();
         }

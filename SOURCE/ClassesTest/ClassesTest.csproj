@@ -78,12 +78,13 @@
     <Compile Include="RestockableItemTest.cs" />
     <Compile Include="TentTest.cs" />
     <Compile Include="AppointmentTaskTest.cs" />
-    <Compile Include="TentAreaLandmarkTest.cs" />
+    <Compile Include="TentPitchTest.cs" />
     <Compile Include="RestockItemTest.cs" />
     <Compile Include="RFIDTest.cs" />
     <Compile Include="MiscTableTest.cs" />
     <Compile Include="TableTest.cs" />
     <Compile Include="JoinTableTest.cs" />
+    <Compile Include="TentPersonTest.cs" />
     <Compile Include="_Tests.cs" />
     <Compile Include="VisitorTest.cs" />
     <Compile Include="WarningTest.cs" />

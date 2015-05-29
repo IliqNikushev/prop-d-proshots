@@ -15,6 +15,7 @@ namespace Classes
         public DateTime ReturnedAt { get; private set; }
         public DateTime RentedTill { get; private set; }
         public Visitor ReturnedBy { get; private set; }
+        public bool IsOverdue { get { return DateTime.Now > RentedTill; } }
 
         public bool IsRented
         {
@@ -40,13 +41,18 @@ namespace Classes
 
         public void Return(Visitor returner, string notes = "")
         {
-            returner.Return(this.RentedItem);
+            throw new NotImplementedException();
             this.RentedBy = returner;
             this.ReturnedAt = DateTime.Now;
             this.Notes += notes;
         }
 
-        protected override void Save()
+        public void ExtendPeriod(Visitor visitor, int days, int hours, int minutes, string reason = "")
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void Create()
         {
             throw new NotImplementedException();
         }

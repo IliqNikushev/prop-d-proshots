@@ -20,7 +20,7 @@ namespace Classes
 
         public string Action{get; private set;}
 
-        protected override void Save()
+        protected override void Create()
         {
             throw new NotImplementedException();
         }

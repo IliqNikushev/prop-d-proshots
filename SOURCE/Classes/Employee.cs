@@ -62,7 +62,7 @@ namespace Classes
             //this.Actions.Add(new EmployeeAction(this, EmployeeActionType.ShiftEnd));
         }
 
-        protected override void Save()
+        protected override void Create()
         {
             throw new NotImplementedException();
         }

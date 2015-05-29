@@ -21,16 +21,44 @@ namespace Classes
             this.Picture = picture;
         }
 
+        public List<Deposit> TopUps { get { return Database.GetVisitorTopUps(this); } }
+        public List<RentableItemHistory> RentedItems { get { return Database.GetVisitorRentedItems(this); } }
+        public List<ReceiptItem> PurchasedItems { get { return Database.GetVisitorPurchases(this); } }
+        public List<Receipt> Receipts { get { return Classes.Database.GetVisitorReceipts(this); } }
+        public List<Tent> BookedTents { get { return Database.GetTentsBookedByVisitor(this); } }
+        public List<Tent> BookedInTents { get { return Database.GetTentsBookedForVisitor(this); } }
+
+        public void Book(Tent tent)
+        {
+            //check if has enough in account
+            throw new NotImplementedException();
+        }
+
         public void Rent(RentableItem item)
         {
             //check if has enough in account
             throw new NotImplementedException();
         }
 
-        public void Return(RentableItem Item)
+        public void ExtendRentedItem(RentableItemHistory Item, int minutes)
         {
-            //check if he has this item
-            throw new NotImplementedException();
+            int hours = minutes / 60;
+            if (hours > 0)
+                minutes -= hours * 60;
+            int days = hours / 24;
+            if (days > 0) hours -= days * 24;
+
+            Extend(Item, days, hours, minutes);
+        }
+
+        public void Extend(RentableItemHistory Item, int days, int hours, int minutes, string reason = "")
+        {
+            Item.ExtendPeriod(this, days, hours, minutes, reason);
+        }
+
+        public void Return(RentableItemHistory Item, string notes = "")
+        {
+            Item.Return(this, notes);
         }
 
         public void CloseAccount()
@@ -41,7 +69,7 @@ namespace Classes
             throw new NotImplementedException();
         }
 
-        protected override void Save()
+        protected override void Create()
         {
             throw new NotImplementedException();
         }

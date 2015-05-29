@@ -51,7 +51,7 @@ namespace Classes
             {typeof(ShopItem), CreateShopItem},
             {typeof(Tent), CreateTent},
             {typeof(TentPerson), CreateTentPerson},
-            {typeof(TentPitch), CreateTentAreaLandmark},
+            {typeof(TentPitch), CreateTentPitch},
             {typeof(User), CreateUser },
             {typeof(Visitor), CreateVisitor},
             {typeof(Warning), CreateWarning}
@@ -565,7 +565,7 @@ namespace Classes
             reader.AddDistinctPrefix(prefix);
 
             reader.AddPrefix("location");
-            TentPitch location = CreateTentAreaLandmark(reader);
+            TentPitch location = CreateTentPitch(reader);
             reader.RemovePrefix();
 
             System.DateTime bookedOn = reader.Get<System.DateTime>("BookedOn");
@@ -589,7 +589,7 @@ namespace Classes
             System.DateTime checkedInTime = reader.Get<System.DateTime>("CheckedInTime");
 
             reader.AddPrefix("tent");
-            Tent tent = CreateTent(reader);
+            TentPitch tent = CreateTentPitch(reader);
             reader.RemovePrefix();
 
             reader.AddPrefix("visitor");
@@ -601,7 +601,7 @@ namespace Classes
             return new TentPerson(id, visitor, tent, checkedInTime);
         }
 
-        private static TentPitch CreateTentAreaLandmark(Reader reader, string prefix="", bool asbtr = false)
+        private static TentPitch CreateTentPitch(Reader reader, string prefix="", bool asbtr = false)
         {
             reader.AddDistinctPrefix(prefix);
 
@@ -692,6 +692,7 @@ namespace Classes
 
         public static Dictionary<Type, BuildResult> BuildTestingResults = new Dictionary<Type, BuildResult>();
         public static bool buildTesting = false;
+        public static bool testing = false;
         static Type currentTesting;
 
         private static void BuildIgnore(string target)

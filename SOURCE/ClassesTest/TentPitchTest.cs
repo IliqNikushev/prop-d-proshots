@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Classes
 {
     [TestClass]
-    public class TentAreaLandmarkTest : LandmarkTest
+    public class TentPitchTest : LandmarkTest
     {
         [TestMethod]
         public override void DatabaseSave()

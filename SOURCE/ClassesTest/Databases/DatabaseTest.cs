@@ -8,6 +8,13 @@ namespace Classes
     [TestClass]
     public class DatabaseTest : UnitTest
     {
+        private Visitor tester;
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            tester = Visitor.Authenticate("tester", "test") as Visitor;
+        }
+
         [TestMethod]
         public void Connect()
         {
@@ -78,6 +85,87 @@ namespace Classes
         public void MiscTableExists()
         {
             Assert.AreEqual(5,Classes.Database.Misc.NumberOfCardsTotal);
+        }
+
+        [TestMethod]
+        public void GetFreeTentPitches()
+        {
+            Assert.IsTrue(Classes.Database.FreeTentPitches.Count > 0);
+        }
+
+        [TestMethod]
+        public void GetTentByLandmark()
+        {
+            TentPitch tentPitch = Database.Find<TentPitch>("|T|.id = 3");
+            Assert.IsTrue(tentPitch != null);
+            Assert.IsTrue(Classes.Database.GetTent(tentPitch) != null);
+        }
+
+        [TestMethod]
+        public void GetVisitorRentedItems()
+        {
+        }
+
+        [TestMethod]
+        public void GetVisitorNotReturnedItems()
+        {
+        }
+
+        [TestMethod]
+        public void GetVisitorNotReturnedItemsThatAreOverdue()
+        {
+        }
+
+        [TestMethod]
+        public void GetVisitorPurchases()
+        {
+        }
+
+        [TestMethod]
+        public void GetVisitorAppointments()
+        {
+        }
+
+        [TestMethod]
+        public void GetEmployeeActions()
+        {
+        }
+
+        [TestMethod]
+        public void GetEmployee()
+        {
+        }
+
+        [TestMethod]
+        public void GetVisitorByID()
+        {
+        }
+
+        [TestMethod]
+        public void GetVisitorByCredentials()
+        {
+        }
+
+        [TestMethod]
+        public void GetAdmin()
+        {
+        }
+
+        [TestMethod]
+        public void GetVisitorTopUps()
+        {
+        }
+
+        [TestMethod]
+        public void GetTentsByVisitor()
+        {
+            Assert.AreEqual(2, Classes.Database.GetTentsBookedByVisitor(tester).Count);
+        }
+
+        [TestMethod]
+        public void GetTentsForVisitor()
+        {
+            Assert.AreEqual(2, Classes.Database.GetTentsBookedForVisitor(tester).Count);
         }
 
         [TestMethod]

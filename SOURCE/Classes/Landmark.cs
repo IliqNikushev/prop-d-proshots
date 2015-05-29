@@ -21,7 +21,7 @@ namespace Classes
         public string Label { get; private set; }
         public string Description { get; private set; }
 
-        protected override void Save()
+        protected override void Create()
         {
             throw new NotImplementedException();
         }

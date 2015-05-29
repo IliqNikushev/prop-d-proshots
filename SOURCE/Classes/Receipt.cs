@@ -33,7 +33,7 @@ namespace Classes
             this.PurchasedOn = purchasedOn;
         }
 
-        protected override void Save()
+        protected override void Create()
         {
             throw new NotImplementedException();
         }

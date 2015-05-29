@@ -18,7 +18,7 @@ namespace Classes
             }
         }
 
-        public string TableName { get { return Database.TableNameFor(this.GetType()); } }
+        public string TableName { get { return Database.TableNameFor(this); } }
 
         public Record(int id)
         {
@@ -28,7 +28,7 @@ namespace Classes
         public void SendToDatabase()
         {
             if (this.IsNew)
-                Save();
+                Create();
             else
                 Update();
         }
@@ -50,8 +50,20 @@ namespace Classes
             return !(a == b);
         }
 
-        protected abstract void Save();
+        protected abstract void Create();
         protected abstract void Update();
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Record)
+                return this.Equals(obj as Record);
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.ID + base.GetHashCode();
+        }
 
         public bool Equals(Record other)
         {

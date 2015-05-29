@@ -52,6 +52,9 @@
     <Compile Include="ColumnAttribute.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="DatabaseBuild.cs" />
+    <Compile Include="DatabaseClasses.cs" />
+    <Compile Include="DatabaseConsistency.cs" />
+    <Compile Include="DatabaseGet.cs" />
     <Compile Include="EmployeeActionType.cs" />
     <Compile Include="AdminUser.cs" />
     <Compile Include="AppointedItem.cs" />

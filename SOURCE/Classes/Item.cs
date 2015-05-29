@@ -31,7 +31,7 @@ namespace Classes
             this.Description = description;
         }
 
-        protected override void Save()
+        protected override void Create()
         {
             throw new NotImplementedException();
         }

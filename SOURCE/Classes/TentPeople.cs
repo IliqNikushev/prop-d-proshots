@@ -9,17 +9,20 @@ namespace Classes
     public class TentPerson : Record
     {
         public Visitor Visitor { get; private set; }
-        public Tent Tent { get; private set; }
+        public TentPitch TentPitch { get; private set; }
         public DateTime CheckedInTime { get; private set; }
-        public TentPerson(int id, Visitor visitor, Tent tent, DateTime checkedInTime)
+
+        public Tent Tent { get { return Database.GetTent(this.TentPitch); } }
+
+        public TentPerson(int id, Visitor visitor, TentPitch tent, DateTime checkedInTime)
             : base(id)
         {
-            this.Tent = tent;
+            this.TentPitch = tent;
             this.Visitor = visitor;
             this.CheckedInTime = checkedInTime;
         }
 
-        protected override void Save()
+        protected override void Create()
         {
             throw new NotImplementedException();
         }

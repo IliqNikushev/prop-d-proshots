@@ -17,7 +17,7 @@ namespace Classes
             this.WarningLevel = warningLevel;
         }
 
-        protected override void Save()
+        protected override void Create()
         {
             throw new NotImplementedException();
         }

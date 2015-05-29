@@ -29,7 +29,7 @@ namespace Classes
             this.Item.Restock(this.Times);
         }
 
-        protected override void Save()
+        protected override void Create()
         {
             throw new NotImplementedException();
         }

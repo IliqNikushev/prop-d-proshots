@@ -8,7 +8,7 @@ namespace Classes
     [TestClass]
     public abstract class UnitTest
     {
-        public virtual void OnInitialize() { }
+        public virtual void OnInitialize() { Database.testing = true; }
         public virtual void OnCleanup() { }
 
         [TestInitialize()]
