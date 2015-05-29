@@ -7,7 +7,7 @@ namespace Classes
 {
     public class Tent : Record
     {
-        public TentAreaLandmark Location { get; private set; }
+        public TentPitch Location { get; private set; }
         public DateTime BookedOn { get; private set; }
         public bool IsPaid { get; private set; }
         public DateTime BookedTill { get; private set; }
@@ -28,7 +28,7 @@ namespace Classes
             get { return BookedFor.Length; }
         }
 
-        public Tent(TentAreaLandmark location, DateTime bookedOn, bool isPayed, DateTime bookedTill, Visitor bookedBy, params Visitor[] bookedFor)
+        public Tent(TentPitch location, DateTime bookedOn, bool isPayed, DateTime bookedTill, Visitor bookedBy, params Visitor[] bookedFor)
             : base(location.ID)
         {
             this.Location = location;

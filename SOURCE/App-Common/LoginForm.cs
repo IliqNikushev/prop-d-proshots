@@ -75,7 +75,6 @@ namespace App_Common
                             this.passwordTbox.Text = "";
                         }
                     }));
-
         }
     }
 }

@@ -23,15 +23,16 @@ namespace App_Camps
             {
                 this.bookedByVisitorPitches = new List<Classes.Tent>();
                 this.bookedForVisitorPitches = new List<Classes.Tent>();
-                return;
+            }
+            else
+            {
+                bookedByVisitorPitches = tents.Where(x => x.BookedBy == LoggedInUser);
+                bookedForVisitorPitches = tents.Where(x => x.BookedBy != LoggedInUser);
             }
 
-            bookedByVisitorPitches = tents.Where(x => x.BookedBy == LoggedInUser);
-            bookedForVisitorPitches = tents.Where(x => x.BookedBy != LoggedInUser);
+            this.todayLbl.Text = "Today it is It is " + DateTime.Now.ToString("mmm ddd dd");
 
-            this.todayLbl.Text = "It is " + DateTime.Now.ToString();
-
-            long total = Classes.Database.Count<Classes.TentAreaLandmark>();
+            long total = Classes.Database.Count<Classes.TentPitch>();
             long taken = Classes.Database.Count<Classes.Tent>();
             long freeTents = total - taken;
             freeTentsLbl.Text = "Number of free tent pitches : " + freeTents;
@@ -51,87 +52,8 @@ namespace App_Camps
 
             this.bookedByLBox.Items.AddRange(bookedByVisitorPitches.ToArray());
             this.bookedForLBox.Items.AddRange(bookedForVisitorPitches.ToArray());
-        }
 
-        protected override void OnSet()
-        {
-            MainMenu.Width -= this.detailsPanel.Width;
-        }
-
-        private void ProcessBookedBy()
-        {
-            IEnumerable<Classes.Tent> booked = bookedByVisitorPitches;
-            if (booked.Any())
-            {
-                booked = booked.Where(x => x.BookedTill < DateTime.Now);
-                if (booked.Count() > 1)
-                {
-                    //more than 1
-                    booked = booked.Where(x => x.BookedOn.Day == DateTime.Today.Day);
-                    if (booked.Any())
-                    {
-                        if (booked.Count() > 1)
-                        {
-                            //too many bookings for 1 day
-                            return;
-                        }
-                        //exactly 1
-                        if (!booked.First().IsPaid)
-                        {
-                            //not paid;
-                            return;
-                        }
-                        //OK
-                        return;
-                    }
-                    //no bookings for today
-                    return;
-                }
-                if (booked.Any())
-                {
-                    //exactly 1
-                    if (booked.First().BookedOn.Day == DateTime.Today.Day)
-                    {
-                        //not booked for today
-                        return;
-                    }
-
-                    if (!booked.First().IsPaid)
-                    {
-                        //not paid
-                        return;
-                    }
-                    //OK
-                    return;
-                }
-            }
-        }
-
-        private void ProcessBookedFor()
-        {
-            IEnumerable<Classes.Tent> booked = bookedForVisitorPitches;
-            if (booked.Any())
-            {
-                if (booked.Count() > 1)
-                {
-                    //is present in more than 1 and is still in time
-                    return;
-                }
-                if (booked.First().BookedOn.Day == DateTime.Today.Day)
-                {
-                    //not booked for today
-                    return;
-                }
-                // is present in exactly one
-                if (!booked.First().IsPaid)
-                {
-                    //not paid by person who booked it
-                    return;
-                }
-                //OK
-                return;
-            }
-            //all tents have past their booking time
+            this.Width -= this.detailsPanel.Width;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -139,9 +61,9 @@ namespace App_Camps
             this.Close();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void bookBtn_Click(object sender, EventArgs e)
         {
-            new BookingForm(this).Show();
+            new BookingForm(this, bookedByVisitorPitches, bookedForVisitorPitches).Show();
         }
 
         private void showOnMapBtn_Click(object sender, EventArgs e)
@@ -159,7 +81,12 @@ namespace App_Camps
             if (!detailsPanel.Visible)
                 MainMenu.Width += detailsPanel.Width;
 
-            //todo show details
+            pitchNumberLbl.Text = "#" + tent.ID;
+            dateTimeBookedLbl.Text = tent.BookedOn.ToString("dd HH:mm") + " " + tent.BookedTill.ToString("dd HH:mm");
+            bookedByLbl.Text = tent.BookedBy.FullName;
+            isPaidCbox.Checked = tent.IsPaid;
+            isPaidCbox.Text = tent.Price + App_Common.Constants.Currency;
+            bookedForDetailsLbox.Items.AddRange(tent.BookedFor);
         }
 
         private void bookedForDetailsBtn_Click(object sender, EventArgs e)
@@ -174,6 +101,7 @@ namespace App_Camps
 
         private void closeDetailsBtn_Click(object sender, EventArgs e)
         {
+            if (!detailsPanel.Visible) return;
             detailsPanel.Visible = false;
             MainMenu.Width -= detailsPanel.Width;
         }

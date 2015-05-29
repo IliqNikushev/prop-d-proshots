@@ -50,7 +50,8 @@ namespace Classes
             {typeof(ReceiptItem), CreateReceiptItem},
             {typeof(ShopItem), CreateShopItem},
             {typeof(Tent), CreateTent},
-            {typeof(TentAreaLandmark), CreateTentAreaLandmark},
+            {typeof(TentPerson), CreateTentPerson},
+            {typeof(TentPitch), CreateTentAreaLandmark},
             {typeof(User), CreateUser },
             {typeof(Visitor), CreateVisitor},
             {typeof(Warning), CreateWarning}
@@ -564,7 +565,7 @@ namespace Classes
             reader.AddDistinctPrefix(prefix);
 
             reader.AddPrefix("location");
-            TentAreaLandmark location = CreateTentAreaLandmark(reader);
+            TentPitch location = CreateTentAreaLandmark(reader);
             reader.RemovePrefix();
 
             System.DateTime bookedOn = reader.Get<System.DateTime>("BookedOn");
@@ -580,7 +581,27 @@ namespace Classes
             return new Tent(location, bookedOn, isPayed, bookedTill, bookedBy);
         }
 
-        private static TentAreaLandmark CreateTentAreaLandmark(Reader reader, string prefix="", bool asbtr = false)
+        private static TentPerson CreateTentPerson(Reader reader, string prefix = "", bool asbtr = false)
+        {
+            reader.AddDistinctPrefix(prefix);
+
+            int id = reader.Get<int>("id");
+            System.DateTime checkedInTime = reader.Get<System.DateTime>("CheckedInTime");
+
+            reader.AddPrefix("tent");
+            Tent tent = CreateTent(reader);
+            reader.RemovePrefix();
+
+            reader.AddPrefix("visitor");
+            Visitor visitor = CreateVisitor(reader);
+            reader.RemovePrefix();
+
+            reader.RemoveDistinctPrefix();
+
+            return new TentPerson(id, visitor, tent, checkedInTime);
+        }
+
+        private static TentPitch CreateTentAreaLandmark(Reader reader, string prefix="", bool asbtr = false)
         {
             reader.AddDistinctPrefix(prefix);
 
@@ -590,7 +611,7 @@ namespace Classes
 
             reader.RemoveDistinctPrefix();
 
-            return new TentAreaLandmark(iD, x, y);
+            return new TentPitch(iD, x, y);
         }
 
         private static void CreateUser(Reader reader, out int id, out string firstName, out string lastName, out string userName, out string password, out string email)

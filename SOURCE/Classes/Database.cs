@@ -106,8 +106,11 @@ namespace Classes
             {typeof(ShopJob), new Table("Shops", "id", "label", "description", "x", "y", "type")},
             {typeof(Tent), new Table("Tents", "bookedOn", "bookedTill", "isPayed").
                 Join<Visitor>("JOIN", "Tents.bookedBy = Visitors.user_id", "bookedBy").
-                Join<TentAreaLandmark>("JOIN", "Tents_ALL.id = Tents.location", "location")},
-            {typeof(TentAreaLandmark), new Table("Tents_All").Copy<ITServiceJob>()},
+                Join<TentPitch>("JOIN", "Tents_ALL.id = Tents.location", "location")},
+            {typeof(TentPerson), new Table("TentPeople", "ID", "CheckedInTime").
+                Join<Visitor>("JOIN", "TentPeople.visitor_id = Visitors.user_id", "visitor").
+                Join<TentPitch>("JOIN", "Tents_ALL.id = TentPeople.Tent_ID", "tent")},
+            {typeof(TentPitch), new Table("Tents_All").Copy<ITServiceJob>()},
             {typeof(User), new Table("Users", "id", "firstName", "lastName", "email", "password", "type", "username")},
             {typeof(Visitor), new Table("Visitors", "balance", "picture", "ticket", "rfid").
                 Join<User>("JOIN", "Users.id = Visitors.user_id", "")},
@@ -550,27 +553,27 @@ namespace Classes
             }
         }
 
-        public static List<TentAreaLandmark> FreeTentAreas
+        public static List<TentPitch> FreeTentPitches
         {
             get
             {
-                return GetWhere<TentAreaLandmark>("t.rented_by is null");
+                return GetWhere<TentPitch>("Tents_All.id not in (select tents.location from tents)");
             }
         }
 
-        public static Tent GetTent(TentAreaLandmark landmark)
+        public static Tent GetTent(TentPitch landmark)
         {
-            return Find<Tent>("location = {0}", landmark.ID);
+            return Find<Tent>("Tents_ALL.location = {0}", landmark.ID);
         }
 
         public static List<Tent> GetVisitorTent(Visitor visitor)
         {
-            return GetWhere<Tent>("TentPeople.visitor_id = {0}", visitor.ID);
+            return GetWhere<Tent>("Tents_ALL.booked_by = {0}", visitor.ID);
         }
 
         public static List<Tent> GetVisitorBookedTent(Visitor visitor)
         {
-            return GetWhere<Tent>("Tents.booked_by = {0}", visitor.ID);
+            return GetWhere<TentPerson>("TentPeople.visitor_id = {0}", visitor.ID).Select(x => x.Tent).ToList();
         }
 
         public static List<RentableItemHistory> GetVisitorRentedItems(Visitor visitor)
@@ -689,8 +692,9 @@ namespace Classes
             string where = "";
             if(wherePattern != "" || wherePattern != null)
                 where = wherePattern.Arg(parameters);
+            string table = tables[typeof(T)].ToString().ToLower();
             return (long)ExecuteScalar("Select count(*) from {0}{1}",
-                tables[typeof(T)].ToString().ToLower().Split(new string[] { " from " }, StringSplitOptions.None).Last(), where);
+                table.Split(new string[] { "\r\nfrom\r\n", " from "}, StringSplitOptions.None).Last(), where);
         }
 
         public static T Find<T>(string where, params object[] parameters) where T : Record

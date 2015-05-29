@@ -191,18 +191,19 @@ namespace App_Common
             }
         }
 
-        private void AddAutoCompleteTo(TextBox tb, Action<KeyPressEventArgs> onKeyPress, Action<object> onSelected)
+        protected void AddAutoCompleteTo(TextBox tb, Action<KeyPressEventArgs> onKeyPress, Action<object> onSelected)
         {
+            tb.WordWrap = false;
             tb.Multiline = true;
             tb.AcceptsReturn = true;
-            tb.AutoCompleteMode = AutoCompleteMode.Suggest;
+            tb.AutoCompleteMode = AutoCompleteMode.None;
             tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
             OnAutoComplete.Add(tb, new AutoCompleteData(onSelected));
             ListBox listBox = OnAutoComplete[tb].ListBox;
             listBox.Visible = false;
             this.Controls.Add(listBox);
-            int yy = tb.Top + tb.Height + tb.Parent.Top;
-            int xx = tb.Left + tb.Parent.Left;
+            int yy = tb.Top + tb.Height;
+            int xx = tb.Left;
             listBox.Top = yy;
             listBox.Left = xx;
             listBox.Width = tb.Width;
@@ -225,9 +226,9 @@ namespace App_Common
             tb.KeyUp += AutoComplete;
         }
 
-        private Dictionary<TextBox, AutoCompleteData> OnAutoComplete = new Dictionary<TextBox, AutoCompleteData>();
+        protected Dictionary<TextBox, AutoCompleteData> OnAutoComplete = new Dictionary<TextBox, AutoCompleteData>();
 
-        class AutoCompleteData
+        protected class AutoCompleteData
         {
             public bool IsInitialized { get; private set; }
             public ListBox ListBox;

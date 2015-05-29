@@ -40,6 +40,7 @@
             this.mapBtn = new System.Windows.Forms.Button();
             this.zoomOnItemsBtn = new System.Windows.Forms.Button();
             this.resetZoomBtn = new System.Windows.Forms.Button();
+            this.vr = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mapArea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mapHolder)).BeginInit();
             this.SuspendLayout();
@@ -59,14 +60,14 @@
             "1000%"});
             this.zoomTb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.zoomTb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.zoomTb.Location = new System.Drawing.Point(528, 398);
+            this.zoomTb.Location = new System.Drawing.Point(528, 399);
             this.zoomTb.Name = "zoomTb";
             this.zoomTb.Size = new System.Drawing.Size(52, 20);
             this.zoomTb.TabIndex = 29;
             // 
             // zoomOutBtn
             // 
-            this.zoomOutBtn.Location = new System.Drawing.Point(586, 398);
+            this.zoomOutBtn.Location = new System.Drawing.Point(593, 398);
             this.zoomOutBtn.Name = "zoomOutBtn";
             this.zoomOutBtn.Size = new System.Drawing.Size(42, 24);
             this.zoomOutBtn.TabIndex = 28;
@@ -76,7 +77,7 @@
             // 
             // ZoomInBtn
             // 
-            this.ZoomInBtn.Location = new System.Drawing.Point(480, 398);
+            this.ZoomInBtn.Location = new System.Drawing.Point(471, 399);
             this.ZoomInBtn.Name = "ZoomInBtn";
             this.ZoomInBtn.Size = new System.Drawing.Size(42, 23);
             this.ZoomInBtn.TabIndex = 27;
@@ -95,12 +96,12 @@
             this.mapArea.TabIndex = 0;
             this.mapArea.TabStop = false;
             // 
-            // pictureBox10
+            // mapHolder
             // 
             this.mapHolder.Image = global::App_Common.Properties.Resources.imac1;
             this.mapHolder.Location = new System.Drawing.Point(354, 2);
             this.mapHolder.Margin = new System.Windows.Forms.Padding(2);
-            this.mapHolder.Name = "pictureBox10";
+            this.mapHolder.Name = "mapHolder";
             this.mapHolder.Size = new System.Drawing.Size(400, 474);
             this.mapHolder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.mapHolder.TabIndex = 23;
@@ -158,7 +159,7 @@
             // 
             // zoomOnItemsBtn
             // 
-            this.zoomOnItemsBtn.Location = new System.Drawing.Point(367, 396);
+            this.zoomOnItemsBtn.Location = new System.Drawing.Point(362, 399);
             this.zoomOnItemsBtn.Name = "zoomOnItemsBtn";
             this.zoomOnItemsBtn.Size = new System.Drawing.Size(102, 23);
             this.zoomOnItemsBtn.TabIndex = 35;
@@ -168,7 +169,7 @@
             // 
             // resetZoomBtn
             // 
-            this.resetZoomBtn.Location = new System.Drawing.Point(652, 395);
+            this.resetZoomBtn.Location = new System.Drawing.Point(654, 398);
             this.resetZoomBtn.Name = "resetZoomBtn";
             this.resetZoomBtn.Size = new System.Drawing.Size(86, 23);
             this.resetZoomBtn.TabIndex = 36;
@@ -176,11 +177,20 @@
             this.resetZoomBtn.UseVisualStyleBackColor = true;
             this.resetZoomBtn.Click += new System.EventHandler(this.resetZoomBtn_Click);
             // 
+            // vr
+            // 
+            this.vr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.vr.Location = new System.Drawing.Point(339, -20);
+            this.vr.Name = "vr";
+            this.vr.Size = new System.Drawing.Size(10, 496);
+            this.vr.TabIndex = 47;
+            // 
             // HomePageWithMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 714);
+            this.Controls.Add(this.vr);
             this.Controls.Add(this.resetZoomBtn);
             this.Controls.Add(this.zoomOnItemsBtn);
             this.Controls.Add(this.findByNameTb);
@@ -209,12 +219,13 @@
         private System.Windows.Forms.Button zoomOutBtn;
         private System.Windows.Forms.Button ZoomInBtn;
         private System.Windows.Forms.TextBox zoomTb;
-        private System.Windows.Forms.TextBox findByNameTb;
-        private System.Windows.Forms.Label findByNameLbl;
-        private System.Windows.Forms.Label findByTypeLbl;
-        private System.Windows.Forms.TextBox findByTypeTb;
+        protected System.Windows.Forms.TextBox findByNameTb;
+        protected System.Windows.Forms.Label findByNameLbl;
+        protected System.Windows.Forms.Label findByTypeLbl;
+        protected System.Windows.Forms.TextBox findByTypeTb;
         private System.Windows.Forms.Button mapBtn;
         private System.Windows.Forms.Button resetZoomBtn;
         private System.Windows.Forms.Button zoomOnItemsBtn;
+        private System.Windows.Forms.Label vr;
     }
 }

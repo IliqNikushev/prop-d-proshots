@@ -25,11 +25,17 @@ namespace App_Common
         protected static Classes.Employee LoggedInEmployee { get { return LoggedInUser as Classes.Employee; } }
 
         protected static Menu MainMenu;
+        protected static Menu ActiveMenu;
         private static List<Menu> Menus = new List<Menu>();
         private Menu ParentMenu;
         private List<Control> controls = null;
+        private List<Control> enlisted = new List<Control>();
 
-        protected Classes.RFID reader;
+        public void Enlist(Control c) { this.enlisted.Add(c); }
+
+        protected static Classes.RFID reader;
+
+        private bool IsRendering = false;
 
         protected virtual List<Control> Inherited
         {
@@ -50,6 +56,7 @@ namespace App_Common
         {
             if (MainMenu == null)
             {
+                MainMenu = this;
                 if (!IsInDebug)
                 {
                     reader = new Classes.RFID();
@@ -72,6 +79,24 @@ namespace App_Common
                     if (this.ParentMenu == null) return;
                     this.ParentMenu.Show();
                 };
+
+            this.controls = new List<Control>();
+
+            this.ControlAdded += (x, y) =>
+            {
+                if (IsRendering)
+                    MainMenu.Controls.Add(y.Control);
+                else
+                    this.controls.Add(y.Control);
+            };
+
+            this.ControlRemoved += (x, y) =>
+            {
+                if (IsRendering)
+                    MainMenu.Controls.Remove(y.Control);
+                else
+                    this.controls.Remove(y.Control);
+            };
             
             InitializeComponent();
 
@@ -83,7 +108,10 @@ namespace App_Common
         new public void Show()
         {
             if (this == MainMenu)
+            {
+                this.IsRendering = true;
                 base.Show();
+            }
             else
                 SetAsActive();
         }
@@ -95,56 +123,42 @@ namespace App_Common
 
         private void Clear()
         {
-            foreach (Control control in this.controls)
-                control.Visible = false;
-            foreach (Control control in this.Inherited)
-                control.Visible = true;
+            List<Control> c = new List<Control>(this.controls);
             this.Controls.Clear();
+            this.controls = c;
         }
 
         protected virtual void OnSet() { }
 
         private void Set(Menu menu)
         {
-            this.controls = menu.controls;
-            foreach (Control control in this.controls)
-            {
-                control.Visible = true;
-                this.Controls.Add(control);
-            }
+            List<Control> controls = new List<Control>(menu.controls);
+            List<Control> current = new List<Control>(this.controls);
+            foreach (var item in controls)
+                this.Controls.Add(item);
+            this.controls = current;
 
             this.Width = menu.Width;
             this.Height = menu.Height;
-
+            this.Text = menu.Text;
             menu.OnSet();
         }
 
         private static void ChangeMenuTo(Menu menu)
         {
-            if (menu.controls == null)
-            {
-                menu.controls = new List<Control>();
-                foreach (Control control in menu.Controls)
-                    menu.controls.Add(control);
-            }
-
+            if (ActiveMenu != null) ActiveMenu.IsRendering = false;
+            ActiveMenu = menu;
+            menu.IsRendering = true;
             Menu found = Menus.Find(x => x.GetType() == menu.GetType());
-            
+
             if (found == null)
             {
                 Menus.Add(menu);
                 found = menu;
             }
-            if (MainMenu == null)
-            {
-                MainMenu = found;
-                MainMenu.Show();
-            }
-            else
-            {
-                MainMenu.Clear();
-                MainMenu.Set(found);
-            }
+
+            MainMenu.Clear();
+            MainMenu.Set(found);
         }
     }
 }

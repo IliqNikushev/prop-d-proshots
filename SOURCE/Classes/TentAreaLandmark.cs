@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Classes
 {
-    public class TentAreaLandmark : Landmark
+    public class TentPitch : Landmark
     {
-        public TentAreaLandmark(int id, int x, int y) : base(id, "Tent #"+id, "A tent location for visitors to stay in", x, y) { }
+        public TentPitch(int id, int x, int y) : base(id, "Tent #"+id, "A tent location for visitors to stay in", x, y) { }
 
         public bool IsBooked
         {
