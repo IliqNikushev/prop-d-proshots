@@ -82,10 +82,13 @@ namespace Classes
             List<Type> CopyFrom = new List<Type>();
             public Table(string name, params string[] fields)
             {
-                this.Name = name;
+                this.Name = name.Trim();
                 if (this.Name.IndexOf(" ") != -1)
                 {
                     this.Extra = this.Name.Substring(this.Name.IndexOf(" "));
+                    int idx = this.Extra.ToLower().IndexOf("where");
+                    if (idx != -1) idx += "where".Length;
+                    this.Extra = this.Extra.Substring(idx);
                     this.Name = this.Name.Substring(0, this.Name.IndexOf(" "));
                 }
                 this.Fields = new List<string>(fields.Select(x => this.Name + "." + x));
@@ -125,7 +128,8 @@ namespace Classes
 
             public override string ToString()
             {
-                string name = this.Name + this.Extra;
+                string name = this.Name;
+                string extra = this.Extra;
                 ApplyCopy();
                 string fields = string.Join(", ", this.Fields.Select(x => x + " " + x.Split('.').Last()));
                 if (this.Joins.Count != 0)
@@ -136,9 +140,14 @@ namespace Classes
 
                     foreach (var join in this.Joins)
                         if (join.Table.Extra != null && join.Table.Extra != "")
-                            name += "\r\n" + join.Table.Extra;
+                            if (extra.Trim().Length == 0)
+                                extra = join.Table.Extra;
+                            else
+                                extra += " and\r\n(" + join.Table.Extra + ")";
                 }
-                return fields + "\r\nfrom\r\n" + name;
+                if (extra.Trim() != "")
+                    extra = "\r\nWhere\r\n" + extra;
+                return fields + "\r\nfrom\r\n" + name + extra;
             }
 
             private void ProcessJoin(JoinTable join, ref string name, ref string fields, HashSet<string> usedJoins, JoinTable main, List<JoinTable> parents)

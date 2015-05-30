@@ -12,7 +12,7 @@ namespace Classes
             get { return "paypal"; }
         }
 
-        public PayPalMachine(int id, int x, int y) : base(id, "PayPal machine", "PayPal machine to top-up your event account", x, y) { }
+        public PayPalMachine(int id, int x, int y) : base(id, "PayPal machine", "PayPal machine to top-up your event account", "paypal-logo.jpg", x, y) { }
 
         public void TopUp(Visitor visitor, decimal amount)
         {

@@ -12,13 +12,13 @@ namespace Classes
             get { return "info"; }
         }
 
-        public InformationKioskJob(int id, int x, int y) : base(id, "Information desk", "Here you can get information about the event and your card", x, y) { }
+        public InformationKioskJob(int id, int x, int y) : base(id, "Information desk", "Here you can get information about the event and your card", "information-logo.jpg", x, y) { }
 
         private long numberOfCardsTaken;
         private long numberOfCardsTotal;
 
-        public long NumberOfCardsAvailable {get{return this.NumberOfCardsTotal - this.NumberOfCardsTaken;}}
-        public long NumberOfCardsTaken {get {return this.numberOfCardsTaken;}}
+        public long NumberOfCardsAvailable { get { return this.NumberOfCardsTotal - this.NumberOfCardsTaken; } }
+        public long NumberOfCardsTaken { get { return this.numberOfCardsTaken; } }
         public long NumberOfCardsTotal { get { return this.numberOfCardsTotal; } }
 
         public void RefreshCards()

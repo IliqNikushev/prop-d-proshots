@@ -12,7 +12,7 @@ namespace Classes
             get { return "shop"; }
         }
 
-        public ShopJob(int id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
+        public ShopJob(int id, string label, string description, string logo, int x, int y) : base(id, label, description, logo, x, y) { }
 
         public List<Classes.ShopItem> Items
         {

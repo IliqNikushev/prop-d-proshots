@@ -82,7 +82,7 @@
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -121,6 +121,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Park-English.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Employee.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Employees.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

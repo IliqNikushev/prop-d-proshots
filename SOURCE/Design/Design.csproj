@@ -181,17 +181,17 @@
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Idea\ShopItem.cs" />
-    <Compile Include="Idea\Store.cs">
+    <Compile Include="Idea\StoreForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Idea\Store.Designer.cs">
-      <DependentUpon>Store.cs</DependentUpon>
+    <Compile Include="Idea\StoreForm.Designer.cs">
+      <DependentUpon>StoreForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idea\StoreConfirm.cs">
+    <Compile Include="Idea\StoreConfirmForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Idea\StoreConfirm.Designer.cs">
-      <DependentUpon>StoreConfirm.cs</DependentUpon>
+    <Compile Include="Idea\StoreConfirmForm.Designer.cs">
+      <DependentUpon>StoreConfirmForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Idea\VisitorInterface\View\EmployeesPCDoctor.designer.cs" />
     <Compile Include="Main.cs">
@@ -322,8 +322,8 @@
     <EmbeddedResource Include="Idea\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Idea\StoreConfirm.resx">
-      <DependentUpon>StoreConfirm.cs</DependentUpon>
+    <EmbeddedResource Include="Idea\StoreConfirmForm.resx">
+      <DependentUpon>StoreConfirmForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -355,8 +355,8 @@
     <EmbeddedResource Include="Idea\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Idea\Store.resx">
-      <DependentUpon>Store.cs</DependentUpon>
+    <EmbeddedResource Include="Idea\StoreForm.resx">
+      <DependentUpon>StoreForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\VisitorInterface\Appointments.resx">
       <DependentUpon>Appointments.cs</DependentUpon>

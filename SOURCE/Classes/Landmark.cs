@@ -8,16 +8,18 @@ namespace Classes
     public abstract class Landmark : Record
     {
         protected abstract string Type { get; }
-        public Landmark(int id, string label, string description, int x, int y) : base(id)
+        public Landmark(int id, string label, string description, string icon, int x, int y) : base(id)
         {
             this.Label = label;
             this.Description = description;
             this.X = x;
             this.Y = y;
+            this.Icon = icon;
         }
 
         public int X { get; private set; }
         public int Y { get; private set; }
+        public string Icon { get; private set; }
         public string Label { get; private set; }
         public string Description { get; private set; }
 

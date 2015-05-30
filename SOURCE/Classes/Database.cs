@@ -36,10 +36,10 @@ namespace Classes
         {
             {typeof(AdminUser), new Table("Admins").
                 Copy<User>()},
-            {typeof(AppointedItem), new Table("Items_Appointed")
+            {typeof(AppointedItem), new Table("Items_ALL Where Items_ALL.type = 'appointment'")
                 .Copy<Item>()},
             {typeof(Appointment), new Table("Appointments", "description", "id", "completedOn", "isReturned").
-                Join<AppointedItem>("JOIN", "Items_Appointed.id = Appointments.appointed_item", "item").
+                Join<AppointedItem>("JOIN", "Items_ALL.id = Appointments.appointed_item", "item").
                 Join<Visitor>("JOIN", "Appointments.appointed_by = Visitors.user_id", "appointed_by")},
             {typeof(AppointmentTask), new Table("AppointmentTasks", "id", "name", "description", "price").
                 Join<Appointment>("JOIN", "AppointmentTasks.appointment_ID = Appointments.id", "appointment")},
@@ -52,22 +52,17 @@ namespace Classes
                 Join<Employee>("JOIN", "Employees.user_id = EmployeeActions.employee_id", "employee")},
             {typeof(EventLandmark), new Table("Events", "timeStart", "timeEnd").
                 Join<Landmark>("JOIN", "Landmarks.id = Events.location", "")},
-            {typeof(FoodAndDrinkShopJob), new Table("Landmarks_foodAndDrink")
-                .Copy<Landmark>()},
-            {typeof(GeneralShopJob), new Table("Landmarks_GeneralShop")
-                .Copy<FoodAndDrinkShopJob>()},
-            {typeof(InformationKioskJob), new Table("Landmarks_Info")
+            {typeof(InformationKioskJob), new Table("Landmarks where landmarks.type = 'info'")
                 .Copy<ITServiceJob>()},
-            {typeof(Item), new Table("Items_All", "brand", "model", "id", "type", "description", "igroup" )},
-            {typeof(ITServiceJob), new Table("Landmarks_IT", "id", "x", "y")},
-            {typeof(Job), new Table("Workplaces")
-                .Copy<ITServiceJob>()},
-            {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type")},
+            {typeof(Item), new Table("Items_ALL", "brand", "model", "id", "type", "description", "igroup", "icon" )},
+            {typeof(ITServiceJob), new Table("Landmarks where landmarks.type = 'it'", "id", "x", "y")},
+            {typeof(Job), new Table("Workplaces", "id", "x", "y", "label", "description", "type", "logo")},
+            {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type", "logo")},
             {typeof(LogMessage), new Table("Logs", "id", "date", "description", "name")},
             {typeof(PayPalDocument), new Table("PayPalDocuments", "id", "date", "raw")},
-            {typeof(PayPalMachine), new Table("Landmarks_Paypal")
+            {typeof(PayPalMachine), new Table("Landmarks where landmarks.type = 'paypal'")
                 .Copy<ITServiceJob>()},
-            {typeof(PCDoctorJob), new Table("Landmarks_PCDoctor")
+            {typeof(PCDoctorJob), new Table("Landmarks where landmarks.type ='pc-doctor'")
                 .Copy<ITServiceJob>()},
             {typeof(ShopItem), new Table("ShopItems", "quantity", "id", "warningAmount", "price").
                 Join<Item>("JOIN" ,"ShopItems.item_id = Items_ALL.id", "item").
@@ -78,7 +73,7 @@ namespace Classes
                 Join<Receipt>("JOIN", "Receipts.id = ReceiptItems.receipt_id", "receipt").
                 Join<ShopItem>("JOIN", "ShopItems.item_id = ReceiptItems.item_id", "item")},
             {typeof(RentableItem), new Table("RentableItems", "price", "inStock").
-                Join<Item>("Join", "RentableItems.item_id = Items_All.id", "")},
+                Join<Item>("Join", "RentableItems.item_id = Items_ALL.id", "")},
             {typeof(RentableItemHistory), new Table("RentableItemHistories", "returnedAt", "rentedAt", "notes", "rentedTill", "id").
                 Join<RentableItem>("JOIN", "RentableItemHistories.item_id = RentableItems.item_id", "item").
                 Join<Visitor>("LEFT JOIN", "RentableItemHistories.returnedBy = Visitors.user_id", "returnedBy").
@@ -89,14 +84,14 @@ namespace Classes
             {typeof(RestockItem), new Table("RestockItems", "quantity", "pricePerItem", "total", "id").
                 Join<Restock>("JOIN", "Restocks.id = RestockItems.restock_id", "restock").
                 Join<ShopItem>("JOIN", "ShopItems.item_id = RestockItems.item_id", "item")},
-            {typeof(ShopJob), new Table("Shops", "id", "label", "description", "x", "y", "type")},
+            {typeof(ShopJob), new Table("Shops", "id", "label", "description", "x", "y", "type", "logo")},
             {typeof(Tent), new Table("Tents", "bookedOn", "bookedTill", "isPayed").
                 Join<Visitor>("JOIN", "Tents.bookedBy = Visitors.user_id", "bookedBy").
-                Join<TentPitch>("JOIN", "Tents_ALL.id = Tents.location", "location")},
+                Join<TentPitch>("JOIN", "Landmarks.id = Tents.location", "location")},
             {typeof(TentPerson), new Table("TentPeople", "ID", "CheckedInTime").
                 Join<Visitor>("JOIN", "TentPeople.visitor_id = Visitors.user_id", "visitor").
-                Join<TentPitch>("JOIN", "Tents_ALL.id = TentPeople.Tent_ID", "tent")},
-            {typeof(TentPitch), new Table("Tents_All").
+                Join<Tent>("JOIN", "Tents.location = TentPeople.Tent_ID", "tent")},
+            {typeof(TentPitch), new Table("Landmarks where landmarks.type = 'tent'").
                 Copy<ITServiceJob>()},
             {typeof(User), new Table("Users", "id", "firstName", "lastName", "email", "password", "type", "username")},
             {typeof(Visitor), new Table("Visitors", "balance", "picture", "ticket", "rfid").

@@ -8,7 +8,7 @@ namespace Classes
 {
     public abstract class Job : Landmark
     {
-        public Job(int id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
+        public Job(int id, string label, string description, string logo, int x, int y) : base(id, label, description, logo, x, y) { }
 
         public List<Employee> Employees
         {

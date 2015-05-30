@@ -29,8 +29,6 @@ namespace Classes
             {typeof(Employee), CreateEmployee},
             {typeof(EmployeeAction), CreateEmployeeAction},
             {typeof(EventLandmark), CreateEventLandmark},
-            {typeof(FoodAndDrinkShopJob), CreateFoodAndDrinkShopJob},
-            {typeof(GeneralShopJob), CreateGeneralShopJob},
             {typeof(InformationKioskJob), CreateInformationKioskJob},
             {typeof(Item), CreateItem},
             {typeof(ITServiceJob), CreateITServiceJob},
@@ -79,10 +77,11 @@ namespace Classes
             string type;
             string group;
             string description;
-            ExtractItem(reader, out id, out brand, out model, out type, out group, out description);
+            string icon;
+            ExtractItem(reader, out id, out brand, out model, out type, out group, out description, out icon);
 
             reader.RemoveDistinctPrefix();
-            return new AppointedItem(id, brand, model, type, group, description);
+            return new AppointedItem(id, brand, model, type, group, description, icon);
         }
 
         private static Appointment CreateAppointment(Reader reader, string prefix="", bool asbtr = false)
@@ -150,6 +149,8 @@ namespace Classes
             }
             catch (NotImplementedException)
             {
+                if (buildTesting) return null;
+
                 throw new NotImplementedException("Unknown item type " + group);
             }
         }
@@ -179,6 +180,8 @@ namespace Classes
             if(reader.HasColumnAndNotNull("type"))
                 job = CreateJob(reader);
             reader.RemovePrefix();
+
+            string j = reader.GetStr("job");
 
             int id = -1;
             string firstName, lastName, userName, password, email;
@@ -227,6 +230,8 @@ namespace Classes
             }
             catch (NotImplementedException)
             {
+                if (buildTesting) return null;
+
                 throw new NotImplementedException("Unknown landmark type " + type);
             }
         }
@@ -249,19 +254,21 @@ namespace Classes
             string label;
             string description;
             int iD;
-            ExtractLandmark(reader, out x, out y, out label, out description, out iD);
+            string icon;
+            ExtractLandmark(reader, out x, out y, out label, out description, out icon, out iD);
 
             reader.RemoveDistinctPrefix();
 
             return new EventLandmark(iD, label, description, x, y, timeStart, timeEnd);
         }
 
-        private static void ExtractLandmark(Reader reader, out int x, out int y, out string label, out string description, out int iD)
+        private static void ExtractLandmark(Reader reader, out int x, out int y, out string label, out string description, out string icon, out int iD)
         {
             ExtractSimpleLandmark(reader, out x, out y, out iD);
             label = reader.GetStr("Label");
             description = reader.GetStr("Description");
             string type = reader.GetStr("type");
+            icon = reader.GetStr("logo");
         }
 
         private static Job CreateJob(Reader reader, string prefix="", bool asbtr = false)
@@ -269,21 +276,19 @@ namespace Classes
             string type = reader.GetStr("type");
             if (buildTesting)
             {
-                CreateFoodAndDrinkShopJob(reader);
                 CreateShopJob(reader);
                 CreatePCDoctorJob(reader);
-                CreateGeneralShopJob(reader);
                 CreateInformationKioskJob(reader);
             }
 
             switch (type.Replace('-', ' ').ToLower())
             {
-                case "food and drink": return CreateFoodAndDrinkShopJob(reader);
                 case "shop": return CreateShopJob(reader);
                 case "pc doctor": return CreatePCDoctorJob(reader);
-                case "general": return CreateGeneralShopJob(reader);
                 case "info": return CreateInformationKioskJob(reader);
             }
+
+            if (buildTesting) return null;
 
             throw new NotImplementedException("Unknown job type " + type);
         }
@@ -297,11 +302,12 @@ namespace Classes
             string label;
             string description;
             int iD;
-            ExtractLandmark(reader, out x, out y, out label, out description, out iD);
+            string logo;
+            ExtractLandmark(reader, out x, out y, out label, out description, out logo, out iD);
 
             reader.RemoveDistinctPrefix();
 
-            return new ShopJob(iD, label, description, x, y);
+            return new ShopJob(iD, label, description, logo, x, y);
         }
 
         private static ReceiptItem CreateReceiptItem(Reader reader, string prefix="", bool asbtr = false)
@@ -360,16 +366,17 @@ namespace Classes
             string type;
             string group;
             string description;
-            ExtractItem(reader, out id, out brand, out model, out type, out group, out description);
+            string icon;
+            ExtractItem(reader, out id, out brand, out model, out type, out group, out description, out icon);
             if (!abstr)
                 reader.RemovePrefix();
 
             reader.RemoveDistinctPrefix();
 
-            return new Classes.ShopItem(id, price, brand, model, type, group,description, inStock, warningLevel, shop);
+            return new Classes.ShopItem(id, price, brand, model, type, group, description, icon, inStock, warningLevel, shop);
         }
 
-        private static void ExtractItem(Reader reader, out int iD, out string brand, out string model, out string type, out string group, out string description)
+        private static void ExtractItem(Reader reader, out int iD, out string brand, out string model, out string type, out string group, out string description, out string icon)
         {
             iD = reader.Get<int>("ID");
             brand = reader.GetStr("Brand");
@@ -377,38 +384,7 @@ namespace Classes
             type = reader.GetStr("Type");
             group = reader.GetStr("iGroup");
             description = reader.GetStr("description");
-        }
-
-        private static FoodAndDrinkShopJob CreateFoodAndDrinkShopJob(Reader reader, string prefix="", bool asbtr = false)
-        {
-            reader.AddDistinctPrefix(prefix);
-
-            int x;
-            int y;
-            string label;
-            string description;
-            int iD;
-            ExtractLandmark(reader, out x, out y, out label, out description, out iD);
-
-            reader.RemoveDistinctPrefix();
-
-            return new FoodAndDrinkShopJob(iD, label, description, x, y);
-        }
-
-        private static GeneralShopJob CreateGeneralShopJob(Reader reader, string prefix="", bool asbtr = false)
-        {
-            reader.AddDistinctPrefix(prefix);
-
-            int x;
-            int y;
-            string label;
-            string description;
-            int iD;
-            ExtractLandmark(reader, out x, out y, out label, out description, out iD);
-
-            reader.RemoveDistinctPrefix();
-
-            return new GeneralShopJob(iD, label, description, x, y);
+            icon = reader.GetStr("icon");
         }
 
         private static InformationKioskJob CreateInformationKioskJob(Reader reader, string prefix="", bool asbtr = false)
@@ -510,11 +486,12 @@ namespace Classes
             string type;
             string group;
             string description;
-            ExtractItem(reader, out id, out brand, out model, out type, out group, out description);
+            string icon;
+            ExtractItem(reader, out id, out brand, out model, out type, out group, out description, out icon);
 
             reader.RemoveDistinctPrefix();
 
-            return new RentableItem(id, price, brand, model, type, group,description, inStock);
+            return new RentableItem(id, price, brand, model, type, group,description, icon, inStock);
         }
 
         private static PayPalDocument CreatePayPalDocument(Reader reader, string prefix="", bool asbtr = false)
@@ -641,7 +618,7 @@ namespace Classes
             System.DateTime checkedInTime = reader.Get<System.DateTime>("CheckedInTime");
 
             reader.AddPrefix("tent");
-            TentPitch tent = CreateTentPitch(reader);
+            Tent tent = CreateTent(reader);
             reader.RemovePrefix();
 
             reader.AddPrefix("visitor");
@@ -695,6 +672,8 @@ namespace Classes
                 case "admin": return CreateAdmin(reader, "admin");
                 case "employee": return CreateEmployee(reader, "employee");
             }
+
+            if (buildTesting) return null;
 
             throw new NotImplementedException("Unknwon user type " + type);
         }

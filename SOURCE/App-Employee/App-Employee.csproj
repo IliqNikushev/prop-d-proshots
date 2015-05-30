@@ -83,6 +83,11 @@
     <Compile Include="StoreConfirmForm.Designer.cs">
       <DependentUpon>StoreConfirmForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StoreItem.cs" />
+    <Compile Include="StoreItemsCollection.cs" />
+    <EmbeddedResource Include="InformationDeskForm.resx">
+      <DependentUpon>InformationDeskForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,7 +99,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="StoreForm.resx">
+      <DependentUpon>StoreForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -117,6 +126,9 @@
       <Project>{187aacee-fd7c-493e-964d-b4f5f4dca1c0}</Project>
       <Name>Classes</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGO-Proshot.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -12,7 +12,7 @@ namespace Classes
             get { return "it"; }
         }
 
-        public ITServiceJob(int id, int x, int y) : base(id, "Rent desk", "Here you can rent an item", x, y) { }
+        public ITServiceJob(int id, int x, int y) : base(id, "Rent desk", "Here you can rent an item", "it-logo.jpg", x, y) { }
 
         public List<RentableItem> Items
         {

@@ -22,8 +22,8 @@ namespace Classes
             this.InStock -= amount;
         }
 
-        public RestockableItem(int id, decimal price, string brand, string model, string type, string group, string description, int inStock)
-            : base(id, brand, model, type, group, description)
+        public RestockableItem(int id, decimal price, string brand, string model, string type, string group, string description, string icon, int inStock)
+            : base(id, brand, model, type, group, description, icon)
         {
             this.Price = price;
             this.InStock = inStock;

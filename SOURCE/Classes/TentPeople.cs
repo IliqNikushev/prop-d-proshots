@@ -9,15 +9,13 @@ namespace Classes
     public class TentPerson : Record
     {
         public Visitor Visitor { get; private set; }
-        public TentPitch TentPitch { get; private set; }
+        public Tent Tent { get; private set; }
         public DateTime CheckedInTime { get; private set; }
 
-        public Tent Tent { get { return Database.GetTent(this.TentPitch); } }
-
-        public TentPerson(int id, Visitor visitor, TentPitch tent, DateTime checkedInTime)
+        public TentPerson(int id, Visitor visitor, Tent tent, DateTime checkedInTime)
             : base(id)
         {
-            this.TentPitch = tent;
+            this.Tent = tent;
             this.Visitor = visitor;
             this.CheckedInTime = checkedInTime;
         }

@@ -12,7 +12,7 @@ namespace Classes
             get { return "doctor"; }
         }
 
-        public PCDoctorJob(int id, int x, int y) : base(id, "PC DOCTOR", "Here you can give your equipment for repair or diagnosis", x, y) { }
+        public PCDoctorJob(int id, int x, int y) : base(id, "PC DOCTOR", "Here you can give your equipment for repair or diagnosis", "pc-doctor-logo.jpg", x, y) { }
 
         public List<Appointment> Appointments
         {

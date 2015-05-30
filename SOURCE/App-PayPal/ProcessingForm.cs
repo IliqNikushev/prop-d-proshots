@@ -59,6 +59,7 @@ namespace App_PayPal
                 ) == System.Windows.Forms.DialogResult.Yes)
             {
                 //todo get user permission / passcode for the transaction
+                MessageBox.Show("Please enter your Pay-Pal details for the top-up in the terminal");
                 Install.Machine.TopUp(LoggedInVisitor, alteredBalance);
                 MessageBox.Show("Your request has been sent. Waiting for paypal to confirm. Check your balance in a minute");
                 this.Close();

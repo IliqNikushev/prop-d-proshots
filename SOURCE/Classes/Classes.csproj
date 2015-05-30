@@ -65,8 +65,6 @@
     <Compile Include="Exceptions\InvalidPayPalLogFileException.cs" />
     <Compile Include="Exceptions\InvalidShopException.cs" />
     <Compile Include="Exceptions\InvalidUserException.cs" />
-    <Compile Include="FoodAndDrinkShopJob.cs" />
-    <Compile Include="GeneralShopJob.cs" />
     <Compile Include="InformationKioskJob.cs" />
     <Compile Include="ITServiceJob.cs" />
     <Compile Include="LogMessage.cs" />

@@ -36,8 +36,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(311, 261);
             this.Name = "AdminPanelForm";
-            this.Text = "Event administrator panel";
+            this.Text = "Event administrator login";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

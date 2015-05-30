@@ -19,9 +19,10 @@ namespace Classes
         public string Type { get; private set; }
         public string Group { get; private set; }
         public string Description { get; private set; }
+        public string Icon{get; private set;}
         //public Image Icon{get; private set;}
 
-        public Item(int id, string brand, string model, string type, string group, string description)
+        public Item(int id, string brand, string model, string type, string group, string description, string icon)
             : base(id)
         {
             this.Brand = brand;
@@ -29,6 +30,7 @@ namespace Classes
             this.Type = type;
             this.Group = group;
             this.Description = description;
+            this.Icon = icon;
         }
 
         public override Record Create()
