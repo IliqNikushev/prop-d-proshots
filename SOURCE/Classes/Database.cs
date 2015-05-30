@@ -163,23 +163,6 @@ namespace Classes
             return (T)Insert(typeof(T), table, values, parameters);
         }
 
-        private static Record Insert(Type recordType, Table table, string values, params object[] parameters)
-        {
-            //if (table.Joins.Count > 0) throw new NotImplementedException("Nested insert not implemented");
-            parameters = parameters.Format();
-            string[] valuesSplit = values.Split(',');
-            KeyValuePair<string,object>[] whereParameters = new KeyValuePair<string,object>[parameters.Length];
-            for (int i = 0; i < parameters.Length; i++)
-			    whereParameters[i] = new KeyValuePair<string,object>(valuesSplit[i].Trim(), parameters[i].ToString());
-
-            ExecuteScalar("Insert into {0} ({1}) values ({2}); ", table.Name,
-                    values,
-                    string.Join(",", parameters));
-
-            List<object> result = GetWhere(recordType, string.Join(" and ", whereParameters.Select(x => x.Key + " = " + x.Value)));
-            return result.Last() as Record;
-        }
-
         public static Record Update(Record record, string set, string identifier)
         {
             Table table = tables[record.GetType()];
@@ -313,6 +296,45 @@ namespace Classes
             }
         }
 
+        public static List<T> Where<T>(string wherePattern, params object[] parameters) where T : Record
+        {
+            return GetWhere<T>(wherePattern, parameters);
+        }
+
+        public static List<T> GetAll<T>() where T : Record
+        {
+            return All<T>();
+        }
+
+        public static List<T> All<T>() where T : Record
+        {
+            return GetWhere<T>("");
+        }
+
+        public static long Count<T>(string wherePattern = "", params object[] parameters)
+        {
+            string where = "";
+            if (wherePattern != "" || wherePattern != null)
+                where = wherePattern.Arg(parameters);
+            string tableString = tables[typeof(T)].ToString().ToLower();
+            where = where.Replace("|T|", tables[typeof(T)].Name);
+            if(where.Trim().Length > 0)
+                if (tableString.ToLower().IndexOf("where") != -1)
+                    where = " and " + where;
+            return (long)ExecuteScalar("Select count(*) from {0} {1}",
+                tableString.Split(new string[] { "\r\nfrom\r\n", " from " }, StringSplitOptions.None).Last(), where);
+        }
+
+        public static T Find<T>(string where, params object[] parameters) where T : Record
+        {
+            return GetWhere<T>(where + " Limit 1", parameters).FirstOrDefault();
+        }
+
+        public static T Get<T>(string where, params object[] parameters) where T : Record
+        {
+            return Find<T>(where, parameters);
+        }
+
         private static void LogResult(object result)
         {
             System.IO.StreamWriter sw = new System.IO.StreamWriter("sql.txt", true);
@@ -322,6 +344,23 @@ namespace Classes
                 sw.WriteLine("<<<");
                 sw.WriteLine("");
             }
+        }
+
+        private static Record Insert(Type recordType, Table table, string values, params object[] parameters)
+        {
+            //if (table.Joins.Count > 0) throw new NotImplementedException("Nested insert not implemented");
+            parameters = parameters.Format();
+            string[] valuesSplit = values.Split(',');
+            KeyValuePair<string, object>[] whereParameters = new KeyValuePair<string, object>[parameters.Length];
+            for (int i = 0; i < parameters.Length; i++)
+                whereParameters[i] = new KeyValuePair<string, object>(valuesSplit[i].Trim(), parameters[i].ToString());
+
+            ExecuteScalar("Insert into {0} ({1}) values ({2}); ", table.Name,
+                    values,
+                    string.Join(",", parameters));
+
+            List<object> result = GetWhere(recordType, string.Join(" and ", whereParameters.Select(x => x.Key + " = " + x.Value)));
+            return result.Last() as Record;
         }
 
         static List<object> processingList;
@@ -358,41 +397,6 @@ namespace Classes
             reader.ClearPrefixes();
 
             return result;
-        }
-
-        public static List<T> Where<T>(string wherePattern, params object[] parameters) where T : Record
-        {
-            return GetWhere<T>(wherePattern, parameters);
-        }
-
-        public static List<T> GetAll<T>() where T : Record
-        {
-            return All<T>();
-        }
-
-        public static List<T> All<T>() where T : Record
-        {
-            return GetWhere<T>("");
-        }
-
-        public static long Count<T>(string wherePattern = "", params object[] parameters)
-        {
-            string where = "";
-            if(wherePattern != "" || wherePattern != null)
-                where = wherePattern.Arg(parameters);
-            string table = tables[typeof(T)].ToString().ToLower();
-            return (long)ExecuteScalar("Select count(*) from {0}{1}",
-                table.Split(new string[] { "\r\nfrom\r\n", " from "}, StringSplitOptions.None).Last(), where);
-        }
-
-        public static T Find<T>(string where, params object[] parameters) where T : Record
-        {
-            return GetWhere<T>(where + " Limit 1", parameters).FirstOrDefault();
-        }
-
-        public static T Get<T>(string where, params object[] parameters) where T : Record
-        {
-            return Find<T>(where, parameters);
         }
 
         private static List<T> GetWhere<T>(string where, params object[] parameters) where T : Record
@@ -449,21 +453,9 @@ namespace Classes
             processType = t;
 
             string[] wantedTables = sql.Split('|');
-            if (wantedTables.Length % 2 != 1) throw new FormatException("INVALID SQL " + sql);
+            where = where.Replace("|T|", tables[t].Name);
 
-            for (int i = 1; i < wantedTables.Length; i+=2)
-            {
-                if (i + 2 == wantedTables.Length) throw new FormatException("INVALID SQL " + sql);
-                string table = wantedTables[i].ToLower();
-                Table foundTable = null;
-                if (table == "t")
-                    foundTable = tables[t];
-                if (foundTable == null)
-                    throw new KeyNotFoundException("TABLE NOT FOUND " + table);
-                sql = sql.Replace("|" + table + "|", foundTable.Name);
-            }
-
-            ExecuteSQLWithResult(sql + (where != "" ? " Where " + where : ""), ProcessReader);
+            ExecuteSQLWithResult(sql + (sql.ToLower().IndexOf("where") == -1 ?  " Where " + where : " and " + where), ProcessReader);
 
             List<object> result = new List<object>(processingList);
             processingList.Clear();

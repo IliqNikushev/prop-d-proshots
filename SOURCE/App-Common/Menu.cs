@@ -35,6 +35,9 @@ namespace App_Common
 
         protected static Classes.RFID reader;
 
+        private int defaultHeight = 0;
+        private int defaultWidth = 0;
+
         private bool IsRendering = false;
 
         protected virtual List<Control> Inherited
@@ -68,17 +71,14 @@ namespace App_Common
 
                     reader.OnAttach += (x) => reader.ToggleLED();
 
-                    this.FormClosed += (x, y) => { MainMenu = null; reader.Dispose(); };
+                    this.FormClosed += (x, y) => 
+                    {
+                        MainMenu = null;
+                        reader.Dispose();
+                    };
                     this.Disposed += (x, y) => Menus.Clear();
                 }
             }
-            else
-                this.FormClosed += (x, y) =>
-                {
-                    if (this == MainMenu) return;
-                    if (this.ParentMenu == null) return;
-                    this.ParentMenu.Show();
-                };
 
             this.controls = new List<Control>();
 
@@ -116,6 +116,19 @@ namespace App_Common
                 SetAsActive();
         }
 
+        new public void Close()
+        {
+            if (this != MainMenu)
+            {
+                this.IsRendering = false;
+                this.ParentMenu.SetAsActive();
+                this.ParentMenu.Width = this.ParentMenu.defaultWidth;
+                this.ParentMenu.Height = this.ParentMenu.defaultHeight;
+            }
+            else
+                base.Close();
+        }
+
         public void SetAsActive()
         {
             ChangeMenuTo(this);
@@ -132,6 +145,17 @@ namespace App_Common
 
         private void Set(Menu menu)
         {
+            if (this.defaultWidth == 0)
+            {
+                this.defaultHeight = this.Height;
+                this.defaultWidth = this.Width;
+            }
+            if (menu.defaultWidth == 0)
+            {
+                menu.defaultHeight = menu.Height;
+                menu.defaultWidth = menu.Width;
+            }
+
             List<Control> controls = new List<Control>(menu.controls);
             List<Control> current = new List<Control>(this.controls);
             foreach (var item in controls)
@@ -149,16 +173,9 @@ namespace App_Common
             if (ActiveMenu != null) ActiveMenu.IsRendering = false;
             ActiveMenu = menu;
             menu.IsRendering = true;
-            Menu found = Menus.Find(x => x.GetType() == menu.GetType());
-
-            if (found == null)
-            {
-                Menus.Add(menu);
-                found = menu;
-            }
 
             MainMenu.Clear();
-            MainMenu.Set(found);
+            MainMenu.Set(menu);
         }
     }
 }

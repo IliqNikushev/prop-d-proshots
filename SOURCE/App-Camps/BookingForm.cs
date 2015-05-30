@@ -220,7 +220,7 @@ namespace App_Camps
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void addPersonBtn_Click(object sender, EventArgs e)

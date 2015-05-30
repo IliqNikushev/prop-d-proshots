@@ -95,11 +95,19 @@ namespace App_Employee
             this.Text = Shop.Label + ": Order menu";
 
             reader.OnDetect += reader_OnDetect;
+
+            storeLogoPbox.ImageLocation = Shop.Icon;
+
+            resetBtn_Click(null, null);
         }
 
-        void reader_OnDetect(string obj)
+        void reader_OnDetect(string tag)
         {
             ActiveVisitor = Classes.Visitor.Authenticate(tag);
+            if (ActiveVisitor)
+                activeVisitorLbl.Text = "Active visitor: " + ActiveVisitor.FullName;
+            else
+                activeVisitorLbl.Text = "Visitor not found in the database!";
         }
 
         void verticalBar_Scroll(object sender, ScrollEventArgs e)
@@ -260,7 +268,6 @@ namespace App_Employee
             switch (state)
             {
                 case StoreConfirmForm.State.Ok:
-
                     break;
                 case StoreConfirmForm.State.Cancel:
                     break;
@@ -273,7 +280,20 @@ namespace App_Employee
 
         private void confirmBtn_Click(object sender, EventArgs e)
         {
-            new StoreConfirmForm(this.
+            if (ActiveVisitor == null)
+            {
+                MessageBox.Show("No visitor found. Please approach the card first before confirming.");
+                return; 
+            }
+            new StoreConfirmForm(this.items.Where(x => x.PurchaseTimes > 0), ActiveVisitor, OnConfirmClick);
+        }
+
+        private void resetBtn_Click(object sender, EventArgs e)
+        {
+            foreach (var item in this.items)
+                item.Reset();
+            this.ActiveVisitor = null;
+            this.activeVisitorLbl.Text = "No active visitor";
         }
     }
 }

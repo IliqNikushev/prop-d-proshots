@@ -28,9 +28,11 @@ namespace App_Employee
                     new PCDoctorForm(this).Show();
                 else if (employee.Job is Classes.InformationKioskJob)
                     new InformationDeskForm(this).Show();
-                throw new NotImplementedException("Unknown job"); 
+                else
+                    throw new NotImplementedException("Unknown job");
+                return true;
             }
-            return true;
+            return false;
         }
 
         public LoginForm(App_Common.Menu parent)

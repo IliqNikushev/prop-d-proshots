@@ -30,10 +30,10 @@ namespace App_Camps
                 bookedForVisitorPitches = tents.Where(x => x.BookedBy != LoggedInUser);
             }
 
-            this.todayLbl.Text = "Today it is It is " + DateTime.Now.ToString("mmm ddd dd");
+            this.todayLbl.Text = "Today it is It is " + DateTime.Now.ToString("dddd dd");
 
             long total = Classes.Database.Count<Classes.TentPitch>();
-            long taken = Classes.Database.Count<Classes.Tent>();
+            long taken = Classes.Database.Count<Classes.Tent>("|T|.bookedOn > {0} and |T|.bookedTill < {1}", DateTime.Today, DateTime.Today.AddDays(1));
             long freeTents = total - taken;
             freeTentsLbl.Text = "Number of free tent pitches : " + freeTents;
             takenTentsLbl.Text = "Number of tent pitches taken : " + taken;
