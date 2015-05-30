@@ -20,6 +20,7 @@ namespace Classes
         [TestCleanup()]
         public void Cleanup()
         {
+            Database.buildTesting = false;
             OnCleanup();
         }
 

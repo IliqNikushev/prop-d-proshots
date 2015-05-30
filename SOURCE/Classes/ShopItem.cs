@@ -17,16 +17,6 @@ namespace Classes
             this.WarningLevel = warningLevel;
         }
 
-        protected override void Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
-        {
-            throw new NotImplementedException();
-        }
-
         public override string ToString()
         {
             return this.Brand + " " + this.Model;

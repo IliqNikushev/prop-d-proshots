@@ -8,10 +8,8 @@ namespace Classes
 {
     public class RFID : IDisposable
     {
-        
         public static bool HasDrivers
         {
-
             get
             {
                 return false;

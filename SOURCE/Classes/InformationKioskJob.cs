@@ -7,6 +7,11 @@ namespace Classes
 {
     public class InformationKioskJob : Job
     {
+        protected override string Type
+        {
+            get { return "info"; }
+        }
+
         public InformationKioskJob(int id, int x, int y) : base(id, "Information desk", "Here you can get information about the event and your card", x, y) { }
 
         private long numberOfCardsTaken;
@@ -31,16 +36,6 @@ namespace Classes
             Database.Update(visitor, "rfid = {0}".Arg(tag), "user_id = {0}".Arg(visitor.ID));
 
             this.RefreshCards();
-        }
-
-        protected override void Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
-        {
-            throw new NotImplementedException();
         }
     }
 }

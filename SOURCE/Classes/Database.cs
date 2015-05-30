@@ -36,7 +36,8 @@ namespace Classes
         {
             {typeof(AdminUser), new Table("Admins").
                 Copy<User>()},
-            {typeof(AppointedItem), new Table("Items_Appointed").Copy<Item>()},
+            {typeof(AppointedItem), new Table("Items_Appointed")
+                .Copy<Item>()},
             {typeof(Appointment), new Table("Appointments", "description", "id", "completedOn", "isReturned").
                 Join<AppointedItem>("JOIN", "Items_Appointed.id = Appointments.appointed_item", "item").
                 Join<Visitor>("JOIN", "Appointments.appointed_by = Visitors.user_id", "appointed_by")},
@@ -46,22 +47,28 @@ namespace Classes
                 Join<PayPalDocument>("JOIN", "PayPalDeposits.paypal_document_id = PayPalDocuments.id", "document")},
             {typeof(Employee), new Table("Employees", "job").
                 Join<User>("JOIN", "Employees.user_id = Users.id", "").
-                Join<Landmark>("JOIN", "Landmarks.id = Employees.workplace_id", "workplace")},
+                Join<Landmark>("LEFT JOIN", "Landmarks.id = Employees.workplace_id", "workplace")},
             {typeof(EmployeeAction), new Table("EmployeeActions", "date", "action", "id").
                 Join<Employee>("JOIN", "Employees.user_id = EmployeeActions.employee_id", "employee")},
             {typeof(EventLandmark), new Table("Events", "timeStart", "timeEnd").
                 Join<Landmark>("JOIN", "Landmarks.id = Events.location", "")},
-            {typeof(FoodAndDrinkShopJob), new Table("Landmarks_foodAndDrink").Copy<Landmark>()},
-            {typeof(GeneralShopJob), new Table("Landmarks_GeneralShop").Copy<FoodAndDrinkShopJob>()},
-            {typeof(InformationKioskJob), new Table("Landmarks_Info").Copy<ITServiceJob>()},
+            {typeof(FoodAndDrinkShopJob), new Table("Landmarks_foodAndDrink")
+                .Copy<Landmark>()},
+            {typeof(GeneralShopJob), new Table("Landmarks_GeneralShop")
+                .Copy<FoodAndDrinkShopJob>()},
+            {typeof(InformationKioskJob), new Table("Landmarks_Info")
+                .Copy<ITServiceJob>()},
             {typeof(Item), new Table("Items_All", "brand", "model", "id", "type", "description", "igroup" )},
             {typeof(ITServiceJob), new Table("Landmarks_IT", "id", "x", "y")},
-            {typeof(Job), new Table("Workplaces").Copy<ITServiceJob>()},
+            {typeof(Job), new Table("Workplaces")
+                .Copy<ITServiceJob>()},
             {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type")},
             {typeof(LogMessage), new Table("Logs", "id", "date", "description", "name")},
             {typeof(PayPalDocument), new Table("PayPalDocuments", "id", "date", "raw")},
-            {typeof(PayPalMachine), new Table("Landmarks_Paypal").Copy<ITServiceJob>()},
-            {typeof(PCDoctorJob), new Table("Landmarks_PCDoctor").Copy<ITServiceJob>()},
+            {typeof(PayPalMachine), new Table("Landmarks_Paypal")
+                .Copy<ITServiceJob>()},
+            {typeof(PCDoctorJob), new Table("Landmarks_PCDoctor")
+                .Copy<ITServiceJob>()},
             {typeof(ShopItem), new Table("ShopItems", "quantity", "id", "warningAmount", "price").
                 Join<Item>("JOIN" ,"ShopItems.item_id = Items_ALL.id", "item").
                 Join<ShopJob>("JOIN" ,"Shops.id = Shopitems.shop_id", "shop")},
@@ -74,10 +81,11 @@ namespace Classes
                 Join<Item>("Join", "RentableItems.item_id = Items_All.id", "")},
             {typeof(RentableItemHistory), new Table("RentableItemHistories", "returnedAt", "rentedAt", "notes", "rentedTill", "id").
                 Join<RentableItem>("JOIN", "RentableItemHistories.item_id = RentableItems.item_id", "item").
-                Join<Visitor>("JOIN", "RentableItemHistories.returnedBy = Visitors.user_id", "returnedBy").
+                Join<Visitor>("LEFT JOIN", "RentableItemHistories.returnedBy = Visitors.user_id", "returnedBy").
                 Join<Visitor>("JOIN", "RentableItemHistories.rentedBy = rentedBy.user_id", "rentedBy", "rentedBy")},
             {typeof(Restock), new Table("Restocks", "id", "date")},
-            {typeof(RestockableItem), new Table("RestockableItems").Copy<Item>()},
+            {typeof(RestockableItem), new Table("RestockableItems").
+                Copy<Item>()},
             {typeof(RestockItem), new Table("RestockItems", "quantity", "pricePerItem", "total", "id").
                 Join<Restock>("JOIN", "Restocks.id = RestockItems.restock_id", "restock").
                 Join<ShopItem>("JOIN", "ShopItems.item_id = RestockItems.item_id", "item")},
@@ -88,7 +96,8 @@ namespace Classes
             {typeof(TentPerson), new Table("TentPeople", "ID", "CheckedInTime").
                 Join<Visitor>("JOIN", "TentPeople.visitor_id = Visitors.user_id", "visitor").
                 Join<TentPitch>("JOIN", "Tents_ALL.id = TentPeople.Tent_ID", "tent")},
-            {typeof(TentPitch), new Table("Tents_All").Copy<ITServiceJob>()},
+            {typeof(TentPitch), new Table("Tents_All").
+                Copy<ITServiceJob>()},
             {typeof(User), new Table("Users", "id", "firstName", "lastName", "email", "password", "type", "username")},
             {typeof(Visitor), new Table("Visitors", "balance", "picture", "ticket", "rfid").
                 Join<User>("JOIN", "Users.id = Visitors.user_id", "")},
@@ -98,6 +107,11 @@ namespace Classes
         private static Table TName<T>() where T : Record
         {
             return new Table(TableNameFor(typeof(T)));
+        }
+
+        public static Table TableName<T>() where T : Record
+        {
+            return TName<T>();
         }
 
         public static string TableNameFor(Record record)
@@ -133,30 +147,54 @@ namespace Classes
             }
         }
 
-        public static int Insert(Record record, string values, params object[] parameters)
+        public static Record Insert(Record record, string values, params object[] parameters)
         {
             if (values.Split(',').Length != parameters.Length) throw new InvalidOperationException("Value missing in parameters");
 
-            Table table = tables[record.GetType()];
-            //if (table.Joins.Count > 0) throw new NotImplementedException("Nested insert not implemented");
+            Type t = new System.Diagnostics.StackFrame(1).GetMethod().DeclaringType;
+            if (!t.IsSubclassOf(typeof(Record)))
+                t = record.GetType();
+            Table table = tables[t];
 
-            return ExecuteSQL(
-                string.Format("Insert into {0} ({1}) values ({2})",
-                    table.Name,
-                    values,
-                    string.Join("," , parameters.Format())
-                )
-             );
+            return Insert(t, table, values, parameters);
         }
 
-        public static int Update(Record record, string set, string identifier)
+        public static T Insert<T>(string values, params object[] parameters) where T:Record
+        {
+            if (values.Split(',').Length != parameters.Length) throw new InvalidOperationException("Value missing in parameters");
+
+            Table table = tables[typeof(T)];
+
+            return (T)Insert(typeof(T), table, values, parameters);
+        }
+
+        private static Record Insert(Type recordType, Table table, string values, params object[] parameters)
+        {
+            //if (table.Joins.Count > 0) throw new NotImplementedException("Nested insert not implemented");
+            parameters = parameters.Format();
+            string[] valuesSplit = values.Split(',');
+            KeyValuePair<string,object>[] whereParameters = new KeyValuePair<string,object>[parameters.Length];
+            for (int i = 0; i < parameters.Length; i++)
+			    whereParameters[i] = new KeyValuePair<string,object>(valuesSplit[i].Trim(), parameters[i].ToString());
+
+            ExecuteScalar("Insert into {0} ({1}) values ({2}); ", table.Name,
+                    values,
+                    string.Join(",", parameters));
+
+            List<object> result = GetWhere(recordType, string.Join(" and ", whereParameters.Select(x => x.Key + " = " + x.Value)));
+            return result.Last() as Record;
+        }
+
+        public static Record Update(Record record, string set, string identifier)
         {
             Table table = tables[record.GetType()];
             //if (table.Joins.Count > 0) throw new NotImplementedException("Nested update not implemented");
 
-            return ExecuteSQL(
-                string.Format("UPDATE {0} SET {1} WHERE {2}",
+            ExecuteScalar(string.Format("UPDATE {0} SET {1} WHERE {2};",
                     table.Name, set, identifier));
+
+            List<object> result = GetWhere(record.GetType(), identifier);
+            return result.Last() as Record;
         }
 
         public static int ExecuteSQL(string sql, params object[] parameters)
@@ -275,7 +313,7 @@ namespace Classes
             System.IO.StreamWriter sw = new System.IO.StreamWriter("sql.txt", true);
             using (sw)
             {
-                sw.WriteLine(DateTime.Now + ">>>");
+                sw.WriteLine(DateTime.Now + ">>>" + new System.Diagnostics.StackFrame(1).GetMethod().Name);
                 sw.WriteLine(sql);
             }
         }

@@ -7,7 +7,7 @@ namespace Classes
     public class EmployeeActionTest : RecordTest
     {
         [TestMethod]
-        public override void DatabaseSave()
+        public override void DatabaseGet()
         {
             throw new NotImplementedException();
         }
@@ -15,19 +15,7 @@ namespace Classes
         [TestMethod]
         public override void DatabaseCreate()
         {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod]
-        public override void DatabaseGet()
-        {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod]
-        public override void DatabaseUpdate()
-        {
-            throw new NotImplementedException();
+            new EmployeeAction(0, DateTime.MinValue, null, null).Create();
         }
     }
 }

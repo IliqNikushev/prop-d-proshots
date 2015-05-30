@@ -11,23 +11,12 @@ namespace Classes
         public RentableItem(int id, decimal price, string brand, string model, string type, string group,string description, int inStock)
             : base(id, price, brand, model, type, group,description, inStock)
         {
-            
         }
 
         public void Rent(Classes.Visitor renter)
         {
             renter.Rent(this);
             RentableItemHistory history = new RentableItemHistory(this, renter);
-        }
-
-        protected override void Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
-        {
-            throw new NotImplementedException();
         }
     }
 }

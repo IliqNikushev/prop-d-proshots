@@ -25,14 +25,9 @@ namespace Classes
             this.Raw = raw;
         }
 
-        protected override void Create()
+        public override Record Create()
         {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
-        {
-            throw new NotImplementedException();
+            throw new NotToBeSentToDatabaseException();
         }
         /*
         public static PayPalDocument Parse(string text)

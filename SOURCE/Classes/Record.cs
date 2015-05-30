@@ -25,14 +25,6 @@ namespace Classes
             this.ID = id;
         }
 
-        public void SendToDatabase()
-        {
-            if (this.IsNew)
-                Create();
-            else
-                Update();
-        }
-
         public static implicit operator bool(Record r)
         {
             return r != null;
@@ -50,8 +42,7 @@ namespace Classes
             return !(a == b);
         }
 
-        protected abstract void Create();
-        protected abstract void Update();
+        public abstract Record Create();
 
         public override bool Equals(object obj)
         {
@@ -76,6 +67,12 @@ namespace Classes
             if ((object)other == null) return 1;
 
             return this.ID.CompareTo(other.ID);
+        }
+
+        [Serializable]
+        public class NotToBeSentToDatabaseException : Exception
+        {
+            public NotToBeSentToDatabaseException() : base(new System.Diagnostics.StackFrame(1).GetMethod().Name + "@" + new System.Diagnostics.StackFrame(1).GetMethod().DeclaringType.Name) { }
         }
     }
 }

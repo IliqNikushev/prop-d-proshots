@@ -26,17 +26,9 @@ namespace Classes
             this.Date = DateTime.Now;
         }
 
-        protected override void Create()
+        public override Record Create()
         {
-            Database.Insert(this, "date, name, description", this.Date, this.Name, this.Description);
-        }
-
-        protected override void Update()
-        {
-            Database.Update(this, 
-                "name = {0}, date = {1}, description = {2}".
-                Arg(this.Name, this.Date, this.Description),
-                "id = {0}".Arg(ID));
+            return Database.Insert(this, "date, name, description", this.Date, this.Name, this.Description);
         }
     }
 }

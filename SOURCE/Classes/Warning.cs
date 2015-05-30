@@ -16,12 +16,7 @@ namespace Classes
         public string Name { get; private set; }
         public string Description { get; private set; }
 
-        protected override void Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
+        public override Record Create()
         {
             throw new NotImplementedException();
         }

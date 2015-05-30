@@ -63,9 +63,7 @@ namespace Classes
 
             int id = -1;
             string firstName, lastName, userName, password, email;
-            CreateUser(reader, out id, out firstName, out lastName, out userName, out password, out email);
-
-            string type = reader.GetStr("type");
+            ExtractUser(reader, out id, out firstName, out lastName, out userName, out password, out email);
 
             reader.RemoveDistinctPrefix();
             return new AdminUser(id, firstName, lastName, userName, password, email);
@@ -75,15 +73,16 @@ namespace Classes
         {
             reader.AddDistinctPrefix(prefix);
 
-            int iD = reader.Get<int>("ID");
-            string brand = reader.GetStr("Brand");
-            string model = reader.GetStr("Model");
-            string type = reader.GetStr("Type");
-            string group = reader.GetStr("igroup");
-            string description = reader.GetStr("description");
+            int id;
+            string brand;
+            string model;
+            string type;
+            string group;
+            string description;
+            ExtractItem(reader, out id, out brand, out model, out type, out group, out description);
 
             reader.RemoveDistinctPrefix();
-            return new AppointedItem(iD, brand, model, type, group, description);
+            return new AppointedItem(id, brand, model, type, group, description);
         }
 
         private static Appointment CreateAppointment(Reader reader, string prefix="", bool asbtr = false)
@@ -176,19 +175,18 @@ namespace Classes
             reader.AddDistinctPrefix(prefix);
 
             reader.AddPrefix("workplace");
-            Job job = CreateJob(reader);
+            Job job = null;
+            if(reader.HasColumnAndNotNull("type"))
+                job = CreateJob(reader);
             reader.RemovePrefix();
 
-            string firstName = reader.GetStr("FirstName");
-            string lastName = reader.GetStr("LastName");
-            int id = reader.Get<int>("Id");
-            string username = reader.GetStr("Username");
-            string password = reader.GetStr("Password");
-            string email = reader.GetStr("Email");
+            int id = -1;
+            string firstName, lastName, userName, password, email;
+            ExtractUser(reader, out id, out firstName, out lastName, out userName, out password, out email);
 
             reader.RemoveDistinctPrefix();
 
-            return new Employee(id, firstName, lastName, username, password, email, job);
+            return new Employee(id, firstName, lastName, userName, password, email, job);
         }
 
         private static EmployeeAction CreateEmployeeAction(Reader reader, string prefix="", bool asbtr = false)
@@ -237,18 +235,33 @@ namespace Classes
         {
             reader.AddDistinctPrefix(prefix);
 
-            System.DateTime timeStart = reader.Get<System.DateTime>("TimeStart");
-            System.DateTime timeEnd = reader.Get<System.DateTime>("TimeEnd");
-            int x = reader.Get<int>("X");
-            int y = reader.Get<int>("Y");
-            string label = reader.GetStr("Label");
-            string description = reader.GetStr("Description");
-            int iD = reader.Get<int>("ID");
-            string type = reader.GetStr("type");
+            System.DateTime timeStart = DateTime.MinValue;
+            System.DateTime timeEnd = DateTime.MaxValue;
+
+            if (reader.HasColumnAndNotNull("timeStart"))
+            {
+                timeStart = reader.Get<System.DateTime>("TimeStart");
+                timeEnd = reader.Get<System.DateTime>("TimeEnd");
+            }
+
+            int x;
+            int y;
+            string label;
+            string description;
+            int iD;
+            ExtractLandmark(reader, out x, out y, out label, out description, out iD);
 
             reader.RemoveDistinctPrefix();
 
             return new EventLandmark(iD, label, description, x, y, timeStart, timeEnd);
+        }
+
+        private static void ExtractLandmark(Reader reader, out int x, out int y, out string label, out string description, out int iD)
+        {
+            ExtractSimpleLandmark(reader, out x, out y, out iD);
+            label = reader.GetStr("Label");
+            description = reader.GetStr("Description");
+            string type = reader.GetStr("type");
         }
 
         private static Job CreateJob(Reader reader, string prefix="", bool asbtr = false)
@@ -279,12 +292,12 @@ namespace Classes
         {
             reader.AddDistinctPrefix(prefix);
 
-            int x = reader.Get<int>("X");
-            int y = reader.Get<int>("Y");
-            string label = reader.GetStr("Label");
-            string description = reader.GetStr("Description");
-            int iD = reader.Get<int>("ID");
-            string type = reader.GetStr("type");
+            int x;
+            int y;
+            string label;
+            string description;
+            int iD;
+            ExtractLandmark(reader, out x, out y, out label, out description, out iD);
 
             reader.RemoveDistinctPrefix();
 
@@ -319,14 +332,20 @@ namespace Classes
             reader.AddDistinctPrefix(prefix);
 
             reader.AddPrefix("shop");
-            Classes.ShopJob shop = CreateShopJob(reader);
+            ShopJob shop = CreateShopJob(reader);
             reader.RemovePrefix();
 
             if(abstr)
-             reader.AddPrefix("item");
-            int warningLevel = reader.Get<int>("warningAmount");
-            int inStock = reader.Get<int>("quantity");
-            decimal price = reader.Get<decimal>("Price");
+                reader.AddPrefix("item");
+
+            int warningLevel = 0;
+            int inStock = 0;
+            decimal price = 0;
+
+            warningLevel = reader.Get<int>("warningAmount");
+            inStock = reader.Get<int>("quantity");
+            price = reader.Get<decimal>("Price");
+
             if(abstr)
                 reader.RemovePrefix();
 
@@ -334,30 +353,42 @@ namespace Classes
                 reader.Get<int>("ID");
             if (!abstr)
                 reader.AddPrefix("item");
-            int iD = reader.Get<int>("ID");
-            string brand = reader.GetStr("Brand");
-            string model = reader.GetStr("Model");
-            string type = reader.GetStr("Type");
-            string group = reader.GetStr("iGroup");
-            string description = reader.GetStr("description");
+
+            int id;
+            string brand;
+            string model;
+            string type;
+            string group;
+            string description;
+            ExtractItem(reader, out id, out brand, out model, out type, out group, out description);
             if (!abstr)
                 reader.RemovePrefix();
 
             reader.RemoveDistinctPrefix();
 
-            return new Classes.ShopItem(iD, price, brand, model, type, group,description, inStock, warningLevel, shop);
+            return new Classes.ShopItem(id, price, brand, model, type, group,description, inStock, warningLevel, shop);
+        }
+
+        private static void ExtractItem(Reader reader, out int iD, out string brand, out string model, out string type, out string group, out string description)
+        {
+            iD = reader.Get<int>("ID");
+            brand = reader.GetStr("Brand");
+            model = reader.GetStr("Model");
+            type = reader.GetStr("Type");
+            group = reader.GetStr("iGroup");
+            description = reader.GetStr("description");
         }
 
         private static FoodAndDrinkShopJob CreateFoodAndDrinkShopJob(Reader reader, string prefix="", bool asbtr = false)
         {
             reader.AddDistinctPrefix(prefix);
 
-            int x = reader.Get<int>("X");
-            int y = reader.Get<int>("Y");
-            string label = reader.GetStr("Label");
-            string description = reader.GetStr("Description");
-            int iD = reader.Get<int>("ID");
-            string type = reader.GetStr("type");
+            int x;
+            int y;
+            string label;
+            string description;
+            int iD;
+            ExtractLandmark(reader, out x, out y, out label, out description, out iD);
 
             reader.RemoveDistinctPrefix();
 
@@ -368,12 +399,12 @@ namespace Classes
         {
             reader.AddDistinctPrefix(prefix);
 
-            int x = reader.Get<int>("X");
-            int y = reader.Get<int>("Y");
-            string label = reader.GetStr("Label");
-            string description = reader.GetStr("Description");
-            int iD = reader.Get<int>("ID");
-            string type = reader.GetStr("type");
+            int x;
+            int y;
+            string label;
+            string description;
+            int iD;
+            ExtractLandmark(reader, out x, out y, out label, out description, out iD);
 
             reader.RemoveDistinctPrefix();
 
@@ -384,22 +415,31 @@ namespace Classes
         {
             reader.AddDistinctPrefix(prefix);
 
-            int x = reader.Get<int>("X");
-            int y = reader.Get<int>("Y");
-            int iD = reader.Get<int>("ID");
+            int x;
+            int y;
+            int iD;
+            ExtractSimpleLandmark(reader, out x, out y, out iD);
 
             reader.RemoveDistinctPrefix();
 
             return new InformationKioskJob(iD, x, y);
         }
 
+        private static void ExtractSimpleLandmark(Reader reader, out int x, out int y, out int iD)
+        {
+            x = reader.Get<int>("X");
+            y = reader.Get<int>("Y");
+            iD = reader.Get<int>("ID");
+        }
+
         private static ITServiceJob CreateITServiceJob(Reader reader, string prefix="", bool asbtr = false)
         {
             reader.AddDistinctPrefix(prefix);
 
-            int x = reader.Get<int>("X");
-            int y = reader.Get<int>("Y");
-            int iD = reader.Get<int>("ID");
+            int x;
+            int y;
+            int iD;
+            ExtractSimpleLandmark(reader, out x, out y, out iD);
 
             reader.RemoveDistinctPrefix();
 
@@ -424,9 +464,10 @@ namespace Classes
         {
             reader.AddDistinctPrefix(prefix);
 
-            int x = reader.Get<int>("X");
-            int y = reader.Get<int>("Y");
-            int iD = reader.Get<int>("ID");
+            int x;
+            int y;
+            int iD;
+            ExtractSimpleLandmark(reader, out x, out y, out iD);
 
             reader.RemoveDistinctPrefix();
 
@@ -437,9 +478,10 @@ namespace Classes
         {
             reader.AddDistinctPrefix(prefix);
 
-            int x = reader.Get<int>("X");
-            int y = reader.Get<int>("Y");
-            int iD = reader.Get<int>("ID");
+            int x;
+            int y;
+            int iD;
+            ExtractSimpleLandmark(reader, out x, out y, out iD);
 
             reader.RemoveDistinctPrefix();
 
@@ -455,18 +497,24 @@ namespace Classes
         {
             reader.AddDistinctPrefix(prefix);
 
-            int inStock = reader.Get<int>("InStock");
-            decimal price = reader.Get<decimal>("Price");
-            int iD = reader.Get<int>("ID");
-            string brand = reader.GetStr("Brand");
-            string model = reader.GetStr("Model");
-            string type = reader.GetStr("Type");
-            string group = reader.GetStr("iGroup");
-            string description = reader.GetStr("description");
+            int inStock = 0;
+            decimal price = 0;
+            if(reader.HasColumnAndNotNull("Price"))
+            {
+               inStock = reader.Get<int>("InStock");
+               price = reader.Get<decimal>("Price");
+            }
+            int id;
+            string brand;
+            string model;
+            string type;
+            string group;
+            string description;
+            ExtractItem(reader, out id, out brand, out model, out type, out group, out description);
 
             reader.RemoveDistinctPrefix();
 
-            return new RentableItem(iD, price, brand, model, type, group,description, inStock);
+            return new RentableItem(id, price, brand, model, type, group,description, inStock);
         }
 
         private static PayPalDocument CreatePayPalDocument(Reader reader, string prefix="", bool asbtr = false)
@@ -513,12 +561,16 @@ namespace Classes
             System.DateTime rentedAt = reader.Get<System.DateTime>("RentedAt");
             string notes = reader.GetStr("Notes");
             int id = reader.Get<int>("id");
-            System.DateTime returnedAt = reader.Get<System.DateTime>("ReturnedAt");
-            System.DateTime rentedTill = reader.Get<System.DateTime>("RentedTill");
 
+            System.DateTime rentedTill = reader.Get<System.DateTime>("RentedTill");
+            
             reader.AddPrefix("returnedBy");
-            Visitor returnedBy = CreateVisitor(reader);
+            Visitor returnedBy = null;
+            if(reader.HasColumnAndNotNull("rfid"))
+                returnedBy = CreateVisitor(reader);
             reader.RemovePrefix();
+
+            System.DateTime returnedAt = reader.Get<System.DateTime>("ReturnedAt");
 
             reader.RemoveDistinctPrefix();
 
@@ -605,16 +657,17 @@ namespace Classes
         {
             reader.AddDistinctPrefix(prefix);
 
-            int x = reader.Get<int>("X");
-            int y = reader.Get<int>("Y");
-            int iD = reader.Get<int>("ID");
+            int x;
+            int y;
+            int iD;
+            ExtractSimpleLandmark(reader, out x, out y, out iD);
 
             reader.RemoveDistinctPrefix();
 
             return new TentPitch(iD, x, y);
         }
 
-        private static void CreateUser(Reader reader, out int id, out string firstName, out string lastName, out string userName, out string password, out string email)
+        private static void ExtractUser(Reader reader, out int id, out string firstName, out string lastName, out string userName, out string password, out string email)
         {
             id = reader.Get<int>("ID");
             firstName = reader.GetStr("FirstName");
@@ -652,12 +705,20 @@ namespace Classes
 
             int id = -1;
             string firstName, lastName, userName, password, email;
-            CreateUser(reader, out id, out firstName, out lastName, out userName, out password, out email);
+            ExtractUser(reader, out id, out firstName, out lastName, out userName, out password, out email);
 
-            decimal amount = reader.Get<decimal>("balance");
-            string rfid = reader.GetStr("RFID");
-            bool ticket = reader.Get<bool>("Ticket");
-            string picture = reader.GetStr("picture");
+            decimal amount = 0;
+            string rfid = null;
+            bool ticket = false;
+            string picture = null;
+
+            if (reader.HasColumnAndNotNull("rfid"))
+            {
+                amount = reader.Get<decimal>("balance");
+                rfid = reader.GetStr("RFID");
+                ticket = reader.Get<bool>("Ticket");
+                picture = reader.GetStr("picture");
+            }
 
             reader.RemoveDistinctPrefix();
 

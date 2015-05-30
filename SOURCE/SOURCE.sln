@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App-PayPal", "App-PayPal\Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App-Common", "App-Common\App-Common.csproj", "{925F9052-389C-4D4A-8AEF-1A569B531928}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTester", "ConsoleTester\ConsoleTester.csproj", "{3AA75A4C-B985-4790-9589-47E92C50BCC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,6 +128,16 @@ Global
 		{925F9052-389C-4D4A-8AEF-1A569B531928}.Release|ARM.ActiveCfg = Release|Any CPU
 		{925F9052-389C-4D4A-8AEF-1A569B531928}.Release|x64.ActiveCfg = Release|Any CPU
 		{925F9052-389C-4D4A-8AEF-1A569B531928}.Release|x86.ActiveCfg = Release|Any CPU
+		{3AA75A4C-B985-4790-9589-47E92C50BCC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AA75A4C-B985-4790-9589-47E92C50BCC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AA75A4C-B985-4790-9589-47E92C50BCC8}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{3AA75A4C-B985-4790-9589-47E92C50BCC8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3AA75A4C-B985-4790-9589-47E92C50BCC8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3AA75A4C-B985-4790-9589-47E92C50BCC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AA75A4C-B985-4790-9589-47E92C50BCC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AA75A4C-B985-4790-9589-47E92C50BCC8}.Release|ARM.ActiveCfg = Release|Any CPU
+		{3AA75A4C-B985-4790-9589-47E92C50BCC8}.Release|x64.ActiveCfg = Release|Any CPU
+		{3AA75A4C-B985-4790-9589-47E92C50BCC8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

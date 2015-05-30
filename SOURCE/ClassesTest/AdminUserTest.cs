@@ -7,25 +7,14 @@ namespace Classes
     public class AdminUserTest : UserTest
     {
         [TestMethod]
-        public override void DatabaseSave()
-        {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod]
+        [ExpectedException(typeof(Record.NotToBeSentToDatabaseException))]
         public override void DatabaseCreate()
         {
-            throw new NotImplementedException();
+            new AdminUser(1, null, null, null, null, null).Create();
         }
 
         [TestMethod]
         public override void DatabaseGet()
-        {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod]
-        public override void DatabaseUpdate()
         {
             throw new NotImplementedException();
         }

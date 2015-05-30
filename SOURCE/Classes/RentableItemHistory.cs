@@ -41,10 +41,12 @@ namespace Classes
 
         public void Return(Visitor returner, string notes = "")
         {
-            throw new NotImplementedException();
             this.RentedBy = returner;
             this.ReturnedAt = DateTime.Now;
             this.Notes += notes;
+            throw new NotImplementedException();
+
+            //update
         }
 
         public void ExtendPeriod(Visitor visitor, int days, int hours, int minutes, string reason = "")
@@ -52,12 +54,7 @@ namespace Classes
             throw new NotImplementedException();
         }
 
-        protected override void Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
+        public override Record Create()
         {
             throw new NotImplementedException();
         }

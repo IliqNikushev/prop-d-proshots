@@ -7,6 +7,11 @@ namespace Classes
 {
     public class ITServiceJob : Job
     {
+        protected override string Type
+        {
+            get { return "it"; }
+        }
+
         public ITServiceJob(int id, int x, int y) : base(id, "Rent desk", "Here you can rent an item", x, y) { }
 
         public List<RentableItem> Items
@@ -25,16 +30,6 @@ namespace Classes
         public void ReturnItem(Classes.Visitor visitor, Item item)
         {
             throw new System.NotImplementedException();
-        }
-
-        protected override void Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
-        {
-            throw new NotImplementedException();
         }
     }
 }

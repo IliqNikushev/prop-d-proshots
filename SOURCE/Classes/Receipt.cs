@@ -33,12 +33,7 @@ namespace Classes
             this.PurchasedOn = purchasedOn;
         }
 
-        protected override void Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
+        public override Record Create()
         {
             throw new NotImplementedException();
         }

@@ -61,14 +61,9 @@ namespace Classes
             return this.FirstName + " " + this.LastName;
         }
 
-        protected override void Create()
+        public override Record Create()
         {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
-        {
-            throw new NotImplementedException();
+            throw new NotToBeSentToDatabaseException();
         }
     }
 }

@@ -122,7 +122,6 @@ namespace Classes
                 }
             }
 
-
             if (Database.buildTesting)
                 return defaultValue;
             throw new KeyNotFoundException("Column not found, " + name + "\n" + string.Join(", ", reader.GetColumns()));
@@ -136,6 +135,50 @@ namespace Classes
         public static string GetStr(this MySql.Data.MySqlClient.MySqlDataReader reader, string name)
         {
             return reader.Get(name, "") as string;
+        }
+
+        public static string[] Columns(this MySql.Data.MySqlClient.MySqlDataReader reader)
+        {
+            string[] result = new string[reader.FieldCount];
+
+            for (int i = 0; i < result.Length; i++)
+                result[i] = reader.GetName(i);
+
+            return result;
+        }
+
+        public static bool HasColumnAndNotNull(this MySql.Data.MySqlClient.MySqlDataReader reader, string name)
+        {
+            string n = reader.Prefix() + name.ToLower();
+            string distinctN = reader.DistinctPrefix() + name.ToLower();
+            if(distinctPrefixes.ContainsKey(reader))
+                if (distinctPrefixes[reader].Where(x => x.Trim().Length > 0).Count() > 0)
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        if (reader.GetName(i).ToLower() == distinctN)
+                        {
+                            if (Database.buildTesting) return true;
+
+                            if (reader.GetValue(i).GetType() != typeof(System.DBNull))
+                                return true;
+                            return false;
+                        }
+                    }
+                }
+        
+            for (int i = 0; i < reader.FieldCount; i++)
+            {
+                if (reader.GetName(i).ToLower() == n)
+                {
+                    if (Database.buildTesting) return true;
+
+                    if (reader.GetValue(i).GetType() != typeof(System.DBNull))
+                        return true;
+                    return false;
+                }
+            }
+            return false;
         }
 
         public static T Apply<T>(this T t, Action<T> a)

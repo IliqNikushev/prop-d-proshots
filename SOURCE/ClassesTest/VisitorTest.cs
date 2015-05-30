@@ -7,12 +7,7 @@ namespace Classes
     public class VisitorTest : UserTest
     {
         [TestMethod]
-        public override void DatabaseSave()
-        {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod]
+        [ExpectedException(typeof(Record.NotToBeSentToDatabaseException))]
         public override void DatabaseCreate()
         {
             throw new NotImplementedException();
@@ -20,12 +15,6 @@ namespace Classes
 
         [TestMethod]
         public override void DatabaseGet()
-        {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod]
-        public override void DatabaseUpdate()
         {
             throw new NotImplementedException();
         }

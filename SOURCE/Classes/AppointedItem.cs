@@ -9,12 +9,7 @@ namespace Classes
     {
         public AppointedItem(int id, string brand, string model, string type, string group, string description) : base(id, brand, model, type, group, description) { }
 
-        protected override void Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
+        public override Record Create()
         {
             throw new NotImplementedException();
         }

@@ -7,6 +7,11 @@ namespace Classes
 {
     public class PCDoctorJob : Job
     {
+        protected override string Type
+        {
+            get { return "doctor"; }
+        }
+
         public PCDoctorJob(int id, int x, int y) : base(id, "PC DOCTOR", "Here you can give your equipment for repair or diagnosis", x, y) { }
 
         public List<Appointment> Appointments
@@ -48,16 +53,6 @@ namespace Classes
         public void AddTaskToAppointment(Appointment Appointment, AppointmentTask task)
         {
             throw new System.NotImplementedException();
-        }
-
-        protected override void Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
-        {
-            throw new NotImplementedException();
         }
     }
 }

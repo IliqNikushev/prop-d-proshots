@@ -10,7 +10,6 @@ namespace Classes
         public AppointmentTask(int id, string name, decimal price, string description, Appointment appointment)
             : base(id)
         {
-            
             this.Appointment = appointment;
             this.Name = name;
             this.Price = price;
@@ -23,12 +22,7 @@ namespace Classes
         public decimal Price { get; private set; }
         public string Description { get; private set; }
 
-        protected override void Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
+        public override Record Create()
         {
             throw new NotImplementedException();
         }

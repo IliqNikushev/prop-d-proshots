@@ -7,25 +7,14 @@ namespace Classes
     public class DepositTest : RecordTest
     {
         [TestMethod]
-        public override void DatabaseSave()
-        {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod]
+        [ExpectedException(typeof(Record.NotToBeSentToDatabaseException))]
         public override void DatabaseCreate()
         {
-            throw new NotImplementedException();
+            new Deposit(0, 0, DateTime.MinValue, null).Create();
         }
 
         [TestMethod]
         public override void DatabaseGet()
-        {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod]
-        public override void DatabaseUpdate()
         {
             throw new NotImplementedException();
         }

@@ -171,6 +171,8 @@ namespace Classes
         [TestMethod]
         public void AllRecordsBuildDefinitionHaveColumns()
         {
+            Classes.Database.buildTesting = true;
+
             List<KeyValuePair<Type, Exception>> errors = new List<KeyValuePair<Type, Exception>>();
             Type database = typeof(Database);
             string methodName = new Func<List<Classes.Record>>(Classes.Database.All<Classes.Record>).Method.Name;

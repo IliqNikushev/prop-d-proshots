@@ -39,17 +39,17 @@ namespace Classes
             this.bookedFor = bookedFor;
         }
 
+        public void Cancel()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Pay()
         {
             throw new NotImplementedException();
         }
 
-        protected override void Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
+        public override Record Create()
         {
             throw new NotImplementedException();
         }

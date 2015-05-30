@@ -7,6 +7,11 @@ namespace Classes
 {
     public class TentPitch : Landmark
     {
+        protected override string Type
+        {
+            get { return "tent"; }
+        }
+
         public TentPitch(int id, int x, int y) : base(id, "Tent #"+id, "A tent location for visitors to stay in", x, y) { }
 
         public bool IsBooked
@@ -20,16 +25,6 @@ namespace Classes
             {
                 return Database.GetTent(this);
             }
-        }
-
-        protected override void Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
-        {
-            throw new NotImplementedException();
         }
     }
 }

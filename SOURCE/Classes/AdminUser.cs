@@ -12,24 +12,14 @@ namespace Classes
         {
         }
 
-        public void AddEvent()
+        public void AddEvent(string name, string description, int x, int y, DateTime start, DateTime end)
         {
-            throw new System.NotImplementedException();
+            new EventLandmark(name, description, x, y, start, end).Create();
         }
 
         public void RestockStore(ShopJob shop, List<RestockItem> items)
         {
             throw new System.NotImplementedException();
-        }
-
-        protected override void Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
-        {
-            throw new NotImplementedException();
         }
     }
 }

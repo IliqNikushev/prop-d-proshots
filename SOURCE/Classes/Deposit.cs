@@ -36,14 +36,9 @@ namespace Classes
             this.Document = document;
         }
 
-        protected override void Create()
+        public override Record Create()
         {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
-        {
-            throw new NotImplementedException();
+            throw new NotToBeSentToDatabaseException();
         }
     }
 }

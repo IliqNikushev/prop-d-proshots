@@ -7,6 +7,11 @@ namespace Classes
 {
     public class ShopJob : Job
     {
+        protected override string Type
+        {
+            get { return "shop"; }
+        }
+
         public ShopJob(int id, string label, string description, int x, int y) : base(id, label, description, x, y) { }
 
         public List<Classes.ShopItem> Items
@@ -30,16 +35,6 @@ namespace Classes
 
             //print receipt, send to the database
             //return new Receipt(user, this, items);
-            throw new NotImplementedException();
-        }
-
-        protected override void Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void Update()
-        {
             throw new NotImplementedException();
         }
     }
