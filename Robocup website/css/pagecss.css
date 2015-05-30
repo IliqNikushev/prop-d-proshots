@@ -1,0 +1,369 @@
+body {
+    background-color: GhostWhite;
+	top: 50px;
+}
+
+#background-image{
+    height: 500px;
+    width: 100%;
+}
+
+#navbar{
+    background-color: black;
+
+}
+
+#Left-Navbar{
+    position: relative;
+    top: 10px;
+}
+
+#Register{
+    color: white;
+    position: relative;
+    left: 10px;
+}
+
+#Forgotten-password{
+    color: white;
+    position: relative;
+    left: 20px;
+
+}
+
+#Elements-Placement{
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 60%;
+    right: -10%;
+}
+
+#Elements-Placement-2{
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 30%;
+    right: -5%;
+}
+
+#Index-Info{
+    background-color: white;
+    width: 84%;
+    position: relative;
+    padding: 2%;
+    border: 1px solid ;
+    margin: .3%;
+}
+
+#Index-Leagues-Heading{
+    background-color: white;
+    width: 84%;
+    height: 70px;
+    position: relative;
+    top: 20px;
+    padding: 10px;
+    border: 1px solid ;
+
+}
+
+#Index-Leagues{
+    background-color: white;
+    width: 84%;
+    height: 450px;
+    position: relative;
+    padding: 5px;
+    border: 1px solid ;
+
+    overflow:hidden;
+}
+
+#Index-Leagues-content{
+    background-color: white;
+    width: 1250px;
+    height: 450px;
+    position: absolute;
+
+}
+
+#Leagues-text{
+    position: relative;
+    width: 190px;
+    height: 400px;
+    margin: 28px;
+    font-size: 14px;
+    line-height: 100%;
+    display:block;
+    float:left;
+
+}
+
+#Index-Sponsors-Heading{
+    background-color: white;
+    width: 84%;
+    position: relative;
+    top: 20px;
+    padding: 10px;
+    border: 1px solid ;
+
+}
+
+#Index-Sponsors-Content {
+    background-color: white;
+    width: 84%;
+    position: relative;
+    border: 1px solid ;
+
+}
+
+#Index-Sponsors-Content div {
+    position: relative;
+    display: inline-block;
+    width: 30%;
+    padding: 5%;
+}
+
+
+#Sponsors-Content {
+    background-color: white;
+    width: 750px;
+    height: 1700px;
+    position: relative;
+    padding: 5px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#PicturesHeading{
+    background-color: white;
+    position: relative;
+    width: 95%;
+    padding: 1%;
+    border: 1px solid ;
+}
+#Pictures{
+    background-color: white;
+    position: relative;
+    width: 95%;
+    text-align: center;
+    padding: 1%;
+    border: 1px solid ;
+}
+#Pictures img{
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+}
+
+
+
+
+
+#Leagues-back-arrow {
+    position: relative;
+    right: -1%;
+    background-color: white;
+}
+
+#Leagues-forward-arrow-1 {
+    position: relative;
+    right: -1%;
+    background-color: white;
+}
+
+#Heading {
+    background-color: white;
+    width: 82%;
+    height: 70px;
+    position: relative;
+    padding: 1px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#VisitorsText {
+    background-color: white;
+    width: 82%;
+    height: 800px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+#VisitorsText img{
+    position: relative;
+    left: 70px;
+    padding-left: 25px;
+
+}
+
+#LocationText {
+    background-color: white;
+    width: 82%;
+    height: 1000px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+#LocationText img{
+    position: relative;
+    left: 20px;
+    padding-left: 25px;
+
+}
+
+#ReservationText {
+    background-color: white;
+    width: 82%;
+    height: 950px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#TicketsText {
+    background-color: white;
+    width: 82%;
+    height: 750px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#ParticipantsText {
+    background-color: white;
+    width: 82%;
+    height: 600px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#ScheduleText {
+    background-color: white;
+    width: 82%;
+    height: 600px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#RoboCupSoccerText {
+    background-color: white;
+    width: 82%;
+    height: 1500px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#RoboCupRescueText {
+    background-color: white;
+    width: 82%;
+    height: 900px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#RoboCupJuniorText {
+    background-color: white;
+    width: 82%;
+    height: 500px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#RoboCupHomeText {
+    background-color: white;
+    width: 82%;
+    height: 500px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#RoboCupWorkText {
+    background-color: white;
+    width: 82%;
+    height: 450px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#ContactUsText {
+    background-color: white;
+    width: 82%;
+    height: 550px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#Register_Text {
+    background-color: white;
+    width: 82%;
+    height: 750px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+    text-align: center;
+}
+
+#ForgottenText {
+    background-color: white;
+    width: 82%;
+    height: 650px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+    text-align: center;
+}
+
+#BookedText {
+    background-color: white;
+    width: 82%;
+    height: 550px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+    text-align: center;
+    
+}
+
+
+#BalanceText {
+    background-color: white;
+    width: 82%;
+    height: 400px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+}
+
+#ProfileText {
+    background-color: white;
+    width: 82%;
+    height: 700px;
+    position: relative;
+    padding: 25px;
+    border: 1px solid ;
+    margin: 15px;
+    text-align: center;
+}
