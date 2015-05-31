@@ -54,6 +54,8 @@ namespace App_Camps
             this.bookedForLBox.Items.AddRange(bookedForVisitorPitches.ToArray());
 
             this.Width -= this.detailsPanel.Width;
+
+            this.detailsPanel.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)

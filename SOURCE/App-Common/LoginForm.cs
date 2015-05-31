@@ -17,11 +17,16 @@ namespace App_Common
         {
             InitializeComponent();
 
-            if(!IsInDebug)
-                if (reader.IsAttached)
+            if (!IsInDebug)
+            {
+                if (!OnAttachSet)
                 {
-                    infoLbl.Text += " Or approach your card";
+                    OnAttachSet = true;
+                    reader.OnAttach += (x) => infoLbl.Text = "Enter your credentials Or approach your card";
+                    reader.OnDetach += (x) => infoLbl.Text = "Enter your credentials";
+                    reader.OnDetect += Authenticate;
                 }
+            }
         }
 
         protected virtual bool OnLogin() { throw new System.InvalidOperationException("Not implemented btn"); }
