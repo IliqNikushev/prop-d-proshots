@@ -42,16 +42,15 @@
             this.date = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cartListView = new System.Windows.Forms.ListBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
@@ -172,30 +171,11 @@
             this.label9.TabIndex = 76;
             this.label9.Text = "Start Date: Today";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(116, 512);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(39, 32);
-            this.button1.TabIndex = 77;
-            this.button1.Text = "1x";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(16, 502);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(46, 42);
-            this.button3.TabIndex = 79;
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // button2
             // 
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(677, 524);
+            this.button2.Location = new System.Drawing.Point(399, 512);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(110, 32);
             this.button2.TabIndex = 78;
@@ -235,57 +215,63 @@
             this.pictureBox11.TabIndex = 74;
             this.pictureBox11.TabStop = false;
             // 
-            // button4
-            // 
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(793, 524);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(78, 32);
-            this.button4.TabIndex = 80;
-            this.button4.Text = "Return all";
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button4.UseVisualStyleBackColor = true;
-            // 
             // button5
             // 
             this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(146, 512);
+            this.button5.Location = new System.Drawing.Point(266, 513);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(110, 32);
             this.button5.TabIndex = 81;
             this.button5.Text = "Rent selected";
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(16, 282);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(360, 212);
+            this.panel1.Size = new System.Drawing.Size(360, 224);
             this.panel1.TabIndex = 82;
             // 
             // cartListView
             // 
             this.cartListView.FormattingEnabled = true;
-            this.cartListView.Location = new System.Drawing.Point(399, 206);
+            this.cartListView.Location = new System.Drawing.Point(399, 190);
             this.cartListView.Name = "cartListView";
-            this.cartListView.Size = new System.Drawing.Size(496, 303);
+            this.cartListView.Size = new System.Drawing.Size(484, 147);
             this.cartListView.TabIndex = 84;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(399, 359);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(484, 147);
+            this.listBox1.TabIndex = 85;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(396, 343);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(64, 13);
+            this.label10.TabIndex = 86;
+            this.label10.Text = "Items in cart";
             // 
             // EmployeeITDesk
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(907, 568);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.cartListView);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox1);
@@ -332,12 +318,11 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ListBox cartListView;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label10;
     }
 }

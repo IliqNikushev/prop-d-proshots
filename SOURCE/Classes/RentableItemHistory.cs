@@ -56,7 +56,8 @@ namespace Classes
 
         public override Record Create()
         {
-            throw new NotImplementedException();
+
+            return null;
         }
     }
 }

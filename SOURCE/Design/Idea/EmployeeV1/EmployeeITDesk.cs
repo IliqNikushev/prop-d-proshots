@@ -15,8 +15,9 @@ namespace Design.Idea.EmployeeInterface
     {
         List<Classes.RentableItem> selectedItems = new List<Classes.RentableItem>();
         List<Classes.RentableItem> AllItems = Classes.Database.All<Classes.RentableItem>();
+        List<RentableItem> removedItems = new List<RentableItem>();
         RentableItem ren;
-
+        
         public EmployeeITDesk()
         {
             InitializeComponent();
@@ -66,26 +67,42 @@ namespace Design.Idea.EmployeeInterface
                 box.Controls.Add(rent);
                 box.Height = y+ rent.Height+5;
                 box.Width = 84;
-                rent.Click += (xx, yy) => 
+                int c = 0;
+                rent.Click += (xx, yy) =>
                 {
-                    //items[item].rentedTimes+=1;
-                    //foreach items.... item.rent(active visitor)
-                    //item.InStock -= 1;
-                    cartListView.Items.Add(item.Brand+ " " + item.Model + " rented at " + DateTime.Now + " until "+ date.Value + " for " + item.Price + " euros an hour");
+                    c += 1;
+                    stock.Text = (item.InStock - c).ToString();
+                    //currentStock = Convert.ToInt32(stock.Text);
+                    selectedItems.Add(item);
+                    listBox1.Items.Add(item);
                 };
-                //rent.Click += rent_Click;
+                button2.Click += (x, yy) =>
+                    {
+                        if (item != listBox1.SelectedItem as RentableItem)
+                        return;
+                        c -= 1;
+                        listBox1.Items.Remove(listBox1.SelectedItem);
+                        stock.Text = (item.InStock - c).ToString();
+                        //currentStock=Convert.ToInt32(stock.Text);
+                        
+                    };
+                button5.Click += (x, yy) =>
+                    {
+                        if (!selectedItems.Contains(item)) 
+                            return;
+                        cartListView.Items.Add(item.Brand + " " + item.Model + " rented at " + DateTime.Now + " until " + date.Value + " for " + item.Price + " euros an hour");
+                        Database.ExecuteSQL("UPDATE `rentableitems` SET InStock = {0} WHERE Item_ID = {1}", item.InStock-c, item.ID);  
+                    };
             }
         }
 
-        //void panel1_MouseWheel(object sender, MouseEventArgs e)
-        //{
-        //    panel1.VerticalScroll.Value += e.Delta*200;
-        //}
-
-        void rent_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Yes");
+            
+              
         }
+
+        
 
 
 

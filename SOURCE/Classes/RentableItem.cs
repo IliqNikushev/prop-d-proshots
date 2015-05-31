@@ -18,5 +18,9 @@ namespace Classes
             renter.Rent(this);
             RentableItemHistory history = new RentableItemHistory(this, renter);
         }
+        public override string ToString()
+        {
+            return Brand + " " + Model;
+        }
     }
 }
