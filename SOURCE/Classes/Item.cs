@@ -19,8 +19,17 @@ namespace Classes
         public string Type { get; private set; }
         public string Group { get; private set; }
         public string Description { get; private set; }
-        public string Icon{get; private set;}
-        //public Image Icon{get; private set;}
+        private string icon;
+        public string Icon
+        {
+            get
+            {
+                if (!icon.StartsWith("http"))
+                    return Database.PathToAthenaItemPictures + icon;
+                return icon;
+            }
+            set { this.icon = value; }
+        }
 
         public Item(int id, string brand, string model, string type, string group, string description, string icon)
             : base(id)

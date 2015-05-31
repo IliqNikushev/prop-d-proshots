@@ -10,7 +10,17 @@ namespace Classes
         public decimal Balance { get; private set; }
         public string RFID { get; private set; }
         public bool Ticket { get; private set; }
-        public string Picture { get; private set; }
+        private string picture;
+        public string Picture
+        {
+            get
+            {
+                if (!picture.StartsWith("http"))
+                    return Database.PathToAthenaUploads + picture;
+                return picture;
+            }
+            set { this.picture = value; }
+        }
 
         public Visitor(int id, string firstName, string lastName, string username, string password, string email, string picture, decimal balance, string rfid, bool ticket)
             : base(id, firstName, lastName, username, password, email)

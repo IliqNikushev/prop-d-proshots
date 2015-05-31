@@ -81,8 +81,10 @@ namespace App_Common
             mapArea.MouseDown += (x, mouse) =>
             {
                 if (mapDragging) return;
-                this.Cursor = Cursors.Cross;
+
                 this.mapDragging = true;
+
+                MainMenu.Cursor = Cursors.Cross;
                 mouseDragStartLocation = mouse.Location;
             };
 
@@ -91,7 +93,7 @@ namespace App_Common
                 if (!mapDragging) return;
 
                 mapDragging = false;
-                this.Cursor = Cursors.Default;
+                MainMenu.Cursor = Cursors.Default;
                 mapArea.Location = dragOffset;
                 holder.Refresh();
             };
@@ -116,6 +118,7 @@ namespace App_Common
                     dragOffset = previous;
                     return;
                 }
+
                 mapArea.Location = dragOffset;
                 holder.Refresh();
             };
@@ -310,6 +313,17 @@ namespace App_Common
         {
             findByNameTb.AutoCompleteCustomSource.Clear();
             SetMapItems(type);
+        }
+
+        protected void SetMapItems(IEnumerable<Classes.Landmark> items)
+        {
+            foreach (var item in this.points)
+                item.Clear();
+
+            this.points = items.Select(x => new MapPoint(x)).ToArray();
+
+            foreach (var item in this.points)
+                item.AddToMap(this.mapArea);
         }
 
         private void SetMapItems(string type, string label = "")

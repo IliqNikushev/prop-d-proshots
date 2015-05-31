@@ -26,5 +26,10 @@ namespace Classes
                 return Database.GetTent(this);
             }
         }
+
+        public override string ToString()
+        {
+            return "Pitch #" + this.ID;
+        }
     }
 }

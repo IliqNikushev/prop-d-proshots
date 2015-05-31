@@ -8,6 +8,8 @@ namespace Classes
 {
     public static class Utillities
     {
+        public const string DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+
         private static Dictionary<MySql.Data.MySqlClient.MySqlDataReader, Stack<string>> prefixes = new Dictionary<MySql.Data.MySqlClient.MySqlDataReader, Stack<string>>();
         private static Dictionary<MySql.Data.MySqlClient.MySqlDataReader, Stack<string>> distinctPrefixes = new Dictionary<MySql.Data.MySqlClient.MySqlDataReader, Stack<string>>();
 
@@ -232,9 +234,10 @@ namespace Classes
             return parameters.Select(x =>
             {
                 if (x is string) return "'" + x.ToString().Replace("'", "''") + "'";
-                if (x is DateTime) return "'" + ((DateTime)x).ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                if (x is DateTime) return "'" + ((DateTime)x).ToString(DateTimeFormat) + "'";
                 if (x == null) return "NULL";
                 if (x is Database.Table) return (x as Database.Table).Name;
+                if (x.GetType().IsClass) return "'"+x.ToString().Replace("'", "''") +"'";
                 return x.ToString();
             }).ToArray();
         }

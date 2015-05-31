@@ -66,7 +66,7 @@ namespace App_Camps
             new BookingForm(this, bookedByVisitorPitches, bookedForVisitorPitches).Show();
         }
 
-        private void showOnMapBtn_Click(object sender, EventArgs e)
+        private void cancelPitchBtn_Click(object sender, EventArgs e)
         {
             //todo show on map
         }
@@ -96,7 +96,7 @@ namespace App_Camps
 
         private void bookedByDetailsBtn_Click(object sender, EventArgs e)
         {
-            ShowDetails(bookedForLBox);
+            ShowDetails(bookedByLBox);
         }
 
         private void closeDetailsBtn_Click(object sender, EventArgs e)

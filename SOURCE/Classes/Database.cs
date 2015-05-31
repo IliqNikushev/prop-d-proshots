@@ -21,6 +21,11 @@ namespace Classes
                     C_Server, C_DataBase, C_UserID, C_Password
                 );
 
+        public const string PathToAthena = "https://athena.fhict.nl/webdir/i317294/Prop/";
+        public const string PathToAthenaLandmarkPictures = PathToAthena+"pic/landmarks/";
+        public const string PathToAthenaItemPictures = PathToAthena + "pic/items/";
+        public const string PathToAthenaUploads = PathToAthena + "user_images/";
+
         private static System.Reflection.Assembly assembly;
         public static System.Reflection.Assembly Assembly
         {
@@ -147,7 +152,7 @@ namespace Classes
             if (values.Split(',').Length != parameters.Length) throw new InvalidOperationException("Value missing in parameters");
 
             Type t = new System.Diagnostics.StackFrame(1).GetMethod().DeclaringType;
-            if (!t.IsSubclassOf(typeof(Record)))
+            if (!t.IsSubclassOf(typeof(Record))) // if derived class is calling this TODO : turn into a while
                 t = record.GetType();
             Table table = tables[t];
 
@@ -360,7 +365,7 @@ namespace Classes
                     string.Join(",", parameters));
 
             List<object> result = GetWhere(recordType, string.Join(" and ", whereParameters.Select(x => x.Key + " = " + x.Value)));
-            return result.Last() as Record;
+            return result.LastOrDefault() as Record;
         }
 
         static List<object> processingList;
@@ -455,7 +460,7 @@ namespace Classes
             string[] wantedTables = sql.Split('|');
             where = where.Replace("|T|", tables[t].Name);
 
-            ExecuteSQLWithResult(sql + (sql.ToLower().IndexOf("where") == -1 ?  " Where " + where : " and " + where), ProcessReader);
+            ExecuteSQLWithResult(sql + (sql.ToLower().IndexOf("where") == -1 ?  " Where " + where : " and (" + where+")"), ProcessReader);
 
             List<object> result = new List<object>(processingList);
             processingList.Clear();

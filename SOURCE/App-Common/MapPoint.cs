@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace App_Common
 {
-    abstract class MapPoint
+    static class MapPointUtils
+    {
+        public static void Remove(this System.Windows.Forms.Control c)
+        {
+            c.Parent.Controls.Remove(c);
+        }
+    }
+
+    class MapPoint
     {
         public const int IconSize = 16;
         private Classes.Landmark Landmark;
@@ -14,10 +22,19 @@ namespace App_Common
         public string Description { get { return this.Landmark.Description; } }
         public int X { get { return this.Landmark.X; } }
         public int Y { get { return this.Landmark.Y; } }
-
-        protected abstract System.Drawing.Bitmap Image { get; }
+        public string Icon { get { return this.Landmark.Icon; } }
 
         private System.Windows.Forms.PictureBox marker;
+        System.Windows.Forms.Label onHover;
+
+        public void Clear()
+        {
+            marker.Remove();
+            marker = null;
+            onHover.Remove();
+            onHover = null;
+            this.Landmark = null;
+        }
 
         public void HideInMap()
         {
@@ -32,12 +49,6 @@ namespace App_Common
         }
 
         //temporary constructor
-        public MapPoint(int x, int y, string label, string description)
-        {
-            this.Landmark = new Classes.EventLandmark(-1, label, description, x, y, DateTime.Today, DateTime.Today);
-        }
-
-        //temporary constructor
         public MapPoint(Classes.Landmark landmark)
         {
             this.Landmark = landmark;
@@ -45,17 +56,15 @@ namespace App_Common
 
         public void AddToMap(System.Windows.Forms.Control map)
         {
-            System.Drawing.Bitmap image = this.Image;
-#warning TODO:Add classes to use the map points
-
-            System.Windows.Forms.Label onHover = new System.Windows.Forms.Label();
+            onHover = new System.Windows.Forms.Label();
             onHover.Text = this.Label;
-            if (this.Description != null)
+            if (this.Description != null && this.Description.Trim() != "")
                 onHover.Text += "\n" + this.Description;
 
             marker = new System.Windows.Forms.PictureBox();
             marker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             marker.Size = new System.Drawing.Size(IconSize, IconSize);
+            marker.ImageLocation = Icon;
             onHover.Visible = false;
             onHover.SendToBack();
 
@@ -66,7 +75,6 @@ namespace App_Common
 
             onHover.AutoSize = true;
 
-            marker.Image = image;
             marker.MouseHover += (x, y) => { if (!onHover.Visible) { onHover.Visible = true; onHover.BringToFront(); marker.BringToFront(); } };
             marker.MouseLeave += (x, y) => { if (onHover.Visible) { onHover.SendToBack(); onHover.Visible = false; } };
             marker.BringToFront();

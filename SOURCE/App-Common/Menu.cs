@@ -105,8 +105,14 @@ namespace App_Common
             this.ParentMenu = parent;
         }
 
+        protected virtual void Reset()
+        {
+        }
+
         new public void Show()
         {
+            Reset();
+
             if (this == MainMenu)
             {
                 this.IsRendering = true;
@@ -124,6 +130,7 @@ namespace App_Common
                 this.ParentMenu.SetAsActive();
                 this.ParentMenu.Width = this.ParentMenu.defaultWidth;
                 this.ParentMenu.Height = this.ParentMenu.defaultHeight;
+                this.ParentMenu.Reset();
             }
             else
                 base.Close();

@@ -146,7 +146,7 @@ namespace Classes
                                 extra += " and\r\n(" + join.Table.Extra + ")";
                 }
                 if (extra.Trim() != "")
-                    extra = "\r\nWhere\r\n" + extra;
+                    extra = "\r\nWhere\r\n(" + extra+")";
                 return fields + "\r\nfrom\r\n" + name + extra;
             }
 

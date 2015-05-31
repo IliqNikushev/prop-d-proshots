@@ -16,9 +16,6 @@ namespace App_Employee
         {
             get
             {
-#warning todo real address
-                if (!Item.Icon.StartsWith("http"))
-                    return "http://<ADDRESS AT ATHENA>/" + Item.Icon;
                 return Item.Icon;
             }
         }

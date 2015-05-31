@@ -86,7 +86,7 @@
     <Compile Include="ShopItem.cs" />
     <Compile Include="ShopJob.cs" />
     <Compile Include="Tent.cs" />
-    <Compile Include="TentAreaLandmark.cs" />
+    <Compile Include="TentPitch.cs" />
     <Compile Include="TentPeople.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,7 +96,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Classes.cd" />
-    <None Include="ClassCodeMap.dgml" />
+    <None Include="ClassCodeMap.dgml">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -294,6 +294,7 @@
     </Compile>
     <EmbeddedResource Include="Idea\AdministratorInterface\Camping.resx">
       <DependentUpon>Camping.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\AdministratorInterface\SubMenu\ShopInformation.resx">
       <DependentUpon>ShopInformation.cs</DependentUpon>
@@ -330,6 +331,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\AdministratorInterface\Calendar.resx">
       <DependentUpon>Calendar.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\AdministratorInterface\Employees.resx">
       <DependentUpon>Employees.cs</DependentUpon>

@@ -14,98 +14,118 @@ namespace App_Camps
     {
         class PersonRow
         {
-            const int personHeight = 22;
-            public static List<PersonRow> people = new List<PersonRow>();
+            const int rowHeight = 22;
+            public static List<PersonRow> rows = new List<PersonRow>();
             public Classes.Visitor Visitor;
-            public TextBox name;
-            public Label price;
-            public Label remove;
+            public TextBox nameTbox;
+            public Label priceLbl;
+            public Button removeBtn;
+            public ListBox autoCompleteLbox;
 
             public PersonRow(int x, int y, Control parent, Action onRemove)
             {
-                y = y + people.Count * personHeight;
-                this.name = new TextBox();
-                this.name.Left = x;
-                this.name.Top = y;
+                y = y + rows.Count * rowHeight;
+                this.nameTbox = new TextBox();
+                this.nameTbox.Left = x;
+                this.nameTbox.Top = y;
 
-                this.name.Width = 160;
-                this.name.Height = 20;
+                this.nameTbox.Width = 160;
+                this.nameTbox.Height = 20;
 
-                x += this.name.Width;
+                x += this.nameTbox.Width;
 
-                this.price = new Label();
-                price.Visible = false;
-                this.price.Left = x;
-                this.price.Top = y;
-                this.price.Text = "+" + App_Common.Constants.PricePerPersonForCamp + App_Common.Constants.Currency;
+                this.priceLbl = new Label();
+                priceLbl.Visible = false;
+                this.priceLbl.Left = x;
+                this.priceLbl.Top = y;
+                this.priceLbl.Width = 30;
+                this.priceLbl.AutoSize = false;
+                this.priceLbl.Text = "+" + App_Common.Constants.PricePerPersonForCamp + App_Common.Constants.Currency;
 
-                x += 20;
+                x += priceLbl.Width;
 
-                this.remove = new Label();
-                this.remove.Left = x;
-                this.remove.Top = int.Parse(y.ToString());
-                this.remove.Text = "-";
-                this.remove.Width = 17;
-                this.remove.Height = 21;
+                this.removeBtn = new Button();
+                this.removeBtn.Left = x;
+                this.removeBtn.Top = y;
+                this.removeBtn.Text = "-";
+                this.removeBtn.Width = 17;
+                this.removeBtn.Height = 21;
 
-                this.remove.Click += (xx,yy) =>
+                this.removeBtn.Click += (xx,yy) =>
                 {
-                    onRemove();
                     this.Remove();
+                    onRemove();
                 };
                 
-                parent.Controls.Add(name);
-                parent.Controls.Add(price);
-                parent.Controls.Add(remove);
+                parent.Controls.Add(nameTbox);
+                parent.Controls.Add(priceLbl);
+                parent.Controls.Add(removeBtn);
 
-                this.name.AutoCompleteCustomSource = new AutoCompleteStringCollection();
-                this.name.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                this.name.AutoCompleteMode = AutoCompleteMode.None;
+                this.nameTbox.AutoCompleteCustomSource = new AutoCompleteStringCollection();
+                this.nameTbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                this.nameTbox.AutoCompleteMode = AutoCompleteMode.None;
 
-                people.Add(this);
+                rows.Add(this);
             }
 
             public void Remove()
             {
-                this.name.Parent.Controls.Remove(this.name);
-                this.name.Parent.Controls.Remove(this.price);
-                this.name.Parent.Controls.Remove(this.remove);
+                this.removeBtn.Parent.Controls.Remove(this.nameTbox);
+                this.removeBtn.Parent.Controls.Remove(this.priceLbl);
+                this.removeBtn.Parent.Controls.Remove(this.removeBtn);
 
-                int y = personHeight;
-                foreach (PersonRow person in people)
+                int y = 0;
+                foreach (PersonRow row in rows)
                 {
-                    if (y > 0) y += personHeight;
-                    if (person == this)
-                        y += personHeight;
+                    if (row == this)
+                        y += rowHeight;
+                    else
+                    {
+                        if (y == 0) continue;
+
+                        row.nameTbox.Top -= rowHeight;
+                        row.priceLbl.Top -= rowHeight;
+                        row.removeBtn.Top -= rowHeight;
+                        row.autoCompleteLbox.Top -= rowHeight;
+
+                        y += rowHeight;
+                    }
                 }
-                people.Remove(this);
+                rows.Remove(this);
             }
         }
 
         private IEnumerable<Classes.Tent> bookedByVisitorPitches;
         private IEnumerable<Classes.Tent> bookedForVisitorPitches;
-        private IEnumerable<Classes.TentPitch> freeTents;
+        private IEnumerable<Classes.TentPitch> freeTentPitches;
         private List<Classes.Visitor> Visitors = new List<Classes.Visitor>();
 
-        private int NumberOfPeople { get { return PersonRow.people.Count; } }
+        private string[] NotSelectedVisitors
+        {
+            get
+            {
+                if (findByEmailCbox.Checked)
+                    return this.Visitors.Select(x => x.Email).Where(x => !PersonRow.rows.Select(y => y.nameTbox.Text).Contains(x)).ToArray();
+                else if (findByNameCbox.Checked)
+                    return this.Visitors.Select(x => GetVisitor(x)).Where(x => !PersonRow.rows.Select(y => y.nameTbox.Text).Contains(x)).ToArray();
+                return new string[] { };
+            }
+        }
+
+        private int NumberOfRows { get { return PersonRow.rows.Count; } }
+        private int NumberOfPeople { get { return People.Count + 1; } }
+        private List<Classes.Visitor> People { get { return PersonRow.rows.Select(x => x.Visitor).Where(x => x != null).ToList(); } }
+
+        private decimal TotalPrice { get { return App_Common.Constants.PriceInitialForCamp + App_Common.Constants.PricePerPersonForCamp * NumberOfPeople * nightsNUD.Value; } }
+        private Classes.TentPitch SelectedPitch { get { return this.pitchesCBox.SelectedItem as Classes.TentPitch; } }
 
         public BookingForm(App_Common.Menu parent, IEnumerable<Classes.Tent> bookedByVisitorPitches, IEnumerable<Classes.Tent> bookedForVisitorPitches)
             : base(parent)
         {
-            if (PersonRow.people != null)
-                PersonRow.people.Clear();
-
             InitializeComponent();
 
             this.bookedByVisitorPitches = bookedByVisitorPitches;
             this.bookedForVisitorPitches = bookedForVisitorPitches;
-
-            Visitors = Classes.Database.Where<Classes.Visitor>("Visitors.user_id != {0}", LoggedInVisitor.ID);
-
-            ProcessBookedFor();
-            ProcessBookedBy();
-
-            freeTents = Classes.Database.FreeTentPitches;
 
             base.findByNameLbl.Visible = false;
             base.findByNameTb.Visible = false;
@@ -117,6 +137,26 @@ namespace App_Camps
 
             this.initialPriceLbl.Text = App_Common.Constants.PriceInitialForCamp + App_Common.Constants.Currency;
             this.pricePerPersonlbl.Text = App_Common.Constants.PricePerPersonForCamp + App_Common.Constants.Currency;
+
+            currentBalanceLbl.Text = "Your balance is : " + LoggedInVisitor.Balance + App_Common.Constants.Currency;
+
+            if (PersonRow.rows != null)
+                PersonRow.rows.Clear();
+
+            Visitors = Classes.Database.Where<Classes.Visitor>("Visitors.user_id != {0}", LoggedInVisitor.ID);
+
+            freeTentPitches = Classes.Database.FreeTentPitches;
+
+            UpdateMap();
+
+            ProcessBookedFor();
+            ProcessBookedBy();
+
+            pitchesCBox.Items.AddRange(freeTentPitches.ToArray());
+
+            findByTypeTb.Text = "all";
+
+            UpdateState();
         }
 
         protected override void OnSet()
@@ -204,6 +244,14 @@ namespace App_Camps
         {
             if (findByEmailCbox.Checked && findByNameCbox.Checked) findByEmailCbox.Checked = false;
             if (!findByEmailCbox.Checked && !findByNameCbox.Checked) findByEmailCbox.Checked = true;
+
+            foreach (PersonRow row in PersonRow.rows)
+            {
+                row.nameTbox.AutoCompleteCustomSource.Clear();
+                row.nameTbox.AutoCompleteCustomSource.AddRange(NotSelectedVisitors);
+                if (row.Visitor != null)
+                    row.nameTbox.Text = GetVisitor(row.Visitor);
+            }
         }
 
         private void findByEmailCbox_CheckedChanged(object sender, EventArgs e)
@@ -211,11 +259,57 @@ namespace App_Camps
             //todo on changed -> change the collection
             if (findByEmailCbox.Checked && findByNameCbox.Checked) findByNameCbox.Checked = false;
             if (!findByEmailCbox.Checked && !findByNameCbox.Checked) findByNameCbox.Checked = true;
+
+            foreach (PersonRow row in PersonRow.rows)
+            {
+                row.nameTbox.AutoCompleteCustomSource.Clear();
+                row.nameTbox.AutoCompleteCustomSource.AddRange(NotSelectedVisitors);
+                if (row.Visitor != null)
+                    row.nameTbox.Text = row.Visitor.Email;
+            }
         }
 
         private void confrimBtn_Click(object sender, EventArgs e)
         {
+            if (SelectedPitch == null)
+            {
+                MessageBox.Show("Please select a tent pitch to book.");
+                return;
+            }
+            if (LoggedInVisitor.Balance < TotalPrice)
+            {
+                MessageBox.Show(string.Format("You do not have enough money in your account.\nYou have {0}, you need {1}.\nYou need {2} more",
+                    LoggedInVisitor.Balance + App_Common.Constants.Currency, 
+                    TotalPrice + App_Common.Constants.Currency,
+                    (TotalPrice - LoggedInVisitor.Balance)+App_Common.Constants.Currency
+                    ), "Balance is too low");
+                return;
+            }
 
+            if (MessageBox.Show(string.Format(
+                "Are you sure you wish to book tent pitch #{0}\nFrom {1} evening\nUntill {2} morning ({3} night{4})\nfor {5} visitor{6}?\n{7}\nTotal price is :{8}{9}",
+                SelectedPitch.ID,
+                dateFromTbox.Text,
+                toDateTbox.Text,
+                nightsNUD.Value,
+                nightsNUD.Value == 1 ? "" : "s",
+                NumberOfPeople,
+                NumberOfPeople == 1 ? "" : "s",
+                string.Join("\n", People.Select(x => "- " + x.FullName + " " + x.Email)),
+                TotalPrice,
+                App_Common.Constants.Currency), "Confirm booking", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Classes.Record result = new Classes.Tent(SelectedPitch, dateFromTbox.Text, toDateTbox.Text, LoggedInVisitor, People).Create();
+                if (result == null)
+                {
+                    MessageBox.Show("The tent pitch was just booked before you by another visitor. Sorry for the inconvenience.");
+                }
+                else
+                {
+                    MessageBox.Show("The tent pitch has been reserved!");
+                    this.Close();
+                }
+            }
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -225,25 +319,19 @@ namespace App_Camps
 
         private void addPersonBtn_Click(object sender, EventArgs e)
         {
-            if (NumberOfPeople == 4)
+            if (NumberOfRows == 4)
                 addPersonBtn.Visible = false;
-            PersonRow row = new PersonRow(peopleLocation.Left, peopleLocation.Top, this, () => { addPersonBtn.Visible = true; UpdatePrice(); });
+            PersonRow row = new PersonRow(peopleLocation.Left, peopleLocation.Top, this, () => { addPersonBtn.Visible = true; UpdateState(); });
 
-            IEnumerable<string> items = new string[] { };
+            row.nameTbox.AutoCompleteCustomSource.Clear();
+            row.nameTbox.AutoCompleteCustomSource.AddRange(NotSelectedVisitors);
 
-            if (findByEmailCbox.Checked)
-                items = this.Visitors.Select(x => x.Email).Where(x => !PersonRow.people.Select(y => y.name.Text).Contains(x));
-            else if (findByNameCbox.Checked)
-                items = this.Visitors.Select(x => GetVisitor(x)).Where(x => !PersonRow.people.Select(y => y.name.Text).Contains(x));
-
-            row.name.AutoCompleteCustomSource.AddRange(items.ToArray());
-
-            AddAutoCompleteTo(row.name,
+            AddAutoCompleteTo(row.nameTbox,
                 (ee) =>
                 {
                     if (ee.KeyChar == (char)Keys.Return) // enter
                     {
-                        OnAutoComplete[row.name].Action(row.name);
+                        OnAutoComplete[row.nameTbox].Action(row.nameTbox.Text);
                         ee.KeyChar = '\0';
                     }
                 },
@@ -255,9 +343,13 @@ namespace App_Camps
                     else if (findByEmailCbox.Checked)
                         v = this.Visitors.Where(x => x.Email == (string)selection).FirstOrDefault();
                     row.Visitor = v;
-                    row.price.Visible = v != null;
-                    row.remove.Visible = v != null;
+                    row.priceLbl.Visible = v != null;
+                    UpdateState();
                 });
+
+            row.autoCompleteLbox = OnAutoComplete[row.nameTbox].ListBox;
+
+            UpdateState();
         }
 
         private string GetVisitor(Classes.Visitor v)
@@ -272,21 +364,57 @@ namespace App_Camps
             return this.Visitors.Where(x => GetVisitor(x) == name).First();
         }
 
+        private void UpdateMap()
+        {
+            SetMapItems(this.freeTentPitches);
+        }
+
+        private void UpdatePitches()
+        {
+            Classes.TentPitch selectedPitch = SelectedPitch;
+            freeTentPitches = Classes.Database.Where<Classes.TentPitch>("|T|.id not in (select {0}.location from {0}) or |T|.id in (select {0}.location from {0} where {0}.bookedTill < {1} or {0}.bookedOn > {2})",
+                Classes.Database.TableName<Classes.Tent>(), dateTimePicker.Value, dateTimePicker.Value.AddDays((double)nightsNUD.Value));
+            UpdateMap();
+            pitchesCBox.Items.Clear();
+            pitchesCBox.Items.AddRange(freeTentPitches.ToArray());
+            if (selectedPitch != null)
+            {
+                if (!freeTentPitches.Where(x => x.ID == selectedPitch.ID).Any()) // not free any more
+                {
+                    MessageBox.Show("Tent pitch that you had selected is not free for the new specified period");
+                }
+                //else set the new value for the combo box
+            }
+        }
+
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            UpdatePitches();
+            UpdateState();
+        }
+
+        private void nightsNUD_ValueChanged(object sender, EventArgs e)
+        {
+            UpdatePitches();
+            UpdateState();
+        }
+
+        private void UpdateState()
         {
             dateFromTbox.Text = dateTimePicker.Value.ToString(dateTimePicker.CustomFormat);
             toDateTbox.Text = (dateTimePicker.Value.AddDays((double)nightsNUD.Value)).ToString(dateTimePicker.CustomFormat);
 
-            UpdatePrice();
+            nightsNUD.Maximum = (App_Common.Constants.EventEnd - dateTimePicker.Value).Days + 1;
+            totalPriceLbl.Text = TotalPrice + App_Common.Constants.Currency;
+
+            if (NumberOfPeople == 1)
+                bookedForPeopleLbl.Text = "Booked for 1 person";
+            else
+                bookedForPeopleLbl.Text = "Booked for " + NumberOfPeople + " people";
+            
         }
 
-        private void UpdatePrice()
-        {
-            decimal price = App_Common.Constants.PricePerPersonForCamp * NumberOfPeople;
-            totalPriceLbl.Text = price+App_Common.Constants.Currency;
-        }
-
-        private void nightsNUD_ValueChanged(object sender, EventArgs e)
+        private void pitchesCBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
