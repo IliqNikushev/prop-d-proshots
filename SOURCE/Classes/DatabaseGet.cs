@@ -54,11 +54,18 @@ namespace Classes
             }
         }
 
-        public static List<Job> Jobs
+        public static List<String> Jobs
         {
             get
             {
-                return All<Job>();
+                List<string> result = new List<string>();
+                ExecuteSQLWithResult("select name from jobs;",
+                    (x) =>
+                    {
+                        while (x.Read())
+                            result.Add(x.GetStr("name"));
+                    });
+                return result;
             }
         }
 

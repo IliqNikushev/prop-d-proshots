@@ -459,8 +459,10 @@ namespace Classes
 
             string[] wantedTables = sql.Split('|');
             where = where.Replace("|T|", tables[t].Name);
-
-            ExecuteSQLWithResult(sql + (sql.ToLower().IndexOf("where") == -1 ?  " Where " + where : " and (" + where+")"), ProcessReader);
+            if(where.Trim() == "")
+                ExecuteSQLWithResult(sql, ProcessReader);
+            else
+                ExecuteSQLWithResult(sql + (sql.ToLower().IndexOf("where") == -1 ?  " Where " + where : " and (" + where+")"), ProcessReader);
 
             List<object> result = new List<object>(processingList);
             processingList.Clear();

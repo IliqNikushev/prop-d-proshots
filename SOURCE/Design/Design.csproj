@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Idea\AdministratorInterface\AddNewEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\AdministratorInterface\AddNewEvent.Designer.cs">
+      <DependentUpon>AddNewEvent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Idea\AdministratorInterface\Calendar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,6 +298,9 @@
     <Compile Include="SubMenuBase.designer.cs">
       <DependentUpon>SubMenuBase.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Idea\AdministratorInterface\AddNewEvent.resx">
+      <DependentUpon>AddNewEvent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Idea\AdministratorInterface\Camping.resx">
       <DependentUpon>Camping.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -605,6 +614,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Back3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pin601.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

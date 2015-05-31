@@ -131,6 +131,8 @@ namespace Classes
 
         public static T Get<T>(this MySql.Data.MySqlClient.MySqlDataReader reader, string name) where T : struct
         {
+            //if (typeof(T) == typeof(DateTime))
+            //    return (T)(object)DateTime.ParseExact(reader.GetStr(name), DateTimeFormat, System.Globalization.CultureInfo.CurrentCulture);
             return (T)reader.Get(name, default(T));
         }
 

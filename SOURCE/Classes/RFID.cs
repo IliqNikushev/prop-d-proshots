@@ -12,7 +12,7 @@ namespace Classes
         {
             get
             {
-                return false;
+                
                 try
                 {
                     new Phidgets.RFID();
