@@ -22,7 +22,7 @@ require('Head.php');
                 if (offset == numberOfImagesInLeagues - numberOfImagesToDisplay)
                     $("#Leagues-forward-arrow-1").show();
 
-                $("#Index-Leagues-content").animate({left: '+=32%'});
+                $("#Index-Leagues-content").animate({left: '+=33%'});
 
                 offset -= 1;
                 if (offset == 0) {
@@ -40,7 +40,7 @@ require('Head.php');
                     $("#Leagues-forward-arrow-1").css("margin-left", "0px");
                 }
 
-                $("#Index-Leagues-content").animate({left: '-=32%'});
+                $("#Index-Leagues-content").animate({left: '-=33%'});
 
                 offset += 1;
                 if (offset == numberOfImagesInLeagues - numberOfImagesToDisplay)
@@ -84,35 +84,35 @@ require('Head.php');
                 <div id="Index-Leagues-content">
 
                     <div id="Leagues-text"  >
-                        <img src="img/RoboCup-Soccer.jpg"	alt="IMG" title="IMG1" width="100%" height="150"/><br><br>
+                        <img src="img/RoboCup-Soccer.jpg"	alt="IMG" title="IMG1" width="100%" height="25%"/><br><br>
                         <a href="Leagues.php" class="headline"><b>RoboCup Soccer</b></a><br><br>
                         The main focus of the<br> RoboCup competitions is the<br> game of soccer, where the<br> research goals concern<br> cooperative multi-robot and<br> multi-agent systems in<br> dynamic adversarial<br> environments. All robots in<br> this league are fully<br>
                         <br><a href="RoboCup Soccer.php"><img src="img/red-button.png"	alt="IMG" title="IMG2" height="50" width="90%" /></a>
                     </div>
 
                     <div id="Leagues-text"  >
-                        <img src="img/RoboCup-Rescue.jpg"	alt="IMG" title="IMG3" width="100%" height="150"/><br><br>
+                        <img src="img/RoboCup-Rescue.jpg"	alt="IMG" title="IMG3" width="100%" height="25%"/><br><br>
                         <a href="Leagues.php" class="headline"><b>RoboCup Rescue</b></a><br><br>
                         The RoboCupRescue Robot<br> League is an international<br> league of teams with one<br> objective: Develop and<br> demonstrate advanced<br> robotic capabilities for<br> emergency responders using<br> annual competitions to<br> evaluate,<br>
                         <br><a href="RoboCup Rescue.php"><img src="img/red-button.png"	alt="IMG" title="IMG4" height="50" width="90%"/></a>
                     </div>
 
                     <div id="Leagues-text"  >
-                        <img src="img/RoboCup-Junior.jpg"	alt="IMG" title="IMG5" width="100%" height="150"/><br><br>
+                        <img src="img/RoboCup-Junior.jpg"	alt="IMG" title="IMG5" width="100%" height="25%"/><br><br>
                         <a href="Leagues.php" class="headline"><b>RoboCupJunior</b></a><br><br>
                         RoboCupJunior is targeted<br> for primary and secondary<br> school students. There is no<br> fixed minimum age, but<br> primary students are<br> expected to be able to read<br> (and hence write programs<br> for their robots) on their<br> own, without <br>
                         <br><a href="RoboCupJunior.php"><img src="img/red-button.png"	alt="IMG" title="IMG6" height="50" width="90%"/></a>
                     </div>
 
                     <div id="Leagues-text" >
-                        <img src="img/RoboCup@Home.jpg"	alt="IMG" title="IMG7" width="100%" height="150"/><br><br>
+                        <img src="img/RoboCup@Home.jpg"	alt="IMG" title="IMG7" width="100%" height="25%"/><br><br>
                         <a href="Leagues.php" class="headline"><b>RoboCup@Home</b></a><br><br>
                         The RoboCup@Home league<br> aims to develop service and<br> assistive robot technology<br> with high relevance for<br> future personal domestic<br> applications. It is the<br> largest international annual<br> competition for autonomous <br>
                         <br><a href="RoboCup@Home.php"><img src="img/red-button.png"	alt="IMG" title="IMG8" height="50" width="90%"/></a>
                     </div>
 
                     <div id="Leagues-text" >
-                        <img src="img/RoboCup@Work.jpg"	alt="IMG" title="IMG9" width="100%" height="150"/><br><br>
+                        <img src="img/RoboCup@Work.jpg"	alt="IMG" title="IMG9" width="100%" height="25%"/><br><br>
                         <a href="Leagues.php" class="headline"><b>RoboCup@Work</b></a><br><br>
                         RoboCup@Work is a new<br> competition in RoboCup that<br> targets the use of robots in<br> work-related scenarios.<br>
                         <br><a href="RoboCup@Work.php"><img src="img/red-button.png"	alt="IMG" title="IMG10" height="50" width="90%"/></a>

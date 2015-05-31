@@ -79,23 +79,23 @@ require('Tickets_SQL.php');
 
             <script>
 
-                
+
 
                 var count = 0;
                 function Add() {
-                    
+
                     var MyRows = $('table#table').find('tbody').find('tr');
                     var DontAdd = 0;
                     for (var i = 0; i < MyRows.length; i++) {
                         var Email = $(MyRows[i]).find('td:eq(2)').html();
-                        if(Email == $('#Visitors_Email').val()){
+                        if (Email == $('#Visitors_Email').val()) {
                             DontAdd = 1;
                         }
-                        else{
+                        else {
                             DontAdd = 0;
                         }
                     }
-                    if(DontAdd == 0){
+                    if (DontAdd == 0) {
                         count = count + 1;
                         var table = document.getElementById("table").getElementsByTagName('tbody')[0];
                         if ($('#Visitors_FirstName').val() !== "" && $('#Visitors_LastName').val() !== "" && $('#Visitors_Email').val() !== "") {
@@ -117,8 +117,8 @@ require('Tickets_SQL.php');
                         }
                     }
                     else {
-                            $('#Message').text("Can't add the same Email!");
-                        }
+                        $('#Message').text("Can't add the same Email!");
+                    }
                 }
 
                 function Remove() {
@@ -163,8 +163,19 @@ require('Tickets_SQL.php');
                     }
 
 
-                    $.post("Tickets_Pay.php", {Has_Ticket: Has_Ticket, users: users}, function (data) {
-                        window.location.pathname = "webdir/i317294/Prop/Tickets.php"
+//                    $.post("Tickets_Pay.php", {Has_Ticket: Has_Ticket, users: users}, function (data) {
+//                        window.location.pathname = "webdir/i317294/Prop/Tickets.php"
+//                    });
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "Tickets_Pay.php",
+                        data: {Has_Ticket: Has_Ticket, users: users},
+                        success: function (data) {
+                            window.location.pathname = "webdir/i317294/Prop/Tickets.php"
+                            }
+                        
+
                     });
 
 

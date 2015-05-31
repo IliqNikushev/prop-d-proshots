@@ -12,19 +12,19 @@ while ($row = mysql_fetch_assoc($result)) {
 foreach ($rows as $row) {
     $UserID = $row["ID"];
 }
-$query1 = "SELECT Ticket FROM visitors WHERE User_ID='$UserID'";
-$result1 = mysql_query($query1);
+$Ticket_query = "SELECT Ticket FROM visitors WHERE User_ID='$UserID'";
+$Ticket_result = mysql_query($Ticket_query);
 
-while ($row1 = mysql_fetch_assoc($result1)) {
+while ($row1 = mysql_fetch_assoc($Ticket_result)) {
     $rows1[] = $row1;
 }
 
 foreach ($rows1 as $row1) {
     $Has_Ticket = $row1["Ticket"];
 }
-$query5 = "SELECT Balance FROM visitors WHERE User_ID='$UserID'";
-$result5 = mysql_query($query5);
-while ($row2 = mysql_fetch_assoc($result5)) {
+$Balance_query = "SELECT Balance FROM visitors WHERE User_ID='$UserID'";
+$Balance_result = mysql_query($Balance_query);
+while ($row2 = mysql_fetch_assoc($Balance_result)) {
     $rows2[] = $row2;
 }
 
@@ -58,13 +58,14 @@ foreach ($users as $x) {
         $msg = "User with email: " . $x["Email"] . " already exist.";
         setcookie("msg", "$msg", time() + 15);
         exit();
-    } else {
-        $query3 = "INSERT INTO `tempusers` (Email,FirstName,LastName) VALUES ('" . $x["Email"] . "','" . $x["FirstName"] . "','" . $x["LastName"] . "')";
-        $result3 = mysql_query($query3);
+    } 
+    else {
+        $tempusers_insert_query = "INSERT INTO `tempusers` (Email,FirstName,LastName) VALUES ('" . $x["Email"] . "','" . $x["FirstName"] . "','" . $x["LastName"] . "')";
+        $tempusers_insert_result = mysql_query($tempusers_insert_query);
         $Email = $x["Email"];
-        $query4 = "SELECT ID FROM tempusers WHERE Email='$Email' ";
-        $result4 = mysql_query($query4);
-        while ($row2 = mysql_fetch_assoc($result4)) {
+        $tempusersID_query = "SELECT ID FROM tempusers WHERE Email='$Email' ";
+        $tempusersID_result = mysql_query($tempusersID_query);
+        while ($row2 = mysql_fetch_assoc($tempusersID_result)) {
             $rows2[] = $row2;
         }
 
@@ -91,13 +92,13 @@ foreach ($users as $x) {
 
 //$mail->SMTPDebug = 3;                               // Enable verbose debug output
 
-        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+//        $mail->isSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = 'smtp.gmail.com ';  // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
         $mail->Username = 'proshotsmessage@gmail.com';                 // SMTP username
         $mail->Password = 'Pro12345Shots';                           // SMTP password
         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 587;                                    // TCP port to connect to
+        $mail->Port = 25;                                    // TCP port to connect to
 
         $mail->From = 'proshotsmessage@gmail.com';
         $mail->FromName = 'ProShots';
@@ -122,13 +123,14 @@ foreach ($users as $x) {
         }
     }
 }
-$query2 = "UPDATE `visitors` SET `Ticket`='1' WHERE User_ID='$UserID'";
-$result2 = mysql_query($query2);
+$UPDATE_visitors_Ticket_query = "UPDATE `visitors` SET `Ticket`='1' WHERE User_ID='$UserID'";
+$UPDATE_visitors_Ticket_result = mysql_query($UPDATE_visitors_Ticket_query);
 
 $Amount = $Balance - $Pay;
 
-$query6 = "UPDATE `visitors` SET `Balance`='$Amount' WHERE User_ID='$UserID'";
-$result6 = mysql_query($query6);
+$UPDATE_visitors_Balance_query = "UPDATE `visitors` SET `Balance`='$Amount' WHERE User_ID='$UserID'";
+$UPDATE_visitors_Balance_result = mysql_query($UPDATE_visitors_Balance_query);
 $msg = "You payment was successful.";
 setcookie("msg", "$msg", time() + 15);
+exit();
 }

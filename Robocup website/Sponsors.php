@@ -30,7 +30,7 @@ require('Head.php');
 
 
         <div class="container" id="Sponsors-Content">
-            <div>
+            
 
                 <b>SPONSORING ROBOCUP 2015</b><br><br>
 
@@ -50,40 +50,40 @@ require('Head.php');
 
                 <b>Sponsors RoboCup 2015</b><br>
 
-                <div id="Leagues-text" class="content" style=" float: left;">
-                    <br><img src="img/RoboCup-Sponsor-1.png"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-4.png"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-7.jpg"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-10.png"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-13.png"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-16.jpg"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-19.jpg"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-22.jpg"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
+                <div >
+                    <br><img src="img/RoboCup-Sponsor-1.png"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-4.png"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-7.jpg"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-10.png"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-13.png"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-16.jpg"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-19.jpg"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-22.jpg"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
                 </div>
 
-                <div id="Leagues-text" class="content" style=" float: left;">
-                    <br><img src="img/RoboCup-Sponsor-2.png"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-5.png"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-8.png"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-11.png"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-14.jpg"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-17.png"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-20.gif"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-23.png"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
+                <div >
+                    <br><img src="img/RoboCup-Sponsor-2.png"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-5.png"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-8.png"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-11.png"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-14.jpg"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-17.png"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-20.gif"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-23.png"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
                 </div>
 
-                <div id="Leagues-text" class="content" style=" float: left;">
-                    <br><img src="img/RoboCup-Sponsor-3.png"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-6.png"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-9.jpg"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-12.jpg"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-15.png"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-18.jpg"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-21.gif"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
-                    <br><img src="img/RoboCup-Sponsor-24.png"	alt="IMG" title="IMG6" height="100" width="150"/></br><br>
+                <div >
+                    <br><img src="img/RoboCup-Sponsor-3.png"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-6.png"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-9.jpg"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-12.jpg"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-15.png"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-18.jpg"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-21.gif"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
+                    <br><img src="img/RoboCup-Sponsor-24.png"	alt="IMG" title="IMG6" height="15%" width="90%"/></br><br>
                 </div>
 
-            </div>
+           
         </div>
 
     </div>
