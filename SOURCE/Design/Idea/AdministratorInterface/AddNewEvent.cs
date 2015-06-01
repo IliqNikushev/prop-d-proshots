@@ -44,7 +44,7 @@ namespace Design.Idea.AdministratorInterface
         {
             get
             {
-                return this.pictureBoxMap.Width / (float)new HomePageWithMap().MapWidth;
+                return (float)new HomePageWithMap().MapWidth / this.pictureBoxMap.Width;
             }
         }
 
@@ -52,7 +52,7 @@ namespace Design.Idea.AdministratorInterface
         {
             get
             {
-                return this.pictureBoxMap.Height / (float)new HomePageWithMap().MapHeight;
+                return  (float)new HomePageWithMap().MapHeight / this.pictureBoxMap.Height;
             }
         }
 
