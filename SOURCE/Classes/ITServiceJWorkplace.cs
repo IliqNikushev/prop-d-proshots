@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Classes
 {
-    public class ITServiceJob : Job
+    public class ITServiceWorkplace : Workplace
     {
         protected override string Type
         {
             get { return "it"; }
         }
 
-        public ITServiceJob(int id, int x, int y) : base(id, "Rent desk", "Here you can rent an item", "it-logo.jpg", x, y) { }
+        public ITServiceWorkplace(int id, int x, int y) : base(id, "Rent desk", "Here you can rent an item", "it-logo.jpg", x, y) { }
 
         public List<RentableItem> Items
         {

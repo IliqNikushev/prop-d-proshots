@@ -15,7 +15,7 @@ namespace Design.Idea.AdministratorInterface
     {
         
         private List<Classes.Employee> employee;
-        private List<Classes.ShopJob> shopjob;
+        private List<Classes.ShopWorkplace> shopjob;
         private Classes.Employee currentEmployee;
         public Employees(Form parent) : base()
         {

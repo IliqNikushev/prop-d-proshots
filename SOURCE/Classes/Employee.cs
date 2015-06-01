@@ -7,14 +7,14 @@ namespace Classes
 {
     public class Employee : User
     {
-        public Employee(int id, string firstName, string lastName, string username, string password, string email, Job job, string duty)
+        public Employee(int id, string firstName, string lastName, string username, string password, string email, Workplace workplace, string duty)
             : base(id, firstName, lastName, username, password, email)
         {
             this.Duty = duty;
-            this.Job = job;
+            this.Workplace = workplace;
         }
 
-        public Job Job { get; private set; }
+        public Workplace Workplace { get; private set; }
         public string Duty { get; private set; }
         public List<EmployeeAction> Actions
         {

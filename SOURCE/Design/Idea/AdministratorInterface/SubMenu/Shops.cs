@@ -127,7 +127,7 @@ namespace Design.Idea.AdministratorInterface.SubMenu
 
         private void pictureBox4_Click_1(object sender, EventArgs e)
         {
-            new ShopInformation(Classes.Database.Find<Classes.ShopJob>("Shops.id = 3")).Show();
+            new ShopInformation(Classes.Database.Find<Classes.ShopWorkplace>("Shops.id = 3")).Show();
         }
 
         private void pictureBox8_Click_1(object sender, EventArgs e)

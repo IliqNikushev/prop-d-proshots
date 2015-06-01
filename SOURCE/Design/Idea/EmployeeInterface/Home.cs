@@ -22,14 +22,14 @@ namespace Design.Idea.EmployeeInterface
         {
             base.OnSet();
             return;
-            if (Employee.Job is Classes.ITServiceJob)
+            if (Employee.Workplace is Classes.ITServiceWorkplace)
                 new PCDoctor().Show();
-            else if (Employee.Job is Classes.ShopJob)
+            else if (Employee.Workplace is Classes.ShopWorkplace)
                 new Store().Show();
-            else if (Employee.Job is Classes.PCDoctorJob)
+            else if (Employee.Workplace is Classes.PCDoctorWorkplace)
                 new PCDoctor().Show();
             else
-                throw new NotImplementedException("Unknown job : " + Employee.Job);
+                throw new NotImplementedException("Unknown job : " + Employee.Workplace);
         }
     }
 }

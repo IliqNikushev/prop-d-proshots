@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public abstract class Job : Landmark
+    public abstract class Workplace : Landmark
     {
-        public Job(int id, string label, string description, string logo, int x, int y) : base(id, label, description, logo, x, y) { }
+        public Workplace(int id, string label, string description, string logo, int x, int y) : base(id, label, description, logo, x, y) { }
 
         public List<Employee> Employees
         {

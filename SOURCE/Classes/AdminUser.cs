@@ -17,7 +17,7 @@ namespace Classes
             new EventLandmark(name, description, x, y, start, end).Create();
         }
 
-        public void RestockStore(ShopJob shop, List<RestockItem> items)
+        public void RestockStore(ShopWorkplace shop, List<RestockItem> items)
         {
             throw new System.NotImplementedException();
         }

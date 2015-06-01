@@ -69,11 +69,11 @@ namespace Classes
             }
         }
 
-        public static List<ShopJob> Shops
+        public static List<ShopWorkplace> Shops
         {
             get
             {
-                return All<ShopJob>();
+                return All<ShopWorkplace>();
             }
         }
 

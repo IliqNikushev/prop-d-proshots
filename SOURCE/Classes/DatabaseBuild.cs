@@ -21,22 +21,22 @@ namespace Classes
             {typeof(Employee), CreateEmployee},
             {typeof(EmployeeAction), CreateEmployeeAction},
             {typeof(EventLandmark), CreateEventLandmark},
-            {typeof(InformationKioskJob), CreateInformationKioskJob},
+            {typeof(InformationKioskWorkplace), CreateInformationKioskWorkplace},
             {typeof(Item), CreateItem},
-            {typeof(ITServiceJob), CreateITServiceJob},
-            {typeof(Job), CreateJob},
+            {typeof(ITServiceWorkplace), CreateITServiceWorkplace},
+            {typeof(Workplace), CreateWorkplace},
             {typeof(Landmark), CreateLandmark},
             {typeof(LogMessage), CreateLogMessage},
             {typeof(PayPalDocument), CreatePayPalDocument},
             {typeof(PayPalMachine), CreatePayPalMachine},
-            {typeof(PCDoctorJob), CreatePCDoctorJob},
+            {typeof(PCDoctorWorkplace), CreatePCDoctorWorkplace},
             {typeof(Receipt), CreateReceipt},
             {typeof(RentableItem), CreateRentableItem},
             {typeof(RentableItemHistory), CreateRentableItemHistory},
             {typeof(Restock), CreateRestock},
             {typeof(RestockableItem), CreateRestockableItem},
             {typeof(RestockItem), CreateRestockItem},
-            {typeof(ShopJob), CreateShopJob},
+            {typeof(ShopWorkplace), CreateShopWorkplace},
             {typeof(ReceiptItem), CreateReceiptItem},
             {typeof(ShopItem), CreateShopItem},
             {typeof(Tent), CreateTent},
@@ -168,9 +168,9 @@ namespace Classes
             reader.AddDistinctPrefix(prefix);
 
             reader.AddPrefix("workplace");
-            Job job = null;
+            Workplace workplace = null;
             if(reader.HasColumnAndNotNull("type"))
-                job = CreateJob(reader);
+                workplace = CreateWorkplace(reader);
             reader.RemovePrefix();
 
             string duty = reader.GetStr("job");
@@ -181,7 +181,7 @@ namespace Classes
 
             reader.RemoveDistinctPrefix();
 
-            return new Employee(id, firstName, lastName, userName, password, email, job, duty);
+            return new Employee(id, firstName, lastName, userName, password, email, workplace, duty);
         }
 
         private static EmployeeAction CreateEmployeeAction(Reader reader, string prefix="", bool asbtr = false)
@@ -218,7 +218,7 @@ namespace Classes
 
             try
             {
-                return CreateJob(reader, prefix);
+                return CreateWorkplace(reader, prefix);
             }
             catch (NotImplementedException)
             {
@@ -263,29 +263,29 @@ namespace Classes
             icon = reader.GetStr("logo");
         }
 
-        private static Job CreateJob(Reader reader, string prefix="", bool asbtr = false)
+        private static Workplace CreateWorkplace(Reader reader, string prefix="", bool asbtr = false)
         {
             string type = reader.GetStr("type");
             if (buildTesting)
             {
-                CreateShopJob(reader);
-                CreatePCDoctorJob(reader);
-                CreateInformationKioskJob(reader);
+                CreateShopWorkplace(reader);
+                CreatePCDoctorWorkplace(reader);
+                CreateInformationKioskWorkplace(reader);
             }
 
             switch (type.Replace('-', ' ').ToLower())
             {
-                case "shop": return CreateShopJob(reader);
-                case "pc doctor": return CreatePCDoctorJob(reader);
-                case "info": return CreateInformationKioskJob(reader);
+                case "shop": return CreateShopWorkplace(reader);
+                case "pc doctor": return CreatePCDoctorWorkplace(reader);
+                case "info": return CreateInformationKioskWorkplace(reader);
             }
 
             if (buildTesting) return null;
 
-            throw new NotImplementedException("Unknown job type " + type);
+            throw new NotImplementedException("Unknown workplace type " + type);
         }
 
-        private static ShopJob CreateShopJob(Reader reader, string prefix="", bool asbtr = false)
+        private static ShopWorkplace CreateShopWorkplace(Reader reader, string prefix="", bool asbtr = false)
         {
             reader.AddDistinctPrefix(prefix);
 
@@ -299,7 +299,7 @@ namespace Classes
 
             reader.RemoveDistinctPrefix();
 
-            return new ShopJob(iD, label, description, logo, x, y);
+            return new ShopWorkplace(iD, label, description, logo, x, y);
         }
 
         private static ReceiptItem CreateReceiptItem(Reader reader, string prefix="", bool asbtr = false)
@@ -330,7 +330,7 @@ namespace Classes
             reader.AddDistinctPrefix(prefix);
 
             reader.AddPrefix("shop");
-            ShopJob shop = CreateShopJob(reader);
+            ShopWorkplace shop = CreateShopWorkplace(reader);
             reader.RemovePrefix();
 
             if(abstr)
@@ -379,7 +379,7 @@ namespace Classes
             icon = reader.GetStr("icon");
         }
 
-        private static InformationKioskJob CreateInformationKioskJob(Reader reader, string prefix="", bool asbtr = false)
+        private static InformationKioskWorkplace CreateInformationKioskWorkplace(Reader reader, string prefix="", bool asbtr = false)
         {
             reader.AddDistinctPrefix(prefix);
 
@@ -390,7 +390,7 @@ namespace Classes
 
             reader.RemoveDistinctPrefix();
 
-            return new InformationKioskJob(iD, x, y);
+            return new InformationKioskWorkplace(iD, x, y);
         }
 
         private static void ExtractSimpleLandmark(Reader reader, out int x, out int y, out int iD)
@@ -400,7 +400,7 @@ namespace Classes
             iD = reader.Get<int>("ID");
         }
 
-        private static ITServiceJob CreateITServiceJob(Reader reader, string prefix="", bool asbtr = false)
+        private static ITServiceWorkplace CreateITServiceWorkplace(Reader reader, string prefix="", bool asbtr = false)
         {
             reader.AddDistinctPrefix(prefix);
 
@@ -411,7 +411,7 @@ namespace Classes
 
             reader.RemoveDistinctPrefix();
 
-            return new ITServiceJob(iD, x, y);
+            return new ITServiceWorkplace(iD, x, y);
         }
 
         private static LogMessage CreateLogMessage(Reader reader, string prefix="", bool asbtr = false)
@@ -442,7 +442,7 @@ namespace Classes
             return new PayPalMachine(iD, x, y);
         }
 
-        private static PCDoctorJob CreatePCDoctorJob(Reader reader, string prefix="", bool asbtr = false)
+        private static PCDoctorWorkplace CreatePCDoctorWorkplace(Reader reader, string prefix="", bool asbtr = false)
         {
             reader.AddDistinctPrefix(prefix);
 
@@ -453,7 +453,7 @@ namespace Classes
 
             reader.RemoveDistinctPrefix();
 
-            return new PCDoctorJob(iD, x, y);
+            return new PCDoctorWorkplace(iD, x, y);
         }
 
         private static RestockableItem CreateRestockableItem(Reader reader, string prefix="", bool asbtr = false)
