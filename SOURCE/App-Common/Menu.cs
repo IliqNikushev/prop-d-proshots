@@ -68,10 +68,10 @@ namespace App_Common
                     reader = new Classes.RFID();
                     reader.OnAttach += (x) => { };
                     reader.OnDetach += (x) => { };
-                    reader.OnDetect += (x) => MessageBox.Show("RFID found," + x);
-                    reader.OnDetectEnd += (x) => MessageBox.Show("RFID lost, " + x);
-                    reader.OnError += (x) => MessageBox.Show("RFID ERROR, " + x.Description);
-
+                    //reader.OnDetect += (x) => MessageBox.Show("RFID found," + x);
+                    //reader.OnDetectEnd += (x) => MessageBox.Show("RFID lost, " + x);
+                    reader.OnError += (x) => { MessageBox.Show("Reader encountered an error. The error has been logged."); new Classes.Warning("RFID", x.Description).Create(); };
+                    Classes.Database.OnUnableToProcessSQL += (ex,sql) => new Classes.Warning("SQL error", ex.GetType()+"\n"+ex.Message+"\n"+sql).Create();
                     reader.OnAttach += (x) => reader.ToggleLED();
 
                     this.FormClosed += (x, y) => 

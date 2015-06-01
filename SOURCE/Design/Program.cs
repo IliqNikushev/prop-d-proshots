@@ -17,7 +17,7 @@ namespace Design
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Main());
-            Application.Run(new Idea.AdministratorInterface.Home());
+            Application.Run(new Idea.AdministratorInterface.AddNewEvent());
         }
     }
 }

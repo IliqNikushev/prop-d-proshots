@@ -11,14 +11,6 @@ namespace Classes
     using Command = MySql.Data.MySqlClient.MySqlCommand;
     public static partial class Database
     {
-        public static IEnumerable<Type> notBuildDefinedRecords
-        {
-            get
-            {
-                return System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x => x.IsSubclassOf(typeof(Record))).Where(x => !recordBuildDefinitions.ContainsKey(x));
-            }
-        }
-
         private static Dictionary<Type, Func<Reader, string,bool, object>> recordBuildDefinitions = new Dictionary<Type, Func<Reader, string,bool, object>>()
         {
             {typeof(AdminUser), CreateAdmin},

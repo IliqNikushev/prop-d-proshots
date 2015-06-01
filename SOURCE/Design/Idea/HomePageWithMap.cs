@@ -42,6 +42,9 @@ namespace Design.Idea
             a.Parent = b;
         }
 
+        public int MapWidth { get { return this.mapArea.Width; } }
+        public int MapHeight { get { return this.mapArea.Height; } }
+
         public HomePageWithMap()
         {
             InitializeComponent();
