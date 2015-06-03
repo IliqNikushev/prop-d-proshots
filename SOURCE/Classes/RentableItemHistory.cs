@@ -17,6 +17,11 @@ namespace Classes
         public Visitor ReturnedBy { get; private set; }
         public bool IsOverdue { get { return DateTime.Now > RentedTill; } }
 
+        public decimal Price
+        {
+            get { return this.RentedItem.Price; }
+        }
+
         public bool IsRented
         {
             get { return this.ReturnedBy != null; }

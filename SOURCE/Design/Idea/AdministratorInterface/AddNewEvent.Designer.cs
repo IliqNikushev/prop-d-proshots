@@ -142,16 +142,22 @@
             // dateTimePickerStart
             // 
             this.dateTimePickerStart.Location = new System.Drawing.Point(43, 127);
+            this.dateTimePickerStart.MaxDate = new System.DateTime(2015, 6, 30, 0, 0, 0, 0);
+            this.dateTimePickerStart.MinDate = new System.DateTime(2015, 6, 25, 0, 0, 0, 0);
             this.dateTimePickerStart.Name = "dateTimePickerStart";
             this.dateTimePickerStart.Size = new System.Drawing.Size(200, 22);
             this.dateTimePickerStart.TabIndex = 12;
+            this.dateTimePickerStart.Value = new System.DateTime(2015, 6, 25, 0, 0, 0, 0);
             // 
             // dateTimePickerEnd
             // 
             this.dateTimePickerEnd.Location = new System.Drawing.Point(43, 202);
+            this.dateTimePickerEnd.MaxDate = new System.DateTime(2015, 6, 30, 0, 0, 0, 0);
+            this.dateTimePickerEnd.MinDate = new System.DateTime(2015, 6, 25, 0, 0, 0, 0);
             this.dateTimePickerEnd.Name = "dateTimePickerEnd";
             this.dateTimePickerEnd.Size = new System.Drawing.Size(200, 22);
             this.dateTimePickerEnd.TabIndex = 13;
+            this.dateTimePickerEnd.Value = new System.DateTime(2015, 6, 25, 0, 0, 0, 0);
             // 
             // AddNewEvent
             // 

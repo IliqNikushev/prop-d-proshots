@@ -7,7 +7,7 @@ namespace Classes
 {
     public class Appointment : Record
     {
-        public Appointment(int id, AppointedItem item, Visitor visitor, DateTime completedOn, bool isReturned, string description)
+        public Appointment(int id, AppointedItem item, Visitor visitor, DateTime completedOn,DateTime appointedOn, bool isReturned, string status, string description)
             : base(id)
         {
             this.AppointedItem = item;
@@ -15,14 +15,23 @@ namespace Classes
             this.CompletedOn = completedOn;
             this.IsReturned = isReturned;
             this.Description = description;
+            this.AppointedOn = appointedOn;
         }
 
         public Visitor Visitor { get; private set; }
         public AppointedItem AppointedItem { get; private set; }
         public DateTime CompletedOn { get; private set; }
+        public DateTime AppointedOn { get; private set; }
         public bool IsReturned { get; private set; }
         public string Description { get; private set; }
-
+        public decimal Price
+        {
+            get { return Tasks.Sum(x=>x.Price);}
+        }
+        public string Status
+        {
+            get { return this.Status; }
+        }
         public List<AppointmentTask> Tasks
         {
             get

@@ -43,7 +43,7 @@ namespace Classes
                 Copy<User>()},
             {typeof(AppointedItem), new Table("Items_ALL Where Items_ALL.type = 'appointment'")
                 .Copy<Item>()},
-            {typeof(Appointment), new Table("Appointments", "description", "id", "completedOn", "isReturned").
+            {typeof(Appointment), new Table("Appointments", "description", "id", "completedOn", "isReturned", "AppointedOn", "status").
                 Join<AppointedItem>("JOIN", "Items_ALL.id = Appointments.appointed_item", "item").
                 Join<Visitor>("JOIN", "Appointments.appointed_by = Visitors.user_id", "appointed_by")},
             {typeof(AppointmentTask), new Table("AppointmentTasks", "id", "name", "description", "price").

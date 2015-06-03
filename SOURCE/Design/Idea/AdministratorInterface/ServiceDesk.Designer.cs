@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServiceDesk));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.checkBoxVisitor = new System.Windows.Forms.CheckBox();
+            this.textBoxVisitor = new System.Windows.Forms.TextBox();
+            this.buttonSearch = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBoxDate = new System.Windows.Forms.ComboBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
@@ -43,7 +43,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.checkBoxVisitor = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -53,12 +52,10 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.checkBoxVisitor);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.textBoxVisitor);
+            this.groupBox1.Controls.Add(this.buttonSearch);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.comboBox3);
+            this.groupBox1.Controls.Add(this.comboBoxDate);
             this.groupBox1.Controls.Add(this.listBox1);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.pictureBox9);
@@ -75,43 +72,32 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // textBox2
+            // checkBoxVisitor
             // 
-            this.textBox2.Location = new System.Drawing.Point(276, 52);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 52;
+            this.checkBoxVisitor.AutoSize = true;
+            this.checkBoxVisitor.Location = new System.Drawing.Point(138, 33);
+            this.checkBoxVisitor.Name = "checkBoxVisitor";
+            this.checkBoxVisitor.Size = new System.Drawing.Size(110, 21);
+            this.checkBoxVisitor.TabIndex = 53;
+            this.checkBoxVisitor.Text = "Visitor Name";
+            this.checkBoxVisitor.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // textBoxVisitor
             // 
-            this.button1.Location = new System.Drawing.Point(350, 89);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 50;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
+            this.textBoxVisitor.Location = new System.Drawing.Point(138, 56);
+            this.textBoxVisitor.Name = "textBoxVisitor";
+            this.textBoxVisitor.Size = new System.Drawing.Size(100, 22);
+            this.textBoxVisitor.TabIndex = 52;
             // 
-            // comboBox2
+            // buttonSearch
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Charger",
-            "KeyBoard",
-            "Mouse",
-            "Camera"});
-            this.comboBox2.Location = new System.Drawing.Point(134, 52);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 24);
-            this.comboBox2.TabIndex = 49;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(135, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 17);
-            this.label2.TabIndex = 48;
-            this.label2.Text = "Items:";
+            this.buttonSearch.Location = new System.Drawing.Point(284, 89);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearch.TabIndex = 50;
+            this.buttonSearch.Text = "Search";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // label3
             // 
@@ -122,17 +108,18 @@
             this.label3.TabIndex = 47;
             this.label3.Text = "Date:";
             // 
-            // comboBox3
+            // comboBoxDate
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "27-06-2015",
-            "28-06-2015",
-            "29-06-2015"});
-            this.comboBox3.Location = new System.Drawing.Point(4, 52);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 24);
-            this.comboBox3.TabIndex = 46;
+            this.comboBoxDate.FormattingEnabled = true;
+            this.comboBoxDate.Items.AddRange(new object[] {
+            "ALL",
+            "27",
+            "28",
+            "29"});
+            this.comboBoxDate.Location = new System.Drawing.Point(4, 52);
+            this.comboBoxDate.Name = "comboBoxDate";
+            this.comboBoxDate.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxDate.TabIndex = 46;
             // 
             // listBox1
             // 
@@ -154,7 +141,7 @@
             // 
             // pictureBox9
             // 
-            this.pictureBox9.Image = global::Design.Properties.Resources.money;
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
             this.pictureBox9.Location = new System.Drawing.Point(9, 501);
             this.pictureBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox9.Name = "pictureBox9";
@@ -192,7 +179,7 @@
             // 
             // pictureBox7
             // 
-            this.pictureBox7.Image = global::Design.Properties.Resources.warning38;
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
             this.pictureBox7.Location = new System.Drawing.Point(175, 501);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox7.Name = "pictureBox7";
@@ -203,7 +190,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Design.Properties.Resources.Back2;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(1, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(65, 42);
@@ -211,16 +198,6 @@
             this.pictureBox1.TabIndex = 43;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // checkBoxVisitor
-            // 
-            this.checkBoxVisitor.AutoSize = true;
-            this.checkBoxVisitor.Location = new System.Drawing.Point(276, 29);
-            this.checkBoxVisitor.Name = "checkBoxVisitor";
-            this.checkBoxVisitor.Size = new System.Drawing.Size(110, 21);
-            this.checkBoxVisitor.TabIndex = 53;
-            this.checkBoxVisitor.Text = "Visitor Name";
-            this.checkBoxVisitor.UseVisualStyleBackColor = true;
             // 
             // ServiceDesk
             // 
@@ -254,12 +231,10 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxVisitor;
+        private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBoxDate;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox checkBoxVisitor;
 
