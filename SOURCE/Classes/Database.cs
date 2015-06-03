@@ -147,6 +147,17 @@ namespace Classes
             }
         }
 
+        public static void Delete<T>(string where, params object[] parameters)
+        {
+            Type t = typeof(T);
+            ExecuteSQL("DELETE from {0} where {1}", tables[t].Name, string.Format(where.Replace("|T|", tables[t].Name), parameters));
+        }
+
+        public static void Delete(Record r, string where, params object[] parameters)
+        {
+            ExecuteSQL("DELETE from {0} where {1}", r.TableName, string.Format(where.Replace("|T|", r.TableName), parameters));
+        }
+
         public static Record Insert(Record record, string values, params object[] parameters)
         {
             if (values.Split(',').Length != parameters.Length) throw new InvalidOperationException("Value missing in parameters");

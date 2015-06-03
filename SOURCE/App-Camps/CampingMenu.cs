@@ -12,23 +12,18 @@ namespace App_Camps
 {
     public partial class CampingMenu : App_Common.Menu
     {
-        IEnumerable<Classes.Tent> bookedByVisitorPitches;
-        IEnumerable<Classes.Tent> bookedForVisitorPitches;
+        List<Classes.Tent> bookedForVisitorPitches;
+        List<Classes.Tent> bookedByVisitorPitches;
 
-        public CampingMenu(List<Classes.Tent> tents, App_Common.Menu parent) : base(parent)
+        public CampingMenu(App_Common.Menu parent) : base(parent)
         {
             InitializeComponent();
+        }
 
-            if (!tents.Any())
-            {
-                this.bookedByVisitorPitches = new List<Classes.Tent>();
-                this.bookedForVisitorPitches = new List<Classes.Tent>();
-            }
-            else
-            {
-                bookedByVisitorPitches = tents.Where(x => x.BookedBy == LoggedInUser);
-                bookedForVisitorPitches = tents.Where(x => x.BookedBy != LoggedInUser);
-            }
+        protected override void Reset()
+        {
+           bookedForVisitorPitches = Classes.Database.GetTentsBookedForVisitor(LoggedInUser as Classes.Visitor);
+           bookedByVisitorPitches = Classes.Database.GetTentsBookedByVisitor(LoggedInUser as Classes.Visitor);
 
             this.todayLbl.Text = "Today it is It is " + DateTime.Now.ToString("dddd dd");
 
@@ -50,10 +45,14 @@ namespace App_Camps
                 bookedForDetailsBtn.Enabled = false;
             }
 
+            this.bookedByLBox.Items.Clear();
+            this.bookedForLBox.Items.Clear();
+
             this.bookedByLBox.Items.AddRange(bookedByVisitorPitches.ToArray());
             this.bookedForLBox.Items.AddRange(bookedForVisitorPitches.ToArray());
 
-            this.Width -= this.detailsPanel.Width;
+            if(!this.detailsPanel.Visible)
+                this.Width -= this.detailsPanel.Width;
 
             this.detailsPanel.Visible = false;
         }
@@ -72,7 +71,12 @@ namespace App_Camps
         {
             if (MessageBox.Show("Are you sure you wish to cancel this booking?", "Confirm cancelation", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
-                //todo remove
+                ActiveTent.Cancel();
+
+                bookedByVisitorPitches = Classes.Database.GetTentsBookedByVisitor(LoggedInUser as Classes.Visitor);
+                this.bookedByLBox.Items.Clear();
+                this.ShowDetails(null as Classes.Tent);
+                this.bookedByLBox.Items.AddRange(bookedByVisitorPitches.ToArray());
             }
         }
 
@@ -81,8 +85,15 @@ namespace App_Camps
             ShowDetails(lb.SelectedItem as Classes.Tent);
         }
 
+        private Classes.Tent ActiveTent = null;
+
         private void ShowDetails(Classes.Tent tent)
         {
+            if (tent == null)
+            {
+                closeDetailsBtn_Click(null, null);
+                return;
+            }
             if (!detailsPanel.Visible)
             {
                 detailsPanel.Visible = true;
@@ -97,9 +108,9 @@ namespace App_Camps
             isPaidCbox.Text = tent.Price + App_Common.Constants.Currency;
             bookedForDetailsLbox.Items.AddRange(tent.BookedFor);
 
-
             if (!tent.IsPaid && tent.BookedBy == LoggedInVisitor)
             {
+                ActiveTent = tent;
                 cancelPitchBtn.Visible = true;
                 payBtn.Visible = true;
             }

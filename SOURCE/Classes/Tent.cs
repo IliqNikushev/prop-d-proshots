@@ -58,7 +58,8 @@ namespace Classes
 
         public void Cancel()
         {
-            throw new NotImplementedException();
+            Database.Delete<TentPerson>("|T|.tent_id = {0}", this.ID);
+            Database.Delete(this, "|T|.location = {0}", this.ID);
         }
 
         public void Pay()

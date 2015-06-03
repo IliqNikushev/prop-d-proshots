@@ -26,10 +26,7 @@ namespace App_Camps
                 return false;
             }
 
-            List<Classes.Tent> bookedTents = Classes.Database.GetTentsBookedForVisitor(LoggedInUser as Classes.Visitor);
-            bookedTents.AddRange(Classes.Database.GetTentsBookedByVisitor(LoggedInUser as Classes.Visitor));
-
-            new CampingMenu(bookedTents, this).Show();
+            new CampingMenu(this).Show();
             return true;
         }
     }

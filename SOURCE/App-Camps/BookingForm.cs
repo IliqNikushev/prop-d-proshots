@@ -384,15 +384,13 @@ namespace App_Camps
                     MessageBox.Show("Tent pitch that you had selected is not free for the new specified period");
                     pitchesCBox.SelectedIndex = 0;
                 }
-                //else set the new value for the combo box
-                for (int i = 0; i < pitchesCBox.Items.Count; i++)
-                {
-                    if (selectedPitch == pitchesCBox.Items[i] as Classes.TentPitch)
-                    {
-                        pitchesCBox.SelectedIndex = i;
-                        return;
-                    }
-                }
+                else
+                    for (int i = 0; i < pitchesCBox.Items.Count; i++)
+                        if (selectedPitch == pitchesCBox.Items[i] as Classes.TentPitch)
+                        {
+                            pitchesCBox.SelectedIndex = i;
+                            return;
+                        }
             }
         }
 
