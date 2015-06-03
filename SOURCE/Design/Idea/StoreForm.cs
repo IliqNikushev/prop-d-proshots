@@ -12,7 +12,7 @@ namespace Design.Idea
 {
     public partial class Store : Form
     {
-        public Classes.ShopJob Shop { get; private set; }
+        public Classes.ShopWorkplace Shop { get; private set; }
         public Classes.Visitor ActiveVisitor { get; private set; }
 
         private const int iconSize = 64;

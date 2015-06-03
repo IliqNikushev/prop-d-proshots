@@ -70,7 +70,10 @@ namespace App_Camps
 
         private void cancelPitchBtn_Click(object sender, EventArgs e)
         {
-            //todo show on map
+            if (MessageBox.Show("Are you sure you wish to cancel this booking?", "Confirm cancelation", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+            {
+                //todo remove
+            }
         }
 
         private void ShowDetails(ListBox lb)
@@ -81,14 +84,30 @@ namespace App_Camps
         private void ShowDetails(Classes.Tent tent)
         {
             if (!detailsPanel.Visible)
+            {
+                detailsPanel.Visible = true;
                 MainMenu.Width += detailsPanel.Width;
+            }
 
             pitchNumberLbl.Text = "#" + tent.ID;
             dateTimeBookedLbl.Text = tent.BookedOn.ToString("dd HH:mm") + " " + tent.BookedTill.ToString("dd HH:mm");
             bookedByLbl.Text = tent.BookedBy.FullName;
             isPaidCbox.Checked = tent.IsPaid;
+            isPaidCbox.Enabled = false;
             isPaidCbox.Text = tent.Price + App_Common.Constants.Currency;
             bookedForDetailsLbox.Items.AddRange(tent.BookedFor);
+
+
+            if (!tent.IsPaid && tent.BookedBy == LoggedInVisitor)
+            {
+                cancelPitchBtn.Visible = true;
+                payBtn.Visible = true;
+            }
+            else
+            {
+                cancelPitchBtn.Visible = false;
+                payBtn.Visible = false;
+            }
         }
 
         private void bookedForDetailsBtn_Click(object sender, EventArgs e)
@@ -106,6 +125,11 @@ namespace App_Camps
             if (!detailsPanel.Visible) return;
             detailsPanel.Visible = false;
             MainMenu.Width -= detailsPanel.Width;
+        }
+
+        private void payBtn_Click(object sender, EventArgs e)
+        {
+            //todo PAY FOR TENT
         }
     }
 }

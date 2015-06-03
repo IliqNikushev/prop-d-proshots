@@ -179,7 +179,7 @@ namespace Classes
                     Where(x => x.IsSubclassOf(typeof(Record))).
                     Where(x => !tables.ContainsKey(x)).
                     Where(x => !x.IsSubclassOf(typeof(User)) && !x.IsAbstract).
-                    Where(x => !x.IsSubclassOf(typeof(Job))).
+                    Where(x => !x.IsSubclassOf(typeof(Workplace))).
                     Where(x => !x.IsSubclassOf(typeof(Landmark)));
             }
         }

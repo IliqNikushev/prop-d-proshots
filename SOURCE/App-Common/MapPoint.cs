@@ -14,7 +14,7 @@ namespace App_Common
         }
     }
 
-    class MapPoint
+    class MapPoint : IEquatable<Classes.Landmark>, IComparable<Classes.Landmark>
     {
         public const int IconSize = 16;
         private Classes.Landmark Landmark;
@@ -34,6 +34,16 @@ namespace App_Common
             onHover.Remove();
             onHover = null;
             this.Landmark = null;
+        }
+
+        public void Select()
+        {
+            this.marker.BackColor = System.Drawing.Color.Green;
+        }
+
+        public void Deselect()
+        {
+            this.marker.BackColor = this.onHover.BackColor;
         }
 
         public void HideInMap()
@@ -80,6 +90,36 @@ namespace App_Common
             marker.BringToFront();
             map.Controls.Add(onHover);
             map.Controls.Add(marker);
+        }
+
+        public bool Equals(Classes.Landmark other)
+        {
+            return this.Landmark == other;
+        }
+
+        public int CompareTo(Classes.Landmark other)
+        {
+            return this.Landmark.CompareTo(other);
+        }
+
+        public static bool operator ==(MapPoint p, Classes.Landmark l)
+        {
+            return p.Equals(l);
+        }
+
+        public static bool operator ==(Classes.Landmark l, MapPoint p)
+        {
+            return p.Equals(l);
+        }
+
+        public static bool operator !=(MapPoint p, Classes.Landmark l)
+        {
+            return !p.Equals(l);
+        }
+
+        public static bool operator !=(Classes.Landmark l, MapPoint p)
+        {
+            return !p.Equals(l);
         }
     }
 }

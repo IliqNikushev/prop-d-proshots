@@ -12,7 +12,7 @@ namespace App_Employee
 {
     public partial class StoreForm : App_Common.Menu
     {
-        private Classes.ShopJob Shop;
+        private Classes.ShopWorkplace Shop;
 
         private const int iconSize = 64;
         private const int labelHeight = 16;

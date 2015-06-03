@@ -17,16 +17,16 @@ namespace App_Employee
             Classes.Employee employee = LoggedInEmployee;
             if (employee != null)
             {
-                if (employee.Job.ID != Install.Job.ID)
+                if (employee.Workplace.ID != Install.Job.ID)
                     return false;
 
-                if (employee.Job is Classes.ShopJob)
+                if (employee.Workplace is Classes.ShopWorkplace)
                     new StoreForm(this).Show();
-                else if (employee.Job is Classes.ITServiceJob)
+                else if (employee.Workplace is Classes.ITServiceWorkplace)
                     new RentForm(this).Show();
-                else if (employee.Job is Classes.PCDoctorJob)
+                else if (employee.Workplace is Classes.PCDoctorWorkplace)
                     new PCDoctorForm(this).Show();
-                else if (employee.Job is Classes.InformationKioskJob)
+                else if (employee.Workplace is Classes.InformationKioskWorkplace)
                     new InformationDeskForm(this).Show();
                 else
                     throw new NotImplementedException("Unknown job");
