@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBoxVisitor = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -42,7 +43,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.checkBoxVisitor = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -73,6 +73,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Overview order by:";
             // 
+            // checkBoxVisitor
+            // 
+            this.checkBoxVisitor.AutoSize = true;
+            this.checkBoxVisitor.Location = new System.Drawing.Point(284, 30);
+            this.checkBoxVisitor.Name = "checkBoxVisitor";
+            this.checkBoxVisitor.Size = new System.Drawing.Size(110, 21);
+            this.checkBoxVisitor.TabIndex = 46;
+            this.checkBoxVisitor.Text = "Visitor Name";
+            this.checkBoxVisitor.UseVisualStyleBackColor = true;
+            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(284, 53);
@@ -88,6 +98,7 @@
             this.button1.TabIndex = 39;
             this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // comboBox2
             // 
@@ -208,16 +219,6 @@
             this.pictureBox1.TabIndex = 43;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // checkBoxVisitor
-            // 
-            this.checkBoxVisitor.AutoSize = true;
-            this.checkBoxVisitor.Location = new System.Drawing.Point(284, 30);
-            this.checkBoxVisitor.Name = "checkBoxVisitor";
-            this.checkBoxVisitor.Size = new System.Drawing.Size(110, 21);
-            this.checkBoxVisitor.TabIndex = 46;
-            this.checkBoxVisitor.Text = "Visitor Name";
-            this.checkBoxVisitor.UseVisualStyleBackColor = true;
             // 
             // Camping
             // 

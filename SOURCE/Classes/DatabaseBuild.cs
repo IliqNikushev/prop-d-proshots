@@ -90,11 +90,13 @@ namespace Classes
 
             int id = reader.Get<int>("id");
             System.DateTime completedOn = reader.Get<System.DateTime>("CompletedOn");
+            DateTime appointedOn = reader.Get<System.DateTime>("AppointedOn");
             bool isReturned = reader.Get<bool>("IsReturned");
             string description = reader.GetStr("description");
+            string status = reader.GetStr("status");
 
             reader.RemoveDistinctPrefix();
-            return new Appointment(id, appointedItem, visitor, completedOn, isReturned, description);
+            return new Appointment(id, appointedItem, visitor, completedOn,appointedOn, isReturned, status ,description);
         }
 
         private static AppointmentTask CreateAppointmentTask(Reader reader, string prefix="", bool asbtr = false)
