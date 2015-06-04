@@ -12,14 +12,22 @@ namespace Classes
         {
         }
 
-        public void AddEvent(string name, string description, int x, int y, DateTime start, DateTime end)
+        public EventLandmark AddEvent(string name, string description, int x, int y, DateTime start, DateTime end)
         {
-            new EventLandmark(name, description, x, y, start, end).Create();
+            EventLandmark r = new EventLandmark(name, description, x, y, start, end).Create() as EventLandmark;
+            if (r != null)
+                new LogMessage("create event", name +" "+ x + " " + y + " success " + this.ID + " => " + r.ID).Create();
+            else
+                new LogMessage("create event", name +" "+ x + " " + y + " fail " + this.ID + " => " + name).Create();
+            return r;
         }
 
         public void RestockStore(ShopWorkplace shop, List<RestockItem> items)
         {
-            throw new System.NotImplementedException();
+            foreach (var item in items)
+                item.Create();
+            
+            new LogMessage("restock store", shop.ID + " " + string.Join(" ", items.Select(x=>x.Item.ID + " " + x.Times))).Create();
         }
     }
 }

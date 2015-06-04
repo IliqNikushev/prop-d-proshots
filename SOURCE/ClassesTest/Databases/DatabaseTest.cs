@@ -24,7 +24,7 @@ namespace Classes
         [TestMethod]
         public void GetUser()
         {
-            User user = Database.Find<User>("Limit 1");
+            User user = Database.Find<User>();
 
             Assert.IsTrue(true);
         }

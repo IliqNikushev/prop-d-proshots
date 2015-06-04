@@ -183,7 +183,7 @@ namespace Classes
         {
             Table table = tables[record.GetType()];
             //if (table.Joins.Count > 0) throw new NotImplementedException("Nested update not implemented");
-
+            identifier = identifier.Replace("|T|", table.Name);
             ExecuteSQL(string.Format("UPDATE {0} SET {1} WHERE {2};",
                     table.Name, set, identifier));
 
@@ -334,14 +334,16 @@ namespace Classes
                 where = wherePattern.Arg(parameters);
             string tableString = tables[typeof(T)].ToString().ToLower();
             where = where.Replace("|T|", tables[typeof(T)].Name);
-            if(where.Trim().Length > 0)
+            if (where.Trim().Length > 0)
                 if (tableString.ToLower().IndexOf("where") != -1)
                     where = " and " + where;
+                else
+                    where = " where " + where;
             return (long)ExecuteScalar("Select count(*) from {0} {1}",
                 tableString.Split(new string[] { "\r\nfrom\r\n", " from " }, StringSplitOptions.None).Last(), where);
         }
 
-        public static T Find<T>(string where, params object[] parameters) where T : Record
+        public static T Find<T>(string where = "", params object[] parameters) where T : Record
         {
             return GetWhere<T>(where + " Limit 1", parameters).FirstOrDefault();
         }
@@ -371,11 +373,11 @@ namespace Classes
             for (int i = 0; i < parameters.Length; i++)
                 whereParameters[i] = new KeyValuePair<string, object>(valuesSplit[i].Trim(), parameters[i].ToString());
 
-            ExecuteScalar("Insert into {0} ({1}) values ({2}); ", table.Name,
+            ExecuteSQL("Insert into {0} ({1}) values ({2}); ", table.Name,
                     values,
                     string.Join(",", parameters));
 
-            List<object> result = GetWhere(recordType, string.Join(" and ", whereParameters.Select(x => x.Key + " = " + x.Value)));
+            List<object> result = GetWhere(recordType, string.Join(" and ", whereParameters.Select(x => table.Name + "." + x.Key + " = " + x.Value)));
             return result.LastOrDefault() as Record;
         }
 
@@ -470,10 +472,37 @@ namespace Classes
 
             string[] wantedTables = sql.Split('|');
             where = where.Replace("|T|", tables[t].Name);
-            if(where.Trim() == "")
+            if (where.Trim() == "")
                 ExecuteSQLWithResult(sql, ProcessReader);
             else
-                ExecuteSQLWithResult(sql + (sql.ToLower().IndexOf("where") == -1 ?  " Where " + where : " and (" + where+")"), ProcessReader);
+            {
+                int i = 0;
+                int outI = -1;
+                string limit = "";
+                if (sql.ToLower().IndexOf("where") != -1)
+                {
+                   i = where.ToLower().IndexOf(" limit ");
+                    if (int.TryParse(where.Substring(i + " limit ".Length), out outI))
+                    {
+                        if (outI.ToString().Length + i + " limit ".Length == where.Length)
+                        {
+                            limit = where.Substring(i);
+                            where = where.Substring(0, i);
+                        }
+                    }
+                }
+
+                string additionalWhere = "";
+                if (sql.ToLower().IndexOf("where") == -1)
+                    if (where.ToLower().Replace("limit 1", "").Trim().Length == 0)
+                        additionalWhere = where;
+                    else
+                        additionalWhere = " Where " + where;
+                else
+                    additionalWhere = " and (" + where + ")" + (limit == "" ? "" : where.Substring(i));
+
+                ExecuteSQLWithResult(sql + additionalWhere, ProcessReader);
+            }
 
             List<object> result = new List<object>(processingList);
             processingList.Clear();
