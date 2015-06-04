@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Classes
 {
     [TestClass]
-    public abstract class JobTest : LandmarkTest
+    public abstract class WorkplaceTest : LandmarkTest
     {
     }
 }

@@ -428,6 +428,20 @@ namespace App_Common
             ToggleMap();
         }
 
+        public void SelectItem(Classes.Landmark landmark)
+        {
+            foreach (MapPoint point in this.points)
+                point.Deselect();
+            foreach (MapPoint point in this.points)
+            {
+                if (point == landmark)
+                {
+                    point.Select();
+                    return;
+                }
+            }
+        }
+
         private void zoomOnItemsBtn_Click(object sender, EventArgs e)
         {
             string type = findByTypeTb.Text;

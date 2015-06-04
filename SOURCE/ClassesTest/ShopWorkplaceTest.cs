@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Classes
 {
     [TestClass]
-    public abstract class ShopJobTest : JobTest
+    public abstract class ShopWorkplaceTest : WorkplaceTest
     {
 
     }

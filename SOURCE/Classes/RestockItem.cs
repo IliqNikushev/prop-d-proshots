@@ -15,6 +15,10 @@ namespace Classes
         public decimal PricePerItem { get; private set; }
         public decimal Total { get; private set; }
 
+        public RestockItem(ShopItem item, Restock restock, int times) : this(0, item, times, restock, item.Price, item.Price * times)
+        {
+        }
+
         public RestockItem(int id, ShopItem item, int times, Restock restock, decimal pricePerItem, decimal total) : base(id)
         {
             this.Item = item;
@@ -31,7 +35,11 @@ namespace Classes
 
         public override Record Create()
         {
-            throw new NotImplementedException();
+            Record r = Database.Insert(this, "restock_id, item_id, quantity, pricePerItem, total", this.Restock.ID, this.Item.ID, this.Times, this.PricePerItem, this.Total);
+
+            Database.Update(this.Item, "quantity = " + (this.Times + this.Item.InStock), "|T|.item_id = " + this.Item.ID);
+
+            return r;
         }
     }
 }

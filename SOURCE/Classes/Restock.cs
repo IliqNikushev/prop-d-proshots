@@ -9,7 +9,9 @@ namespace Classes
     public class Restock : Record
     {
         public DateTime Date { get; private set; }
-        public List<RestockItem> Items { get { return Database.Where<RestockItem>("RestockItems.restock_id = {0}", this.ID); } }
+        public List<RestockItem> Items { get { return Database.Where<RestockItem>("|T|.restock_id = {0}", this.ID); } }
+
+        public Restock() : this(0, DateTime.Now) { }
 
         public Restock(int id, DateTime date)
             : base(id)
@@ -25,7 +27,7 @@ namespace Classes
 
         public override Record Create()
         {
-            throw new NotImplementedException();
+            return Database.Insert(this, "date", this.Date);
         }
     }
 }

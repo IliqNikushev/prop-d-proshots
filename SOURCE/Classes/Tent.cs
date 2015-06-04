@@ -44,6 +44,8 @@ namespace Classes
             this.IsPaid = isPayed;
             this.BookedTill = bookedTill;
             this.BookedBy = bookedBy;
+
+            this.bookedFor = new Visitor[] { };
         }
 
         public Tent(TentPitch location, string bookedOn, string bookedTill, Visitor bookedBy, List<Visitor> bookedFor)
@@ -58,7 +60,8 @@ namespace Classes
 
         public void Cancel()
         {
-            throw new NotImplementedException();
+            Database.Delete<TentPerson>("|T|.tent_id = {0}", this.ID);
+            Database.Delete(this, "|T|.location = {0}", this.ID);
         }
 
         public void Pay()

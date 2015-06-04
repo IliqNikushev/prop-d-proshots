@@ -9,13 +9,24 @@ namespace Classes
         [TestMethod]
         public override void DatabaseCreate()
         {
-            throw new NotImplementedException();
+            Warning w = new Warning("test", "aTest").Create() as Warning;
+
+            Assert.IsTrue(w != null);
+
+            w.Delete("|T|.id = {0}", w.ID);
+
+            w = new Warning("test", "aTest").Create() as Warning;
+
+            Assert.IsTrue(w == null);
         }
 
         [TestMethod]
         public override void DatabaseGet()
         {
-            throw new NotImplementedException();
+            Warning w = Database.Find<Warning>("|T|.id = 1");
+            Assert.IsTrue(w != null);
+
+            Assert.IsTrue(w.Name == "testing");
         }
     }
 }

@@ -52,6 +52,7 @@
             this.pitchNumberLbl = new System.Windows.Forms.Label();
             this.closeDetailsBtn = new System.Windows.Forms.Button();
             this.isPaidCbox = new System.Windows.Forms.CheckBox();
+            this.payBtn = new System.Windows.Forms.Button();
             this.detailsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -186,7 +187,7 @@
             // bookedForLbl
             // 
             this.bookedForLbl.AutoSize = true;
-            this.bookedForLbl.Location = new System.Drawing.Point(10, 146);
+            this.bookedForLbl.Location = new System.Drawing.Point(10, 145);
             this.bookedForLbl.Name = "bookedForLbl";
             this.bookedForLbl.Size = new System.Drawing.Size(62, 13);
             this.bookedForLbl.TabIndex = 14;
@@ -211,7 +212,7 @@
             // 
             // cancelPitchBtn
             // 
-            this.cancelPitchBtn.Location = new System.Drawing.Point(39, 237);
+            this.cancelPitchBtn.Location = new System.Drawing.Point(80, 240);
             this.cancelPitchBtn.Name = "cancelPitchBtn";
             this.cancelPitchBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelPitchBtn.TabIndex = 17;
@@ -221,10 +222,10 @@
             // 
             // detailsPanel
             // 
+            this.detailsPanel.Controls.Add(this.payBtn);
             this.detailsPanel.Controls.Add(this.bookedByLbl);
             this.detailsPanel.Controls.Add(this.dateTimeBookedLbl);
             this.detailsPanel.Controls.Add(this.pitchNumberLbl);
-            this.detailsPanel.Controls.Add(this.closeDetailsBtn);
             this.detailsPanel.Controls.Add(this.isPaidCbox);
             this.detailsPanel.Controls.Add(this.cancelPitchBtn);
             this.detailsPanel.Controls.Add(this.pitchNumberTextLbl);
@@ -241,7 +242,7 @@
             // bookedByLbl
             // 
             this.bookedByLbl.AutoSize = true;
-            this.bookedByLbl.Location = new System.Drawing.Point(10, 105);
+            this.bookedByLbl.Location = new System.Drawing.Point(10, 104);
             this.bookedByLbl.Name = "bookedByLbl";
             this.bookedByLbl.Size = new System.Drawing.Size(140, 13);
             this.bookedByLbl.TabIndex = 22;
@@ -250,7 +251,7 @@
             // dateTimeBookedLbl
             // 
             this.dateTimeBookedLbl.AutoSize = true;
-            this.dateTimeBookedLbl.Location = new System.Drawing.Point(9, 64);
+            this.dateTimeBookedLbl.Location = new System.Drawing.Point(9, 66);
             this.dateTimeBookedLbl.Name = "dateTimeBookedLbl";
             this.dateTimeBookedLbl.Size = new System.Drawing.Size(140, 13);
             this.dateTimeBookedLbl.TabIndex = 21;
@@ -259,7 +260,7 @@
             // pitchNumberLbl
             // 
             this.pitchNumberLbl.AutoSize = true;
-            this.pitchNumberLbl.Location = new System.Drawing.Point(10, 26);
+            this.pitchNumberLbl.Location = new System.Drawing.Point(10, 25);
             this.pitchNumberLbl.Name = "pitchNumberLbl";
             this.pitchNumberLbl.Size = new System.Drawing.Size(140, 13);
             this.pitchNumberLbl.TabIndex = 20;
@@ -267,11 +268,11 @@
             // 
             // closeDetailsBtn
             // 
-            this.closeDetailsBtn.Location = new System.Drawing.Point(137, 0);
+            this.closeDetailsBtn.Location = new System.Drawing.Point(464, -3);
             this.closeDetailsBtn.Name = "closeDetailsBtn";
             this.closeDetailsBtn.Size = new System.Drawing.Size(18, 23);
             this.closeDetailsBtn.TabIndex = 19;
-            this.closeDetailsBtn.Text = "X";
+            this.closeDetailsBtn.Text = "<";
             this.closeDetailsBtn.UseVisualStyleBackColor = true;
             this.closeDetailsBtn.Click += new System.EventHandler(this.closeDetailsBtn_Click);
             // 
@@ -285,6 +286,16 @@
             this.isPaidCbox.Text = "$$$$$$$.$$";
             this.isPaidCbox.UseVisualStyleBackColor = true;
             // 
+            // payBtn
+            // 
+            this.payBtn.Location = new System.Drawing.Point(0, 240);
+            this.payBtn.Name = "payBtn";
+            this.payBtn.Size = new System.Drawing.Size(75, 23);
+            this.payBtn.TabIndex = 23;
+            this.payBtn.Text = "Pay";
+            this.payBtn.UseVisualStyleBackColor = true;
+            this.payBtn.Click += new System.EventHandler(this.payBtn_Click);
+            // 
             // CampingMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -293,6 +304,7 @@
             this.Controls.Add(this.takenTentsLbl);
             this.Controls.Add(this.bookBtn);
             this.Controls.Add(this.includedInLbl);
+            this.Controls.Add(this.closeDetailsBtn);
             this.Controls.Add(this.bookedForLBox);
             this.Controls.Add(this.bookedByLBox);
             this.Controls.Add(this.bookedForDetailsBtn);
@@ -337,5 +349,6 @@
         private System.Windows.Forms.Label pitchNumberLbl;
         private System.Windows.Forms.Label dateTimeBookedLbl;
         private System.Windows.Forms.Label bookedByLbl;
+        private System.Windows.Forms.Button payBtn;
     }
 }

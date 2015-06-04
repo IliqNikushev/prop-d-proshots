@@ -35,7 +35,7 @@ namespace Classes
                     this.TableType = tableType;
                     this.Type = type;
                     this.Prefix = prefix;
-                    if (this.Prefix != "") this.Prefix += "_";
+                    if (this.Prefix != "" && this.Prefix.Last() != '_') this.Prefix += "_";
                     this.on = on;
                     this.Alias = alias;
                     this.AddInherited = addInherited;

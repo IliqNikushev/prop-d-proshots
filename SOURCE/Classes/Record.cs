@@ -74,6 +74,11 @@ namespace Classes
             return this.GetType().Name + " # " + this.ID;
         }
 
+        public void Delete(string where, params object[] parameters)
+        {
+            Database.Delete(this, where, parameters);
+        }
+
         [Serializable]
         public class NotToBeSentToDatabaseException : Exception
         {

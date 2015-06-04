@@ -43,7 +43,7 @@ namespace Classes
                 Copy<User>()},
             {typeof(AppointedItem), new Table("Items_ALL Where Items_ALL.type = 'appointment'")
                 .Copy<Item>()},
-            {typeof(Appointment), new Table("Appointments", "description", "id", "completedOn", "isReturned").
+            {typeof(Appointment), new Table("Appointments", "description", "id", "completedOn", "isReturned", "AppointedOn", "status").
                 Join<AppointedItem>("JOIN", "Items_ALL.id = Appointments.appointed_item", "item").
                 Join<Visitor>("JOIN", "Appointments.appointed_by = Visitors.user_id", "appointed_by")},
             {typeof(AppointmentTask), new Table("AppointmentTasks", "id", "name", "description", "price").
@@ -57,21 +57,21 @@ namespace Classes
                 Join<Employee>("JOIN", "Employees.user_id = EmployeeActions.employee_id", "employee")},
             {typeof(EventLandmark), new Table("Events", "timeStart", "timeEnd").
                 Join<Landmark>("JOIN", "Landmarks.id = Events.location", "")},
-            {typeof(InformationKioskJob), new Table("Landmarks where landmarks.type = 'info'")
-                .Copy<ITServiceJob>()},
+            {typeof(InformationKioskWorkplace), new Table("Landmarks where landmarks.type = 'info'")
+                .Copy<ITServiceWorkplace>()},
             {typeof(Item), new Table("Items_ALL", "brand", "model", "id", "type", "description", "igroup", "icon" )},
-            {typeof(ITServiceJob), new Table("Landmarks where landmarks.type = 'it'", "id", "x", "y")},
-            {typeof(Job), new Table("Workplaces", "id", "x", "y", "label", "description", "type", "logo")},
+            {typeof(ITServiceWorkplace), new Table("Landmarks where landmarks.type = 'it'", "id", "x", "y")},
+            {typeof(Workplace), new Table("Workplaces", "id", "x", "y", "label", "description", "type", "logo")},
             {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type", "logo")},
             {typeof(LogMessage), new Table("Logs", "id", "date", "description", "name")},
             {typeof(PayPalDocument), new Table("PayPalDocuments", "id", "date", "raw")},
             {typeof(PayPalMachine), new Table("Landmarks where landmarks.type = 'paypal'")
-                .Copy<ITServiceJob>()},
-            {typeof(PCDoctorJob), new Table("Landmarks where landmarks.type ='pc-doctor'")
-                .Copy<ITServiceJob>()},
+                .Copy<ITServiceWorkplace>()},
+            {typeof(PCDoctorWorkplace), new Table("Landmarks where landmarks.type ='pc-doctor'")
+                .Copy<ITServiceWorkplace>()},
             {typeof(ShopItem), new Table("ShopItems", "quantity", "id", "warningAmount", "price").
                 Join<Item>("JOIN" ,"ShopItems.item_id = Items_ALL.id", "item").
-                Join<ShopJob>("JOIN" ,"Shops.id = Shopitems.shop_id", "shop")},
+                Join<ShopWorkplace>("JOIN" ,"Shops.id = Shopitems.shop_id", "shop")},
             {typeof(Receipt), new Table("Receipts", "id", "purchasedOn").
                 Join<Visitor>("JOIN", "Receipts.purchasedby = Visitors.user_id", "purchasedby")},
             {typeof(ReceiptItem), new Table("ReceiptItems", "id", "totalAmount", "pricePerItem", "times").
@@ -89,7 +89,7 @@ namespace Classes
             {typeof(RestockItem), new Table("RestockItems", "quantity", "pricePerItem", "total", "id").
                 Join<Restock>("JOIN", "Restocks.id = RestockItems.restock_id", "restock").
                 Join<ShopItem>("JOIN", "ShopItems.item_id = RestockItems.item_id", "item")},
-            {typeof(ShopJob), new Table("Shops", "id", "label", "description", "x", "y", "type", "logo")},
+            {typeof(ShopWorkplace), new Table("Shops", "id", "label", "description", "x", "y", "type", "logo")},
             {typeof(Tent), new Table("Tents", "bookedOn", "bookedTill", "isPayed").
                 Join<Visitor>("JOIN", "Tents.bookedBy = Visitors.user_id", "bookedBy").
                 Join<TentPitch>("JOIN", "Landmarks.id = Tents.location", "location")},
@@ -97,7 +97,7 @@ namespace Classes
                 Join<Visitor>("JOIN", "TentPeople.visitor_id = Visitors.user_id", "visitor").
                 Join<Tent>("JOIN", "Tents.location = TentPeople.Tent_ID", "tent")},
             {typeof(TentPitch), new Table("Landmarks where landmarks.type = 'tent'").
-                Copy<ITServiceJob>()},
+                Copy<ITServiceWorkplace>()},
             {typeof(User), new Table("Users", "id", "firstName", "lastName", "email", "password", "type", "username")},
             {typeof(Visitor), new Table("Visitors", "balance", "picture", "ticket", "rfid").
                 Join<User>("JOIN", "Users.id = Visitors.user_id", "")},
@@ -147,6 +147,17 @@ namespace Classes
             }
         }
 
+        public static void Delete<T>(string where, params object[] parameters)
+        {
+            Type t = typeof(T);
+            ExecuteSQL("DELETE from {0} where {1}", tables[t].Name, string.Format(where.Replace("|T|", tables[t].Name), parameters));
+        }
+
+        public static void Delete(Record r, string where, params object[] parameters)
+        {
+            ExecuteSQL("DELETE from {0} where {1}", r.TableName, string.Format(where.Replace("|T|", r.TableName), parameters));
+        }
+
         public static Record Insert(Record record, string values, params object[] parameters)
         {
             if (values.Split(',').Length != parameters.Length) throw new InvalidOperationException("Value missing in parameters");
@@ -172,8 +183,8 @@ namespace Classes
         {
             Table table = tables[record.GetType()];
             //if (table.Joins.Count > 0) throw new NotImplementedException("Nested update not implemented");
-
-            ExecuteScalar(string.Format("UPDATE {0} SET {1} WHERE {2};",
+            identifier = identifier.Replace("|T|", table.Name);
+            ExecuteSQL(string.Format("UPDATE {0} SET {1} WHERE {2};",
                     table.Name, set, identifier));
 
             List<object> result = GetWhere(record.GetType(), identifier);
@@ -323,14 +334,16 @@ namespace Classes
                 where = wherePattern.Arg(parameters);
             string tableString = tables[typeof(T)].ToString().ToLower();
             where = where.Replace("|T|", tables[typeof(T)].Name);
-            if(where.Trim().Length > 0)
+            if (where.Trim().Length > 0)
                 if (tableString.ToLower().IndexOf("where") != -1)
                     where = " and " + where;
+                else
+                    where = " where " + where;
             return (long)ExecuteScalar("Select count(*) from {0} {1}",
                 tableString.Split(new string[] { "\r\nfrom\r\n", " from " }, StringSplitOptions.None).Last(), where);
         }
 
-        public static T Find<T>(string where, params object[] parameters) where T : Record
+        public static T Find<T>(string where = "", params object[] parameters) where T : Record
         {
             return GetWhere<T>(where + " Limit 1", parameters).FirstOrDefault();
         }
@@ -360,11 +373,11 @@ namespace Classes
             for (int i = 0; i < parameters.Length; i++)
                 whereParameters[i] = new KeyValuePair<string, object>(valuesSplit[i].Trim(), parameters[i].ToString());
 
-            ExecuteScalar("Insert into {0} ({1}) values ({2}); ", table.Name,
+            ExecuteSQL("Insert into {0} ({1}) values ({2}); ", table.Name,
                     values,
                     string.Join(",", parameters));
 
-            List<object> result = GetWhere(recordType, string.Join(" and ", whereParameters.Select(x => x.Key + " = " + x.Value)));
+            List<object> result = GetWhere(recordType, string.Join(" and ", whereParameters.Select(x => table.Name + "." + x.Key + " = " + x.Value)));
             return result.LastOrDefault() as Record;
         }
 
@@ -425,7 +438,7 @@ namespace Classes
             {
                 Table newTable = new Table(tables[typeof(Item)]).
                     Join<ShopItem>("LEFT JOIN", "ShopItems.item_id = Items_all.id", "shop_item","",false).
-                    Join<ShopJob>("JOIN" ,"Shops.id = Shopitems.shop_id", "shop_shop").
+                    Join<ShopWorkplace>("JOIN" ,"Shops.id = Shopitems.shop_id", "shop_shop").
                     Join<RentableItem>("LEFT JOIN", "RentableItems.item_id = Items_ALL.id", "rent", "", false);
                 foreach (var table in newTable.Joins)
                     if (table.Name != tables[typeof(Item)].Name)
@@ -447,7 +460,7 @@ namespace Classes
                 return GetWhere(t, "Select " + newTable.ToString(), string.Format(where, parameters.Format())).Select(x => x as T).ToList();
             }
 
-            if (t.IsAbstract && t != typeof(Job))
+            if (t.IsAbstract && t != typeof(Workplace))
                 throw new NotImplementedException("ABSTRACT TYPE REQUESTED AT DATABASE: " + t.Name);
 
             return GetWhere(t, string.Format(where, parameters.Format())).Select(x => x as T).ToList();
@@ -459,10 +472,37 @@ namespace Classes
 
             string[] wantedTables = sql.Split('|');
             where = where.Replace("|T|", tables[t].Name);
-            if(where.Trim() == "")
+            if (where.Trim() == "")
                 ExecuteSQLWithResult(sql, ProcessReader);
             else
-                ExecuteSQLWithResult(sql + (sql.ToLower().IndexOf("where") == -1 ?  " Where " + where : " and (" + where+")"), ProcessReader);
+            {
+                int i = 0;
+                int outI = -1;
+                string limit = "";
+                if (sql.ToLower().IndexOf("where") != -1)
+                {
+                   i = where.ToLower().IndexOf(" limit ");
+                    if (int.TryParse(where.Substring(i + " limit ".Length), out outI))
+                    {
+                        if (outI.ToString().Length + i + " limit ".Length == where.Length)
+                        {
+                            limit = where.Substring(i);
+                            where = where.Substring(0, i);
+                        }
+                    }
+                }
+
+                string additionalWhere = "";
+                if (sql.ToLower().IndexOf("where") == -1)
+                    if (where.ToLower().Replace("limit 1", "").Trim().Length == 0)
+                        additionalWhere = where;
+                    else
+                        additionalWhere = " Where " + where;
+                else
+                    additionalWhere = " and (" + where + ")" + (limit == "" ? "" : where.Substring(i));
+
+                ExecuteSQLWithResult(sql + additionalWhere, ProcessReader);
+            }
 
             List<object> result = new List<object>(processingList);
             processingList.Clear();

@@ -12,6 +12,8 @@ namespace App_Common
 {
     public partial class Menu : Form
     {
+        public event Action OnActivityLost = () => { };
+
         public static bool IsInDebug
         {
             get
@@ -33,6 +35,7 @@ namespace App_Common
 
         public void Enlist(Control c) { this.enlisted.Add(c); }
 
+        protected static bool OnAttachSet;
         protected static Classes.RFID reader;
 
         private int defaultHeight = 0;
@@ -65,10 +68,10 @@ namespace App_Common
                     reader = new Classes.RFID();
                     reader.OnAttach += (x) => { };
                     reader.OnDetach += (x) => { };
-                    reader.OnDetect += (x) => MessageBox.Show("RFID found," + x);
-                    reader.OnDetectEnd += (x) => MessageBox.Show("RFID lost, " + x);
-                    reader.OnError += (x) => MessageBox.Show("RFID ERROR, " + x.Description);
-
+                    //reader.OnDetect += (x) => MessageBox.Show("RFID found," + x);
+                    //reader.OnDetectEnd += (x) => MessageBox.Show("RFID lost, " + x);
+                    reader.OnError += (x) => { MessageBox.Show("Reader encountered an error. The error has been logged."); new Classes.Warning("RFID", x.Description).Create(); };
+                    Classes.Database.OnUnableToProcessSQL += (ex,sql) => new Classes.Warning("SQL error", ex.GetType()+"\n"+ex.Message+"\n"+sql).Create();
                     reader.OnAttach += (x) => reader.ToggleLED();
 
                     this.FormClosed += (x, y) => 
@@ -84,9 +87,13 @@ namespace App_Common
 
             this.ControlAdded += (x, y) =>
             {
-                if (IsRendering)
+                if (IsRendering && this != MainMenu)
+                {
                     MainMenu.Controls.Add(y.Control);
+                    this.OnActivityLost += () => MainMenu.Controls.Remove(y.Control);
+                }
                 else
+                    if (!this.controls.Contains(y.Control))
                     this.controls.Add(y.Control);
             };
 
@@ -177,7 +184,11 @@ namespace App_Common
 
         private static void ChangeMenuTo(Menu menu)
         {
-            if (ActiveMenu != null) ActiveMenu.IsRendering = false;
+            if (ActiveMenu != null)
+            {
+                ActiveMenu.IsRendering = false;
+                ActiveMenu.OnActivityLost();
+            }
             ActiveMenu = menu;
             menu.IsRendering = true;
 

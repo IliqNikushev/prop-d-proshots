@@ -14,10 +14,19 @@ namespace Design.Idea.AdministratorInterface
     public partial class AddNewEvent : Form
     {
         public bool flag=false;
-        public Point p;
         public AddNewEvent()
         {
             InitializeComponent();
+
+            foreach (Control item in this.Controls)
+            {
+                item.MouseUp += pictureBoxLandmark_MouseUp;
+            }
+
+            pictureBoxMap.Controls.Add(pictureBoxLandmark);
+            pictureBoxLandmark.Left = pictureBoxLandmark.Left - pictureBoxMap.Left;
+            pictureBoxLandmark.Top = pictureBoxLandmark.Top - pictureBoxMap.Top;
+            pictureBoxLandmark.BackColor = Color.FromArgb(0,255,255,255);
         }
 
         private void AddNewEvent_Load(object sender, EventArgs e)
@@ -31,9 +40,28 @@ namespace Design.Idea.AdministratorInterface
 
         }
 
+        private float MapScaleX
+        {
+            get
+            {
+                return (float)new HomePageWithMap().MapWidth / this.pictureBoxMap.Width;
+            }
+        }
+
+        private float MapScaleY
+        {
+            get
+            {
+                return  (float)new HomePageWithMap().MapHeight / this.pictureBoxMap.Height;
+            }
+        }
+
         private void buttonCreat_Click(object sender, EventArgs e)
         {
-            EventLandmark ll = new EventLandmark(textBoxLabel.Text, richTextBoxDescription.Text, pictureBoxLandmark.Left - pictureBoxMap.Left, pictureBoxLandmark.Top - pictureBoxMap.Top, dateTimePickerStart.Value, dateTimePickerEnd.Value);
+            EventLandmark ll = new EventLandmark(textBoxLabel.Text, richTextBoxDescription.Text,
+                (int)((float)(pictureBoxLandmark.Left * MapScaleX)),
+                (int)((float)(pictureBoxLandmark.Top * MapScaleY)),
+                dateTimePickerStart.Value, dateTimePickerEnd.Value);
 
             ll.Create();
 
@@ -41,34 +69,12 @@ namespace Design.Idea.AdministratorInterface
 
         private void pictureBoxLandmark_MouseUp(object sender, MouseEventArgs e)
         {
-            if (flag)
-            {
-                Point d = new Point();
-
-                d.X = pictureBoxLandmark.Left + e.X - p.X;
-                d.Y = pictureBoxLandmark.Top + e.Y - p.Y;
-                if (d.X > pictureBoxMap.Width + pictureBoxMap.Left || d.X < pictureBoxMap.Left)
-                {
-                    return;
-                }
-                if (d.Y > pictureBoxMap.Height + pictureBoxMap.Top || d.Y < pictureBoxMap.Top)
-                {
-                    return;
-                }
-
-                pictureBoxLandmark.Left = d.X;
-                pictureBoxLandmark.Top = d.Y;
-                p = e.Location;
-            }
             flag = false;
-
-
         }
 
         private void pictureBoxLandmark_MouseDown(object sender, MouseEventArgs e)
         {
             flag = true;
-            p = e.Location;
         }
 
         private void pictureBoxLandmark_MouseMove(object sender, MouseEventArgs e)
@@ -77,20 +83,20 @@ namespace Design.Idea.AdministratorInterface
             {
                 Point d = new Point();
 
-                d.X = pictureBoxLandmark.Left + e.X - p.X;
-                d.Y = pictureBoxLandmark.Top + e.Y - p.Y;
-                if (d.X > pictureBoxMap.Width + pictureBoxMap.Left || d.X < pictureBoxMap.Left)
+                d.X = e.X + pictureBoxLandmark.Left - pictureBoxLandmark.Width / 2;
+                d.Y = e.Y + pictureBoxLandmark.Top - pictureBoxLandmark.Height;
+               
+                if (d.X > pictureBoxMap.Width - pictureBoxLandmark.Width || d.X < 0)
                 {
                     return;
                 }
-                if (d.Y > pictureBoxMap.Height + pictureBoxMap.Top || d.Y < pictureBoxMap.Top)
+                if (d.Y > pictureBoxMap.Height - pictureBoxLandmark.Height || d.Y < 0)
                 {
                     return;
                 }
-
-                pictureBoxLandmark.Left = d.X;
-                pictureBoxLandmark.Top = d.Y;
-                p = e.Location;
+                pictureBoxLandmark.Refresh();
+                pictureBoxMap.Refresh();
+                pictureBoxLandmark.Location = d;
             }
         }
     }

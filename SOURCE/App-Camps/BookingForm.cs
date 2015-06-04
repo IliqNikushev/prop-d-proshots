@@ -287,7 +287,7 @@ namespace App_Camps
             }
 
             if (MessageBox.Show(string.Format(
-                "Are you sure you wish to book tent pitch #{0}\nFrom {1} evening\nUntill {2} morning ({3} night{4})\nfor {5} visitor{6}?\n{7}\nTotal price is :{8}{9}",
+                "Are you sure you wish to book tent pitch #{0}\nFrom {1} evening\nUntill {2} morning ({3} night{4})\nfor {5} visitor{6}?\n- You\n{7}\nTotal price is :{8}{9}",
                 SelectedPitch.ID,
                 dateFromTbox.Text,
                 toDateTbox.Text,
@@ -382,8 +382,15 @@ namespace App_Camps
                 if (!freeTentPitches.Where(x => x.ID == selectedPitch.ID).Any()) // not free any more
                 {
                     MessageBox.Show("Tent pitch that you had selected is not free for the new specified period");
+                    pitchesCBox.SelectedIndex = 0;
                 }
-                //else set the new value for the combo box
+                else
+                    for (int i = 0; i < pitchesCBox.Items.Count; i++)
+                        if (selectedPitch == pitchesCBox.Items[i] as Classes.TentPitch)
+                        {
+                            pitchesCBox.SelectedIndex = i;
+                            return;
+                        }
             }
         }
 
@@ -411,12 +418,11 @@ namespace App_Camps
                 bookedForPeopleLbl.Text = "Booked for 1 person";
             else
                 bookedForPeopleLbl.Text = "Booked for " + NumberOfPeople + " people";
-            
         }
 
         private void pitchesCBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            base.SelectItem(pitchesCBox.SelectedItem as Classes.Landmark);
         }
     }
 }

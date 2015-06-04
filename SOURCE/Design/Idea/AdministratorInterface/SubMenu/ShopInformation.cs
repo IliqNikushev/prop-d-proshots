@@ -14,10 +14,10 @@ namespace Design.Idea.AdministratorInterface.SubMenu
     {
         private List<Classes.ShopItem> items;
         private List<Classes.ReceiptItem> purchasedItems;
-        private Classes.ShopJob shop;
+        private Classes.ShopWorkplace shop;
         private List<Classes.Visitor> visitors = new List<Classes.Visitor>();
 
-        public ShopInformation(Classes.ShopJob shop = null)
+        public ShopInformation(Classes.ShopWorkplace shop = null)
         {
             InitializeComponent();
             if (shop == null)

@@ -8,9 +8,9 @@ namespace Classes
 {
     public class ShopItem : RestockableItem
     {
-        public ShopJob Shop { get; private set; }
+        public ShopWorkplace Shop { get; private set; }
         public int WarningLevel { get; private set; }
-        public ShopItem(int id, decimal price, string brand, string model, string type, string group, string description, string icon, int inStock, int warningLevel, ShopJob shop)
+        public ShopItem(int id, decimal price, string brand, string model, string type, string group, string description, string icon, int inStock, int warningLevel, ShopWorkplace shop)
             : base(id, price, brand, model, type, group, description, icon, inStock)
         {
             this.Shop = shop;

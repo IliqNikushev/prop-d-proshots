@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Classes
 {
     [TestClass]
-    public class PCDoctorJobTest : JobTest
+    public class PCDoctorWorkplaceTest : WorkplaceTest
     {
         [TestMethod]
         [ExpectedException(typeof(Record.NotToBeSentToDatabaseException))]

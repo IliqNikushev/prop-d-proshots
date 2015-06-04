@@ -12,12 +12,12 @@ namespace App_Employee
 {
     public partial class InformationDeskForm : App_Common.Menu
     {
-        private Classes.InformationKioskJob job;
+        private Classes.InformationKioskWorkplace job;
         private Classes.Employee employee;
         public InformationDeskForm(App_Common.Menu parent) : base(parent)
         {
             this.employee = LoggedInEmployee;
-            this.job = this.employee.Job as Classes.InformationKioskJob;
+            this.job = this.employee.Workplace as Classes.InformationKioskWorkplace;
             InitializeComponent();
         }
     }

@@ -13,12 +13,14 @@ namespace Classes
             this.Description = description;
         }
 
+        public Warning(string name, string description) : this(0, name, description) { }
+
         public string Name { get; private set; }
         public string Description { get; private set; }
 
         public override Record Create()
         {
-            throw new NotImplementedException();
+            return Database.Insert(this, "name, description", this.Name, this.Description);
         }
     }
 }

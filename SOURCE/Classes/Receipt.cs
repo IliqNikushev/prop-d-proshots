@@ -23,7 +23,7 @@ namespace Classes
         }
         public DateTime PurchasedOn { get; private set; }
         public Visitor PurchasedBy { get; private set; }
-        public ShopJob Shop { get { return this.items.Count > 0 ? this.items[0].Item.Shop : null; } }
+        public ShopWorkplace Shop { get { return this.items.Count > 0 ? this.items[0].Item.Shop : null; } }
 
         public Receipt(int id, Visitor visitor, DateTime purchasedOn)
             : base(id)

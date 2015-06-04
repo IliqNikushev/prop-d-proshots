@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Classes
 {
-    public class ShopJob : Job
+    public class ShopWorkplace : Workplace
     {
         protected override string Type
         {
             get { return "shop"; }
         }
 
-        public ShopJob(int id, string label, string description, string logo, int x, int y) : base(id, label, description, logo, x, y) { }
+        public ShopWorkplace(int id, string label, string description, string logo, int x, int y) : base(id, label, description, logo, x, y) { }
 
         public List<Classes.ShopItem> Items
         {

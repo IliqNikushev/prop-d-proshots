@@ -10,13 +10,15 @@ namespace Classes
         [ExpectedException(typeof(Record.NotToBeSentToDatabaseException))]
         public override void DatabaseCreate()
         {
-            throw new NotImplementedException();
+            new Visitor(0, null, null, null, null, null, null, 0, null, false).Create();
         }
 
         [TestMethod]
         public override void DatabaseGet()
         {
-            throw new NotImplementedException();
+            Visitor v = Database.Find<Visitor>("{0}.username = {1}", Database.TableName<User>(), "tester");
+
+            Assert.IsTrue(v != null);
         }
     }
 }

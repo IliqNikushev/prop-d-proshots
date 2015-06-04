@@ -31,13 +31,11 @@ namespace Classes
             Record baseRecord = base.Create();
 
             return Database.Insert(this, "location, timeStart, timeEnd", baseRecord.ID, this.TimeStart, this.TimeEnd);
+        
         }
         public override string ToString()
         {
            return string.Format( "{0} - {1} - {2}", this.Label, this.TimeStart, this.TimeEnd) ;
-            
-
-            
         }
     }
 }

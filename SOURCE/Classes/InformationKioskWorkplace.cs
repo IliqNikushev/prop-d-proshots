@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Classes
 {
-    public class InformationKioskJob : Job
+    public class InformationKioskWorkplace : Workplace
     {
         protected override string Type
         {
             get { return "info"; }
         }
 
-        public InformationKioskJob(int id, int x, int y) : base(id, "Information desk", "Here you can get information about the event and your card", "information-logo.jpg", x, y) { }
+        public InformationKioskWorkplace(int id, int x, int y) : base(id, "Information desk", "Here you can get information about the event and your card", "information-logo.jpg", x, y) { }
 
         private long numberOfCardsTaken;
         private long numberOfCardsTotal;
