@@ -69,6 +69,11 @@ namespace Classes
             return this.ID.CompareTo(other.ID);
         }
 
+        public override string ToString()
+        {
+            return this.GetType().Name + " # " + this.ID;
+        }
+
         [Serializable]
         public class NotToBeSentToDatabaseException : Exception
         {

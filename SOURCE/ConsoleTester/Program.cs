@@ -4,69 +4,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Classes;
-using System.Threading;
 
 namespace ConsoleTester
 {
     class Program
     {
-        public delegate void numberLogger(int n);
-        public static event numberLogger elog1;
-        public static event numberLogger elog2;
-        public static event numberLogger elog3;
-        public static void LogNumber(int log)
-        {
-            Console.WriteLine(log);
-        }
-        //public static void Mass(int id, int length)
-        //{
-        //    Console.WriteLine(id + " " + length);
-        //}
-        //public static void NoParam(int[] intz)
-        //{
-        //    Console.WriteLine(String.Join(", ",intz));
-        //}
-        //public static void Param(params int[] param)
-        //{
-        //    Console.WriteLine(String.Join(", ", param));
-        //}
         static void Main(string[] args)
+            // {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type", "logo")},
         {
-            RFID rf= new RFID();
-            rf.OnDetect += x => { };
-            return;
-            numberLogger log1 = x => { };
-            numberLogger log2 = new numberLogger(LogNumber);
-            numberLogger log3 = LogNumber;
-            elog1 = x => { };
-            elog2 = new numberLogger(LogNumber);
-            elog3 = LogNumber;
-            for (int i = 0; i < 5; i++)
-			{
-                int ai = i;
-			    log1+= x => Console.WriteLine(ai);
+            DateTime n = new DateTime(2015,6,29);
+            
+            EventLandmark ll = new EventLandmark("test", "a test landmark", 0, 0, n, n);
 
-			}
-            log1(3);
+            ll.Create();
+
             return;
-            int a = 3;
-            new System.Threading.Thread(() => {while(true){ Thread.Sleep(500); a += 1;} }).Start();
-            while(true)
-            { System.Threading.Thread.Sleep(1000); Console.WriteLine(a); }
+
+
+            RFID rfid = new RFID();
+            rfid.OnDetect += rfid_OnDetect;
+            Console.ReadKey();
+            rfid.ToggleLED();
             return;
-            RentableItem item = Database.All<RentableItem>().Last();
-            Visitor visitor = Database.Find<Visitor>("users.username = {0}","tester");
-            new RentableItemHistory(item, visitor);
+            Database.Insert<Landmark>("label, description, x,y ,type ", "PlayGround" , "Play ground for children", 100,100, "event");
             return;
-            //int[] ints = new int[]{1,2,3,4};
-            //Param(1,2,3);
-            //NoParam(ints);
-            //Mass(1,2);
-            //return;
+            List<Visitor> myVisitors = Database.All<Visitor>();
+            Visitor tester = Database.Find<Visitor>("users.userName = 'tester'");
+            tester = Database.Find<Visitor>("{0}.username = {1}", Database.TableName<User>(), "tester");
+            tester = Database.Find<Visitor>("|T|.RFID = {0}","4a00378203");
+
+            return;    
             Database.ExecuteSQL("Create table test(Name varchar(15) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=latin1;");
             return;
             EventLandmark l = new EventLandmark("test", "a test landmark", 0, 0, DateTime.Today, DateTime.Now);
+                   
             l.Create();
+        }
+
+        static void rfid_OnDetect(string obj)
+        {
+            Console.WriteLine(obj);
+            Visitor v = Visitor.Authenticate(obj);
+           // throw new NotImplementedException();
         }
     }
 }

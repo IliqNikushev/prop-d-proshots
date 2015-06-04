@@ -20,9 +20,14 @@ namespace Classes
             this.CheckedInTime = checkedInTime;
         }
 
+        public TentPerson(Visitor visitor, Tent tent)
+            : this(0, visitor, tent, DateTime.MinValue)
+        {
+        }
+
         public override Record Create()
         {
-            throw new NotImplementedException();
+            return Database.Insert<TentPerson>("visitor_id, tent_id", this.Visitor.ID, this.Tent.ID);
         }
     }
 }

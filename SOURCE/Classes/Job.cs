@@ -17,7 +17,7 @@ namespace Classes
                 return Database.Where<Employee>("Employees.workplace_id = {0}", this.ID);
             }
         }
-
+        
         public override Record Create()
         {
             throw new NotToBeSentToDatabaseException();

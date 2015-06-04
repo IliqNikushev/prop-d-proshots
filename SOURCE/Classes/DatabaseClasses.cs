@@ -63,6 +63,11 @@ namespace Classes
                 {
                     return this.Type + " " + this.Name;
                 }
+
+                public JoinTable DeepCopy()
+                {
+                    return new JoinTable(this.TableType, this.Type, this.Prefix, this.on, this.Alias, this.AddInherited);
+                }
             }
 
             public string Name;
@@ -98,7 +103,7 @@ namespace Classes
             {
                 t.ApplyCopy();
                 this.Fields = new List<string>(t.Fields);
-                this.Joins = new List<JoinTable>(t.Joins);
+                this.Joins = new List<JoinTable>(t.Joins.Select(x=>x.DeepCopy()));
                 this.Name = t.Name;
                 this.Extra = t.Extra;
             }
@@ -146,7 +151,7 @@ namespace Classes
                                 extra += " and\r\n(" + join.Table.Extra + ")";
                 }
                 if (extra.Trim() != "")
-                    extra = "\r\nWhere\r\n" + extra;
+                    extra = "\r\nWhere\r\n(" + extra+")";
                 return fields + "\r\nfrom\r\n" + name + extra;
             }
 

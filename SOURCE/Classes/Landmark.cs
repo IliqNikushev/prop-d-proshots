@@ -19,7 +19,17 @@ namespace Classes
 
         public int X { get; private set; }
         public int Y { get; private set; }
-        public string Icon { get; private set; }
+        private string icon;
+        public string Icon
+        {
+            get
+            {
+                if (!icon.StartsWith("http"))
+                    return Database.PathToAthenaLandmarkPictures + icon;
+                return icon;
+            }
+            set{this.icon = value;}
+        }
         public string Label { get; private set; }
         public string Description { get; private set; }
 

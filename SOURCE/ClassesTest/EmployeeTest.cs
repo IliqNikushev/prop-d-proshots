@@ -10,7 +10,7 @@ namespace Classes
         [ExpectedException(typeof(Record.NotToBeSentToDatabaseException))]
         public override void DatabaseCreate()
         {
-            new Employee(0, null, null, null, null, null, null).Create();
+            new Employee(0, null, null, null, null, null, null,null).Create();
         }
 
         [TestMethod]

@@ -12,7 +12,7 @@ namespace Classes
         {
             get
             {
-                return false;
+                
                 try
                 {
                     new Phidgets.RFID();
@@ -213,6 +213,8 @@ namespace Classes
         public void Dispose()
         {
             if (this.reader == null)
+                return;
+            if (!HasDrivers)
                 return;
 
             this.reader.Attach -= reader_Attach;

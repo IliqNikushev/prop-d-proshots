@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.checkBoxVisitor = new System.Windows.Forms.CheckBox();
+            this.textBoxVisitor = new System.Windows.Forms.TextBox();
+            this.buttonSearch = new System.Windows.Forms.Button();
+            this.comboBoxCategory = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxDate = new System.Windows.Forms.ComboBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -51,13 +51,13 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.checkBoxVisitor);
+            this.groupBox1.Controls.Add(this.textBoxVisitor);
+            this.groupBox1.Controls.Add(this.buttonSearch);
+            this.groupBox1.Controls.Add(this.comboBoxCategory);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.comboBoxDate);
             this.groupBox1.Controls.Add(this.listBox1);
             this.groupBox1.Controls.Add(this.pictureBox9);
             this.groupBox1.Controls.Add(this.label9);
@@ -73,44 +73,47 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Overview Sorted by:";
             // 
-            // textBox1
+            // checkBoxVisitor
             // 
-            this.textBox1.Location = new System.Drawing.Point(288, 61);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 52;
+            this.checkBoxVisitor.AutoSize = true;
+            this.checkBoxVisitor.Location = new System.Drawing.Point(288, 38);
+            this.checkBoxVisitor.Name = "checkBoxVisitor";
+            this.checkBoxVisitor.Size = new System.Drawing.Size(110, 21);
+            this.checkBoxVisitor.TabIndex = 53;
+            this.checkBoxVisitor.Text = "Visitor Name";
+            this.checkBoxVisitor.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // textBoxVisitor
             // 
-            this.button1.Location = new System.Drawing.Point(362, 98);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 50;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
+            this.textBoxVisitor.Location = new System.Drawing.Point(288, 61);
+            this.textBoxVisitor.Name = "textBoxVisitor";
+            this.textBoxVisitor.Size = new System.Drawing.Size(100, 22);
+            this.textBoxVisitor.TabIndex = 52;
             // 
-            // radioButton1
+            // buttonSearch
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(288, 40);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(116, 21);
-            this.radioButton1.TabIndex = 51;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Visitors Name";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.buttonSearch.Location = new System.Drawing.Point(362, 98);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearch.TabIndex = 50;
+            this.buttonSearch.Text = "Search";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.button1_Click);
             // 
-            // comboBox2
+            // comboBoxCategory
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.comboBoxCategory.FormattingEnabled = true;
+            this.comboBoxCategory.Items.AddRange(new object[] {
             "All",
-            "Visitor",
-            "Participants"});
-            this.comboBox2.Location = new System.Drawing.Point(146, 61);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 24);
-            this.comboBox2.TabIndex = 49;
+            "Rented Items",
+            "Purchases",
+            "Appointments",
+            "Top-ups",
+            "Transacctions"});
+            this.comboBoxCategory.Location = new System.Drawing.Point(146, 61);
+            this.comboBoxCategory.Name = "comboBoxCategory";
+            this.comboBoxCategory.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxCategory.TabIndex = 49;
             // 
             // label2
             // 
@@ -130,17 +133,18 @@
             this.label1.TabIndex = 47;
             this.label1.Text = "Date";
             // 
-            // comboBox1
+            // comboBoxDate
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboBoxDate.FormattingEnabled = true;
+            this.comboBoxDate.Items.AddRange(new object[] {
+            "All",
             "27-06-2015",
             "28-06-2015",
             "29-06-2015"});
-            this.comboBox1.Location = new System.Drawing.Point(16, 61);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 46;
+            this.comboBoxDate.Location = new System.Drawing.Point(16, 61);
+            this.comboBoxDate.Name = "comboBoxDate";
+            this.comboBoxDate.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxDate.TabIndex = 46;
             // 
             // listBox1
             // 
@@ -154,7 +158,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Image = global::Design.Properties.Resources.money;
-            this.pictureBox9.Location = new System.Drawing.Point(9, 501);
+            this.pictureBox9.Location = new System.Drawing.Point(8, 483);
             this.pictureBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(73, 69);
@@ -215,21 +219,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1100, 696);
+            this.ClientSize = new System.Drawing.Size(1103, 653);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Visitors";
             this.Text = "Visitors";
-            this.Controls.SetChildIndex(this.groupBox1, 0);
-            this.Controls.SetChildIndex(this.pictureBox1, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -242,14 +243,14 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox textBoxVisitor;
+        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.ComboBox comboBoxCategory;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxDate;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.CheckBox checkBoxVisitor;
 
     }
 }

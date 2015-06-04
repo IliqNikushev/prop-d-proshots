@@ -54,11 +54,18 @@ namespace Classes
             }
         }
 
-        public static List<Job> Jobs
+        public static List<String> Jobs
         {
             get
             {
-                return All<Job>();
+                List<string> result = new List<string>();
+                ExecuteSQLWithResult("select name from jobs;",
+                    (x) =>
+                    {
+                        while (x.Read())
+                            result.Add(x.GetStr("name"));
+                    });
+                return result;
             }
         }
 
@@ -109,37 +116,37 @@ namespace Classes
 
         public static List<Tent> GetTentsBookedByVisitor(Visitor visitor)
         {
-            return GetWhere<Tent>("|T|.booked_by = {0}", visitor.ID);
+            return Where<Tent>("|T|.bookedby = {0}", visitor.ID);
         }
 
         public static List<Tent> GetTentsBookedForVisitor(Visitor visitor)
         {
-            return GetWhere<TentPerson>("|T|.visitor_id = {0}", visitor.ID).Select(x => x.Tent).ToList();
+            return Where<TentPerson>("|T|.visitor_id = {0}", visitor.ID).Select(x => x.Tent).ToList();
         }
 
         public static List<RentableItemHistory> GetVisitorRentedItems(Visitor visitor)
         {
-            return GetWhere<RentableItemHistory>("|T|.rented_by = ", visitor.ID);
+            return Where<RentableItemHistory>("|T|.rentedby = ", visitor.ID);
         }
 
         public static List<RentableItemHistory> GetVisitorNotReturnedItems(Visitor visitor)
         {
-            return GetWhere<RentableItemHistory>("|T|.rented_by = {0} and |T|.returned_by is NULL", visitor.ID);
+            return GetWhere<RentableItemHistory>("|T|.rentedby = {0} and |T|.returnedby is NULL", visitor.ID);
         }
 
         public static List<RentableItemHistory> GetVisitorNotReturnedItemsOverdue(Visitor visitor)
         {
-            return GetWhere<RentableItemHistory>("|T|.rented_by = {0} and |T|.returned_by is NULL and NOW() > |T|.rentedTill", visitor.ID);
+            return GetWhere<RentableItemHistory>("|T|.rentedby = {0} and |T|.returnedby is NULL and NOW() > |T|.rentedTill", visitor.ID);
         }
 
         public static List<Receipt> GetVisitorReceipts(Visitor visitor)
         {
-            return GetWhere<Receipt>("|T|.purchased_by = {0}", visitor.ID);
+            return GetWhere<Receipt>("|T|.purchasedby = {0}", visitor.ID);
         }
 
         public static List<ReceiptItem> GetVisitorPurchases(Visitor visitor)
         {
-            return GetWhere<ReceiptItem>("{1}.purchased_by = {0}", visitor.ID, TName<Receipt>());
+            return GetWhere<ReceiptItem>("{1}.purchasedby = {0}", visitor.ID, TName<Receipt>());
         }
 
         public static List<Appointment> GetVisitorAppointments(Visitor visitor)

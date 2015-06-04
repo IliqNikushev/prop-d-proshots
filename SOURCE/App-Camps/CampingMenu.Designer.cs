@@ -45,13 +45,13 @@
             this.bookedForLbl = new System.Windows.Forms.Label();
             this.bookedForDetailsLbox = new System.Windows.Forms.ListBox();
             this.pitchNumberTextLbl = new System.Windows.Forms.Label();
-            this.showOnMapBtn = new System.Windows.Forms.Button();
+            this.cancelPitchBtn = new System.Windows.Forms.Button();
             this.detailsPanel = new System.Windows.Forms.Panel();
+            this.bookedByLbl = new System.Windows.Forms.Label();
+            this.dateTimeBookedLbl = new System.Windows.Forms.Label();
+            this.pitchNumberLbl = new System.Windows.Forms.Label();
             this.closeDetailsBtn = new System.Windows.Forms.Button();
             this.isPaidCbox = new System.Windows.Forms.CheckBox();
-            this.pitchNumberLbl = new System.Windows.Forms.Label();
-            this.dateTimeBookedLbl = new System.Windows.Forms.Label();
-            this.bookedByLbl = new System.Windows.Forms.Label();
             this.detailsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -209,15 +209,15 @@
             this.pitchNumberTextLbl.TabIndex = 16;
             this.pitchNumberTextLbl.Text = "Pitch number";
             // 
-            // showOnMapBtn
+            // cancelPitchBtn
             // 
-            this.showOnMapBtn.Location = new System.Drawing.Point(43, 236);
-            this.showOnMapBtn.Name = "showOnMapBtn";
-            this.showOnMapBtn.Size = new System.Drawing.Size(75, 23);
-            this.showOnMapBtn.TabIndex = 17;
-            this.showOnMapBtn.Text = "See on map";
-            this.showOnMapBtn.UseVisualStyleBackColor = true;
-            this.showOnMapBtn.Click += new System.EventHandler(this.showOnMapBtn_Click);
+            this.cancelPitchBtn.Location = new System.Drawing.Point(39, 237);
+            this.cancelPitchBtn.Name = "cancelPitchBtn";
+            this.cancelPitchBtn.Size = new System.Drawing.Size(75, 23);
+            this.cancelPitchBtn.TabIndex = 17;
+            this.cancelPitchBtn.Text = "Cancel";
+            this.cancelPitchBtn.UseVisualStyleBackColor = true;
+            this.cancelPitchBtn.Click += new System.EventHandler(this.cancelPitchBtn_Click);
             // 
             // detailsPanel
             // 
@@ -226,7 +226,7 @@
             this.detailsPanel.Controls.Add(this.pitchNumberLbl);
             this.detailsPanel.Controls.Add(this.closeDetailsBtn);
             this.detailsPanel.Controls.Add(this.isPaidCbox);
-            this.detailsPanel.Controls.Add(this.showOnMapBtn);
+            this.detailsPanel.Controls.Add(this.cancelPitchBtn);
             this.detailsPanel.Controls.Add(this.pitchNumberTextLbl);
             this.detailsPanel.Controls.Add(this.dtBookedTextLbl);
             this.detailsPanel.Controls.Add(this.bookedForDetailsLbox);
@@ -237,6 +237,33 @@
             this.detailsPanel.Name = "detailsPanel";
             this.detailsPanel.Size = new System.Drawing.Size(155, 263);
             this.detailsPanel.TabIndex = 18;
+            // 
+            // bookedByLbl
+            // 
+            this.bookedByLbl.AutoSize = true;
+            this.bookedByLbl.Location = new System.Drawing.Point(10, 105);
+            this.bookedByLbl.Name = "bookedByLbl";
+            this.bookedByLbl.Size = new System.Drawing.Size(140, 13);
+            this.bookedByLbl.TabIndex = 22;
+            this.bookedByLbl.Text = "###################";
+            // 
+            // dateTimeBookedLbl
+            // 
+            this.dateTimeBookedLbl.AutoSize = true;
+            this.dateTimeBookedLbl.Location = new System.Drawing.Point(9, 64);
+            this.dateTimeBookedLbl.Name = "dateTimeBookedLbl";
+            this.dateTimeBookedLbl.Size = new System.Drawing.Size(140, 13);
+            this.dateTimeBookedLbl.TabIndex = 21;
+            this.dateTimeBookedLbl.Text = "###################";
+            // 
+            // pitchNumberLbl
+            // 
+            this.pitchNumberLbl.AutoSize = true;
+            this.pitchNumberLbl.Location = new System.Drawing.Point(10, 26);
+            this.pitchNumberLbl.Name = "pitchNumberLbl";
+            this.pitchNumberLbl.Size = new System.Drawing.Size(140, 13);
+            this.pitchNumberLbl.TabIndex = 20;
+            this.pitchNumberLbl.Text = "###################";
             // 
             // closeDetailsBtn
             // 
@@ -257,33 +284,6 @@
             this.isPaidCbox.TabIndex = 18;
             this.isPaidCbox.Text = "$$$$$$$.$$";
             this.isPaidCbox.UseVisualStyleBackColor = true;
-            // 
-            // pitchNumberLbl
-            // 
-            this.pitchNumberLbl.AutoSize = true;
-            this.pitchNumberLbl.Location = new System.Drawing.Point(10, 26);
-            this.pitchNumberLbl.Name = "pitchNumberLbl";
-            this.pitchNumberLbl.Size = new System.Drawing.Size(140, 13);
-            this.pitchNumberLbl.TabIndex = 20;
-            this.pitchNumberLbl.Text = "###################";
-            // 
-            // dateTimeBookedLbl
-            // 
-            this.dateTimeBookedLbl.AutoSize = true;
-            this.dateTimeBookedLbl.Location = new System.Drawing.Point(9, 64);
-            this.dateTimeBookedLbl.Name = "dateTimeBookedLbl";
-            this.dateTimeBookedLbl.Size = new System.Drawing.Size(140, 13);
-            this.dateTimeBookedLbl.TabIndex = 21;
-            this.dateTimeBookedLbl.Text = "###################";
-            // 
-            // bookedByLbl
-            // 
-            this.bookedByLbl.AutoSize = true;
-            this.bookedByLbl.Location = new System.Drawing.Point(10, 105);
-            this.bookedByLbl.Name = "bookedByLbl";
-            this.bookedByLbl.Size = new System.Drawing.Size(140, 13);
-            this.bookedByLbl.TabIndex = 22;
-            this.bookedByLbl.Text = "###################";
             // 
             // CampingMenu
             // 
@@ -330,7 +330,7 @@
         private System.Windows.Forms.Label bookedForLbl;
         private System.Windows.Forms.ListBox bookedForDetailsLbox;
         private System.Windows.Forms.Label pitchNumberTextLbl;
-        private System.Windows.Forms.Button showOnMapBtn;
+        private System.Windows.Forms.Button cancelPitchBtn;
         private System.Windows.Forms.Panel detailsPanel;
         private System.Windows.Forms.CheckBox isPaidCbox;
         private System.Windows.Forms.Button closeDetailsBtn;

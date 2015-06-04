@@ -21,7 +21,6 @@ namespace App_Common
                 if (reader.IsAttached)
                 {
                     infoLbl.Text += " Or approach your card";
-                    reader.OnDetect += Authenticate;
                 }
         }
 
@@ -41,6 +40,15 @@ namespace App_Common
             }
             
             return OnLogin();
+        }
+
+        protected override void Reset()
+        {
+            if(!IsInDebug)
+                reader.OnDetect += Authenticate;
+
+            this.idTbox.Text = "username";
+            this.passwordTbox.Text = "password";
         }
 
         private void loginBtn_Click(object sender, EventArgs e)
@@ -68,12 +76,7 @@ namespace App_Common
                 () => 
                     {
                         if (HandleLogin())
-                        {
-                            if (reader != null)
-                                reader.OnDetect -= Authenticate;
-                            this.idTbox.Text = "username";
-                            this.passwordTbox.Text = "";
-                        }
+                            reader.OnDetect -= Authenticate;
                     }));
         }
     }

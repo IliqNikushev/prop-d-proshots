@@ -2,8 +2,8 @@
         if (isset($_SESSION['username'])){
         $username = $_SESSION['username'];
         $query = "SELECT ID FROM `users` WHERE username='$username'";
-        $result = mysql_query($query);
-        while ($row = mysql_fetch_assoc($result)) {
+        $UsersID_result = mysql_query($query);
+        while ($row = mysql_fetch_assoc($UsersID_result)) {
      $rows[] = $row;
 }
     

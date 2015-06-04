@@ -48,10 +48,11 @@
             this.verticalBar = new System.Windows.Forms.VScrollBar();
             this.exampleLbl = new System.Windows.Forms.Label();
             this.itemsPanel = new System.Windows.Forms.Panel();
+            this.resetBtn = new System.Windows.Forms.Button();
+            this.activeVisitorLbl = new System.Windows.Forms.Label();
             this.subPbox = new System.Windows.Forms.PictureBox();
             this.addPbox = new System.Windows.Forms.PictureBox();
             this.storeLogoPbox = new System.Windows.Forms.PictureBox();
-            this.resetBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.subPbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addPbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeLogoPbox)).BeginInit();
@@ -126,25 +127,47 @@
             this.itemsPanel.Size = new System.Drawing.Size(574, 283);
             this.itemsPanel.TabIndex = 57;
             // 
+            // resetBtn
+            // 
+            this.resetBtn.Location = new System.Drawing.Point(12, 106);
+            this.resetBtn.Name = "resetBtn";
+            this.resetBtn.Size = new System.Drawing.Size(75, 23);
+            this.resetBtn.TabIndex = 66;
+            this.resetBtn.Text = "New order";
+            this.resetBtn.UseVisualStyleBackColor = true;
+            this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
+            // 
+            // activeVisitorLbl
+            // 
+            this.activeVisitorLbl.AutoSize = true;
+            this.activeVisitorLbl.Location = new System.Drawing.Point(70, 3);
+            this.activeVisitorLbl.Name = "activeVisitorLbl";
+            this.activeVisitorLbl.Size = new System.Drawing.Size(70, 13);
+            this.activeVisitorLbl.TabIndex = 67;
+            this.activeVisitorLbl.Text = "Active visitor:";
+            // 
             // subPbox
             // 
             this.subPbox.BackColor = System.Drawing.Color.Transparent;
             this.subPbox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.subPbox.Location = new System.Drawing.Point(172, 94);
+            this.subPbox.Image = global::App_Employee.Properties.Resources.minus;
+            this.subPbox.Location = new System.Drawing.Point(177, 96);
             this.subPbox.Name = "subPbox";
-            this.subPbox.Size = new System.Drawing.Size(60, 50);
+            this.subPbox.Size = new System.Drawing.Size(48, 48);
             this.subPbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.subPbox.TabIndex = 58;
             this.subPbox.TabStop = false;
             // 
             // addPbox
             // 
-            this.addPbox.Location = new System.Drawing.Point(106, 94);
+            this.addPbox.Image = global::App_Employee.Properties.Resources.plus;
+            this.addPbox.Location = new System.Drawing.Point(103, 96);
             this.addPbox.Name = "addPbox";
-            this.addPbox.Size = new System.Drawing.Size(60, 50);
+            this.addPbox.Size = new System.Drawing.Size(48, 48);
             this.addPbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.addPbox.TabIndex = 56;
             this.addPbox.TabStop = false;
+            this.addPbox.Click += new System.EventHandler(this.addPbox_Click);
             // 
             // storeLogoPbox
             // 
@@ -155,19 +178,11 @@
             this.storeLogoPbox.TabIndex = 53;
             this.storeLogoPbox.TabStop = false;
             // 
-            // resetBtn
-            // 
-            this.resetBtn.Location = new System.Drawing.Point(12, 106);
-            this.resetBtn.Name = "resetBtn";
-            this.resetBtn.Size = new System.Drawing.Size(75, 23);
-            this.resetBtn.TabIndex = 66;
-            this.resetBtn.Text = "New order";
-            this.resetBtn.UseVisualStyleBackColor = true;
-            // 
             // StoreForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(606, 443);
+            this.Controls.Add(this.activeVisitorLbl);
             this.Controls.Add(this.resetBtn);
             this.Controls.Add(this.totalItemsCountLbl);
             this.Controls.Add(this.numberItemsLbl);
@@ -192,5 +207,6 @@
         # endregion
 
        private System.Windows.Forms.Button resetBtn;
+       private System.Windows.Forms.Label activeVisitorLbl;
     }
 }

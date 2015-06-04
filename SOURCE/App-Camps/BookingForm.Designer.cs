@@ -56,6 +56,7 @@
             this.dateFromTbox = new System.Windows.Forms.TextBox();
             this.toDateTbox = new System.Windows.Forms.TextBox();
             this.peopleLocation = new System.Windows.Forms.Label();
+            this.currentBalanceLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nightsNUD)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,6 +99,7 @@
             this.pitchesCBox.Name = "pitchesCBox";
             this.pitchesCBox.Size = new System.Drawing.Size(77, 21);
             this.pitchesCBox.TabIndex = 39;
+            this.pitchesCBox.SelectedIndexChanged += new System.EventHandler(this.pitchesCBox_SelectedIndexChanged);
             // 
             // selectLbl
             // 
@@ -331,11 +333,21 @@
             this.peopleLocation.TabIndex = 76;
             this.peopleLocation.Text = "PEOPLE PLACEHOLDER";
             // 
+            // currentBalanceLbl
+            // 
+            this.currentBalanceLbl.AutoSize = true;
+            this.currentBalanceLbl.Location = new System.Drawing.Point(96, 443);
+            this.currentBalanceLbl.Name = "currentBalanceLbl";
+            this.currentBalanceLbl.Size = new System.Drawing.Size(149, 13);
+            this.currentBalanceLbl.TabIndex = 77;
+            this.currentBalanceLbl.Text = "Your balance is: $$$$$$$$.$$";
+            // 
             // BookingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(758, 470);
+            this.Controls.Add(this.currentBalanceLbl);
             this.Controls.Add(this.peopleLocation);
             this.Controls.Add(this.toDateTbox);
             this.Controls.Add(this.dateFromTbox);
@@ -398,6 +410,7 @@
             this.Controls.SetChildIndex(this.dateFromTbox, 0);
             this.Controls.SetChildIndex(this.toDateTbox, 0);
             this.Controls.SetChildIndex(this.peopleLocation, 0);
+            this.Controls.SetChildIndex(this.currentBalanceLbl, 0);
             ((System.ComponentModel.ISupportInitialize)(this.nightsNUD)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -434,5 +447,6 @@
         private System.Windows.Forms.TextBox dateFromTbox;
         private System.Windows.Forms.TextBox toDateTbox;
         private System.Windows.Forms.Label peopleLocation;
+        private System.Windows.Forms.Label currentBalanceLbl;
     }
 }

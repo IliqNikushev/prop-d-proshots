@@ -16,6 +16,7 @@ namespace Classes
             this.IsReturned = isReturned;
             this.Description = description;
         }
+        public Appointment(AppointedItem item, Visitor visitor, string description) : this(0, item, visitor, DateTime.MaxValue, false, description) { }
 
         public Visitor Visitor { get; private set; }
         public AppointedItem AppointedItem { get; private set; }
@@ -30,6 +31,10 @@ namespace Classes
                 return Database.Where<AppointmentTask>("AppointmentTasks.appointment_id = {0}", this.ID);
             }
         }
+        //public override string ToString()
+        //{
+        //    return "Item: " + AppointedItem + 
+        //}
 
         public void UpdateTask(Classes.AppointmentTask task, string name, string description, string price)
         {
@@ -43,7 +48,7 @@ namespace Classes
 
         public override Record Create()
         {
-            throw new NotImplementedException();
+            return Database.Insert(this,"appointed_item,appointed_by,description",this.AppointedItem.ID,Visitor.ID,Description);
         }
     }
 }

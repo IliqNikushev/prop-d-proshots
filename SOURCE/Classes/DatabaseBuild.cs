@@ -181,7 +181,7 @@ namespace Classes
                 job = CreateJob(reader);
             reader.RemovePrefix();
 
-            string j = reader.GetStr("job");
+            string duty = reader.GetStr("job");
 
             int id = -1;
             string firstName, lastName, userName, password, email;
@@ -189,7 +189,7 @@ namespace Classes
 
             reader.RemoveDistinctPrefix();
 
-            return new Employee(id, firstName, lastName, userName, password, email, job);
+            return new Employee(id, firstName, lastName, userName, password, email, job, duty);
         }
 
         private static EmployeeAction CreateEmployeeAction(Reader reader, string prefix="", bool asbtr = false)
