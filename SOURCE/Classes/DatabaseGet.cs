@@ -126,7 +126,7 @@ namespace Classes
 
         public static List<RentableItemHistory> GetVisitorRentedItems(Visitor visitor)
         {
-            return Where<RentableItemHistory>("|T|.rentedby = ", visitor.ID);
+            return Where<RentableItemHistory>("|T|.rentedby = {0}", visitor.ID);
         }
 
         public static List<RentableItemHistory> GetVisitorNotReturnedItems(Visitor visitor)
