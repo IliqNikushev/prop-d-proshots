@@ -35,10 +35,10 @@ namespace Design.Idea.EmployeeV1
         private void button2_Click(object sender, EventArgs e)
         {
             AppointedItem item = new AppointedItem(textBox1.Text,textBox3.Text);
-            //item = item.Create() as AppointedItem;
+            item = item.Create() as AppointedItem;
             
             Appointment app = new Appointment(item,activeVis,textBox2.Text);
-            //app.Create();
+            app.Create();
             appList1.Items.Add(app);
             
         }
