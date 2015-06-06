@@ -164,9 +164,9 @@ namespace Classes
                         {
                             if (Database.buildTesting) return true;
 
-                            if (reader.GetValue(i).GetType() != typeof(System.DBNull))
-                                return true;
-                            return false;
+                       //     if (reader.GetValue(i).GetType() != typeof(System.DBNull))
+                       //         return true;
+                            return true;
                         }
                     }
                 }
@@ -177,9 +177,9 @@ namespace Classes
                 {
                     if (Database.buildTesting) return true;
 
-                    if (reader.GetValue(i).GetType() != typeof(System.DBNull))
-                        return true;
-                    return false;
+                    //if (reader.GetValue(i).GetType() != typeof(System.DBNull))
+                    //    return true;
+                    return true;
                 }
             }
             return false;
