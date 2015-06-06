@@ -171,7 +171,7 @@ namespace Classes
 
             reader.AddPrefix("workplace");
             Workplace workplace = null;
-            if(reader.HasColumnAndNotNull("type"))
+            if(reader.HasColumnAndNotNull("id"))
                 workplace = CreateWorkplace(reader);
             reader.RemovePrefix();
 
@@ -537,7 +537,7 @@ namespace Classes
             
             reader.AddPrefix("returnedBy");
             Visitor returnedBy = null;
-            if(reader.HasColumnAndNotNull("rfid"))
+            if(reader.HasColumnAndNotNull("ticket"))
                 returnedBy = CreateVisitor(reader);
             reader.RemovePrefix();
 
@@ -685,7 +685,7 @@ namespace Classes
             bool ticket = false;
             string picture = null;
 
-            if (reader.HasColumnAndNotNull("rfid"))
+            if (reader.HasColumnAndNotNull("ticket"))
             {
                 amount = reader.Get<decimal>("balance");
                 rfid = reader.GetStr("RFID");

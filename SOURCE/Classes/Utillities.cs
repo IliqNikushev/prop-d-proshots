@@ -160,26 +160,28 @@ namespace Classes
                 {
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        if (reader.GetName(i).ToLower() == distinctN)
+                        string field = reader.GetName(i).ToLower();
+                        if (field == distinctN)
                         {
                             if (Database.buildTesting) return true;
 
-                       //     if (reader.GetValue(i).GetType() != typeof(System.DBNull))
-                       //         return true;
-                            return true;
+                            if (reader.GetValue(i).GetType() != typeof(System.DBNull))
+                                return true;
+                            return false;
                         }
                     }
                 }
         
             for (int i = 0; i < reader.FieldCount; i++)
             {
-                if (reader.GetName(i).ToLower() == n)
+                string field = reader.GetName(i).ToLower();
+                if (field == n)
                 {
                     if (Database.buildTesting) return true;
 
-                    //if (reader.GetValue(i).GetType() != typeof(System.DBNull))
-                    //    return true;
-                    return true;
+                    if (reader.GetValue(i).GetType() != typeof(System.DBNull))
+                        return true;
+                    return false;
                 }
             }
             return false;
