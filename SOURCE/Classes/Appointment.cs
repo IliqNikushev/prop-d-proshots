@@ -17,7 +17,7 @@ namespace Classes
             this.Description = description;
             this.AppointedOn = appointedOn;
         }
-        public Appointment(AppointedItem item, Visitor visitor, string description) : this(0, item, visitor, DateTime.MaxValue, false, description) { }
+        public Appointment(AppointedItem item, Visitor visitor, string description) : this(0, item, visitor, DateTime.MaxValue, DateTime.Now, false,"", description) { }
 
         public Visitor Visitor { get; private set; }
         public AppointedItem AppointedItem { get; private set; }
