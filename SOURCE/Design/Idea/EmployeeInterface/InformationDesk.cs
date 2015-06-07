@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Classes;
 
-namespace App_Employee
+namespace Design.Idea.EmployeeInterface
 {
-    public partial class InformationDeskForm : App_Common.Menu
+    public partial class InformationDesk : Menu
     {
         List<Visitor> Visitors = Database.All<Visitor>();
 
 
-        public InformationDeskForm()
+        public InformationDesk()
         {
             InitializeComponent();
             UpdateListBox();
@@ -164,6 +164,5 @@ namespace App_Employee
         {
             return String.Format("{0,-50}{1,-5}{2,25}{3}", CurrentVisitor.FullName, Ticket, RFID, CurrentVisitor.RFID);
         }
-    
     }
 }

@@ -80,10 +80,21 @@ namespace Classes
 
         public void CloseAccount()
         {
-            //user no longer will be able to login
+            int Count = 0;
+            foreach (RentableItemHistory I in RentedItems)
+	{
+		 Count += 1;
+	}
+                if (Count == 0)
+            {
+                Database.Delete(this, "Visitors.user_id = " + this.ID);
+            }
+            else
+            {
+                throw new Exception("Cannot close account, the visitor has some unreturned items!");
+            }
             //balance = 0
             //check if all items are returned
-            throw new NotImplementedException();
         }
 
         public void ChangeBalanceWith(decimal amount, string reason)
@@ -97,6 +108,24 @@ namespace Classes
 
             Database.Update(this, "balance = {0}".Arg(amount), "|T|.user_id = {0}".Arg(this.ID));
             new LogMessage("change balance", this.ID + " " + reason).Create();
+        }
+
+        public void PayTicket(decimal VisitorBalance,decimal Price)
+        {
+
+                decimal EndBalance = 0;
+                if (VisitorBalance >= Price)
+                {
+                    EndBalance = VisitorBalance - Price;
+                
+                Database.Update(this, "Balance = " + EndBalance.ToString(), "visitors.user_id = " + this.ID);
+                Database.Update(this, "Ticket = 1", "visitors.user_id = " + this.ID);
+                    }
+                else
+                {
+                    throw new Exception ("User doesn't have enough money!");
+                }
+            
         }
     }
 }
