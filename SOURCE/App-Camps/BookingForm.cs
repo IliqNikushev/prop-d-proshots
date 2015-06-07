@@ -307,7 +307,13 @@ namespace App_Camps
                 }
                 else
                 {
+                    if (!(result as Classes.Tent).Pay())
+                    {
+                        MessageBox.Show("Unable to pay for your booking");
+                        return;
+                    }
                     MessageBox.Show("The tent pitch has been reserved!");
+
                     this.Close();
                 }
             }

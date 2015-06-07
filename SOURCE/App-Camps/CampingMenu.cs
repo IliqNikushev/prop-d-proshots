@@ -108,16 +108,14 @@ namespace App_Camps
             isPaidCbox.Text = tent.Price + App_Common.Constants.Currency;
             bookedForDetailsLbox.Items.AddRange(tent.BookedFor);
 
-            if (!tent.IsPaid && tent.BookedFor.Contains(LoggedInVisitor))
+            if (!tent.IsPaid && tent.BookedBy == LoggedInVisitor)
             {
                 ActiveTent = tent;
                 cancelPitchBtn.Visible = true;
-                payBtn.Visible = true;
             }
             else
             {
                 cancelPitchBtn.Visible = false;
-                payBtn.Visible = false;
             }
         }
 

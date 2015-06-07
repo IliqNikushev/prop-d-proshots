@@ -69,7 +69,7 @@ namespace App_PayPal
                 MessageBox.Show("Please enter your Pay-Pal details for the top-up in the terminal");
                 Install.Machine.TopUp(LoggedInVisitor, alteredBalance);
                 MessageBox.Show("Your request has been sent. Waiting for paypal to confirm. Check your balance in a minute");
-                LoggedInVisitor.ChangeBalanceTo(alteredBalance);
+                LoggedInVisitor.ChangeBalanceTo(alteredBalance, "top-up");
                 this.Close();
             }
         }

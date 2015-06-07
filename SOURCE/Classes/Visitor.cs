@@ -86,16 +86,17 @@ namespace Classes
             throw new NotImplementedException();
         }
 
-        public void ChangeBalanceWith(decimal amount)
+        public void ChangeBalanceWith(decimal amount, string reason)
         {
-            this.ChangeBalanceTo(this.Balance + amount);
+            this.ChangeBalanceTo(this.Balance + amount, reason);
         }
 
-        public void ChangeBalanceTo(decimal amount)
+        public void ChangeBalanceTo(decimal amount, string reason)
         {
             if (amount < 0) throw new InvalidOperationException("Balance cannot be negative");
 
             Database.Update(this, "balance = {0}".Arg(amount), "|T|.user_id = {0}".Arg(this.ID));
+            new LogMessage("change balance", this.ID + " " + reason).Create();
         }
     }
 }

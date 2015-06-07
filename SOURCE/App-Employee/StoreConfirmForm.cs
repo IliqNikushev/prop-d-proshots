@@ -133,7 +133,7 @@ namespace App_Employee
             receipt = receipt.Create() as Classes.Receipt;
             employee.PerformDuty(receipt.ID + " > confirm");
 
-            receipt.PurchasedBy.ChangeBalanceWith(-receipt.Price);
+            receipt.PurchasedBy.ChangeBalanceWith(-receipt.Price, "purchase " + receipt.ID);
 
             foreach (var item in receipt.Items)
             {

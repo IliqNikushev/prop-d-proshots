@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Classes
 {
     [TestClass]
-    public class EmployeeActionTest : RecordTest
+    public class UserActionTest : RecordTest
     {
         [TestMethod]
         public override void DatabaseGet()

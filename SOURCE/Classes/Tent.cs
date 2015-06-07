@@ -60,13 +60,21 @@ namespace Classes
 
         public void Cancel()
         {
+            this.BookedBy.ChangeBalanceWith(this.Price, "book-cancel " + this.ID);
+
             Database.Delete<TentPerson>("|T|.tent_id = {0}", this.ID);
             Database.Delete(this, "|T|.location = {0}", this.ID);
         }
 
-        public void Pay()
+        public bool Pay()
         {
-            throw new NotImplementedException();
+            if (BookedBy.Balance < this.Price)
+                return false;
+            if(this.IsPaid) return false;
+            Database.Update(this, "isPaid = 1", "|T|.location = {0}".Arg(this.ID));
+            this.BookedBy.ChangeBalanceWith(-this.Price, "book " + this.ID);
+
+            return true;
         }
 
         public override Record Create()

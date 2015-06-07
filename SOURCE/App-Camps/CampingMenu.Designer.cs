@@ -47,7 +47,6 @@
             this.pitchNumberTextLbl = new System.Windows.Forms.Label();
             this.cancelPitchBtn = new System.Windows.Forms.Button();
             this.detailsPanel = new System.Windows.Forms.Panel();
-            this.payBtn = new System.Windows.Forms.Button();
             this.bookedByLbl = new System.Windows.Forms.Label();
             this.dateTimeBookedLbl = new System.Windows.Forms.Label();
             this.closeDetailsBtn = new System.Windows.Forms.Button();
@@ -214,7 +213,7 @@
             // 
             // cancelPitchBtn
             // 
-            this.cancelPitchBtn.Location = new System.Drawing.Point(80, 240);
+            this.cancelPitchBtn.Location = new System.Drawing.Point(41, 240);
             this.cancelPitchBtn.Name = "cancelPitchBtn";
             this.cancelPitchBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelPitchBtn.TabIndex = 17;
@@ -224,7 +223,6 @@
             // 
             // detailsPanel
             // 
-            this.detailsPanel.Controls.Add(this.payBtn);
             this.detailsPanel.Controls.Add(this.bookedByLbl);
             this.detailsPanel.Controls.Add(this.dateTimeBookedLbl);
             this.detailsPanel.Controls.Add(this.closeDetailsBtn);
@@ -241,16 +239,6 @@
             this.detailsPanel.Name = "detailsPanel";
             this.detailsPanel.Size = new System.Drawing.Size(155, 263);
             this.detailsPanel.TabIndex = 18;
-            // 
-            // payBtn
-            // 
-            this.payBtn.Location = new System.Drawing.Point(0, 240);
-            this.payBtn.Name = "payBtn";
-            this.payBtn.Size = new System.Drawing.Size(75, 23);
-            this.payBtn.TabIndex = 23;
-            this.payBtn.Text = "Pay";
-            this.payBtn.UseVisualStyleBackColor = true;
-            this.payBtn.Click += new System.EventHandler(this.payBtn_Click);
             // 
             // bookedByLbl
             // 
@@ -351,7 +339,6 @@
         private System.Windows.Forms.Label pitchNumberLbl;
         private System.Windows.Forms.Label dateTimeBookedLbl;
         private System.Windows.Forms.Label bookedByLbl;
-        private System.Windows.Forms.Button payBtn;
         private System.Windows.Forms.CheckBox isPaidCbox;
     }
 }
