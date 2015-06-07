@@ -16,7 +16,7 @@ namespace App_Employee
         List<Visitor> Visitors = Database.All<Visitor>();
 
 
-        public InformationDeskForm()
+        public InformationDeskForm(App_Common.Menu parent)
         {
             InitializeComponent();
             UpdateListBox();

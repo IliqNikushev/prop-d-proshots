@@ -21,6 +21,7 @@ if (isset($_SESSION['username'])) {
         var title = "Booked items";
         $('#title').append(title);
     });
+
 </script> 
 
 <body>
@@ -31,35 +32,37 @@ if (isset($_SESSION['username'])) {
 
     <!-- Main Content -->
     <div id="Elements-Placement" >
-<?php
-if (isset($msg) & !empty($msg)) {
-    echo $msg;
-}
-?>
+        <?php
+        if (isset($msg) & !empty($msg)) {
+            echo $msg;
+        }
+        ?>
         <div id="Heading">
             <h2>Booked items</h2>
         </div>
 
         <div id="BookedText" >
-<?php
-$query5 = "SELECT Brand,Model,rentedat,rentedtill FROM items i join rentableitemhistories r on i.ID=r.item_ID WHERE ID=5 ";
-$result5 = mysql_query($query5) or die(mysql_error());
-while ($row1 = mysql_fetch_assoc($result5)) {
-    $rows1[] = $row1;
-}
-?>
-            Booked items<br>
-            <div>
-                <select  name="mySelect" size="15" id="ItemsList">
             <?php
-            foreach ($rows1 as $row1) {
-                echo "<option value='0'>";
-                echo $row1["Brand"] . " " . $row1["Model"] . " Rented at " . $row1["rentedat"] . " Rented till " . $row1["rentedtill"];
-                echo "</option>";
+            $query5 = "SELECT Brand,Model,rentedat,rentedtill FROM items i join rentableitemhistories r on i.ID=r.item_ID ";
+            $result5 = mysql_query($query5) or die(mysql_error());
+            while ($row1 = mysql_fetch_assoc($result5)) {
+                $rows1[] = $row1;
             }
             ?>
-                </select>
-            </div>
+            Booked items<br><br>
+            <div id='divItems' 
+                 style="position: relative; left: 2%; OVERFLOW: auto;WIDTH: 95%;HEIGHT: 100%" >
+                <select  id='ItemsList' size="10" multiple>
+                             <?php
+                             foreach ($rows1 as $row1) {
+                                 echo "<option value='0'>";
+                                 echo $row1["Brand"] . " " . $row1["Model"] . " Rented at " . $row1["rentedat"] . " Rented till " . $row1["rentedtill"];
+                                 echo "</option>";
+                                 
+                             }
+                             ?>
+                </select><br>
+            </div><br>
         </div>  
     </div>
 

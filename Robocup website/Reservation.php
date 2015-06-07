@@ -49,19 +49,19 @@ require('Reservation_SQL.php');
                 <?php
                 $Available_tents_query = "SELECT * FROM `landmarks` WHERE Type='tent' And landmarks.ID not in (SELECT location FROM tents WHERE location > 0)";
                 $Available_tents_result = mysql_query($Available_tents_query) or die(mysql_error());
-                while ($row = mysql_fetch_assoc($Available_tents_result)) {
-                    $rows[] = $row;
+                while ($row25 = mysql_fetch_assoc($Available_tents_result)) {
+                    $rows25[] = $row25;
                 }
                 ?>
                 Select camping spot:
                 <select name="TentID" id="Camping_spot">
                     <option value="" selected></option>
                     <?php
-                    foreach ($rows as $row) {
+                    foreach ($rows25 as $row25) {
                         echo "<option value='";
-                        echo $row["ID"];
+                        echo $row25["ID"];
                         echo "'>";
-                        echo "Tent" . " " . $row["ID"];
+                        echo "Tent" . " " . $row25["ID"];
                         echo "</option>";
                     }
                     ?>
