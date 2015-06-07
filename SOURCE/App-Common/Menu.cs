@@ -138,6 +138,12 @@ namespace App_Common
                 this.ParentMenu.Width = this.ParentMenu.defaultWidth;
                 this.ParentMenu.Height = this.ParentMenu.defaultHeight;
                 this.ParentMenu.Reset();
+
+                if (ParentMenu is LoginForm)
+                {
+                    LoggedInUser.Logout();
+                    LoggedInUser = null;
+                }
             }
             else
                 base.Close();

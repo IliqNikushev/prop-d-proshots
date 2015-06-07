@@ -26,9 +26,14 @@ namespace Classes
             this.TotalPrice = totalPrice;
         }
 
+        public ReceiptItem(ShopItem item, Receipt receipt, int times, decimal pricePerItem, decimal totalPrice)
+            : this(0, item, receipt, times, pricePerItem, totalPrice)
+        {
+        }
+
         public override Record Create()
         {
-            throw new NotImplementedException();
+            return Database.Insert(this, "item_id, receipt_id, times, pricePerItem, totalAmount", this.Item.ItemID, this.Receipt.ID, this.Times, this.PricePerItem, this.TotalPrice);
         }
 
         public override string ToString()

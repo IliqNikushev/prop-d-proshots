@@ -15,7 +15,7 @@ namespace Classes
         [TestMethod]
         public override void DatabaseCreate()
         {
-            new EmployeeAction(0, DateTime.MinValue, null, null).Create();
+            new UserAction(0, DateTime.MinValue, null, null).Create();
         }
     }
 }

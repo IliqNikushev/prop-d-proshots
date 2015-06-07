@@ -20,6 +20,28 @@ namespace App_Common
         private Classes.Landmark Landmark;
         public string Label { get { return this.Landmark.Label; } }
         public string Description { get { return this.Landmark.Description; } }
+        public static LandmarkType TypeOf(Classes.Landmark l)
+        {
+            Type t = l.GetType();
+            if (l != null)
+            {
+                if (t == typeof(Classes.EventLandmark)) return LandmarkType.Event;
+                if (t == typeof(Classes.PayPalMachine)) return LandmarkType.Paypal;
+                if (t == typeof(Classes.ShopWorkplace)) return LandmarkType.Shop;
+                if (t == typeof(Classes.InformationKioskWorkplace)) return LandmarkType.Information;
+                if (t == typeof(Classes.ITServiceWorkplace)) return LandmarkType.Loan;
+                if (t == typeof(Classes.PCDoctorWorkplace)) return LandmarkType.PC_Doctor;
+            }
+            throw new InvalidOperationException("UNKNOWN LANDMARK");
+        }
+        public LandmarkType Type
+        {
+            get
+            {
+                return TypeOf(this.Landmark);
+            }
+        }
+
         public int X { get { return this.Landmark.X; } }
         public int Y { get { return this.Landmark.Y; } }
         public string Icon { get { return this.Landmark.Icon; } }

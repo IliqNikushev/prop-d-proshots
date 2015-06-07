@@ -12,7 +12,7 @@ namespace App_Employee
 {
     public partial class StoreForm : App_Common.Menu
     {
-        private Classes.ShopWorkplace Shop;
+        private Classes.ShopWorkplace Shop { get { return LoggedInEmployee.Workplace as Classes.ShopWorkplace; } }
 
         private const int iconSize = 64;
         private const int labelHeight = 16;
@@ -25,17 +25,9 @@ namespace App_Employee
 
         public StoreForm(App_Common.Menu parent) : base(parent) 
         {
-            Random r = new Random();
-            for (int i = 0; i < 30; i++)
-            {
-                items.Add(new StoreItem(new Classes.ShopItem(0, r.Next(5000) / 1000m, "", "Back", "<>", "", "","", i + 1, (i + 1) / 2, null)));
-            }
-
             InitializeComponent();
 
-            totalNumberLbl.Text = "0" + currency;
-
-            StoreItem example = new StoreItem(new Classes.ShopItem(0, 0, "", "Back", "<>", "", "","", 0, 0, null));
+            StoreItem example = new StoreItem(new Classes.ShopItem(0, 0, "", "Example imte", "<>", "", "","", 0, 0, null, 0));
             this.Controls.Add(GenerateItem(exampleLbl.Left, exampleLbl.Top, example));
 
             foreach (var item in example.PanelAssosiated.Controls)
@@ -50,9 +42,6 @@ namespace App_Employee
 
             this.Controls.Remove(exampleLbl);
 
-            int column = 0;
-            int x = 0;
-            int y = 0;
             Panel holder = new Panel();
             holder.Width = this.itemsPanel.Width;
             holder.Height = this.itemsPanel.Height;
@@ -63,6 +52,19 @@ namespace App_Employee
             this.itemsPanel.Top = 0;
             this.Controls.Add(holder);
             holder.SendToBack();
+        }
+
+        protected override void Reset()
+        {
+            int column = 0;
+            int x = 0;
+            int y = 0;
+
+            this.items.Clear();
+            this.itemsPanel.Controls.Clear();
+            foreach (var item in this.Shop.Items)
+                this.items.Add(new StoreItem(item));
+            totalNumberLbl.Text = "0" + currency;
             int row = 1;
             foreach (var i in items)
             {
@@ -89,16 +91,55 @@ namespace App_Employee
             }
             else
                 verticalBar.Visible = false;
-
-            addPbox_Click(null, null);
-
             this.Text = Shop.Label + ": Order menu";
-
-            reader.OnDetect += reader_OnDetect;
 
             storeLogoPbox.ImageLocation = Shop.Icon;
 
-            resetBtn_Click(null, null);
+            foreach (var item in this.items)
+                item.Reset();
+            this.ActiveVisitor = null;
+            this.activeVisitorLbl.Text = "No active visitor";
+
+            UpdateTotal();
+
+            reader.OnDetect -= reader_OnDetect;
+            reader.OnDetect += reader_OnDetect;
+
+            ActiveVisitor = Classes.Visitor.Authenticate("tester", "test") as Classes.Visitor;
+
+            Classes.Receipt activeOrder = ActiveVisitor.ActiveOrder(this.Shop);
+            if (activeOrder != null)
+            {
+                List<Classes.ReceiptItem> orderItems = activeOrder.Items;
+                int itemCount = orderItems.Sum(z => z.Times);
+                if (MessageBox.Show(string.Format(
+                    "Visitor already has an active order. Does they wish to continue it? ({0} item{1}, price:{2}{3})",
+                    itemCount, itemCount == 1 ? "" : "s", orderItems.Sum(z => z.TotalPrice), App_Common.Constants.Currency)
+                    , "Active order found", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    List<Classes.ReceiptItem> notEnoughItems = new List<Classes.ReceiptItem>();
+                    foreach (var item in orderItems)
+                    {
+                        StoreItem found = this.items.Where(z => z.Item.ID == item.Item.ID).FirstOrDefault();
+
+                        if (found != null)
+                        {
+                            if (item.Times > found.InStock)
+                                notEnoughItems.Add(item);
+                            found.Update(item.Times);
+                        }
+                    }
+                    UpdateTotal();
+                    if (notEnoughItems.Any())
+                        MessageBox.Show("Some items could not be fit into the visitor's order.\n" +
+                            notEnoughItems.Select(z =>
+                                z.Item.Brand + " " +
+                                z.Item.Model + " " +
+                                " wanted " + z.Times +
+                                " but there are " + z.Item.InStock + " (+" + (z.Times - z.Item.InStock) + ")"));
+                }
+                activeOrder.Clear();
+            }
         }
 
         void reader_OnDetect(string tag)
@@ -108,6 +149,40 @@ namespace App_Employee
                 activeVisitorLbl.Text = "Active visitor: " + ActiveVisitor.FullName;
             else
                 activeVisitorLbl.Text = "Visitor not found in the database!";
+            Classes.Receipt activeOrder = ActiveVisitor.ActiveOrder(this.Shop);
+            List<Classes.ReceiptItem> orderItems = activeOrder.Items;
+            if (activeOrder != null)
+            {
+                if (MessageBox.Show(string.Format(
+                    "Visitor already has an active order. Does he wish to continue it? ({0} item{1}, price:{2}{3})",
+                    orderItems.Count, orderItems.Count == 1 ? "" : "s", orderItems.Sum(x => x.TotalPrice), App_Common.Constants.Currency)
+                    , "Active order found", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    activeOrder.Clear();
+                }
+                else
+                {
+                    List<Classes.ReceiptItem> notEnoughItems = new List<Classes.ReceiptItem>();
+                    foreach (var item in orderItems)
+                    {
+                        StoreItem found = this.items.Where(x => x.Item.ID == item.Item.ID).FirstOrDefault();
+
+                        if (found != null)
+                        {
+                            if (item.Times > found.InStock)
+                                notEnoughItems.Add(item);
+                            found.Update(item.Times);
+                        }
+                    }
+                    if (notEnoughItems.Any())
+                        MessageBox.Show("Some items could not be fit into the visitor's order.\n" + 
+                            notEnoughItems.Select(x => 
+                                x.Item.Brand + " " +
+                                x.Item.Model + " " +
+                                " wanted " + x.Times +
+                                " but there are " + x.Item.InStock + " (+" + (x.Times - x.Item.InStock) + ")"));
+                }
+            }
         }
 
         void verticalBar_Scroll(object sender, ScrollEventArgs e)
@@ -268,15 +343,22 @@ namespace App_Employee
             switch (state)
             {
                 case StoreConfirmForm.State.Ok:
+                    MessageBox.Show("The order has been recorded.");
+                    Reset();
                     break;
                 case StoreConfirmForm.State.Cancel:
+                    //Nothing 
                     break;
                 case StoreConfirmForm.State.Postpone:
+                    MessageBox.Show("The order has been postponed.");
+                    Reset();
                     break;
             }
         }
 
         private Classes.Visitor ActiveVisitor;
+
+        private StoreConfirmForm confirmForm;
 
         private void confirmBtn_Click(object sender, EventArgs e)
         {
@@ -285,15 +367,28 @@ namespace App_Employee
                 MessageBox.Show("No visitor found. Please approach the card first before confirming.");
                 return; 
             }
-            new StoreConfirmForm(this.items.Where(x => x.PurchaseTimes > 0), ActiveVisitor, OnConfirmClick);
+            if (!this.items.Where(x => x.PurchaseTimes > 0).Any())
+            {
+                MessageBox.Show("No items selected");
+                return;
+            }
+            if(confirmForm != null && confirmForm.IsDisposed)
+                confirmForm = new StoreConfirmForm(LoggedInEmployee,this.items.Where(x => x.PurchaseTimes > 0), ActiveVisitor, OnConfirmClick);
+            else if(confirmForm == null)
+                confirmForm = new StoreConfirmForm(LoggedInEmployee, this.items.Where(x => x.PurchaseTimes > 0), ActiveVisitor, OnConfirmClick);
+
+            confirmForm.Show();
+
         }
 
         private void resetBtn_Click(object sender, EventArgs e)
         {
-            foreach (var item in this.items)
-                item.Reset();
-            this.ActiveVisitor = null;
-            this.activeVisitorLbl.Text = "No active visitor";
+            Reset();
+        }
+
+        private void StoreForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

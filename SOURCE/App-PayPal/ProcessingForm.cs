@@ -54,6 +54,13 @@ namespace App_PayPal
                     this.cancelBtn_Click(sender, e);
                 return;
             }
+            if (Difference < 5)
+            {
+                this.amountTbox.Text = old;
+                MessageBox.Show("Minimum deposit is 5" + App_Common.Constants.Currency);
+                return;
+            }
+
             if (MessageBox.Show(
                 "You are about to change your balance with " + Difference + App_Common.Constants.Currency+ " making it " + alteredBalance+App_Common.Constants.Currency+ "\nContinue with the top-up?", "Top-up confirm", MessageBoxButtons.YesNo
                 ) == System.Windows.Forms.DialogResult.Yes)
@@ -62,6 +69,7 @@ namespace App_PayPal
                 MessageBox.Show("Please enter your Pay-Pal details for the top-up in the terminal");
                 Install.Machine.TopUp(LoggedInVisitor, alteredBalance);
                 MessageBox.Show("Your request has been sent. Waiting for paypal to confirm. Check your balance in a minute");
+                LoggedInVisitor.ChangeBalanceTo(alteredBalance);
                 this.Close();
             }
         }
@@ -79,12 +87,7 @@ namespace App_PayPal
                 MessageBox.Show("The number is too big for an event of this size.");
                 return;
             }
-            if (amount < 5)
-            {
-                this.amountTbox.Text = old;
-                MessageBox.Show("Minimum deposit is 5" + App_Common.Constants.Currency);
-                return;
-            }
+            
             old = this.amountTbox.Text;
 
             if (addCBox.Checked)

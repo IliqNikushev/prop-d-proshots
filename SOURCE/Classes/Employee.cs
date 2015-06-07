@@ -16,51 +16,30 @@ namespace Classes
 
         public Workplace Workplace { get; private set; }
         public string Duty { get; private set; }
-        public List<EmployeeAction> Actions
+
+        public UserAction PerformDuty(string details)
         {
-            get { return Database.GetEmployeeActions(this); }
+            return new UserAction(this, "duty " + details).Create() as UserAction;
         }
 
-        public void Login()
+        public UserAction StartBreak()
         {
-            throw new System.NotImplementedException();
-            //this.Actions.Add(new EmployeeAction(this, EmployeeActionType.Login));
+            return new UserAction(this, "start break").Create() as UserAction;
         }
 
-        public void Logout()
+        public UserAction StopBreak()
         {
-            throw new System.NotImplementedException();
-            //this.Actions.Add(new EmployeeAction(this, EmployeeActionType.Logout));
+            return new UserAction(this, "stop break").Create() as UserAction;
         }
 
-        public void PerformDuty()
+        public UserAction StartShift()
         {
-            throw new System.NotImplementedException();
-            //this.Actions.Add(new EmployeeAction(this, EmployeeActionType.DutyPerformance));
+            return new UserAction(this, "start shift").Create() as UserAction;
         }
 
-        public void StartBreak()
+        public UserAction StopShift()
         {
-            throw new System.NotImplementedException();
-            //this.Actions.Add(new EmployeeAction(this, EmployeeActionType.BreakStart));
-        }
-
-        public void StopBreak()
-        {
-            throw new System.NotImplementedException();
-            //this.Actions.Add(new EmployeeAction(this, EmployeeActionType.BreakEnd));
-        }
-
-        public void StartShift()
-        {
-            throw new System.NotImplementedException();
-            //this.Actions.Add(new EmployeeAction(this, EmployeeActionType.ShiftStart));
-        }
-
-        public void StopShift()
-        {
-            throw new System.NotImplementedException();
-            //this.Actions.Add(new EmployeeAction(this, EmployeeActionType.ShiftEnd));
+            return new UserAction(this, "stop shift").Create() as UserAction;
         }
     }
 }

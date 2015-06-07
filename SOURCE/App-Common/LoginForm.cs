@@ -81,7 +81,10 @@ namespace App_Common
                 () => 
                     {
                         if (HandleLogin())
+                        {
                             reader.OnDetect -= Authenticate;
+                            LoggedInUser.Login();
+                        }
                     }));
         }
     }
