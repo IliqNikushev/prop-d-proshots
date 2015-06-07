@@ -31,6 +31,13 @@ namespace Classes
             this.Picture = picture;
         }
 
+        public Receipt ActiveOrder(ShopWorkplace shop)
+        {
+            IEnumerable<Receipt> result = Database.Where<Receipt>("postponed = 1 and user_id = {0}", this.ID);
+            result = result.Where(x => x.Shop == shop);
+            return result.LastOrDefault();
+        }
+
         public List<Deposit> TopUps { get { return Database.GetVisitorTopUps(this); } }
         public List<RentableItemHistory> RentedItems { get { return Database.GetVisitorRentedItems(this); } }
         public List<ReceiptItem> PurchasedItems { get { return Database.GetVisitorPurchases(this); } }
@@ -38,10 +45,10 @@ namespace Classes
         public List<Tent> BookedTents { get { return Database.GetTentsBookedByVisitor(this); } }
         public List<Tent> BookedInTents { get { return Database.GetTentsBookedForVisitor(this); } }
 
-        public void Book(Tent tent)
+        public Tent Book(TentPitch pitch, List<Visitor> visitors, DateTime bookedOn)
         {
             //check if has enough in account
-            throw new NotImplementedException();
+            return new Tent(pitch, "{0}".Arg(bookedOn), "{0}".Arg(Classes.Constants.EventEnd), this, visitors);
         }
 
         public void Rent(RentableItem item)
@@ -90,10 +97,16 @@ namespace Classes
             //check if all items are returned
         }
 
+        public void ChangeBalanceWith(decimal amount)
+        {
+            this.ChangeBalanceTo(this.Balance + amount);
+        }
+
         public void ChangeBalanceTo(decimal amount)
         {
-            //execute update
-            throw new NotImplementedException();
+            if (amount < 0) throw new InvalidOperationException("Balance cannot be negative");
+
+            Database.Update(this, "balance = {0}".Arg(amount), "|T|.user_id = {0}".Arg(this.ID));
         }
 
         public void PayTicket(decimal VisitorBalance,decimal Price)

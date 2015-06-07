@@ -8,6 +8,8 @@ namespace Classes
 {
     public abstract class User : Record, IComparable<User>, IEquatable<User>, IEqualityComparer<User>
     {
+        public List<UserAction> Actions { get { return Database.Where<UserAction>("|T|.user_id = {0}", this.ID); } } 
+
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string FullName { get { return this.FirstName + " " + this.LastName; } }
@@ -24,6 +26,16 @@ namespace Classes
             this.Password = password;
             this.Username = username;
             this.Email = email;
+        }
+
+        public UserAction Login()
+        {
+            return new UserAction(this, "login").Create() as UserAction;
+        }
+
+        public UserAction Logout()
+        {
+            return new UserAction(this, "logout").Create() as UserAction;
         }
 
         public static User Authenticate(string name, string password)

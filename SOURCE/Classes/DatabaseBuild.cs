@@ -19,7 +19,7 @@ namespace Classes
             {typeof(AppointmentTask), CreateAppointmentTask},
             {typeof(Deposit), CreateDeposit},
             {typeof(Employee), CreateEmployee},
-            {typeof(EmployeeAction), CreateEmployeeAction},
+            {typeof(UserAction), CreateUserAction},
             {typeof(EventLandmark), CreateEventLandmark},
             {typeof(InformationKioskWorkplace), CreateInformationKioskWorkplace},
             {typeof(Item), CreateItem},
@@ -174,8 +174,9 @@ namespace Classes
             if(reader.HasColumnAndNotNull("id"))
                 workplace = CreateWorkplace(reader);
             reader.RemovePrefix();
-
-            string duty = reader.GetStr("job");
+             string duty  = null;
+            if(reader.HasColumnAndNotNull("job"))
+                duty = reader.GetStr("job");
 
             int id = -1;
             string firstName, lastName, userName, password, email;
@@ -186,14 +187,14 @@ namespace Classes
             return new Employee(id, firstName, lastName, userName, password, email, workplace, duty);
         }
 
-        private static EmployeeAction CreateEmployeeAction(Reader reader, string prefix="", bool asbtr = false)
+        private static UserAction CreateUserAction(Reader reader, string prefix="", bool asbtr = false)
         {
             reader.AddDistinctPrefix(prefix);
 
             int id = reader.Get<int>("id");
-            reader.AddPrefix("employee");
+            reader.AddPrefix("user");
 
-            Employee employee = CreateEmployee(reader);
+            Employee user = CreateEmployee(reader);
             reader.RemovePrefix();
 
             string action = reader.GetStr("Action");
@@ -201,7 +202,7 @@ namespace Classes
 
             reader.RemoveDistinctPrefix();
 
-            return new EmployeeAction(id, date, employee, action);
+            return new UserAction(id, date, user, action);
         }
 
         private static Landmark CreateLandmark(Reader reader, string prefix="", bool asbtr = false)
@@ -349,25 +350,28 @@ namespace Classes
             if(abstr)
                 reader.RemovePrefix();
 
-            if (!abstr)
-                reader.Get<int>("ID");
+            
             if (!abstr)
                 reader.AddPrefix("item");
 
-            int id;
+            int id = 0;
+            int itemID;
             string brand;
             string model;
             string type;
             string group;
             string description;
             string icon;
-            ExtractItem(reader, out id, out brand, out model, out type, out group, out description, out icon);
+            ExtractItem(reader, out itemID, out brand, out model, out type, out group, out description, out icon);
             if (!abstr)
                 reader.RemovePrefix();
 
+            if(reader.HasColumnAndNotNull("ID"))
+                id = reader.Get<int>("ID");
+
             reader.RemoveDistinctPrefix();
 
-            return new Classes.ShopItem(id, price, brand, model, type, group, description, icon, inStock, warningLevel, shop);
+            return new Classes.ShopItem(id, price, brand, model, type, group, description, icon, inStock, warningLevel, shop, itemID);
         }
 
         private static void ExtractItem(Reader reader, out int iD, out string brand, out string model, out string type, out string group, out string description, out string icon)
@@ -510,11 +514,12 @@ namespace Classes
             reader.RemovePrefix();
 
             System.DateTime purchasedOn = reader.Get<System.DateTime>("PurchasedOn");
+            bool postponed = reader.Get<bool>("postponed");
             int id = reader.Get<int>("ID");
 
             reader.RemoveDistinctPrefix();
 
-            return new Receipt(id, visitor, purchasedOn);
+            return new Receipt(id, visitor, purchasedOn, postponed);
         }
 
         private static RentableItemHistory CreateRentableItemHistory(Reader reader, string prefix="", bool asbtr = false)

@@ -32,6 +32,7 @@ namespace App_Employee
                     throw new NotImplementedException("Unknown job");
                 return true;
             }
+            MessageBox.Show("Invalid credentials");
             return false;
         }
 

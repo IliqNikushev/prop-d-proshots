@@ -241,6 +241,7 @@ namespace Classes
                 if (x is DateTime) return "'" + ((DateTime)x).ToString(DateTimeFormat) + "'";
                 if (x == null) return "NULL";
                 if (x is Database.Table) return (x as Database.Table).Name;
+                if (x is bool) return ((bool)x ? 1 : 0).ToString();
                 if (x.GetType().IsClass) return "'"+x.ToString().Replace("'", "''") +"'";
                 return x.ToString();
             }).ToArray();

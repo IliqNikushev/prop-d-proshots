@@ -9,9 +9,28 @@ namespace ConsoleTester
 {
     class Program
     {
+        private static void f()
+        {
+            ShopWorkplace shop = Database.Find<ShopWorkplace>("");
+            Employee e = new Employee(0, "Shop", "Employee", "Shop", "Pass", "Email", shop, "cashier");
+            User u = Database.Insert<User>("firstName, lastName, userName, password, email, type", e.FirstName, e.LastName, e.Username, e.Password, e.Email, "employee");
+            Database.Insert(e, "user_id, workplace_id, job", u.ID, e.Workplace.ID, e.Duty);
+
+            e = new Employee(0, "ShopManager", "EmployeeManager", "ShopManager", "Pass", "Email", shop, "shopmanager");
+            u = Database.Insert<User>("firstName, lastName, userName, password, email, type", e.FirstName, e.LastName, e.Username, e.Password, e.Email, "employee");
+            Database.Insert(e, "user_id, workplace_id, job", u.ID, e.Workplace.ID, e.Duty);
+        }
         static void Main(string[] args)
             // {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type", "logo")},
         {
+            Database.OnUnableToProcessSQL += (x, y) => { Console.WriteLine(x.Message); Console.WriteLine(y); };
+            f();
+            return;
+            var q = Database.Find<Visitor>("user_id=1").RentedItems;
+            Console.WriteLine(q.Count);
+            return;
+            Visitor v = Visitor.Authenticate("tester", "test") as Visitor;
+            return;
             DateTime n = new DateTime(2015,6,29);
             
             EventLandmark ll = new EventLandmark("test", "a test landmark", 0, 0, n, n);

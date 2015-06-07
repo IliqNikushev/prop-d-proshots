@@ -201,7 +201,7 @@ namespace Classes
                 Where(x=>!(x.Key == typeof(RestockableItem) && x.Value.Message.StartsWith("ABSTRACT TYPE REQUESTED"))).
                 Where(x => !(x.Key == typeof(Workplace) && x.Value.Message == ("Unknown job type "))).
                 Where(x => !(x.Key == typeof(Landmark) && x.Value.Message == ("Unknown landmark type "))).
-                Where(x => !(x.Key == typeof(EmployeeAction) && x.Value.Message == ("Unknown job type "))).
+                Where(x => !(x.Key == typeof(UserAction) && x.Value.Message == ("Unknown job type "))).
                 Where(x => !(x.Key == typeof(Employee) && x.Value.Message == ("Unknown job type "))).
                 Where(x => !(x.Key == typeof(User) && x.Value.Message == ("Unknown job type "))).
                 Count(),

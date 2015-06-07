@@ -59,7 +59,7 @@ namespace App_Employee
                 float deltaPercent = 0;
                 if (this.WarningLevel != 0)
                     deltaPercent = resultAfterPurchase / (float)this.WarningLevel;
-                this.PanelAssosiated.BackColor = Color.FromArgb(220, (int)(180 * deltaPercent), 0);
+                this.PanelAssosiated.BackColor = Color.FromArgb(220, (int)(170 * deltaPercent), 0);
             }
             else
             {
@@ -77,10 +77,12 @@ namespace App_Employee
 
         public void Reset()
         {
-            this.InStockLabel.Text = this.InStock.ToString();
-            this.PurchaseTimes = 0;
-            this.PurchaseTimesTBox.Text = "0";
-            this.TotalLabel.Text = "0" + Currency;
+            this.UpdateTo(0);
+        }
+
+        public Classes.ReceiptItem ToReceiptItem(Classes.Receipt receipt = null)
+        {
+            return new Classes.ReceiptItem(this.Item, receipt, this.PurchaseTimes, this.Price, this.PurchaseTimes * this.Price);
         }
     }
 }

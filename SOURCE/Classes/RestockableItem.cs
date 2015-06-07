@@ -20,6 +20,8 @@ namespace Classes
             if (amount > this.InStock)
                 throw new NotImplementedException();
             this.InStock -= amount;
+
+            Database.Update(this, "quantity = {0}".Arg(this.InStock), "|T|.id = {0}".Arg(this.ID));
         }
 
         public RestockableItem(int id, decimal price, string brand, string model, string type, string group, string description, string icon, int inStock)

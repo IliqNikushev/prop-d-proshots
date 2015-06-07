@@ -16,7 +16,7 @@ namespace Classes
 
         public void TopUp(Visitor visitor, decimal amount)
         {
-            new LogMessage("top-up", this.ID + " " + visitor.ID + " " + amount).Create();
+            new LogMessage("top-up", "{0} {1} {2} {3}".Arg(this.ID, visitor.ID, visitor.Balance, amount)).Create();
         }
     }
 }
