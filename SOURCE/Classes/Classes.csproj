@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AppointmentTask.cs" />
     <Compile Include="ColumnAttribute.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="DatabaseBuild.cs" />
     <Compile Include="DatabaseClasses.cs" />
@@ -60,7 +61,7 @@
     <Compile Include="Appointment.cs" />
     <Compile Include="Deposit.cs" />
     <Compile Include="Employee.cs" />
-    <Compile Include="EmployeeAction.cs" />
+    <Compile Include="UserActions.cs" />
     <Compile Include="EventLandmark.cs" />
     <Compile Include="Exceptions\InvalidPayPalLogFileException.cs" />
     <Compile Include="Exceptions\InvalidShopException.cs" />

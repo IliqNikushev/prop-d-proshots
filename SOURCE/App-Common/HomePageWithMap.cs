@@ -145,14 +145,12 @@ namespace App_Common
                     SetZoom(float.Parse(selection.ToString().Replace("%", "")) / 100);
                 });
 
-            var pointableTypes = System.Reflection.Assembly.GetExecutingAssembly().GetTypes().
-                Where(x => x.IsSubclassOf(typeof(MapPoint)));
+            //var pointableTypes = System.Reflection.Assembly.GetExecutingAssembly().GetTypes().
+            //    Where(x => x.IsSubclassOf(typeof(Classes.Landmark)));
 
             findByTypeTb.AutoCompleteCustomSource.Add("All");
 
-            findByTypeTb.AutoCompleteCustomSource.AddRange(
-                pointableTypes.Select(x => x.Name).ToArray()
-            );
+            findByTypeTb.AutoCompleteCustomSource.AddRange(Enum.GetNames(typeof(LandmarkType)).Select(x=>x.Replace("_"," ")).ToArray());
 
             AddAutoCompleteTo(findByTypeTb,
                 (e) =>
@@ -365,9 +363,9 @@ namespace App_Common
             else
                 if (type != "none")
                     if (label == "")
-                        collection = points.Where(x => x.GetType().Name.ToLower() == type);
+                        collection = points.Where(x => x.Type.ToString() == type);
                     else
-                        collection = points.Where(x => x.GetType().Name.ToLower() == type && x.Label.ToLower() == label);
+                        collection = points.Where(x => x.Type.ToString() == type && x.Label.ToLower() == label);
             return collection;
         }
 

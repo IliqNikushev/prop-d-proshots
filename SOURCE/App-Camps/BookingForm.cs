@@ -116,7 +116,7 @@ namespace App_Camps
         private int NumberOfPeople { get { return People.Count + 1; } }
         private List<Classes.Visitor> People { get { return PersonRow.rows.Select(x => x.Visitor).Where(x => x != null).ToList(); } }
 
-        private decimal TotalPrice { get { return App_Common.Constants.PriceInitialForCamp + App_Common.Constants.PricePerPersonForCamp * NumberOfPeople * nightsNUD.Value; } }
+        private decimal TotalPrice { get { return App_Common.Constants.PriceInitialForCamp + App_Common.Constants.PricePerPersonForCamp * NumberOfPeople; } }
         private Classes.TentPitch SelectedPitch { get { return this.pitchesCBox.SelectedItem as Classes.TentPitch; } }
 
         public BookingForm(App_Common.Menu parent, IEnumerable<Classes.Tent> bookedByVisitorPitches, IEnumerable<Classes.Tent> bookedForVisitorPitches)
@@ -286,13 +286,14 @@ namespace App_Camps
                 return;
             }
 
+            int nights = (App_Common.Constants.EventEnd - dateTimePicker.Value).Days;
             if (MessageBox.Show(string.Format(
                 "Are you sure you wish to book tent pitch #{0}\nFrom {1} evening\nUntill {2} morning ({3} night{4})\nfor {5} visitor{6}?\n- You\n{7}\nTotal price is :{8}{9}",
                 SelectedPitch.ID,
                 dateFromTbox.Text,
                 toDateTbox.Text,
-                nightsNUD.Value,
-                nightsNUD.Value == 1 ? "" : "s",
+                nights,
+                nights == 1 ? "" : "s",
                 NumberOfPeople,
                 NumberOfPeople == 1 ? "" : "s",
                 string.Join("\n", People.Select(x => "- " + x.FullName + " " + x.Email)),
@@ -306,7 +307,13 @@ namespace App_Camps
                 }
                 else
                 {
+                    if (!(result as Classes.Tent).Pay())
+                    {
+                        MessageBox.Show("Unable to pay for your booking");
+                        return;
+                    }
                     MessageBox.Show("The tent pitch has been reserved!");
+
                     this.Close();
                 }
             }
@@ -373,7 +380,7 @@ namespace App_Camps
         {
             Classes.TentPitch selectedPitch = SelectedPitch;
             freeTentPitches = Classes.Database.Where<Classes.TentPitch>("|T|.id not in (select {0}.location from {0}) or |T|.id in (select {0}.location from {0} where {0}.bookedTill < {1} or {0}.bookedOn > {2})",
-                Classes.Database.TableName<Classes.Tent>(), dateTimePicker.Value, dateTimePicker.Value.AddDays((double)nightsNUD.Value));
+                Classes.Database.TableName<Classes.Tent>(), dateTimePicker.Value, App_Common.Constants.EventEnd);
             UpdateMap();
             pitchesCBox.Items.Clear();
             pitchesCBox.Items.AddRange(freeTentPitches.ToArray());
@@ -409,9 +416,8 @@ namespace App_Camps
         private void UpdateState()
         {
             dateFromTbox.Text = dateTimePicker.Value.ToString(dateTimePicker.CustomFormat);
-            toDateTbox.Text = (dateTimePicker.Value.AddDays((double)nightsNUD.Value)).ToString(dateTimePicker.CustomFormat);
+            toDateTbox.Text = App_Common.Constants.EventEnd.ToString(dateTimePicker.CustomFormat);
 
-            nightsNUD.Maximum = (App_Common.Constants.EventEnd - dateTimePicker.Value).Days + 1;
             totalPriceLbl.Text = TotalPrice + App_Common.Constants.Currency;
 
             if (NumberOfPeople == 1)

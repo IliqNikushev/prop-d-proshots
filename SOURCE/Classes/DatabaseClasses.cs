@@ -184,7 +184,11 @@ namespace Classes
                             join.On = join.On.Replace(item.Table.Name + ".", item.Alias + ".");
 
                 usedJoins.Add(join.Name);
-                name += "\r\n" + join.Type + " " + join.Name + " On " + join.On;
+                IEnumerable<JoinTable> prevDifType = parents.Where(x=>x.Type != join.Type);
+                if(prevDifType.Any())
+                    name += "\r\n" + prevDifType.Last().Type + " " + join.Name + " On " + join.On;
+                else
+                    name += "\r\n" + join.Type + " " + join.Name + " On " + join.On;
                 {
                     string fs = fields;
                     if (parents.Count > 0)

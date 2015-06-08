@@ -8,10 +8,10 @@ namespace App_Common
 {
     public static class Constants
     {
-        public const string Currency = "€";
-        public const decimal PricePerPersonForCamp = 20;
-        public const decimal PriceInitialForCamp = 30;
-        public static readonly DateTime EventStart = new DateTime(2015, 06, 26);
-        public static readonly DateTime EventEnd = new DateTime(2015, 06, 28);
+        public const string Currency = Classes.Constants.Currency;
+        public const decimal PricePerPersonForCamp = Classes.Constants.PricePerPersonForCamp;
+        public const decimal PriceInitialForCamp = Classes.Constants.PricePerPersonForCamp;
+        public static readonly DateTime EventStart = Classes.Constants.EventStart;
+        public static readonly DateTime EventEnd =Classes.Constants.EventEnd;
     }
 }

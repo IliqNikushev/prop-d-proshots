@@ -91,6 +91,10 @@ if ($_POST['Register']) {
                 $Balance = 0;
                 $Ticket = 0;
             }
+            if($image_name == null || $image_name == '')
+            {
+                $image_name = 'Default.jpg';
+            }
             $query4 = "INSERT INTO `visitors` (User_ID, Balance, Ticket, Picture, dateCreated) VALUES ('$UserID', '$Balance', '$Ticket', '$image_name', '$dateCreated')";
             $result2 = mysql_query($query4);
         } else {
@@ -135,10 +139,10 @@ if ($_POST['Register']) {
                 <input required pattern=".{3,25}" title="from 3 to 25 characters" type="text" name="Username" placeholder="Username"> *<br><br>
 
                 <div style="display: inline-block; width:16%"><b>First Name: </b></div>
-                <input type="text" pattern=".{1,25}" title="maximum 25 characters" name="FirstName" placeholder="First Name"><br><br>
+                <input required type="text" pattern=".{1,25}" title="maximum 25 characters" name="FirstName" placeholder="First Name"> *<br><br>
 
                 <div style="display: inline-block; width:16%"><b>Last Name: </b></div>
-                <input type="text" pattern=".{1,25}" title="maximum 25 characters" name="LastName" placeholder="Last Name"><br><br>
+                <input required type="text" pattern=".{1,25}" title="maximum 25 characters" name="LastName" placeholder="Last Name"> *<br><br>
 
                 <div style="display: inline-block; width:16%"><b>Password: </b></div>
                 <input required pattern=".{4,25}" title="from 4 to 25 characters" type="password" name="Password" placeholder="Password"> *<br><br>
@@ -149,8 +153,8 @@ if ($_POST['Register']) {
                 <div style="display: inline-block; width:16%"><b>Email: </b></div>
                 <input required pattern=".{6,25}" title="from 6 to 25 characters" type="email" name="Email" placeholder="Email"> *<br><br>
 
-                <div style="display: inline-block; width:16%" for="image:">Image: </div>
-                <input type="file" name="image" id="image" class="input-xlarge" /><br><br>
+                <div style="display: inline-block; width:16%" for="image:">Image: </div><br>
+                <input style="display: inline-block; width:45%" type="file" name="image" id="image" class="input-xlarge" /><br><br>
 
                 <input class="btn register" type="submit" name="Register" value="Register" /><br><br>
 

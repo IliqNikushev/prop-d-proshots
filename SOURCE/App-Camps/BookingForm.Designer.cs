@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.nightsNUD = new System.Windows.Forms.NumericUpDown();
-            this.nNightsLbl = new System.Windows.Forms.Label();
             this.pitchesCBox = new System.Windows.Forms.ComboBox();
             this.selectLbl = new System.Windows.Forms.Label();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -57,40 +55,7 @@
             this.toDateTbox = new System.Windows.Forms.TextBox();
             this.peopleLocation = new System.Windows.Forms.Label();
             this.currentBalanceLbl = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.nightsNUD)).BeginInit();
             this.SuspendLayout();
-            // 
-            // nightsNUD
-            // 
-            this.nightsNUD.Location = new System.Drawing.Point(79, 156);
-            this.nightsNUD.Maximum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.nightsNUD.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nightsNUD.Name = "nightsNUD";
-            this.nightsNUD.Size = new System.Drawing.Size(42, 20);
-            this.nightsNUD.TabIndex = 37;
-            this.nightsNUD.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nightsNUD.ValueChanged += new System.EventHandler(this.nightsNUD_ValueChanged);
-            // 
-            // nNightsLbl
-            // 
-            this.nNightsLbl.AutoSize = true;
-            this.nNightsLbl.Location = new System.Drawing.Point(12, 133);
-            this.nNightsLbl.Name = "nNightsLbl";
-            this.nNightsLbl.Size = new System.Drawing.Size(191, 13);
-            this.nNightsLbl.TabIndex = 38;
-            this.nNightsLbl.Text = "Number of nights you would like to stay";
             // 
             // pitchesCBox
             // 
@@ -128,9 +93,9 @@
             this.dateTagLbl.AutoSize = true;
             this.dateTagLbl.Location = new System.Drawing.Point(11, 85);
             this.dateTagLbl.Name = "dateTagLbl";
-            this.dateTagLbl.Size = new System.Drawing.Size(199, 13);
+            this.dateTagLbl.Size = new System.Drawing.Size(207, 13);
             this.dateTagLbl.TabIndex = 42;
-            this.dateTagLbl.Text = "Day you would like to book your pitch for";
+            this.dateTagLbl.Text = "Day you would like to book your pitch from";
             // 
             // cancelBtn
             // 
@@ -234,11 +199,11 @@
             // priceInfoLbl
             // 
             this.priceInfoLbl.AutoSize = true;
-            this.priceInfoLbl.Location = new System.Drawing.Point(31, 341);
+            this.priceInfoLbl.Location = new System.Drawing.Point(13, 338);
             this.priceInfoLbl.Name = "priceInfoLbl";
-            this.priceInfoLbl.Size = new System.Drawing.Size(267, 13);
+            this.priceInfoLbl.Size = new System.Drawing.Size(316, 13);
             this.priceInfoLbl.TabIndex = 56;
-            this.priceInfoLbl.Text = "The price is calculated for every night spent individually";
+            this.priceInfoLbl.Text = "The price is calculated based on an itial price plus for every visitor";
             // 
             // bookedForPeopleLbl
             // 
@@ -261,7 +226,7 @@
             // addPeopleLbl
             // 
             this.addPeopleLbl.AutoSize = true;
-            this.addPeopleLbl.Location = new System.Drawing.Point(26, 186);
+            this.addPeopleLbl.Location = new System.Drawing.Point(26, 155);
             this.addPeopleLbl.Name = "addPeopleLbl";
             this.addPeopleLbl.Size = new System.Drawing.Size(215, 13);
             this.addPeopleLbl.TabIndex = 64;
@@ -269,7 +234,7 @@
             // 
             // addPersonBtn
             // 
-            this.addPersonBtn.Location = new System.Drawing.Point(247, 181);
+            this.addPersonBtn.Location = new System.Drawing.Point(247, 150);
             this.addPersonBtn.Name = "addPersonBtn";
             this.addPersonBtn.Size = new System.Drawing.Size(82, 23);
             this.addPersonBtn.TabIndex = 65;
@@ -282,7 +247,7 @@
             this.findByNameCbox.AutoSize = true;
             this.findByNameCbox.Checked = true;
             this.findByNameCbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.findByNameCbox.Location = new System.Drawing.Point(243, 209);
+            this.findByNameCbox.Location = new System.Drawing.Point(243, 178);
             this.findByNameCbox.Name = "findByNameCbox";
             this.findByNameCbox.Size = new System.Drawing.Size(86, 17);
             this.findByNameCbox.TabIndex = 66;
@@ -293,7 +258,7 @@
             // findByEmailCbox
             // 
             this.findByEmailCbox.AutoSize = true;
-            this.findByEmailCbox.Location = new System.Drawing.Point(243, 231);
+            this.findByEmailCbox.Location = new System.Drawing.Point(243, 200);
             this.findByEmailCbox.Name = "findByEmailCbox";
             this.findByEmailCbox.Size = new System.Drawing.Size(84, 17);
             this.findByEmailCbox.TabIndex = 67;
@@ -327,7 +292,7 @@
             // peopleLocation
             // 
             this.peopleLocation.AutoSize = true;
-            this.peopleLocation.Location = new System.Drawing.Point(15, 203);
+            this.peopleLocation.Location = new System.Drawing.Point(15, 172);
             this.peopleLocation.Name = "peopleLocation";
             this.peopleLocation.Size = new System.Drawing.Size(131, 13);
             this.peopleLocation.TabIndex = 76;
@@ -372,20 +337,16 @@
             this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.selectLbl);
             this.Controls.Add(this.pitchesCBox);
-            this.Controls.Add(this.nNightsLbl);
-            this.Controls.Add(this.nightsNUD);
             this.Controls.Add(this.hr1);
             this.Controls.Add(this.hr);
             this.Name = "BookingForm";
             this.Text = "Book a tent pitch";
-            //this.Controls.SetChildIndex(this.findByNameLbl, 0);
-            //this.Controls.SetChildIndex(this.findByTypeTb, 0);
-            //this.Controls.SetChildIndex(this.findByTypeLbl, 0);
-            //this.Controls.SetChildIndex(this.findByNameTb, 0);
+            this.Controls.SetChildIndex(this.findByNameLbl, 0);
+            this.Controls.SetChildIndex(this.findByTypeTb, 0);
+            this.Controls.SetChildIndex(this.findByTypeLbl, 0);
+            this.Controls.SetChildIndex(this.findByNameTb, 0);
             this.Controls.SetChildIndex(this.hr, 0);
             this.Controls.SetChildIndex(this.hr1, 0);
-            this.Controls.SetChildIndex(this.nightsNUD, 0);
-            this.Controls.SetChildIndex(this.nNightsLbl, 0);
             this.Controls.SetChildIndex(this.pitchesCBox, 0);
             this.Controls.SetChildIndex(this.selectLbl, 0);
             this.Controls.SetChildIndex(this.dateTimePicker, 0);
@@ -411,7 +372,6 @@
             this.Controls.SetChildIndex(this.toDateTbox, 0);
             this.Controls.SetChildIndex(this.peopleLocation, 0);
             this.Controls.SetChildIndex(this.currentBalanceLbl, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.nightsNUD)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -419,8 +379,6 @@
 
         #endregion
 
-        private System.Windows.Forms.NumericUpDown nightsNUD;
-        private System.Windows.Forms.Label nNightsLbl;
         private System.Windows.Forms.ComboBox pitchesCBox;
         private System.Windows.Forms.Label selectLbl;
         private System.Windows.Forms.DateTimePicker dateTimePicker;

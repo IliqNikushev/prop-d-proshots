@@ -58,7 +58,11 @@ namespace Design
             //new Idea.Store().Show();
             //new Idea.EmployeeInterface.EmployeeITDesk().Show();
             new Idea.EmployeeV1.EmployeesPCDoc().Show();
+        }
 
+        private void Main_Load(object sender, EventArgs e)
+        {
+            pictureBox1.ImageLocation = "https://athena.fhict.nl/webdir/i317294/Prop/img/Back.png";
         }
     }
 }

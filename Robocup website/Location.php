@@ -38,7 +38,7 @@ require('Head.php');
 
             To keep in touch, follow RoboCup 2015 on Facebook and Twitter.<br><br>
 
-            <a href="img/Park.png"><img src="img/Park.png"	alt="IMG" title="IMGf" height="450" width="620" id="LocationImg"/></a>
+            <a href="img/Park.png"><img src="img/Park.png"	alt="IMG" title="IMGf" height="15%" width="95%" id="LocationImg"/></a>
         </div>
 
     </div>

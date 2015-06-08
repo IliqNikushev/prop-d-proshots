@@ -17,5 +17,11 @@ namespace App_Visitor
         {
             InitializeComponent();
         }
+
+        protected override bool OnLogin()
+        {
+            new HomePage(this).Show();
+            return true;
+        }
     }
 }

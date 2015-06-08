@@ -125,6 +125,12 @@
     <Compile Include="Idea\EmployeeInterface\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="Idea\EmployeeInterface\InformationDesk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\EmployeeInterface\InformationDesk.Designer.cs">
+      <DependentUpon>InformationDesk.cs</DependentUpon>
+    </Compile>
     <Compile Include="Idea\EmployeeInterface\PCDoctor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -319,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\EmployeeInterface\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\EmployeeInterface\InformationDesk.resx">
+      <DependentUpon>InformationDesk.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\EmployeeInterface\PCDoctor.resx">
       <DependentUpon>PCDoctor.cs</DependentUpon>

@@ -24,10 +24,14 @@ namespace App_Employee
 
         public StoreItemsCollection collection;
         private Action<State> onResult = null;
+        private Classes.Employee employee;
+        private Classes.Receipt receipt;
 
-        public StoreConfirmForm(IEnumerable<StoreItem> items, Classes.Visitor visitor = null, Action<State> onResult = null)
+        public StoreConfirmForm(Classes.Employee employee, IEnumerable<StoreItem> items, Classes.Visitor visitor, Action<State> onResult = null)
             : this()
         {
+            this.onResult = onResult;
+            this.employee = employee;
             this.items = items;
 
             int y = 0;
@@ -42,19 +46,18 @@ namespace App_Employee
             this.totalValueLbl.Text = sum.ToString() + StoreItem.Currency;
             this.numberValueLbl.Text = items.Sum(x => x.PurchaseTimes).ToString();
 
-            confirmBtn.Enabled = false;
+            confirmBtn.Enabled = true;
             insufficientLbl.Visible = false;
 
-            if (visitor != null)
+            this.Name = "Order confirm for " + visitor.FullName + " for " + sum + StoreItem.Currency;
+            if (visitor.Balance < sum)
             {
-                this.Name = "Order confirm for " + visitor.FullName + " for " + sum + StoreItem.Currency;
-                if (visitor.Balance < sum)
-                {
-                    confirmBtn.Enabled = false;
-                    insufficientLbl.Visible = true;
-                    insufficientLbl.Text = (visitor.Balance - sum).ToString() + StoreItem.Currency;
-                }
+                confirmBtn.Enabled = false;
+                insufficientLbl.Visible = true;
+                insufficientLbl.Text = "Visitor needs " + (sum - visitor.Balance).ToString() + StoreItem.Currency;
             }
+
+            this.receipt = new Classes.Receipt(visitor, items.Select(x=>x.ToReceiptItem()).ToList());
         }
 
         private void CreateConfirmItem(StoreItem item, ref int y, List<Control> controls, int distanceToScrollbar)
@@ -126,8 +129,18 @@ namespace App_Employee
 
         private void confirmBtn_Click(object sender, EventArgs e)
         {
-            //create receipt
-            cancelBtn_Click(sender, e);
+            receipt.UnPostpone();
+            receipt = receipt.Create() as Classes.Receipt;
+            employee.PerformDuty(receipt.ID + " > confirm");
+
+            receipt.PurchasedBy.ChangeBalanceWith(-receipt.Price, "purchase " + receipt.ID);
+
+            foreach (var item in receipt.Items)
+            {
+                item.Item.Deplete(item.Times);
+            }
+
+            this.Close();
             if (this.onResult != null) onResult(State.Ok);
         }
 
@@ -139,7 +152,10 @@ namespace App_Employee
 
         private void postponeBtn_Click(object sender, EventArgs e)
         {
-            //save receipt
+            receipt.Postpone();
+            receipt = receipt.Create() as Classes.Receipt;
+            employee.PerformDuty(receipt.ID + " > postpone");
+
             this.cancelBtn_Click(sender, e);
             if (this.onResult != null) onResult(State.Postpone);
         }

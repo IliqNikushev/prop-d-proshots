@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StoreConfirmForm));
             this.confirmBtn = new System.Windows.Forms.Button();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.totalLbl = new System.Windows.Forms.Label();
@@ -99,7 +100,7 @@
             // 
             // userAvatarPBox
             // 
-            this.userAvatarPBox.Image = global::App_Common.Properties.Resources.Employees;
+            this.userAvatarPBox.Image = ((System.Drawing.Image)(resources.GetObject("userAvatarPBox.Image")));
             this.userAvatarPBox.Location = new System.Drawing.Point(334, 12);
             this.userAvatarPBox.Name = "userAvatarPBox";
             this.userAvatarPBox.Size = new System.Drawing.Size(100, 85);
@@ -148,14 +149,15 @@
             // insufficientLbl
             // 
             this.insufficientLbl.AutoSize = true;
+            this.insufficientLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.insufficientLbl.ForeColor = System.Drawing.Color.Red;
             this.insufficientLbl.Location = new System.Drawing.Point(342, 302);
             this.insufficientLbl.Name = "insufficientLbl";
-            this.insufficientLbl.Size = new System.Drawing.Size(66, 13);
+            this.insufficientLbl.Size = new System.Drawing.Size(80, 13);
             this.insufficientLbl.TabIndex = 12;
             this.insufficientLbl.Text = "insufficient $";
             // 
-            // StoreConfirm
+            // StoreConfirmForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -172,7 +174,7 @@
             this.Controls.Add(this.totalLbl);
             this.Controls.Add(this.vScrollBar1);
             this.Controls.Add(this.confirmBtn);
-            this.Name = "StoreConfirm";
+            this.Name = "StoreConfirmForm";
             this.Text = "StoreConfirm";
             ((System.ComponentModel.ISupportInitialize)(this.userAvatarPBox)).EndInit();
             this.ResumeLayout(false);

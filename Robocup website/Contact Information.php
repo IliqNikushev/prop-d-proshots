@@ -34,11 +34,11 @@ require('Head.php');
 
             Do you have any specific question? Please contact one of the e-mailadresses listed below.<br><br>
 
-            Competitions &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;	competitions.robocup2015@gmail.com<br>
-            Hospitality &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	hospitality.robocup2015@gmail.com<br>
-            Accomodations &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 	accomodations.robocup2015@gmail.com<br>
-            Website / RoboCupTV &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 	website.robocup2015@gmail.com<br>
-            Social Media &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	socialmedia.robocup2015@gmail.com<br>
+            Competitions: <br>	competitions.robocup2015@gmail.com<br><br>
+            Hospitality: <br>	hospitality.robocup2015@gmail.com<br><br>
+            Accomodations:<br> 	accomodations.robocup2015@gmail.com<br><br>
+            Website / RoboCupTV:<br>  	website.robocup2015@gmail.com<br><br>
+            Social Media &nbsp: <br>	socialmedia.robocup2015@gmail.com<br><br>
 
         </div>
 

@@ -67,6 +67,7 @@
                                     }
                                     if ($username == NULL) {
                                         echo $username_cookie;
+                                        $username = $username_cookie;
                                     }
                                 } else {
                                     echo $username;
@@ -78,7 +79,27 @@
                                 <li><a href="Booked.php" >Booked Items</a></li>
                                 <li><input type="submit" name="Logout" value="Logout"></li>
                             </ul>
-                            &nbsp&nbsp<input type="submit" name="Logout" value="Logout">
+<?php
+$UserID_query = "SELECT ID FROM `users` WHERE username='$username'";
+$UserID_result = mysql_query($UserID_query);
+while ($row = mysql_fetch_assoc($UserID_result)) {
+    $rows[] = $row;
+}
+
+foreach ($rows as $row) {
+    $UserID = $row["ID"];
+}
+$query = "SELECT picture FROM `visitors` WHERE User_ID='$UserID'";
+$result = mysql_query($query);
+while ($row1 = mysql_fetch_assoc($result)) {
+    $rows1[] = $row1;
+}
+
+foreach ($rows1 as $row1) {
+    $UserImage = $row1["picture"];
+}
+echo "<a href='#'><img src='user_images/$UserImage' height='7%' width='7%'></a>";
+?>
                         </li> 
                     </div>
                 </form>
@@ -93,14 +114,14 @@
                     <ul class="dropdown-menu " >
                         <li><a href="Visitors.php" >Info</a></li>
                         <li><a href="Location.php" >Location</a></li>
-                        <?php
-                        if (isset($_SESSION['username'])) {
-                            ?>
+<?php
+if (isset($_SESSION['username'])) {
+    ?>
                             <li><a href="Tickets.php" >Tickets</a></li>
                             <li><a href="Reservation.php" >Camping spot</a></li>
-                            <?php
-                        }
-                        ?>
+    <?php
+}
+?>
                     </ul>
                 </li>
                 <li>

@@ -53,15 +53,13 @@ namespace Classes
             {typeof(Employee), new Table("Employees", "job").
                 Join<User>("JOIN", "Employees.user_id = Users.id", "").
                 Join<Landmark>("LEFT JOIN", "Landmarks.id = Employees.workplace_id", "workplace")},
-            {typeof(EmployeeAction), new Table("EmployeeActions", "date", "action", "id").
-                Join<Employee>("JOIN", "Employees.user_id = EmployeeActions.employee_id", "employee")},
             {typeof(EventLandmark), new Table("Events", "timeStart", "timeEnd").
                 Join<Landmark>("JOIN", "Landmarks.id = Events.location", "")},
             {typeof(InformationKioskWorkplace), new Table("Landmarks where landmarks.type = 'info'")
                 .Copy<ITServiceWorkplace>()},
             {typeof(Item), new Table("Items_ALL", "brand", "model", "id", "type", "description", "igroup", "icon" )},
             {typeof(ITServiceWorkplace), new Table("Landmarks where landmarks.type = 'it'", "id", "x", "y")},
-            {typeof(Workplace), new Table("Workplaces", "id", "x", "y", "label", "description", "type", "logo")},
+            {typeof(Workplace), new Table("Landmarks Where landmarks.type not in ('paypal','tent', 'event')", "id", "x", "y", "label", "description", "type", "logo")},
             {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type", "logo")},
             {typeof(LogMessage), new Table("Logs", "id", "date", "description", "name")},
             {typeof(PayPalDocument), new Table("PayPalDocuments", "id", "date", "raw")},
@@ -72,7 +70,7 @@ namespace Classes
             {typeof(ShopItem), new Table("ShopItems", "quantity", "id", "warningAmount", "price").
                 Join<Item>("JOIN" ,"ShopItems.item_id = Items_ALL.id", "item").
                 Join<ShopWorkplace>("JOIN" ,"Shops.id = Shopitems.shop_id", "shop")},
-            {typeof(Receipt), new Table("Receipts", "id", "purchasedOn").
+            {typeof(Receipt), new Table("Receipts", "id", "purchasedOn", "postponed").
                 Join<Visitor>("JOIN", "Receipts.purchasedby = Visitors.user_id", "purchasedby")},
             {typeof(ReceiptItem), new Table("ReceiptItems", "id", "totalAmount", "pricePerItem", "times").
                 Join<Receipt>("JOIN", "Receipts.id = ReceiptItems.receipt_id", "receipt").
@@ -99,6 +97,8 @@ namespace Classes
             {typeof(TentPitch), new Table("Landmarks where landmarks.type = 'tent'").
                 Copy<ITServiceWorkplace>()},
             {typeof(User), new Table("Users", "id", "firstName", "lastName", "email", "password", "type", "username")},
+            {typeof(UserAction), new Table("UserActions", "date", "action", "id").
+                Join<User>("JOIN", "Users.id = UserActions.user_id", "user")},
             {typeof(Visitor), new Table("Visitors", "balance", "picture", "ticket", "rfid").
                 Join<User>("JOIN", "Users.id = Visitors.user_id", "")},
             {typeof(Warning), new Table("Warnings", "id", "name", "description")},

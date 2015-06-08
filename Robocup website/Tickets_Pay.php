@@ -90,17 +90,17 @@ foreach ($users as $x) {
 
         $mail = new PHPMailer;
 
-//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+        $mail->SMTPDebug = 3;                               // Enable verbose debug output
 
-//        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'smtp.gmail.com ';  // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'proshotsmessage@gmail.com';                 // SMTP username
-        $mail->Password = 'Pro12345Shots';                           // SMTP password
+        $mail->isSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = 'smtp1.fontys.nl';  // Specify main and backup SMTP servers
+//        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+//        $mail->Username = '';                 // SMTP username
+//        $mail->Password = '';                           // SMTP password
         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 25;                                    // TCP port to connect to
 
-        $mail->From = 'proshotsmessage@gmail.com';
+        $mail->From = 'no-reply@fontys.nl';
         $mail->FromName = 'ProShots';
         $mail->addAddress($Email);     // Add a recipient
         $mail->addReplyTo('info@example.com', 'Information');

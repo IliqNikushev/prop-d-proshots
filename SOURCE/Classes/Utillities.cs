@@ -160,26 +160,28 @@ namespace Classes
                 {
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        if (reader.GetName(i).ToLower() == distinctN)
+                        string field = reader.GetName(i).ToLower();
+                        if (field == distinctN)
                         {
                             if (Database.buildTesting) return true;
 
-                       //     if (reader.GetValue(i).GetType() != typeof(System.DBNull))
-                       //         return true;
-                            return true;
+                            if (reader.GetValue(i).GetType() != typeof(System.DBNull))
+                                return true;
+                            return false;
                         }
                     }
                 }
         
             for (int i = 0; i < reader.FieldCount; i++)
             {
-                if (reader.GetName(i).ToLower() == n)
+                string field = reader.GetName(i).ToLower();
+                if (field == n)
                 {
                     if (Database.buildTesting) return true;
 
-                    //if (reader.GetValue(i).GetType() != typeof(System.DBNull))
-                    //    return true;
-                    return true;
+                    if (reader.GetValue(i).GetType() != typeof(System.DBNull))
+                        return true;
+                    return false;
                 }
             }
             return false;
@@ -239,6 +241,7 @@ namespace Classes
                 if (x is DateTime) return "'" + ((DateTime)x).ToString(DateTimeFormat) + "'";
                 if (x == null) return "NULL";
                 if (x is Database.Table) return (x as Database.Table).Name;
+                if (x is bool) return ((bool)x ? 1 : 0).ToString();
                 if (x.GetType().IsClass) return "'"+x.ToString().Replace("'", "''") +"'";
                 return x.ToString();
             }).ToArray();

@@ -126,7 +126,7 @@ namespace Classes
 
         public static List<RentableItemHistory> GetVisitorRentedItems(Visitor visitor)
         {
-            return Where<RentableItemHistory>("|T|.rentedby = ", visitor.ID);
+            return Where<RentableItemHistory>("|T|.rentedby = {0}", visitor.ID);
         }
 
         public static List<RentableItemHistory> GetVisitorNotReturnedItems(Visitor visitor)
@@ -154,9 +154,9 @@ namespace Classes
             return GetWhere<Appointment>("|T|.appointed_by = {0}", visitor.ID);
         }
 
-        public static List<EmployeeAction> GetEmployeeActions(Employee employee)
+        public static List<UserAction> GetEmployeeActions(Employee employee)
         {
-            return GetWhere<EmployeeAction>("|T|.employee_id = {0}", employee.ID);
+            return GetWhere<UserAction>("|T|.employee_id = {0}", employee.ID);
         }
 
         public static Employee GetEmployee(string userName, string password)

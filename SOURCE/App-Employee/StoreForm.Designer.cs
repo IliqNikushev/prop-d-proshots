@@ -157,6 +157,7 @@
             this.subPbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.subPbox.TabIndex = 58;
             this.subPbox.TabStop = false;
+            this.subPbox.Click += new System.EventHandler(this.subPbox_Click);
             // 
             // addPbox
             // 
@@ -197,6 +198,7 @@
             this.Controls.Add(this.storeLogoPbox);
             this.Name = "StoreForm";
             this.Text = "<SHOPNAME>:Order menu";
+            this.Load += new System.EventHandler(this.StoreForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.subPbox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addPbox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeLogoPbox)).EndInit();

@@ -101,10 +101,10 @@ namespace App_Camps
             }
 
             pitchNumberLbl.Text = "#" + tent.ID;
-            dateTimeBookedLbl.Text = tent.BookedOn.ToString("dd HH:mm") + " " + tent.BookedTill.ToString("dd HH:mm");
+            dateTimeBookedLbl.Text = tent.BookedOn.ToString("dd HH:mm") + " untill " + tent.BookedTill.ToString("dd HH:mm");
             bookedByLbl.Text = tent.BookedBy.FullName;
             isPaidCbox.Checked = tent.IsPaid;
-            isPaidCbox.Enabled = false;
+
             isPaidCbox.Text = tent.Price + App_Common.Constants.Currency;
             bookedForDetailsLbox.Items.AddRange(tent.BookedFor);
 
@@ -112,12 +112,10 @@ namespace App_Camps
             {
                 ActiveTent = tent;
                 cancelPitchBtn.Visible = true;
-                payBtn.Visible = true;
             }
             else
             {
                 cancelPitchBtn.Visible = false;
-                payBtn.Visible = false;
             }
         }
 
@@ -141,6 +139,18 @@ namespace App_Camps
         private void payBtn_Click(object sender, EventArgs e)
         {
             //todo PAY FOR TENT
+        }
+
+        private void bookedByLBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (detailsPanel.Visible)
+                ShowDetails(bookedByLBox);
+        }
+
+        private void bookedForLBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (detailsPanel.Visible)
+                ShowDetails(bookedForLBox);
         }
     }
 }

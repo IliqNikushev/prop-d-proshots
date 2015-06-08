@@ -56,10 +56,11 @@
     <Compile Include="ItemTest.cs" />
     <Compile Include="DepositTest.cs" />
     <Compile Include="EmployeeTest.cs" />
+    <Compile Include="ConstantsTests.cs" />
     <Compile Include="WorkplaceTest.cs" />
     <Compile Include="LandmarkTest.cs" />
     <Compile Include="EventLandmarkTest.cs" />
-    <Compile Include="EmployeeActionTest.cs" />
+    <Compile Include="UserActionTest.cs" />
     <Compile Include="InformationKioskWorkplaceTest.cs" />
     <Compile Include="AppointmentItemTest.cs" />
     <Compile Include="ITServiceWorkplaceTest.cs" />

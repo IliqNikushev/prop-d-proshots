@@ -28,12 +28,13 @@ require('Head.php');
         </div>
 
         <div id="ScheduleText">
-            The event starts at ... and it ends at ... .<br><br>
-            - July 17: Major Team Setup<br><br>
+            The event starts at 26th of June  and it ends at 28th of June 2015 .<br><br>
+            
+            - June 26: Major and Junior Team Setup and Visitors preparations <br><br>
 
-            - July 18: Major and Junior Team Setup<br><br>
+            - June 27: Competitions<br><br>
 
-            - July 19-22: Competitions<br><br>
+            - June 28: Final competitions and preparations for leaving the event<br><br>
 
         </div>
 

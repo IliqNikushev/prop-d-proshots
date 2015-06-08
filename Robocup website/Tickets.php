@@ -33,9 +33,9 @@ require('Tickets_SQL.php');
 
         <div id="TicketsText">
 
-            You can buy ticket for yourself and for you friends.<br>
-            The price of one ticket is 55 euro.<br>
-            After entering information for the additional visitors they will recive a message with information about their registration.<br><br>
+            You can buy ticket for yourself and for your friends.<br>
+            The price of one ticket is 55 euro.If you don't have a ticket, it will be added automatically. <br>
+            After entering information for the additional visitors they will receive a message with information about their registration.<br><br>
             <form id="Visitors_form">
                 Visitors:<br><br>
                 <b>First Name</b><br>

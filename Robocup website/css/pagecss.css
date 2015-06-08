@@ -1,6 +1,6 @@
 body {
     background-color: GhostWhite;
-	top: 50px;
+    top: 50px;
 }
 
 #background-image{
@@ -173,10 +173,6 @@ body {
     padding-bottom: 2.5%;
 }
 
-
-
-
-
 #Leagues-back-arrow {
     position: relative;
     right: -1%;
@@ -202,39 +198,30 @@ body {
 #VisitorsText {
     background-color: white;
     width: 82%;
-    height: 800px;
+    height: 100%;
     position: relative;
     padding: 25px;
     border: 1px solid ;
     margin: 15px;
 }
 #VisitorsText img{
-    position: relative;
-    left: 70px;
     padding-left: 25px;
-
 }
 
 #LocationText {
     background-color: white;
     width: 82%;
-    height: 1000px;
+    height: 100%;
     position: relative;
     padding: 25px;
     border: 1px solid ;
     margin: 15px;
 }
-#LocationText img{
-    position: relative;
-    left: 20px;
-    padding-left: 25px;
-
-}
 
 #ReservationText {
     background-color: white;
     width: 82%;
-    height: 950px;
+    height: 100%;
     position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -244,7 +231,7 @@ body {
 #TicketsText {
     background-color: white;
     width: 82%;
-    height: 750px;
+    height: 100%;
     position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -254,7 +241,7 @@ body {
 #ParticipantsText {
     background-color: white;
     width: 82%;
-    height: 600px;
+    height: 100%;
     position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -264,7 +251,7 @@ body {
 #ScheduleText {
     background-color: white;
     width: 82%;
-    height: 600px;
+    height: 100%;
     position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -274,7 +261,7 @@ body {
 #RoboCupSoccerText {
     background-color: white;
     width: 82%;
-    height: 1500px;
+    height: 100%;
     position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -284,7 +271,7 @@ body {
 #RoboCupRescueText {
     background-color: white;
     width: 82%;
-    height: 900px;
+    height: 100%;
     position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -294,7 +281,7 @@ body {
 #RoboCupJuniorText {
     background-color: white;
     width: 82%;
-    height: 500px;
+    height: 100%;
     position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -304,7 +291,7 @@ body {
 #RoboCupHomeText {
     background-color: white;
     width: 82%;
-    height: 500px;
+    height: 100%;
     position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -314,7 +301,7 @@ body {
 #RoboCupWorkText {
     background-color: white;
     width: 82%;
-    height: 450px;
+    height: 100%;
     position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -324,7 +311,7 @@ body {
 #ContactUsText {
     background-color: white;
     width: 82%;
-    height: 550px;
+    height: 100%;
     position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -334,7 +321,7 @@ body {
 #Register_Text {
     background-color: white;
     width: 82%;
-    height: 750px;
+    height: 100%;
     position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -345,7 +332,7 @@ body {
 #ForgottenText {
     background-color: white;
     width: 82%;
-    height: 650px;
+    height: 100%;
     position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -356,20 +343,19 @@ body {
 #BookedText {
     background-color: white;
     width: 82%;
-    height: 550px;
+    height: 100%;
     position: relative;
-    padding: 25px;
     border: 1px solid ;
     margin: 15px;
     text-align: center;
-    
+
 }
 
 
 #BalanceText {
     background-color: white;
     width: 82%;
-    height: 400px;
+    height: 100%;
     position: relative;
     padding: 25px;
     border: 1px solid ;
@@ -379,7 +365,7 @@ body {
 #ProfileText {
     background-color: white;
     width: 82%;
-    height: 700px;
+    height: 100%;
     position: relative;
     padding: 25px;
     border: 1px solid ;
