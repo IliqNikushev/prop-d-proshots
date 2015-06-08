@@ -56,8 +56,8 @@ namespace Design
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             //new Idea.Store().Show();
-            //new Idea.EmployeeInterface.EmployeeITDesk().Show();
-            new Idea.EmployeeV1.EmployeesPCDoc().Show();
+            new Idea.EmployeeInterface.EmployeeITDesk().Show();
+            //new Idea.EmployeeV1.EmployeesPCDoc().Show();
         }
 
         private void Main_Load(object sender, EventArgs e)

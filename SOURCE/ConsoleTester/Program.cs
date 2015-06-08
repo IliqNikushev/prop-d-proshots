@@ -9,9 +9,27 @@ namespace ConsoleTester
 {
     class Program
     {
+        static void Georgi()
+        {
+            RFID rf = new RFID();
+            rf.OnDetect += rf_OnDetect;
+            Console.ReadKey();
+            rf.ToggleLED();
+        }
+
+        static void rf_OnDetect(string tag)
+        {
+            Visitor v = Visitor.Authenticate(tag);
+            Console.WriteLine(v== null);
+            if(v)
+                Console.WriteLine(v.FullName);
+            Console.WriteLine(tag);
+        }
         static void Main(string[] args)
             // {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type", "logo")},
         {
+            Georgi();
+            return;
             Console.WriteLine("{0} = {1}",1,DateTime.Now);
             Console.WriteLine(String.Format("{0} = {1}", 1, DateTime.Now));
             Console.WriteLine("{0} = {1}".Arg(1, DateTime.Now));

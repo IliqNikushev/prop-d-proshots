@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeITDesk));
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -69,22 +67,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(86, 20);
             this.textBox2.TabIndex = 42;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(179, 78);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(68, 20);
-            this.textBox1.TabIndex = 41;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(120, 81);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
-            this.label1.TabIndex = 39;
-            this.label1.Text = "Balance";
             // 
             // label5
             // 
@@ -274,8 +256,6 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -304,8 +284,6 @@
 
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;

@@ -28,9 +28,9 @@ namespace Design.Idea.EmployeeV1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Appointment app = pc.selected();
-            AppointmentTask at = app.AddTask(textBox1.Text, textBox2.Text, Convert.ToInt32(textBox3.Text));
-            listBox1.Items.Add(at);
+                Appointment app = pc.selected();
+                AppointmentTask at = app.AddTask(textBox1.Text, textBox2.Text, Convert.ToInt32(textBox3.Text));
+                listBox1.Items.Add(at);
         }
     }
 }
