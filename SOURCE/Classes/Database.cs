@@ -233,7 +233,7 @@ namespace Classes
             }
             return result;
         }
-
+        static bool blockInsertForWarning = false;
         public static int ExecuteSQL(string sql)
         {
             LogSQL(sql);
@@ -252,6 +252,7 @@ namespace Classes
                 }
                 catch (Exception ex)
                 {
+                    if (blockInsertForWarning) return -1;
                     LogResult(ex.GetType().Name + " \n " + ex.Message);
                     if (OnUnableToProcessSQL != null)
                         OnUnableToProcessSQL(ex, sql);
@@ -293,6 +294,7 @@ namespace Classes
                 }
                 catch (Exception ex)
                 {
+                    if (blockInsertForWarning) return;
                     LogResult(ex.GetType().Name + " \n " + ex.Message);
                     if(OnUnableToProcessSQL != null)
                         OnUnableToProcessSQL(ex, sql);
@@ -372,12 +374,13 @@ namespace Classes
             KeyValuePair<string, object>[] whereParameters = new KeyValuePair<string, object>[parameters.Length];
             for (int i = 0; i < parameters.Length; i++)
                 whereParameters[i] = new KeyValuePair<string, object>(valuesSplit[i].Trim(), parameters[i].ToString());
-
+            blockInsertForWarning = table.Name == TableName<Warning>().Name;
             ExecuteSQL("Insert into {0} ({1}) values ({2}); ", table.Name,
                     values,
                     string.Join(",", parameters));
 
             List<object> result = GetWhere(recordType, string.Join(" and ", whereParameters.Select(x => table.Name + "." + x.Key + " = " + x.Value)));
+            blockInsertForWarning = false;
             return result.LastOrDefault() as Record;
         }
 
@@ -504,6 +507,7 @@ namespace Classes
                 ExecuteSQLWithResult(sql + additionalWhere, ProcessReader);
             }
 
+            if (processingList == null) processingList = new List<object>();
             List<object> result = new List<object>(processingList);
             processingList.Clear();
             processingList = null;
