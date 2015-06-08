@@ -12,6 +12,25 @@ namespace ConsoleTester
         static void Main(string[] args)
             // {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type", "logo")},
         {
+            Console.WriteLine("{0} = {1}",1,DateTime.Now);
+            Console.WriteLine(String.Format("{0} = {1}", 1, DateTime.Now));
+            Console.WriteLine("{0} = {1}".Arg(1, DateTime.Now));
+            return;
+            AppointedItem api = new AppointedItem("s", "x");
+            api = api.Create() as AppointedItem;
+            Appointment ap = new Appointment(api, Visitor.Authenticate("tester", "test") as Visitor, "desc");
+            ap.Create();
+            return;
+            Classes.AppointedItem item = new Classes.AppointedItem("lenovo","x");
+            //Database.ExecuteSQL("Insert into Items (brand, model,type, description,icon)");
+            int id=0;
+            Database.ExecuteSQL("INSERT INTO `dbi317294`.`items` (`ID`, `Brand`, `Model`, `Type`, `Description`, `dateCreated`, `dateModified`, `icon`) VALUES (NULL, 'Lenovo', '152', 'appointed', 'Its a laptop', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'item404.jpg');");
+            Database.ExecuteSQLWithResult("SELECT ID FROM `items` WHERE Brand = 'Lenovo' AND Model = '1337' ORDER BY ID DESC limit 1;", x => { x.Read(); id = x.GetInt("ID"); });
+            Console.WriteLine(id);
+            item = new AppointedItem(10, null, null, null, null, null, null);
+            Appointment app = new Appointment(item, Visitor.Authenticate("tester", "test") as Visitor, "desc");
+            app.Create();
+            return;
             DateTime n = new DateTime(2015,6,29);
             
             EventLandmark ll = new EventLandmark("test", "a test landmark", 0, 0, n, n);

@@ -58,14 +58,14 @@ namespace Design.Idea.AdministratorInterface
                     
                     if (textBoxVisitor.Text == "")
                     {
-                        appointments.Where(x => x.Status.Contains(comboBoxStatus.Text));
+                        appointments.Where(x => x.Status.ToString().Contains(comboBoxStatus.Text));
                         ItemsToShow.AddRange(appointments);
                     }
                     else
                     {
 
                         ItemsToShow.AddRange(
-                        appointments.Where(x =>x.Status.Contains(comboBoxStatus.Text) && x.Visitor.FullName.Contains(textBoxVisitor.Text)));
+                        appointments.Where(x =>x.Status.ToString().Contains(comboBoxStatus.Text) && x.Visitor.FullName.Contains(textBoxVisitor.Text)));
                     }
 
 
@@ -84,7 +84,7 @@ namespace Design.Idea.AdministratorInterface
                 else
                 {
 
-                    ItemsToShow.AddRange(appointments.Where(x => x.Status.Contains(comboBoxStatus.Text) &&  x.AppointedOn.Day == day && x.Visitor.FullName.Contains(textBoxVisitor.Text)));
+                    ItemsToShow.AddRange(appointments.Where(x => x.Status.ToString().Contains(comboBoxStatus.Text) &&  x.AppointedOn.Day == day && x.Visitor.FullName.Contains(textBoxVisitor.Text)));
                 }
             }
                 

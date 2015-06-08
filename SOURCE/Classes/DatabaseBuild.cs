@@ -93,7 +93,7 @@ namespace Classes
             DateTime appointedOn = reader.Get<System.DateTime>("AppointedOn");
             bool isReturned = reader.Get<bool>("IsReturned");
             string description = reader.GetStr("description");
-            string status = reader.GetStr("status");
+            bool status = reader.Get<bool>("status");
 
             reader.RemoveDistinctPrefix();
             return new Appointment(id, appointedItem, visitor, completedOn,appointedOn, isReturned, status ,description);

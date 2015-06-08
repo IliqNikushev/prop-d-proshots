@@ -161,6 +161,12 @@
     <Compile Include="Idea\EmployeeV1\EmployeesPCDoc.Designer.cs">
       <DependentUpon>EmployeesPCDoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Idea\EmployeeV1\PCDoctorPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\EmployeeV1\PCDoctorPopup.Designer.cs">
+      <DependentUpon>PCDoctorPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Idea\HomePageWithMap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -328,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\EmployeeV1\EmployeesPCDoc.resx">
       <DependentUpon>EmployeesPCDoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\EmployeeV1\PCDoctorPopup.resx">
+      <DependentUpon>PCDoctorPopup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>

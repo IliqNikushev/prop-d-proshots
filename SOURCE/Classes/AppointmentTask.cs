@@ -15,7 +15,7 @@ namespace Classes
             this.Price = price;
             this.Description = description;
         }
-
+        public AppointmentTask(string name, string description, decimal price, Appointment appointment) : this(0, name, price, description, appointment) { }
         [Column("appointment_id")]
         public Appointment Appointment{get; private set;}
         public string Name { get; private set; }
@@ -24,7 +24,12 @@ namespace Classes
 
         public override Record Create()
         {
-            throw new NotImplementedException();
+            return Database.Insert(this, "name,description,price,appointment_id", this.Name, this.Description, this.Price,this.Appointment.ID);
+        }
+
+        public override string ToString()
+        {
+            return Name + " for " + Price + " euros, info: " + Description;
         }
     }
 }

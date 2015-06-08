@@ -24,6 +24,7 @@ namespace Classes
         {
             get
             {
+                if (icon == "") return "";
                 if (!icon.StartsWith("http"))
                     return Database.PathToAthenaItemPictures + icon;
                 return icon;

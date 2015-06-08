@@ -41,7 +41,7 @@ namespace Classes
         {
             {typeof(AdminUser), new Table("Admins").
                 Copy<User>()},
-            {typeof(AppointedItem), new Table("Items_ALL Where Items_ALL.type = 'appointment'")
+            {typeof(AppointedItem), new Table("Items_ALL Where Items_ALL.type = 'appointed'")
                 .Copy<Item>()},
             {typeof(Appointment), new Table("Appointments", "description", "id", "completedOn", "isReturned", "AppointedOn", "status").
                 Join<AppointedItem>("JOIN", "Items_ALL.id = Appointments.appointed_item", "item").
