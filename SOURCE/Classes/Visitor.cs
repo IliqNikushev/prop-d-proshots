@@ -15,8 +15,9 @@ namespace Classes
         {
             get
             {
-                if (!picture.StartsWith("http"))
-                    return Database.PathToAthenaUploads + picture;
+                //if (!picture.StartsWith("http"))
+                    //return Database.PathToAthenaUploads + picture;
+                    return picture;
                 return picture;
             }
             set { this.picture = value; }
@@ -44,6 +45,7 @@ namespace Classes
         public List<Receipt> Receipts { get { return Classes.Database.GetVisitorReceipts(this); } }
         public List<Tent> BookedTents { get { return Database.GetTentsBookedByVisitor(this); } }
         public List<Tent> BookedInTents { get { return Database.GetTentsBookedForVisitor(this); } }
+        public List<Appointment> Appointments { get { return Database.GetVisitorAppointments(this); } }
 
         public Tent Book(TentPitch pitch, List<Visitor> visitors, DateTime bookedOn)
         {

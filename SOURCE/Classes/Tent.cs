@@ -45,7 +45,6 @@ namespace Classes
             this.BookedTill = bookedTill;
             this.BookedBy = bookedBy;
 
-            this.bookedFor = new Visitor[] { };
         }
 
         public Tent(TentPitch location, string bookedOn, string bookedTill, Visitor bookedBy, List<Visitor> bookedFor)
