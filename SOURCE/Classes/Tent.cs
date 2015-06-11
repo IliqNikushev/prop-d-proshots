@@ -18,7 +18,7 @@ namespace Classes
             get
             {
                 if (bookedFor == null)
-                    bookedFor = Database.Where<TentPerson>("|T|.tent_id = {0}", this.ID).Select(x => x.Visitor).ToArray();
+                    return Database.Where<TentPerson>("|T|.tent_id = {0}", this.ID).Select(x => x.Visitor).ToArray();
                 return bookedFor;
             }
         }
@@ -55,7 +55,8 @@ namespace Classes
             new DateTime(2015, 6, int.Parse(bookedTill.Split(',').Last())),
             bookedBy, 0)
         {
-            this.bookedFor = bookedFor.ToArray();
+            if(bookedFor != null)
+                this.bookedFor = bookedFor.ToArray();
         }
 
         public void Cancel()

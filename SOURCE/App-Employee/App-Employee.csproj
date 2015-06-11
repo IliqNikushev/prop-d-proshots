@@ -83,6 +83,12 @@
     <Compile Include="StoreConfirmForm.Designer.cs">
       <DependentUpon>StoreConfirmForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StoreInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StoreInventory.Designer.cs">
+      <DependentUpon>StoreInventory.cs</DependentUpon>
+    </Compile>
     <Compile Include="StoreItem.cs" />
     <Compile Include="StoreItemsCollection.cs" />
     <EmbeddedResource Include="InformationDeskForm.resx">

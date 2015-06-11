@@ -35,7 +35,6 @@ namespace App_Common
 
         public void Enlist(Control c) { this.enlisted.Add(c); }
 
-        protected static bool OnAttachSet;
         protected static Classes.RFID reader;
 
         private int defaultHeight = 0;
@@ -70,8 +69,18 @@ namespace App_Common
                     reader.OnDetach += (x) => { };
                     //reader.OnDetect += (x) => MessageBox.Show("RFID found," + x);
                     //reader.OnDetectEnd += (x) => MessageBox.Show("RFID lost, " + x);
-                    reader.OnError += (x) => { MessageBox.Show("Reader encountered an error. The error has been logged."); new Classes.Warning("RFID", x.Description).Create(); };
-                    Classes.Database.OnUnableToProcessSQL += (ex,sql) => new Classes.Warning("SQL error", ex.GetType()+"\n"+ex.Message+"\n"+sql).Create();
+                    reader.OnError += (x) => {
+                        Classes.Record result = new Classes.Warning("RFID", x.Description).Create(); 
+                        if (result)
+                            MessageBox.Show("Reader encountered an error. The error has been logged."); 
+                        else
+                            MessageBox.Show("Reader encountered an error. The error was not able to be logged."); 
+                        };
+                    Classes.Database.OnUnableToProcessSQL += (ex, sql) =>
+                    {
+                        new Classes.Warning("SQL error", ex.GetType() + "\n" + ex.Message + "\n" + sql).Create();
+                        MessageBox.Show("There was an issue while using the database.");
+                    };
                     reader.OnAttach += (x) => reader.ToggleLED();
 
                     this.FormClosed += (x, y) => 

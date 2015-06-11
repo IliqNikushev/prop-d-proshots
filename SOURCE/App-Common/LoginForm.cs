@@ -13,19 +13,16 @@ namespace App_Common
     public partial class LoginForm : Menu
     {
         public LoginForm() : this(null) { }
-        public LoginForm(Menu parent) : base(parent)
+        public LoginForm(Menu parent)
+            : base(parent)
         {
             InitializeComponent();
 
             if (!IsInDebug)
             {
-                if (!OnAttachSet)
-                {
-                    OnAttachSet = true;
-                    reader.OnAttach += (x) => infoLbl.Text = "Enter your credentials Or approach your card";
-                    reader.OnDetach += (x) => infoLbl.Text = "Enter your credentials";
-                    reader.OnDetect += Authenticate;
-                }
+                reader.OnAttach += (x) => infoLbl.Text = "Enter your credentials Or approach your card";
+                reader.OnDetach += (x) => infoLbl.Text = "Enter your credentials";
+                reader.OnDetect += Authenticate;
             }
         }
 

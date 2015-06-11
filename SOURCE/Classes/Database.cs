@@ -21,10 +21,10 @@ namespace Classes
                     C_Server, C_DataBase, C_UserID, C_Password
                 );
 
-        public const string PathToAthena = "https://athena.fhict.nl/webdir/i317294/Prop/";
+        public const string PathToAthena = "";
         public const string PathToAthenaLandmarkPictures = PathToAthena+"pic/landmarks/";
         public const string PathToAthenaItemPictures = PathToAthena + "pic/items/";
-        public const string PathToAthenaUploads = PathToAthena + "user_images/";
+        public const string PathToAthenaUploads = PathToAthena + "pic/users/";
 
         private static System.Reflection.Assembly assembly;
         public static System.Reflection.Assembly Assembly
@@ -32,7 +32,7 @@ namespace Classes
             get
             {
                 if (assembly == null)
-                    assembly = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetTypes().Where(y => y == typeof(Record)).Any()).First();
+                    assembly = typeof(Record).Assembly;
                 return assembly;
             }
         }

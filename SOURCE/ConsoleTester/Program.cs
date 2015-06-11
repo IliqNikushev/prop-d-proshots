@@ -28,6 +28,9 @@ namespace ConsoleTester
         static void Main(string[] args)
             // {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type", "logo")},
         {
+            Tent arg = Classes.Database.Find<Tent>("|T|.location = 1");
+            Console.WriteLine(arg.BookedFor);
+            return;
             Georgi();
             return;
             Console.WriteLine("{0} = {1}",1,DateTime.Now);
