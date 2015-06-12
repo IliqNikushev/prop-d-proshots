@@ -274,6 +274,7 @@ namespace Classes
                 CreateShopWorkplace(reader);
                 CreatePCDoctorWorkplace(reader);
                 CreateInformationKioskWorkplace(reader);
+                CreateITServiceWorkplace(reader);
             }
 
             switch (type.Replace('-', ' ').ToLower())
@@ -281,6 +282,7 @@ namespace Classes
                 case "shop": return CreateShopWorkplace(reader);
                 case "pc doctor": return CreatePCDoctorWorkplace(reader);
                 case "info": return CreateInformationKioskWorkplace(reader);
+                case "rent": return CreateITServiceWorkplace(reader);
             }
 
             if (buildTesting) return null;
