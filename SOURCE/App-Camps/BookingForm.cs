@@ -302,7 +302,7 @@ namespace App_Camps
         {
             Classes.TentPitch selectedPitch = SelectedPitch;
             freeTentPitches = Classes.Database.Where<Classes.TentPitch>("|T|.id not in (select {0}.location from {0}) or |T|.id in (select {0}.location from {0} where {0}.bookedTill < {1} or {0}.bookedOn > {2})",
-                Classes.Database.TableName<Classes.Tent>(), dateTimePicker.Value, App_Common.Constants.EventEnd);
+                Classes.Database.TableFor<Classes.Tent>(), dateTimePicker.Value, App_Common.Constants.EventEnd);
             UpdateMap();
             pitchesCBox.Items.Clear();
             pitchesCBox.Items.AddRange(freeTentPitches.ToArray());

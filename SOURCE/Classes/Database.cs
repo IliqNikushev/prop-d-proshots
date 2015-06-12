@@ -104,14 +104,14 @@ namespace Classes
             {typeof(Warning), new Table("Warnings", "id", "name", "description")},
         };
 
-        private static Table TName<T>() where T : Record
+        private static Table TFor<T>() where T : Record
         {
             return new Table(TableNameFor(typeof(T)));
         }
 
-        public static Table TableName<T>() where T : Record
+        public static Table TableFor<T>() where T : Record
         {
-            return TName<T>();
+            return TFor<T>();
         }
 
         public static string TableNameFor(Record record)
@@ -374,7 +374,7 @@ namespace Classes
             KeyValuePair<string, object>[] whereParameters = new KeyValuePair<string, object>[parameters.Length];
             for (int i = 0; i < parameters.Length; i++)
                 whereParameters[i] = new KeyValuePair<string, object>(valuesSplit[i].Trim(), parameters[i].ToString());
-            blockInsertForWarning = table.Name == TableName<Warning>().Name;
+            blockInsertForWarning = table.Name == TableFor<Warning>().Name;
             ExecuteSQL("Insert into {0} ({1}) values ({2}); ", table.Name,
                     values,
                     string.Join(",", parameters));

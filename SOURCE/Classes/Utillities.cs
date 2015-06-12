@@ -234,6 +234,17 @@ namespace Classes
             return properties;
         }
 
+        /// <summary>
+        /// uses string.Format on the specified string instance with the args given, by making them secure for database use ( replaces ' )
+        /// </summary>
+        public static string Args(this string s, params object[] args)
+        {
+            return string.Format(s, args.Select(x=>x == null? "NULL" : x.ToString().Replace("'","''")).ToArray());
+        }
+
+        /// <summary>
+        /// uses string.Format on the specified string instance with the arguments given, by making the arguments ready for the database
+        /// </summary>
         public static string Arg(this string pattern, params object[] arguments)
         {
             return string.Format(pattern, arguments.Format());
