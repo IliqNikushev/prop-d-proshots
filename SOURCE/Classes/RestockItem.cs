@@ -36,8 +36,7 @@ namespace Classes
         public override Record Create()
         {
             Record r = Database.Insert(this, "restock_id, item_id, quantity, pricePerItem, total", this.Restock.ID, this.Item.ID, this.Times, this.PricePerItem, this.Total);
-
-            Database.Update(this.Item, "quantity = " + (this.Times + this.Item.InStock), "|T|.item_id = " + this.Item.ID);
+            this.Item.Restock(this.Times);
 
             return r;
         }

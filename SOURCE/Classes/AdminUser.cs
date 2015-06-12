@@ -21,13 +21,5 @@ namespace Classes
                 new LogMessage("create event", name +" "+ x + " " + y + " fail " + this.ID + " => " + name).Create();
             return r;
         }
-
-        public void RestockStore(ShopWorkplace shop, List<RestockItem> items)
-        {
-            foreach (var item in items)
-                item.Create();
-            
-            new LogMessage("restock store", shop.ID + " " + string.Join(" ", items.Select(x=>x.Item.ID + " " + x.Times))).Create();
-        }
     }
 }

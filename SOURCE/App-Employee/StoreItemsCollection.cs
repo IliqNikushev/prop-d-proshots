@@ -11,6 +11,7 @@ namespace App_Employee
     {
         public VScrollBar Bar;
         public Panel panel;
+        public Panel holder;
         public IEnumerable<Control> Controls;
         public int X;
         public int Y;
@@ -21,7 +22,7 @@ namespace App_Employee
             this.X = x;
             this.Y = y;
 
-            Panel holder = new Panel();
+            holder = new Panel();
 
             this.panel = new Panel();
             holder.Controls.Add(panel);

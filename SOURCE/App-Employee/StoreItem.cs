@@ -23,6 +23,7 @@ namespace App_Employee
         public Panel PanelAssosiated;
         public Label InStockLabel;
         public TextBox PurchaseTimesTBox;
+        public int RestockAmount = 0;
         public Label PriceLabel;
         public Label TotalLabel;
         public Label NameLabel;

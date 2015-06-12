@@ -31,7 +31,7 @@ namespace Classes
             add
             {
                 onVisitorDetect -= value;
-                OnVisitorDetect += value;
+                onVisitorDetect += value;
             }
             remove
             {

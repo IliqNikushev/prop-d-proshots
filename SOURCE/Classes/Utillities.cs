@@ -25,17 +25,17 @@ namespace Classes
         {
             if (!distinctPrefixes.ContainsKey(reader))
                 distinctPrefixes.Add(reader, new Stack<string>());
-            if(prefix != "")
+            if (prefix != "")
                 if (prefix.Last() != '_') prefix += "_";
             distinctPrefixes[reader].Push(prefix.ToLower());
         }
 
-         public static void RemoveDistinctPrefix(this MySql.Data.MySqlClient.MySqlDataReader reader)
-         {
-             if (distinctPrefixes.ContainsKey(reader))
-                 if (distinctPrefixes[reader].Count > 0)
-                     distinctPrefixes[reader].Pop();
-         }
+        public static void RemoveDistinctPrefix(this MySql.Data.MySqlClient.MySqlDataReader reader)
+        {
+            if (distinctPrefixes.ContainsKey(reader))
+                if (distinctPrefixes[reader].Count > 0)
+                    distinctPrefixes[reader].Pop();
+        }
 
         public static void AddPrefix(this MySql.Data.MySqlClient.MySqlDataReader reader, string prefix)
         {
@@ -49,7 +49,7 @@ namespace Classes
         public static void RemovePrefix(this MySql.Data.MySqlClient.MySqlDataReader reader)
         {
             if (prefixes.ContainsKey(reader))
-                if(prefixes[reader].Count > 0)
+                if (prefixes[reader].Count > 0)
                     prefixes[reader].Pop();
         }
 
@@ -67,34 +67,26 @@ namespace Classes
             return "";
         }
 
-        private static object Get(this MySql.Data.MySqlClient.MySqlDataReader reader, string n, object defaultValue)
+        private static object Get(this MySql.Data.MySqlClient.MySqlDataReader reader, string n, object defaultValue, Type wantedType)
         {
+            bool found = false;
             string name = "";
-
-            if(distinctPrefixes.ContainsKey(reader))
-                if (distinctPrefixes[reader].Where(x=>x.Trim().Length>0).Count() > 0)
+            object result = defaultValue;
+            if (distinctPrefixes.ContainsKey(reader))
+                if (distinctPrefixes[reader].Where(x => x.Trim().Length > 0).Count() > 0)
                 {
                     name = reader.DistinctPrefix() + reader.Prefix() + n.ToLower();
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        if (reader.GetName(i).ToLower() == name)
+                        found = reader.ProcessColumn(i, defaultValue, wantedType, name, out result);
+                        if (found)
                         {
                             if (Database.buildTesting)
-                                Database.AddBuildTestSearch(name);
-
-                            if (Database.buildTesting)
                             {
+                                Database.AddBuildTestSearch(name);
                                 Database.AddBuildTestFind(name);
-                                try { reader.GetValue(0); }
-                                catch { return defaultValue; }
-                                if (reader.GetValue(i).GetType() != defaultValue.GetType())
-                                    Database.AddBuildTestTypeMissmatch(name, typeof(string), reader.GetValue(i).GetType());
                             }
-
-                            if (reader.GetValue(i).GetType() == typeof(System.DBNull))
-                                return defaultValue;
-                            else
-                                return reader.GetValue(i);
+                            return result;
                         }
                     }
                 }
@@ -106,39 +98,53 @@ namespace Classes
 
             for (int i = 0; i < reader.FieldCount; i++)
             {
-                if (reader.GetName(i).ToLower() == name)
-                {
-                    if (Database.buildTesting)
-                    {
-                        Database.AddBuildTestFind(name);
-                        try { reader.GetValue(0); }
-                        catch { return defaultValue; }
-                        if (reader.GetValue(i).GetType() != defaultValue.GetType())
-                            Database.AddBuildTestTypeMissmatch(name, typeof(string), reader.GetValue(i).GetType());
-                    }
-
-                    if (reader.GetValue(i).GetType() == typeof(System.DBNull))
-                        return defaultValue;
-                    else
-                        return reader.GetValue(i);
-                }
+                found = reader.ProcessColumn(i, defaultValue, wantedType, name, out result);
+                if (found) return result;
             }
 
-            if (Database.buildTesting)
-                return defaultValue;
+            if (Database.buildTesting) return result; // to prevent exception, already covered by Testing class
+
             throw new KeyNotFoundException("Column not found, " + name + "\n" + string.Join(", ", reader.GetColumns()));
+        }
+
+        private static bool ProcessColumn(this MySql.Data.MySqlClient.MySqlDataReader reader, int i, object defaultValue, Type wantedType, string name, out object result)
+        {
+            if (reader.GetName(i).ToLower() == name)
+            {
+                if (Database.buildTesting)
+                {
+                    Database.AddBuildTestFind(name);
+                    if (reader.GetFieldType(i) != wantedType)
+                        Database.AddBuildTestTypeMissmatch(name, wantedType, reader.GetFieldType(i));
+
+                    try { reader.GetValue(0); } // there are no rows
+                    catch
+                    {
+                        result = defaultValue;
+                        return true;
+                    }
+                }
+
+                if (reader.GetValue(i).GetType() == typeof(System.DBNull))
+                    result = defaultValue;
+                else
+                    result = reader.GetValue(i);
+                return true;
+            }
+            result = defaultValue;
+            return false;
         }
 
         public static T Get<T>(this MySql.Data.MySqlClient.MySqlDataReader reader, string name) where T : struct
         {
             //if (typeof(T) == typeof(DateTime))
             //    return (T)(object)DateTime.ParseExact(reader.GetStr(name), DateTimeFormat, System.Globalization.CultureInfo.CurrentCulture);
-            return (T)reader.Get(name, default(T));
+            return (T)reader.Get(name, default(T), typeof(T));
         }
 
         public static string GetStr(this MySql.Data.MySqlClient.MySqlDataReader reader, string name)
         {
-            return reader.Get(name, "") as string;
+            return reader.Get(name, "", typeof(string)) as string;
         }
 
         public static string[] Columns(this MySql.Data.MySqlClient.MySqlDataReader reader)
@@ -155,7 +161,7 @@ namespace Classes
         {
             string n = reader.Prefix() + name.ToLower();
             string distinctN = reader.DistinctPrefix() + name.ToLower();
-            if(distinctPrefixes.ContainsKey(reader))
+            if (distinctPrefixes.ContainsKey(reader))
                 if (distinctPrefixes[reader].Where(x => x.Trim().Length > 0).Count() > 0)
                 {
                     for (int i = 0; i < reader.FieldCount; i++)
@@ -171,7 +177,7 @@ namespace Classes
                         }
                     }
                 }
-        
+
             for (int i = 0; i < reader.FieldCount; i++)
             {
                 string field = reader.GetName(i).ToLower();
@@ -222,7 +228,7 @@ namespace Classes
             Type current = type;
             while (current != typeof(object))
             {
-                properties.AddRange(current.GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public).Where(x => x.CanRead && x.CanWrite && !properties.Where(y=>x.Name == y.Name).Any()));
+                properties.AddRange(current.GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public).Where(x => x.CanRead && x.CanWrite && !properties.Where(y => x.Name == y.Name).Any()));
                 current = current.BaseType;
             }
             return properties;
@@ -242,7 +248,7 @@ namespace Classes
                 if (x == null) return "NULL";
                 if (x is Database.Table) return (x as Database.Table).Name;
                 if (x is bool) return ((bool)x ? 1 : 0).ToString();
-                if (x.GetType().IsClass) return "'"+x.ToString().Replace("'", "''") +"'";
+                if (x.GetType().IsClass) return "'" + x.ToString().Replace("'", "''") + "'";
                 return x.ToString();
             }).ToArray();
         }

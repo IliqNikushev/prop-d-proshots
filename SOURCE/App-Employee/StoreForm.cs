@@ -400,7 +400,7 @@ namespace App_Employee
 
         private void restockBtn_Click(object sender, EventArgs e)
         {
-            new StoreInventoryForm(() => this.Reset()).Show();
+            new StoreInventoryForm(items,() => this.Reset(), LoggedInEmployee).Show();
         }
     }
 }
