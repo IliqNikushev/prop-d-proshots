@@ -51,8 +51,8 @@ require('Profile_SQL.php');
                 <div style="display: inline-block; width:16%"><b>Email: </b></div>
                 <input  pattern=".{6,25}" title="from 6 to 25 characters" type="email" name="Email" placeholder="Email"><br><br>
                 
-                <div style="display: inline-block; width:16%" for="image:">Image: </div>
-                <input type="file" name="image" id="image" class="input-xlarge" /><br><br>
+                <div style="display: inline-block; width:16%" for="image:">Image: </div><br>
+                <input style="display: inline-block; width:45%" type="file" name="image" id="image" class="input-xlarge" /><br><br>
 
                 <input type="submit" name="Save_changes" value="Save changes"><br><br>
 

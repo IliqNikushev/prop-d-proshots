@@ -5,8 +5,14 @@ require('Head.php');
 if ($_POST['Send']) {
     $Email = $_POST['Email'];
 
-    $Email = mysql_real_escape_string($Email);
-    $status = "OK";
+    $query1 = mysql_query("SELECT Email FROM Users WHERE Email='$Email'");
+
+    if (mysql_num_rows($query1) > 0) {
+        $Email = mysql_real_escape_string($Email);
+        $status = "OK";
+    } else {
+        $status = "NO";
+    }
 
     if ($status == "OK") {
         $queryF = "SELECT * FROM `users` WHERE email='$Email'";
@@ -48,9 +54,35 @@ if ($_POST['Send']) {
      
     This is an automated response, please do not reply!";
 
-        mail($Email, $subject, $message, "From: Admin>\n 
-        X-Mailer: PHP/" . phpversion());
-        $msg = "Your new password has been send! Please check your email!";
+
+        require 'PHPMailer\PHPMailerAutoload.php';
+
+        $mail = new PHPMailer;
+
+        $mail->isSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = 'smtp1.fontys.nl';  // Specify main and backup SMTP servers
+//        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+//        $mail->Username = '';                 // SMTP username
+//        $mail->Password = '';                           // SMTP password
+        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+        $mail->Port = 25;                                    // TCP port to connect to
+
+        $mail->From = 'no-reply@fontys.nl';
+        $mail->FromName = 'Proshots';
+        $mail->addAddress($Email);     // Add a recipient
+        $mail->isHTML(true);                                  // Set email format to HTML
+
+        $mail->Subject = $subject;
+        $mail->Body = $message;
+        $mail->AltBody = $message;
+
+        if (!$mail->send()) {
+            $msg = 'Message could not be sent.';
+        } else {
+            $msg = "Your new password has been send! Please check your email!";
+        }
+    } else {
+        $msg = "User not found!";
     }
 }
 ?>
