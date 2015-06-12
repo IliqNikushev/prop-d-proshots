@@ -63,6 +63,56 @@ namespace App_Employee.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1431802361_17_16 {
+            get {
+                object obj = ResourceManager.GetObject("_1431802361_17_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1431804388_cart_empty_16 {
+            get {
+                object obj = ResourceManager.GetObject("_1431804388_cart_empty_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1431817572_38 {
+            get {
+                object obj = ResourceManager.GetObject("_1431817572_38", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1431821897_13 {
+            get {
+                object obj = ResourceManager.GetObject("_1431821897_13", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1431822131_698873_icon_136_document_edit_16 {
+            get {
+                object obj = ResourceManager.GetObject("_1431822131_698873_icon_136_document_edit_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LOGO_Proshot {
             get {
                 object obj = ResourceManager.GetObject("LOGO-Proshot", resourceCulture);

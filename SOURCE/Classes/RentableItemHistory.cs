@@ -61,8 +61,7 @@ namespace Classes
 
         public override Record Create()
         {
-
-            return null;
+            return Database.Insert(this,"item_ID,rentedby,rentedat,rentedtill",this.RentedItem.ID,this.RentedBy.ID,this.RentedAt,this.RentedTill);
         }
     }
 }

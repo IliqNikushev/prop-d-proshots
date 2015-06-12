@@ -63,6 +63,12 @@
     <Compile Include="PCDoctorForm.Designer.cs">
       <DependentUpon>PCDoctorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PCDoctorPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PCDoctorPopup.Designer.cs">
+      <DependentUpon>PCDoctorPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RentForm.cs">
@@ -97,6 +103,12 @@
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PCDoctorForm.resx">
+      <DependentUpon>PCDoctorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCDoctorPopup.resx">
+      <DependentUpon>PCDoctorPopup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -107,6 +119,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RentForm.resx">
+      <DependentUpon>RentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StoreConfirmForm.resx">
       <DependentUpon>StoreConfirmForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,6 +162,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1431821897_13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1431802361_17-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1431804388_cart-empty-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1431817572_38.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1431822131_698873-icon-136-document-edit-16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
