@@ -121,7 +121,7 @@ namespace App_Employee
         {
             Restock r = new Restock();
             r = r.Create() as Restock;
-            new LogMessage("restock store", "By:{0} for:{1} items:{2}", this.employee.ID, this.employee.Workplace.ID, string.Join(",", items.Select(x => x.Item.ID + " " + x.RestockAmount)).Create();
+            new LogMessage("restock store", "By:{0} for:{1} items:{2}".Args(this.employee.ID, this.employee.Workplace.ID, string.Join(",", items.Select(x => x.Item.ID + " " + x.RestockAmount)))).Create();
 
             foreach (var item in items)
             {

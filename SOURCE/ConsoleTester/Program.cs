@@ -70,7 +70,7 @@ namespace ConsoleTester
             return;
             List<Visitor> myVisitors = Database.All<Visitor>();
             Visitor tester = Database.Find<Visitor>("users.userName = 'tester'");
-            tester = Database.Find<Visitor>("{0}.username = {1}", Database.TableName<User>(), "tester");
+            tester = Database.Find<Visitor>("{0}.username = {1}", Database.TableFor<User>().Name, "tester");
             tester = Database.Find<Visitor>("|T|.RFID = {0}","4a00378203");
 
             return;    
