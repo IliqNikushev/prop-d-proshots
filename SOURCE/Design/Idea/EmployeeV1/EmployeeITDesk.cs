@@ -16,8 +16,9 @@ namespace Design.Idea.EmployeeInterface
         List<Classes.RentableItem> selectedItems = new List<Classes.RentableItem>();
         List<Classes.RentableItem> AllItems = Classes.Database.All<Classes.RentableItem>();
         List<RentableItem> removedItems = new List<RentableItem>();
+        Visitor activeVis = Visitor.Authenticate("tester", "test") as Visitor;
         RentableItem ren;
-        
+
         public EmployeeITDesk()
         {
             InitializeComponent();
@@ -25,11 +26,11 @@ namespace Design.Idea.EmployeeInterface
             //panel1.MouseWheel += panel1_MouseWheel;
             int posX = 0;
             int posY = 0;
-            
+
             foreach (RentableItem item in AllItems)
             {//item reference
                 int y = 0;
-                
+
                 Panel box = new Panel();
                 box.Left = posX;
                 box.Top = posY;
@@ -42,7 +43,7 @@ namespace Design.Idea.EmployeeInterface
                     posY += 100;
                     posX = 0;
                 }
-                
+
                 Label name = new Label();
                 name.Text = item.Brand + " " + item.Model;
                 name.Top = y;
@@ -65,34 +66,43 @@ namespace Design.Idea.EmployeeInterface
                 rent.Text = "Rent";
                 rent.Top = y;
                 box.Controls.Add(rent);
-                box.Height = y+ rent.Height+5;
+                box.Height = y + rent.Height + 5;
                 box.Width = 84;
                 int c = 0;
                 rent.Click += (xx, yy) =>
                 {
                     c += 1;
                     stock.Text = (item.InStock - c).ToString();
-                    //currentStock = Convert.ToInt32(stock.Text);
                     selectedItems.Add(item);
                     listBox1.Items.Add(item);
                 };
                 button2.Click += (x, yy) =>
                     {
                         if (item != listBox1.SelectedItem as RentableItem)
-                        return;
+                            return;
                         c -= 1;
                         listBox1.Items.Remove(listBox1.SelectedItem);
                         stock.Text = (item.InStock - c).ToString();
-                        //currentStock=Convert.ToInt32(stock.Text);
-                        
+
                     };
                 button5.Click += (x, yy) =>
                     {
-                        if (!selectedItems.Contains(item)) 
+                        if (!selectedItems.Contains(item))
                             return;
-                        cartListView.Items.Add(item.Brand + " " + item.Model + " rented at " + DateTime.Now + " until " + date.Value + " for " + item.Price + " euros an hour");
-                        Database.ExecuteSQL("UPDATE `rentableitems` SET InStock = {0} WHERE Item_ID = {1}", item.InStock-c, item.ID);  
+                        while (listBox1.Items.Contains(item))
+                        {
+                            cartListView.Items.Add(item.Brand + " " + item.Model + " rented at " + DateTime.Now + " until " + date.Value + " for " + item.Price + " euros an hour");
+                            listBox1.Items.Remove(item);
+                        }
+                            Database.ExecuteSQL("UPDATE `rentableitems` SET InStock = {0} WHERE Item_ID = {1}", item.InStock - c, item.ID);
+                        
                     };
+                if (!IsInDebug)
+                {
+                    reader.Dispose();
+                    reader = new RFID();
+                    reader.OnDetect += rf_OnDetect;
+                }
             }
         }
 
@@ -101,7 +111,19 @@ namespace Design.Idea.EmployeeInterface
             
               
         }
+        void rf_OnDetect(string tag)
+        {
+            activeVis = Visitor.Authenticate(tag);
+            this.Invoke(new Action(
+                () =>
+                {
 
+
+                    textBox2.Text = tag;
+                    textBox3.Text = activeVis.FullName;
+
+                }));
+        }
         
 
 

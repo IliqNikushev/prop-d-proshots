@@ -52,6 +52,11 @@ namespace App_Employee
             this.itemsPanel.Top = 0;
             this.Controls.Add(holder);
             holder.SendToBack();
+
+            if (LoggedInEmployee.Duty.ToLower().EndsWith("manager"))
+                inventoryBtn.Visible = true;
+            else
+                inventoryBtn.Visible = false;
         }
 
         protected override void Reset()
@@ -102,8 +107,7 @@ namespace App_Employee
 
             UpdateTotal();
 
-            reader.OnDetect -= reader_OnDetect;
-            reader.OnDetect += reader_OnDetect;
+            reader.OnVisitorDetect += reader_OnVisitorDetect;
 
             ActiveVisitor = Classes.Visitor.Authenticate("tester", "test") as Classes.Visitor;
 
@@ -142,13 +146,16 @@ namespace App_Employee
             }
         }
 
-        void reader_OnDetect(string tag)
+        void reader_OnVisitorDetect(Classes.Visitor visitor)
         {
-            ActiveVisitor = Classes.Visitor.Authenticate(tag);
+            ActiveVisitor = visitor;
             if (ActiveVisitor)
                 activeVisitorLbl.Text = "Active visitor: " + ActiveVisitor.FullName;
             else
+            {
                 activeVisitorLbl.Text = "Visitor not found in the database!";
+                return;
+            }
             Classes.Receipt activeOrder = ActiveVisitor.ActiveOrder(this.Shop);
             List<Classes.ReceiptItem> orderItems = activeOrder.Items;
             if (activeOrder != null)
@@ -389,6 +396,11 @@ namespace App_Employee
         private void StoreForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void restockBtn_Click(object sender, EventArgs e)
+        {
+            new StoreInventoryForm(items,() => this.Reset(), LoggedInEmployee).Show();
         }
     }
 }

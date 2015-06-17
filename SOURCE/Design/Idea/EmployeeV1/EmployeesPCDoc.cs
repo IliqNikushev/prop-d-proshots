@@ -18,7 +18,11 @@ namespace Design.Idea.EmployeeV1
         public EmployeesPCDoc()
         {
             InitializeComponent();
-            //reader.OnDetect += reader_OnDetect;
+            if(!IsInDebug){
+                reader.Dispose();
+            reader = new RFID();
+            reader.OnDetect += rf_OnDetect;
+            }
             foreach (Appointment app in queue)
             {
                 if (app.Status)
@@ -30,9 +34,17 @@ namespace Design.Idea.EmployeeV1
 
         }
 
-        void reader_OnDetect(string tag)
+        void rf_OnDetect(string tag)
         {
             activeVis = Visitor.Authenticate(tag);
+            this.Invoke(new Action(
+                ()=>{
+                
+
+         ID.Text = tag;
+            name1.Text = activeVis.FullName;
+               
+                }));
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -55,12 +67,15 @@ namespace Design.Idea.EmployeeV1
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            PCDoctorPopup newform = new PCDoctorPopup(this);
-            if(appList1.SelectedItem ==null)
+            if (appList1.SelectedItem == null)
             {
                 MessageBox.Show("Please select an item");
             }
-            else newform.ShowDialog();
+            else
+            {
+                PCDoctorPopup newform = new PCDoctorPopup(this);
+                newform.ShowDialog();
+            }
         }
         public Appointment selected()
         {

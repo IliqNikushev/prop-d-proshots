@@ -2,7 +2,7 @@
 
 if ($_POST['Save_changes']) {
 
-    $User = $_COOKIE['username'];
+    $User = $_SESSION['username'];
     $FirstName = $_POST['FirstName'];
     $LastName = $_POST['LastName'];
     $Email = $_POST['Email'];
@@ -97,5 +97,3 @@ if ($_POST['Save_changes']) {
             }
         }
     }
-
-

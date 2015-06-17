@@ -61,7 +61,7 @@
             "1000%"});
             this.zoomTb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.zoomTb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.zoomTb.Location = new System.Drawing.Point(704, 490);
+            this.zoomTb.Location = new System.Drawing.Point(885, 493);
             this.zoomTb.Margin = new System.Windows.Forms.Padding(4);
             this.zoomTb.Name = "zoomTb";
             this.zoomTb.Size = new System.Drawing.Size(68, 22);
@@ -69,7 +69,7 @@
             // 
             // zoomOutBtn
             // 
-            this.zoomOutBtn.Location = new System.Drawing.Point(781, 490);
+            this.zoomOutBtn.Location = new System.Drawing.Point(962, 493);
             this.zoomOutBtn.Margin = new System.Windows.Forms.Padding(4);
             this.zoomOutBtn.Name = "zoomOutBtn";
             this.zoomOutBtn.Size = new System.Drawing.Size(56, 30);
@@ -80,7 +80,7 @@
             // 
             // ZoomInBtn
             // 
-            this.ZoomInBtn.Location = new System.Drawing.Point(640, 490);
+            this.ZoomInBtn.Location = new System.Drawing.Point(821, 493);
             this.ZoomInBtn.Margin = new System.Windows.Forms.Padding(4);
             this.ZoomInBtn.Name = "ZoomInBtn";
             this.ZoomInBtn.Size = new System.Drawing.Size(56, 28);
@@ -94,7 +94,7 @@
             this.findByNameTb.AcceptsReturn = true;
             this.findByNameTb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.findByNameTb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.findByNameTb.Location = new System.Drawing.Point(472, 545);
+            this.findByNameTb.Location = new System.Drawing.Point(653, 548);
             this.findByNameTb.Margin = new System.Windows.Forms.Padding(4);
             this.findByNameTb.Multiline = true;
             this.findByNameTb.Name = "findByNameTb";
@@ -104,7 +104,7 @@
             // findByNameLbl
             // 
             this.findByNameLbl.AutoSize = true;
-            this.findByNameLbl.Location = new System.Drawing.Point(515, 526);
+            this.findByNameLbl.Location = new System.Drawing.Point(696, 529);
             this.findByNameLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.findByNameLbl.Name = "findByNameLbl";
             this.findByNameLbl.Size = new System.Drawing.Size(95, 17);
@@ -114,7 +114,7 @@
             // findByTypeLbl
             // 
             this.findByTypeLbl.AutoSize = true;
-            this.findByTypeLbl.Location = new System.Drawing.Point(879, 526);
+            this.findByTypeLbl.Location = new System.Drawing.Point(1060, 529);
             this.findByTypeLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.findByTypeLbl.Name = "findByTypeLbl";
             this.findByTypeLbl.Size = new System.Drawing.Size(90, 17);
@@ -126,7 +126,7 @@
             this.findByTypeTb.AcceptsReturn = true;
             this.findByTypeTb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.findByTypeTb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.findByTypeTb.Location = new System.Drawing.Point(832, 545);
+            this.findByTypeTb.Location = new System.Drawing.Point(1013, 548);
             this.findByTypeTb.Margin = new System.Windows.Forms.Padding(4);
             this.findByTypeTb.Multiline = true;
             this.findByTypeTb.Name = "findByTypeTb";
@@ -135,7 +135,7 @@
             // 
             // mapBtn
             // 
-            this.mapBtn.Location = new System.Drawing.Point(365, 2);
+            this.mapBtn.Location = new System.Drawing.Point(439, 12);
             this.mapBtn.Margin = new System.Windows.Forms.Padding(4);
             this.mapBtn.Name = "mapBtn";
             this.mapBtn.Size = new System.Drawing.Size(100, 28);
@@ -146,7 +146,7 @@
             // 
             // zoomOnItemsBtn
             // 
-            this.zoomOnItemsBtn.Location = new System.Drawing.Point(489, 487);
+            this.zoomOnItemsBtn.Location = new System.Drawing.Point(670, 490);
             this.zoomOnItemsBtn.Margin = new System.Windows.Forms.Padding(4);
             this.zoomOnItemsBtn.Name = "zoomOnItemsBtn";
             this.zoomOnItemsBtn.Size = new System.Drawing.Size(136, 28);
@@ -157,7 +157,7 @@
             // 
             // resetZoomBtn
             // 
-            this.resetZoomBtn.Location = new System.Drawing.Point(869, 486);
+            this.resetZoomBtn.Location = new System.Drawing.Point(1050, 489);
             this.resetZoomBtn.Margin = new System.Windows.Forms.Padding(4);
             this.resetZoomBtn.Name = "resetZoomBtn";
             this.resetZoomBtn.Size = new System.Drawing.Size(115, 28);
@@ -169,7 +169,7 @@
             // pictureBox11
             // 
             this.pictureBox11.Image = global::Design.Properties.Resources.LOGO_Proshot;
-            this.pictureBox11.Location = new System.Drawing.Point(139, 2);
+            this.pictureBox11.Location = new System.Drawing.Point(389, 46);
             this.pictureBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(150, 125);
@@ -181,7 +181,7 @@
             // 
             this.mapArea.Image = global::Design.Properties.Resources.Park_English;
             this.mapArea.InitialImage = null;
-            this.mapArea.Location = new System.Drawing.Point(491, 23);
+            this.mapArea.Location = new System.Drawing.Point(672, 26);
             this.mapArea.Margin = new System.Windows.Forms.Padding(4);
             this.mapArea.Name = "mapArea";
             this.mapArea.Size = new System.Drawing.Size(495, 454);
@@ -192,7 +192,7 @@
             // pictureBox10
             // 
             this.pictureBox10.Image = global::Design.Properties.Resources.imac1;
-            this.pictureBox10.Location = new System.Drawing.Point(472, 2);
+            this.pictureBox10.Location = new System.Drawing.Point(653, 5);
             this.pictureBox10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(533, 583);
@@ -204,7 +204,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1056, 879);
+            this.ClientSize = new System.Drawing.Size(1199, 879);
             this.Controls.Add(this.pictureBox11);
             this.Controls.Add(this.resetZoomBtn);
             this.Controls.Add(this.zoomOnItemsBtn);

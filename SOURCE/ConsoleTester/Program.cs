@@ -9,9 +9,30 @@ namespace ConsoleTester
 {
     class Program
     {
+        static void Georgi()
+        {
+            RFID rf = new RFID();
+            rf.OnDetect += rf_OnDetect;
+            Console.ReadKey();
+            rf.ToggleLED();
+        }
+
+        static void rf_OnDetect(string tag)
+        {
+            Visitor v = Visitor.Authenticate(tag);
+            Console.WriteLine(v== null);
+            if(v)
+                Console.WriteLine(v.FullName);
+            Console.WriteLine(tag);
+        }
         static void Main(string[] args)
             // {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type", "logo")},
         {
+            Tent arg = Classes.Database.Find<Tent>("|T|.location = 1");
+            Console.WriteLine(arg.BookedFor);
+            return;
+            Georgi();
+            return;
             Console.WriteLine("{0} = {1}",1,DateTime.Now);
             Console.WriteLine(String.Format("{0} = {1}", 1, DateTime.Now));
             Console.WriteLine("{0} = {1}".Arg(1, DateTime.Now));
@@ -49,7 +70,7 @@ namespace ConsoleTester
             return;
             List<Visitor> myVisitors = Database.All<Visitor>();
             Visitor tester = Database.Find<Visitor>("users.userName = 'tester'");
-            tester = Database.Find<Visitor>("{0}.username = {1}", Database.TableName<User>(), "tester");
+            tester = Database.Find<Visitor>("{0}.username = {1}", Database.TableFor<User>().Name, "tester");
             tester = Database.Find<Visitor>("|T|.RFID = {0}","4a00378203");
 
             return;    

@@ -25,6 +25,19 @@ namespace Classes
         public event Action<Phidgets.RFID> OnDetach = (x) => { };
         public event Action<string> OnDetect = (x) => { };
         public event Action<string> OnDetectEnd = (x) => { };
+        private event Action<Visitor> onVisitorDetect = (x) => { };
+        public event Action<Visitor> OnVisitorDetect
+        {
+            add
+            {
+                onVisitorDetect -= value;
+                onVisitorDetect += value;
+            }
+            remove
+            {
+                onVisitorDetect -= value;
+            }
+        }
         public event Action<Phidgets.Events.ErrorEventArgs> OnError = (x) => { };
 
         private Phidgets.RFID reader;
@@ -198,6 +211,9 @@ namespace Classes
         void reader_Tag(object sender, Phidgets.Events.TagEventArgs e)
         {
             OnDetect(e.Tag);
+            Visitor found = Visitor.Authenticate(e.Tag);
+            if (found != null)
+                onVisitorDetect(found);
         }
 
         void reader_TagLost(object sender, Phidgets.Events.TagEventArgs e)

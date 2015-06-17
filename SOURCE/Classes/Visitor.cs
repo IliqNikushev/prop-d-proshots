@@ -15,9 +15,11 @@ namespace Classes
         {
             get
             {
-                if (!picture.StartsWith("http"))
-                    return Database.PathToAthenaUploads + picture;
-                return picture;
+                if (picture.StartsWith("http"))
+                    //return Database.PathToAthenaUploads + picture;
+                    return picture;
+                else
+                return Database.PathToAthenaUploads + picture;
             }
             set { this.picture = value; }
         }
@@ -44,6 +46,7 @@ namespace Classes
         public List<Receipt> Receipts { get { return Classes.Database.GetVisitorReceipts(this); } }
         public List<Tent> BookedTents { get { return Database.GetTentsBookedByVisitor(this); } }
         public List<Tent> BookedInTents { get { return Database.GetTentsBookedForVisitor(this); } }
+        public List<Appointment> Appointments { get { return Database.GetVisitorAppointments(this); } }
 
         public Tent Book(TentPitch pitch, List<Visitor> visitors, DateTime bookedOn)
         {
@@ -107,7 +110,7 @@ namespace Classes
             if (amount < 0) throw new InvalidOperationException("Balance cannot be negative");
 
             Database.Update(this, "balance = {0}".Arg(amount), "|T|.user_id = {0}".Arg(this.ID));
-            new LogMessage("change balance", this.ID + " " + reason).Create();
+            new LogMessage("change balance", "by:"+this.ID + " reason: " + reason).Create();
         }
 
         public void PayTicket(decimal VisitorBalance,decimal Price)

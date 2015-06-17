@@ -12,7 +12,7 @@ namespace Classes
         {
             TentPitch p = Database.FreeTentPitches.LastOrDefault();
             Assert.IsTrue(p != null);
-            Visitor v = Database.Find<Visitor>("{0}.username = {1}", Database.TableName<User>(), "tester");
+            Visitor v = Database.Find<Visitor>("{0}.username = {1}", Database.TableFor<User>(), "tester");
             Assert.IsTrue(v!=null);
             Tent tent = new Tent(p, DateTime.Today, false, DateTime.Today, v).Create() as Tent;
 

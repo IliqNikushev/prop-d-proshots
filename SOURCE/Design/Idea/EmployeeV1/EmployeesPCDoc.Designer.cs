@@ -33,8 +33,6 @@
             this.appList2 = new System.Windows.Forms.ListBox();
             this.lb4 = new System.Windows.Forms.Label();
             this.appList1 = new System.Windows.Forms.ListBox();
-            this.Balance = new System.Windows.Forms.TextBox();
-            this.lb3 = new System.Windows.Forms.Label();
             this.lb1 = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.TextBox();
             this.lb2 = new System.Windows.Forms.Label();
@@ -87,22 +85,6 @@
             this.appList1.Name = "appList1";
             this.appList1.Size = new System.Drawing.Size(332, 186);
             this.appList1.TabIndex = 98;
-            // 
-            // Balance
-            // 
-            this.Balance.Location = new System.Drawing.Point(175, 82);
-            this.Balance.Name = "Balance";
-            this.Balance.Size = new System.Drawing.Size(68, 20);
-            this.Balance.TabIndex = 94;
-            // 
-            // lb3
-            // 
-            this.lb3.AutoSize = true;
-            this.lb3.Location = new System.Drawing.Point(116, 85);
-            this.lb3.Name = "lb3";
-            this.lb3.Size = new System.Drawing.Size(46, 13);
-            this.lb3.TabIndex = 93;
-            this.lb3.Text = "Balance";
             // 
             // lb1
             // 
@@ -263,8 +245,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lb4);
             this.Controls.Add(this.appList1);
-            this.Controls.Add(this.Balance);
-            this.Controls.Add(this.lb3);
             this.Controls.Add(this.pic);
             this.Controls.Add(this.lb1);
             this.Controls.Add(this.ID);
@@ -287,8 +267,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lb4;
         private System.Windows.Forms.ListBox appList1;
-        private System.Windows.Forms.TextBox Balance;
-        private System.Windows.Forms.Label lb3;
         private System.Windows.Forms.PictureBox pic;
         private System.Windows.Forms.Label lb1;
         private System.Windows.Forms.TextBox ID;

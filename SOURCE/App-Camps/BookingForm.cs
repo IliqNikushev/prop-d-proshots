@@ -104,11 +104,12 @@ namespace App_Camps
         {
             get
             {
+                IEnumerable<string> result = new string[] { };
                 if (findByEmailCbox.Checked)
-                    return this.Visitors.Select(x => x.Email).Where(x => !PersonRow.rows.Select(y => y.nameTbox.Text).Contains(x)).ToArray();
+                    result = this.Visitors.Select(x => x.Email).Where(x => !PersonRow.rows.Select(y => y.nameTbox.Text).Contains(x));
                 else if (findByNameCbox.Checked)
-                    return this.Visitors.Select(x => GetVisitor(x)).Where(x => !PersonRow.rows.Select(y => y.nameTbox.Text).Contains(x)).ToArray();
-                return new string[] { };
+                    result = this.Visitors.Select(x => GetVisitor(x)).Where(x => !PersonRow.rows.Select(y => y.nameTbox.Text).Contains(x));
+                return result.ToArray();
             }
         }
 
@@ -149,9 +150,6 @@ namespace App_Camps
 
             UpdateMap();
 
-            ProcessBookedFor();
-            ProcessBookedBy();
-
             pitchesCBox.Items.AddRange(freeTentPitches.ToArray());
 
             findByTypeTb.Text = "all";
@@ -162,82 +160,6 @@ namespace App_Camps
         protected override void OnSet()
         {
             peopleLocation.Visible = false;
-        }
-
-        private void ProcessBookedBy()
-        {
-            IEnumerable<Classes.Tent> booked = bookedByVisitorPitches;
-            if (booked.Any())
-            {
-                booked = booked.Where(x => x.BookedTill < DateTime.Now);
-                if (booked.Count() > 1)
-                {
-                    //more than 1
-                    booked = booked.Where(x => x.BookedOn.Day == DateTime.Today.Day);
-                    if (booked.Any())
-                    {
-                        if (booked.Count() > 1)
-                        {
-                            //too many bookings for 1 day
-                            return;
-                        }
-                        //exactly 1
-                        if (!booked.First().IsPaid)
-                        {
-                            //not paid;
-                            return;
-                        }
-                        //OK
-                        return;
-                    }
-                    //no bookings for today
-                    return;
-                }
-                if (booked.Any())
-                {
-                    //exactly 1
-                    if (booked.First().BookedOn.Day == DateTime.Today.Day)
-                    {
-                        //not booked for today
-                        return;
-                    }
-
-                    if (!booked.First().IsPaid)
-                    {
-                        //not paid
-                        return;
-                    }
-                    //OK
-                    return;
-                }
-            }
-        }
-
-        private void ProcessBookedFor()
-        {
-            IEnumerable<Classes.Tent> booked = bookedForVisitorPitches;
-            if (booked.Any())
-            {
-                if (booked.Count() > 1)
-                {
-                    //is present in more than 1 and is still in time
-                    return;
-                }
-                if (booked.First().BookedOn.Day == DateTime.Today.Day)
-                {
-                    //not booked for today
-                    return;
-                }
-                // is present in exactly one
-                if (!booked.First().IsPaid)
-                {
-                    //not paid by person who booked it
-                    return;
-                }
-                //OK
-                return;
-            }
-            //all tents have past their booking time
         }
 
         private void findByNameCbox_CheckedChanged(object sender, EventArgs e)
@@ -380,7 +302,7 @@ namespace App_Camps
         {
             Classes.TentPitch selectedPitch = SelectedPitch;
             freeTentPitches = Classes.Database.Where<Classes.TentPitch>("|T|.id not in (select {0}.location from {0}) or |T|.id in (select {0}.location from {0} where {0}.bookedTill < {1} or {0}.bookedOn > {2})",
-                Classes.Database.TableName<Classes.Tent>(), dateTimePicker.Value, App_Common.Constants.EventEnd);
+                Classes.Database.TableFor<Classes.Tent>(), dateTimePicker.Value, App_Common.Constants.EventEnd);
             UpdateMap();
             pitchesCBox.Items.Clear();
             pitchesCBox.Items.AddRange(freeTentPitches.ToArray());

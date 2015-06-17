@@ -20,7 +20,7 @@ namespace App_Camps
 
         protected override bool OnLogin()
         {
-            if (!(LoggedInUser is Classes.Visitor))
+            if (!LoggedInVisitor)
             {
                 MessageBox.Show("You are not a visitor");
                 return false;

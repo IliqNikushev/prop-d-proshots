@@ -2,7 +2,7 @@
 require('connect.php');
 
 $users = $_POST["users"];
-$username = $_COOKIE['username'];
+$username = $_SESSION['username'];
 $query = "SELECT ID FROM `users` WHERE username='$username'";
 $result = mysql_query($query);
 while ($row = mysql_fetch_assoc($result)) {
@@ -90,7 +90,7 @@ foreach ($users as $x) {
 
         $mail = new PHPMailer;
 
-        $mail->SMTPDebug = 3;                               // Enable verbose debug output
+//        $mail->SMTPDebug = 3;                               // Enable verbose debug output
 
         $mail->isSMTP();                                      // Set mailer to use SMTP
         $mail->Host = 'smtp1.fontys.nl';  // Specify main and backup SMTP servers
@@ -103,12 +103,12 @@ foreach ($users as $x) {
         $mail->From = 'no-reply@fontys.nl';
         $mail->FromName = 'ProShots';
         $mail->addAddress($Email);     // Add a recipient
-        $mail->addReplyTo('info@example.com', 'Information');
-        $mail->addCC('cc@example.com');
-        $mail->addBCC('bcc@example.com');
+//        $mail->addReplyTo('info@example.com', 'Information');
+//        $mail->addCC('cc@example.com');
+//        $mail->addBCC('bcc@example.com');
 
-        $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-        $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+//        $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+//        $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
         $mail->isHTML(true);                                  // Set email format to HTML
 
         $mail->Subject = $subject;
@@ -117,7 +117,6 @@ foreach ($users as $x) {
 
         if (!$mail->send()) {
             echo 'Message could not be sent.';
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
         } else {
             echo 'Message has been sent';
         }

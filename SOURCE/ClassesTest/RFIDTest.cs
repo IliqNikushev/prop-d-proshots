@@ -7,8 +7,15 @@ namespace Classes
     public class RFIDTest : UnitTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void HasDrivers()
         {
+            Assert.IsTrue(RFID.HasDrivers);
+        }
+
+        [TestMethod]
+        public void IsAttached()
+        {
+            Assert.IsTrue(new RFID().IsAttached);
         }
     }
 }

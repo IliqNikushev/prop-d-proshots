@@ -12,7 +12,7 @@ if ($_POST['Reservation']) {
 
     $Pay = $Camping_price * $DaysINT + ($VisitorsINT * 20);
 
-    $username = $_COOKIE['username'];
+    $username = $_SESSION['username'];
     $query0 = "SELECT ID FROM `users` WHERE username='$username'";
     $result0 = mysql_query($query0);
     while ($row0 = mysql_fetch_assoc($result0)) {
@@ -33,7 +33,7 @@ if ($_POST['Reservation']) {
         $Balance = (int) $Balance;
     }
 
-    $Buyer = $_COOKIE['username'];
+    $Buyer = $_SESSION['username'];
     $query = "SELECT ID FROM users WHERE users.Username='" . $Buyer . "'";
     $result = mysql_query($query);
     $location = $_POST["TentID"];

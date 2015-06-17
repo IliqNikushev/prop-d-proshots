@@ -9,6 +9,10 @@ namespace App_Employee
     static class Install
     {
 #warning set the job based on the install prefferences ( Build for every store a new version )
-        public static Classes.Workplace Job = Classes.Database.Find<Classes.Workplace>("|T|.id = 3");
+<<<<<<< HEAD
+        public static Classes.Workplace Job = Classes.Database.Find<Classes.Workplace>("|T|.id = 34");
+=======
+        //public static Classes.Workplace Job = Classes.Database.Find<Classes.Workplace>("|T|.id = 31");
+>>>>>>> origin/master
     }
 }

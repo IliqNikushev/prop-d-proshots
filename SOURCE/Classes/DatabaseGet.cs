@@ -105,7 +105,7 @@ namespace Classes
         {
             get
             {
-                return GetWhere<TentPitch>("|T|.id not in (select {0}.location from {0})", TName<Tent>());
+                return GetWhere<TentPitch>("|T|.id not in (select {0}.location from {0})", TFor<Tent>());
             }
         }
 
@@ -146,7 +146,7 @@ namespace Classes
 
         public static List<ReceiptItem> GetVisitorPurchases(Visitor visitor)
         {
-            return GetWhere<ReceiptItem>("{1}.purchasedby = {0}", visitor.ID, TName<Receipt>());
+            return GetWhere<ReceiptItem>("{1}.purchasedby = {0}", visitor.ID, TFor<Receipt>());
         }
 
         public static List<Appointment> GetVisitorAppointments(Visitor visitor)
@@ -161,12 +161,12 @@ namespace Classes
 
         public static Employee GetEmployee(string userName, string password)
         {
-            return Find<Employee>("{2}.userName = {0} and {2}.password = {1}", userName, password, TName<User>());
+            return Find<Employee>("{2}.userName = {0} and {2}.password = {1}", userName, password, TFor<User>());
         }
 
         private static T GetUser<T>(string username, string password) where T : User
         {
-            return Find<T>("{2}.password = {0} and {2}.username = {1}", password, username, TName<User>());
+            return Find<T>("{2}.password = {0} and {2}.username = {1}", password, username, TFor<User>());
         }
 
         public static Visitor GetVisitor(string username, string password)

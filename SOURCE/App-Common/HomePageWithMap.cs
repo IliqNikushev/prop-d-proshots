@@ -319,6 +319,8 @@ namespace App_Common
                 item.Clear();
 
             this.points = items.Select(x => new MapPoint(x)).ToArray();
+            this.findByTypeTb.AutoCompleteCustomSource.Clear();
+            this.findByTypeTb.AutoCompleteCustomSource.AddRange(this.points.Select(x => x.Type.ToString()).Distinct().ToArray());
 
             foreach (var item in this.points)
                 item.AddToMap(this.mapArea);

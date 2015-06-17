@@ -13,6 +13,8 @@ namespace Classes
         public void Restock(int amount)
         {
             this.InStock += amount;
+
+            Database.Update(this, "quantity = " + this.InStock, "|T|.id = " + this.ID);
         }
 
         public void Deplete(int amount)

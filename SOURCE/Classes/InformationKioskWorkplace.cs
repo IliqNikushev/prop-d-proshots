@@ -33,6 +33,9 @@ namespace Classes
             if (visitor.RFID != null || visitor.RFID != "")
                 throw new InvalidOperationException("User already has RFID");
 
+            if ((long)Database.ExecuteScalar("Select count(*) from {0} Where {0}.rfid = '{1}'", Database.TableFor<Visitor>().Name, tag.Replace("'", "''")) != 0)
+                throw new InvalidOperationException("RFID is already assigned");
+
             Database.Update(visitor, "rfid = {0}".Arg(tag), "user_id = {0}".Arg(visitor.ID));
 
             this.RefreshCards();

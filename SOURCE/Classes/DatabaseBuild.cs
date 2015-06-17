@@ -11,7 +11,7 @@ namespace Classes
     using Command = MySql.Data.MySqlClient.MySqlCommand;
     public static partial class Database
     {
-        private static Dictionary<Type, Func<Reader, string,bool, object>> recordBuildDefinitions = new Dictionary<Type, Func<Reader, string,bool, object>>()
+        private static Dictionary<Type, Func<Reader, string,bool, Record>> recordBuildDefinitions = new Dictionary<Type, Func<Reader, string,bool, Record>>()
         {
             {typeof(AdminUser), CreateAdmin},
             {typeof(AppointedItem), CreateAppointedItem},
@@ -274,6 +274,7 @@ namespace Classes
                 CreateShopWorkplace(reader);
                 CreatePCDoctorWorkplace(reader);
                 CreateInformationKioskWorkplace(reader);
+                CreateITServiceWorkplace(reader);
             }
 
             switch (type.Replace('-', ' ').ToLower())
@@ -281,6 +282,7 @@ namespace Classes
                 case "shop": return CreateShopWorkplace(reader);
                 case "pc doctor": return CreatePCDoctorWorkplace(reader);
                 case "info": return CreateInformationKioskWorkplace(reader);
+                case "rent": return CreateITServiceWorkplace(reader);
             }
 
             if (buildTesting) return null;

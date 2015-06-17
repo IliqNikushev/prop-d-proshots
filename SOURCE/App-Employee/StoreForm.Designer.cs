@@ -53,6 +53,7 @@
             this.subPbox = new System.Windows.Forms.PictureBox();
             this.addPbox = new System.Windows.Forms.PictureBox();
             this.storeLogoPbox = new System.Windows.Forms.PictureBox();
+            this.inventoryBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.subPbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addPbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeLogoPbox)).BeginInit();
@@ -96,7 +97,7 @@
             // 
             // confirmBtn
             // 
-            this.confirmBtn.Location = new System.Drawing.Point(248, 106);
+            this.confirmBtn.Location = new System.Drawing.Point(272, 106);
             this.confirmBtn.Name = "confirmBtn";
             this.confirmBtn.Size = new System.Drawing.Size(75, 23);
             this.confirmBtn.TabIndex = 61;
@@ -179,10 +180,21 @@
             this.storeLogoPbox.TabIndex = 53;
             this.storeLogoPbox.TabStop = false;
             // 
+            // inventoryBtn
+            // 
+            this.inventoryBtn.Location = new System.Drawing.Point(13, 71);
+            this.inventoryBtn.Name = "inventoryBtn";
+            this.inventoryBtn.Size = new System.Drawing.Size(75, 23);
+            this.inventoryBtn.TabIndex = 68;
+            this.inventoryBtn.Text = "Inventory";
+            this.inventoryBtn.UseVisualStyleBackColor = true;
+            this.inventoryBtn.Click += new System.EventHandler(this.restockBtn_Click);
+            // 
             // StoreForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(606, 443);
+            this.Controls.Add(this.inventoryBtn);
             this.Controls.Add(this.activeVisitorLbl);
             this.Controls.Add(this.resetBtn);
             this.Controls.Add(this.totalItemsCountLbl);
@@ -210,5 +222,6 @@
 
        private System.Windows.Forms.Button resetBtn;
        private System.Windows.Forms.Label activeVisitorLbl;
+       private System.Windows.Forms.Button inventoryBtn;
     }
 }
