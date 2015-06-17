@@ -18,7 +18,11 @@ namespace App_Employee
             if (employee != null)
             {
                 if (employee.Workplace.ID != Install.Job.ID)
+                {
+                    MessageBox.Show("Invalid credentials");
                     return false;
+                }
+                    
 
                 if (employee.Workplace is Classes.ShopWorkplace)
                     new StoreForm(this).Show();

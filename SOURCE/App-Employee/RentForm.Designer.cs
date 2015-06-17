@@ -83,9 +83,10 @@
             // 
             // plItems
             // 
+            this.plItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.plItems.Location = new System.Drawing.Point(7, 283);
             this.plItems.Name = "plItems";
-            this.plItems.Size = new System.Drawing.Size(360, 224);
+            this.plItems.Size = new System.Drawing.Size(348, 224);
             this.plItems.TabIndex = 103;
             // 
             // label3
@@ -177,12 +178,12 @@
             this.tbFullname.Size = new System.Drawing.Size(86, 20);
             this.tbFullname.TabIndex = 93;
             // 
-            // btnRent
+            // btnConfirm
             // 
-            this.btnConfirm.Image = ((System.Drawing.Image)(resources.GetObject("btnRent.Image")));
+            this.btnConfirm.Image = ((System.Drawing.Image)(resources.GetObject("btnConfirm.Image")));
             this.btnConfirm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfirm.Location = new System.Drawing.Point(257, 514);
-            this.btnConfirm.Name = "btnRent";
+            this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(110, 32);
             this.btnConfirm.TabIndex = 102;
             this.btnConfirm.Text = "Rent selected";
@@ -237,17 +238,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(455, 344);
+            this.label1.Location = new System.Drawing.Point(523, 344);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 107;
-            this.label1.Text = "- total cost";
+            this.label1.Text = "Total cost:";
             // 
             // lbPrice
             // 
             this.lbPrice.AutoSize = true;
-            this.lbPrice.Location = new System.Drawing.Point(515, 344);
+            this.lbPrice.Location = new System.Drawing.Point(584, 344);
             this.lbPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbPrice.Name = "lbPrice";
             this.lbPrice.Size = new System.Drawing.Size(40, 13);

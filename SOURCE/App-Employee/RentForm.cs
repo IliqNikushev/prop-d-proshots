@@ -18,7 +18,6 @@ namespace App_Employee
         List<Classes.RentableItem> AllItems = Classes.Database.All<Classes.RentableItem>();
         List<RentableItem> removedItems = new List<RentableItem>();
         Visitor activeVis;
-
         public decimal Totalprice
         {
             get
@@ -26,8 +25,10 @@ namespace App_Employee
                 decimal sum = 0;
                 foreach(var item in selectedItems)
                 {
-                    sum += item.Price*(DateTime.Now - date.Value).Hours;
+                    TimeSpan differene = date.Value - DateTime.Now;
+                    sum += item.Price*Convert.ToDecimal(differene.TotalHours);
                 }
+                sum = Decimal.Round(sum, 2);
                 return sum;
             }
         }
@@ -36,6 +37,7 @@ namespace App_Employee
         {
             
             InitializeComponent();
+            
             plItems.AutoScroll = true;
             int posX = 0;
             int posY = 0;
@@ -44,6 +46,7 @@ namespace App_Employee
                 int y = 0;
 
                 Panel box = new Panel();
+                box.BackColor = System.Drawing.Color.Azure;
                 box.Left = posX;
                 box.Top = posY;
                 posX += 87;
@@ -75,7 +78,7 @@ namespace App_Employee
                 box.Controls.Add(stock);
 
                 Button rent = new Button();
-                rent.FlatStyle = FlatStyle.Popup;
+                rent.FlatStyle = FlatStyle.Flat;
                 rent.Text = "Rent";
                 rent.Top = y;
                 box.Controls.Add(rent);
@@ -106,7 +109,7 @@ namespace App_Employee
                             return;
                         while (lbCart.Items.Contains(item))
                         {
-                            cartListView.Items.Add(item.Brand + " " + item.Model + " rented at " + DateTime.Now + " until " + date.Value + " for " + item.Price + " euros an hour");
+                            cartListView.Items.Add(new RentableItemHistory(item,activeVis,""));
                             lbCart.Items.Remove(item);
                         }
                         new RentableItemHistory(item, activeVis, "").Create();
