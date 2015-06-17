@@ -109,7 +109,8 @@
             "All",
             "Finished",
             "Unfinished",
-            "Delivered"});
+            "Returned",
+            "Unreturned"});
             this.comboBoxStatus.Location = new System.Drawing.Point(150, 51);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(121, 24);
@@ -139,9 +140,9 @@
             this.comboBoxDate.FormattingEnabled = true;
             this.comboBoxDate.Items.AddRange(new object[] {
             "All",
-            "27-06-2015",
-            "28-06-2015",
-            "29-06-2015"});
+            "27",
+            "28",
+            "29"});
             this.comboBoxDate.Location = new System.Drawing.Point(9, 51);
             this.comboBoxDate.Name = "comboBoxDate";
             this.comboBoxDate.Size = new System.Drawing.Size(121, 24);

@@ -7,12 +7,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Classes;
 
 namespace Design.Idea.AdministratorInterface
 {
     public partial class Home : HomePageWithMap
     {
-        public Home() : base() { InitializeComponent(); }
+        public Home() : base() 
+        { 
+            InitializeComponent();
+            object r = Database.ExecuteScalar("select (COALESCE(({0}),0))+(COALESCE(({1}),0))+(COALESCE(({2}),0)) as sum from dual;",
+                                                             "Select sum(amount) from " + Database.TableName<Deposit>().Name,
+                                                             "SELECT sum(totalamount) from " + Database.TableName<ReceiptItem>().Name,
+                                                             "SELECT sum(price) FROM "+ Database.TableName<AppointmentTask>().Name
+                                                             );
+
+            decimal amount = (decimal) r;
+            string totalVisitor = Convert.ToString(Database.Visitors.Count);
+            string logedin= Convert.ToString(Database.Visitors.Where(x=>x.))
+            labeltotalVisitor.Text = "Total Visitors: "+totalVisitor;
+            int warn= Database.Warning.Count;
+            labelWarning.Text +=  " " + warn;
+            labelMoney.Text = "Total: "+amount;
+        }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
