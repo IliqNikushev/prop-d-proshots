@@ -21,6 +21,7 @@ namespace Classes
                 return true;
             }
         }
+
         public event Action<Phidgets.RFID> OnAttach = (x) => { };
         public event Action<Phidgets.RFID> OnDetach = (x) => { };
         public event Action<string> OnDetect = (x) => { };

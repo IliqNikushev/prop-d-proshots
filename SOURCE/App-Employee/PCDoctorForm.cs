@@ -38,7 +38,9 @@ namespace App_Employee
         void rf_OnDetect(string tag)
         {
             activeVis = Visitor.Authenticate(tag);
-            this.Invoke(new Action(
+            if (activeVis == null)
+                return;
+            MainMenu.Invoke(new Action(
                 ()=>{
                 
 

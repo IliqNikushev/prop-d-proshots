@@ -17,17 +17,9 @@ namespace App_Employee
             Classes.Employee employee = LoggedInEmployee;
             if (employee != null)
             {
-<<<<<<< HEAD
-                if (employee.Workplace.ID != Install.Job.ID)
-                {
-                    MessageBox.Show("Invalid credentials");
-                    return false;
-                }
-                    
-=======
                 //if (employee.Workplace.ID != Install.Job.ID)
                //     return false;
->>>>>>> origin/master
+
 
                 if (employee.Workplace is Classes.ShopWorkplace)
                     new StoreForm(this).Show();

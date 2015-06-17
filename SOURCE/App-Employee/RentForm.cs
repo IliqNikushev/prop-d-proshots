@@ -126,7 +126,7 @@ namespace App_Employee
         void rf_OnDetect(string tag)
         {
             activeVis = Visitor.Authenticate(tag);
-            this.Invoke(new Action(
+            MainMenu.Invoke(new Action(
                 () =>
                 {
 
