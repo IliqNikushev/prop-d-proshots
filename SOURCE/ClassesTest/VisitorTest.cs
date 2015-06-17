@@ -6,7 +6,7 @@ namespace Classes
     [TestClass]
     public class VisitorTest : UserTest
     {
-        Visitor Tester { get { return Database.Find<Visitor>("{0}.username = {1}", Database.TableName<User>(), "tester"); } }
+        Visitor Tester { get { return Database.Find<Visitor>("{0}.username = {1}", Database.TableFor<User>(), "tester"); } }
         [TestMethod]
         [ExpectedException(typeof(Record.NotToBeSentToDatabaseException))]
         public override void DatabaseCreate()

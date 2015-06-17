@@ -104,14 +104,14 @@ namespace Classes
             {typeof(Warning), new Table("Warnings", "id", "name", "description")},
         };
 
-        private static Table TName<T>() where T : Record
+        private static Table TFor<T>() where T : Record
         {
             return new Table(TableNameFor(typeof(T)));
         }
 
-        public static Table TableName<T>() where T : Record
+        public static Table TableFor<T>() where T : Record
         {
-            return TName<T>();
+            return TFor<T>();
         }
 
         public static string TableNameFor(Record record)
@@ -187,7 +187,7 @@ namespace Classes
             ExecuteSQL(string.Format("UPDATE {0} SET {1} WHERE {2};",
                     table.Name, set, identifier));
 
-            List<object> result = GetWhere(record.GetType(), identifier);
+            List<Record> result = GetWhere(record.GetType(), identifier);
             return result.Last() as Record;
         }
 
@@ -266,7 +266,7 @@ namespace Classes
         public static void ExecuteSQLWithResult(string sql, Action<Reader> readerCallback)
         {
             LogSQL(sql);
-            processingList = new List<object>();
+            processingList = new List<Record>();
             using (Connection connection = new Connection(connectionString))
             {
                 Command c = new Command(sql, connection);
@@ -374,17 +374,17 @@ namespace Classes
             KeyValuePair<string, object>[] whereParameters = new KeyValuePair<string, object>[parameters.Length];
             for (int i = 0; i < parameters.Length; i++)
                 whereParameters[i] = new KeyValuePair<string, object>(valuesSplit[i].Trim(), parameters[i].ToString());
-            blockInsertForWarning = table.Name == TableName<Warning>().Name;
+            blockInsertForWarning = table.Name == TableFor<Warning>().Name;
             ExecuteSQL("Insert into {0} ({1}) values ({2}); ", table.Name,
                     values,
                     string.Join(",", parameters));
 
-            List<object> result = GetWhere(recordType, string.Join(" and ", whereParameters.Select(x => table.Name + "." + x.Key + " = " + x.Value)));
+            List<Record> result = GetWhere(recordType, string.Join(" and ", whereParameters.Select(x => table.Name + "." + x.Key + " = " + x.Value)));
             blockInsertForWarning = false;
             return result.LastOrDefault() as Record;
         }
 
-        static List<object> processingList;
+        static List<Record> processingList;
         static Type processType = typeof(int);
 
         private static void ProcessReader(Reader reader)
@@ -403,14 +403,14 @@ namespace Classes
             else
                 while (reader.Read())
                 {
-                    object row = GetRow(t, reader);
+                    Record row = GetRow(t, reader);
                     processingList.Add(row);
                 }
         }
 
-        private static object GetRow(Type t, Reader reader)
+        private static Record GetRow(Type t, Reader reader)
         {
-            object result = null;
+            Record result = null;
             if (!recordBuildDefinitions.ContainsKey(t))
                 throw new NotImplementedException("Do not know how to build " + t.Name);
 
@@ -469,7 +469,7 @@ namespace Classes
             return GetWhere(t, string.Format(where, parameters.Format())).Select(x => x as T).ToList();
         }
 
-        private static List<object> GetWhere(Type t, string sql, string where)
+        private static List<Record> GetWhere(Type t, string sql, string where)
         {
             processType = t;
 
@@ -507,14 +507,14 @@ namespace Classes
                 ExecuteSQLWithResult(sql + additionalWhere, ProcessReader);
             }
 
-            if (processingList == null) processingList = new List<object>();
-            List<object> result = new List<object>(processingList);
+            if (processingList == null) processingList = new List<Record>();
+            List<Record> result = new List<Record>(processingList);
             processingList.Clear();
             processingList = null;
             return result;
         }
 
-        private static List<object> GetWhere(Type t, string where)
+        private static List<Record> GetWhere(Type t, string where)
         {
             Table tableName = tables[t];
             processType = t;

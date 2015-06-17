@@ -16,9 +16,9 @@ namespace Classes
         {
             EventLandmark r = new EventLandmark(name, description, x, y, start, end).Create() as EventLandmark;
             if (r != null)
-                new LogMessage("create event", name +" "+ x + " " + y + " success " + this.ID + " => " + r.ID).Create();
+                new LogMessage("create event", "{0} at {1} {2} by {3}({4}) successfuly ".Args(name, x, y, this.FullName, this.ID)).Create();
             else
-                new LogMessage("create event", name +" "+ x + " " + y + " fail " + this.ID + " => " + name).Create();
+                new LogMessage("create event", "{0} at {1} {2} by {3}({4}) failed".Args(name, x, y, this.FullName, this.ID)).Create();
             return r;
         }
     }

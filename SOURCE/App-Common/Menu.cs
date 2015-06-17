@@ -116,7 +116,7 @@ namespace App_Common
             
             InitializeComponent();
 
-            this.ControlBox = false;
+            //this.ControlBox = false;
 
             this.ParentMenu = parent;
         }

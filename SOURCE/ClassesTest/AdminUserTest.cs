@@ -45,6 +45,7 @@ namespace Classes
             Assert.AreEqual("test", e.Label);
 
             Database.Delete(e, "|T|.location = {0}", e.ID);
+            Database.Delete<TentPitch>("|T|.id = {0}", e.ID);
             current = Database.Count<EventLandmark>();
             Assert.AreEqual(previous, current);
 

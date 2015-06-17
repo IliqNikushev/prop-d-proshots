@@ -11,7 +11,7 @@ namespace Classes
     using Command = MySql.Data.MySqlClient.MySqlCommand;
     public static partial class Database
     {
-        private static Dictionary<Type, Func<Reader, string,bool, object>> recordBuildDefinitions = new Dictionary<Type, Func<Reader, string,bool, object>>()
+        private static Dictionary<Type, Func<Reader, string,bool, Record>> recordBuildDefinitions = new Dictionary<Type, Func<Reader, string,bool, Record>>()
         {
             {typeof(AdminUser), CreateAdmin},
             {typeof(AppointedItem), CreateAppointedItem},
