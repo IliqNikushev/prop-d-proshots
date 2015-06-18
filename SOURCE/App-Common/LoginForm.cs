@@ -20,8 +20,8 @@ namespace App_Common
 
             if (!IsInDebug)
             {
-                reader.OnAttach += (x) => infoLbl.Text = "Enter your credentials Or approach your card";
-                reader.OnDetach += (x) => infoLbl.Text = "Enter your credentials";
+                reader.OnAttach += (x) => this.Invoke(new Action(() => infoLbl.Text = "Enter your credentials Or approach your card"));
+                reader.OnDetach += (x) => this.Invoke(new Action(() => infoLbl.Text = "Enter your credentials"));
                 reader.OnDetect += Authenticate;
             }
         }
