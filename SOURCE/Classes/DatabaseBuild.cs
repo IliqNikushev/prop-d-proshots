@@ -691,6 +691,7 @@ namespace Classes
             string rfid = null;
             bool ticket = false;
             string picture = null;
+            bool isInTheEvent = false;
 
             if (reader.HasColumnAndNotNull("ticket"))
             {
@@ -698,11 +699,12 @@ namespace Classes
                 rfid = reader.GetStr("RFID");
                 ticket = reader.Get<bool>("Ticket");
                 picture = reader.GetStr("picture");
+                isInTheEvent = reader.Get<bool>("IsInTheEvent");
             }
 
             reader.RemoveDistinctPrefix();
 
-            return new Visitor(id, firstName, lastName, userName, password, email, picture, amount, rfid, ticket);
+            return new Visitor(id, firstName, lastName, userName, password, email, picture, amount, rfid, ticket, isInTheEvent);
         }
 
         private static Warning CreateWarning(Reader reader, string prefix="", bool asbtr = false)

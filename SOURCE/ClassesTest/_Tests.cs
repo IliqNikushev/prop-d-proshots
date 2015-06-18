@@ -33,8 +33,9 @@ namespace Classes
         {
             IEnumerable<string> typeNames = requiredTypesStr;
             IEnumerable<string> notDefinedTypes = typeNames.Where(x => !definedTypesStr.Contains(x));
-            notDefinedTypes = notDefinedTypes.Where(x =>!x.Contains("Util"));
-            notDefinedTypes = notDefinedTypes.Where(x => !x.Contains("BuildResult"));
+            notDefinedTypes = notDefinedTypes.Where(x =>!x.Contains(typeof(Utillities).Name));
+            notDefinedTypes = notDefinedTypes.Where(x => !x.Contains(typeof(Database.BuildResult).Name));
+            notDefinedTypes = notDefinedTypes.Where(x => x != typeof(Constants).Name);
             Assert.AreEqual(0, notDefinedTypes.Count(), "\nNOT DEFINED IN TESTING\n" + string.Join("\n", notDefinedTypes));
         }
 
@@ -44,6 +45,7 @@ namespace Classes
             IEnumerable<string> notInheriting = definedTypes.Where(x => !x.IsSubclassOf(typeof(UnitTest))).Select(x => x.Name.Replace("Test", ""));
             notInheriting = notInheriting.Where(x => !x.Contains("_"));
             notInheriting = notInheriting.Where(x => x != typeof(UnitTest).Name.Replace("Test",""));
+            notInheriting = notInheriting.Where(x => !x.StartsWith(typeof(Constants).Name));
             Assert.AreEqual(0, notInheriting.Count(), "\nNOT INHERITING UNIT TEST\n" + string.Join("\n", notInheriting));
         }
 

@@ -10,6 +10,7 @@ namespace Classes
         public decimal Balance { get; private set; }
         public string RFID { get; private set; }
         public bool Ticket { get; private set; }
+        public bool IsInTheEvent { get; private set; }
         private string picture;
         public string Picture
         {
@@ -24,13 +25,14 @@ namespace Classes
             set { this.picture = value; }
         }
 
-        public Visitor(int id, string firstName, string lastName, string username, string password, string email, string picture, decimal balance, string rfid, bool ticket)
+        public Visitor(int id, string firstName, string lastName, string username, string password, string email, string picture, decimal balance, string rfid, bool ticket, bool isInTheEvent)
             : base(id, firstName, lastName, username, password, email)
         {
             this.RFID = rfid;
             this.Balance = balance;
             this.Ticket = ticket;
             this.Picture = picture;
+            this.IsInTheEvent = isInTheEvent;
         }
 
         public Receipt ActiveOrder(ShopWorkplace shop)
