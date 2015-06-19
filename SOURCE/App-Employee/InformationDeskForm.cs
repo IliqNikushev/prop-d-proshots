@@ -16,7 +16,7 @@ namespace App_Employee
         List<Visitor> Visitors = Database.All<Visitor>();
 
 
-        public InformationDeskForm(App_Common.Menu parent)
+        public InformationDeskForm(App_Common.Menu parent) : base(parent)
         {
             InitializeComponent();
             UpdateListBox();
@@ -51,12 +51,13 @@ namespace App_Employee
             }
         }
 
-        private void visitorSearchTbox_TextChanged(object sender, EventArgs e)
+        private void visitorSearchTbox_TextChanged_1(object sender, EventArgs e)
         {
             UpdateListBox();
         }
 
-        private void payTicketBtn_Click(object sender, EventArgs e)
+
+        private void payTicketBtn_Click_1(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem != null)
             {
@@ -94,8 +95,7 @@ namespace App_Employee
             else { MessageBox.Show("Please select visitor"); }
         }
 
-
-        private void giveTagBtn_Click(object sender, EventArgs e)
+        private void giveTagBtn_Click_1(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem != null)
             {
@@ -114,7 +114,7 @@ namespace App_Employee
             else { MessageBox.Show("Please select visitor"); }
         }
 
-        private void closeAccountBtn_Click(object sender, EventArgs e)
+        private void closeAccountBtn_Click_1(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem != null)
             {
@@ -135,10 +135,11 @@ namespace App_Employee
             else { MessageBox.Show("Please select visitor"); }
         }
 
-        private void logOutBtn_Click(object sender, EventArgs e)
+        private void logOutBtn_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }
+
     }
 
     class ListboxVisitor

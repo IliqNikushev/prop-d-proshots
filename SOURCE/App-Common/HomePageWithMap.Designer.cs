@@ -221,7 +221,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.mapArea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mapHolder)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
+            //this.PerformLayout();
 
         }
 

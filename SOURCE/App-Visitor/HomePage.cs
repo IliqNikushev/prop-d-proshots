@@ -14,6 +14,7 @@ namespace App_Visitor
     public partial class HomePage : App_Common.HomePageWithMap
     {
         Visitor LogedinVisitor = LoggedInUser as Visitor;
+        
         public HomePage(App_Common.Menu menu):base(menu)
         {
             InitializeComponent();
@@ -30,7 +31,7 @@ namespace App_Visitor
             labelName.Text += LogedinVisitor.FullName;
             labelEmail.Text += LogedinVisitor.Email;
             labelBalance.Text += LogedinVisitor.Balance;
-            ProfilePicture.ImageLocation = @"C:\user_images\" + LogedinVisitor.Picture;
+            ProfilePicture.ImageLocation =  LogedinVisitor.Picture;
         }
 
         protected override void OnSet()
@@ -53,10 +54,11 @@ namespace App_Visitor
             listBox1.Items.Clear();
             foreach (Tent T in LogedinVisitor.BookedTents)
             {
-                listBox1.Items.Add("Booked " + T);
             }
             foreach (Tent T in LogedinVisitor.BookedInTents)
             {
+                listBox1.Items.Add("Tent: #" + T.ID + " Location " + T.Location + " Booked on " + T.BookedOn + " Booked till " + T.BookedTill);
+                listBox1.Items.Add("Visitors: ");
                 listBox1.Items.AddRange(T.BookedFor);
             }
         }
@@ -66,7 +68,7 @@ namespace App_Visitor
             listBox1.Items.Clear();
             foreach (ReceiptItem T in LogedinVisitor.PurchasedItems)
             {
-                listBox1.Items.Add(T);
+                listBox1.Items.Add(T.Item + "  Buyed times: " + T.Times + "  Price: " + T.TotalPrice + " euro");
             }
         }
 
@@ -76,11 +78,19 @@ namespace App_Visitor
             foreach (RentableItemHistory T in LogedinVisitor.RentedItems)
             {
                 string returned = "";
-                if (T.IsReturned == false)
+                string overdue= "";
+                if (T.IsReturned == true)
                 {
                     returned = " returned at " + T.ReturnedAt;
                 }
-                listBox1.Items.Add(T.RentedItem + " rented by " + T.RentedBy + " Price " + T.Price + " Euro Rented till " + T.RentedTill + " " + returned);
+                else
+                {
+                    if (T.IsOverdue == true)
+                    {
+                        overdue = " This item is overdue!";
+                    }
+                }
+                listBox1.Items.Add(T.RentedItem + " Price " + T.Price + " Euro Rented till " + T.RentedTill + " " + returned + overdue);
             }
         }
 
@@ -92,13 +102,13 @@ namespace App_Visitor
                 string Compleated = "";
                 if (T.CompletedOn == DateTime.MinValue)
                 {
-
+                    Compleated = " Not yet compleated. ";
                 }
                 else
                 {
                     Compleated = " Compleated on " + T.CompletedOn.ToString();
                 }
-                listBox1.Items.Add(T + "" + Compleated);
+                listBox1.Items.Add(T.AppointedItem + " appointed on " + T.AppointedOn + "" + Compleated + " Price: " + T.Price);
             }
         }
 
