@@ -99,7 +99,7 @@ namespace Classes
             {typeof(User), new Table("Users", "id", "firstName", "lastName", "email", "password", "type", "username")},
             {typeof(UserAction), new Table("UserActions", "date", "action", "id").
                 Join<User>("JOIN", "Users.id = UserActions.user_id", "user")},
-            {typeof(Visitor), new Table("Visitors", "balance", "picture", "ticket", "rfid").
+            {typeof(Visitor), new Table("Visitors", "balance", "picture", "ticket", "rfid", "IsInTheEvent").
                 Join<User>("JOIN", "Users.id = Visitors.user_id", "")},
             {typeof(Warning), new Table("Warnings", "id", "name", "description")},
         };

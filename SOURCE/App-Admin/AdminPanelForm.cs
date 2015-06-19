@@ -16,7 +16,7 @@ namespace App_Admin
             : base(parent)
         {
             InitializeComponent();
-
+            
             this.ControlBox = true;
         }
     }
