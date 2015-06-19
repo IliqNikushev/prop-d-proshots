@@ -29,232 +29,233 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PCDoctorForm));
-            this.button3 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.lb5 = new System.Windows.Forms.Label();
-            this.appList2 = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.lb4 = new System.Windows.Forms.Label();
-            this.appList1 = new System.Windows.Forms.ListBox();
-            this.pic = new System.Windows.Forms.PictureBox();
-            this.lb1 = new System.Windows.Forms.Label();
-            this.ID = new System.Windows.Forms.TextBox();
-            this.lb2 = new System.Windows.Forms.Label();
-            this.name1 = new System.Windows.Forms.TextBox();
-            this.pic2 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic2)).BeginInit();
+            this.btnView = new System.Windows.Forms.Button();
+            this.lblModel = new System.Windows.Forms.Label();
+            this.tbModel = new System.Windows.Forms.TextBox();
+            this.lblDescr = new System.Windows.Forms.Label();
+            this.lblBrand = new System.Windows.Forms.Label();
+            this.tbDesc = new System.Windows.Forms.TextBox();
+            this.tbBrand = new System.Windows.Forms.TextBox();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.lblComp = new System.Windows.Forms.Label();
+            this.lbCompleted = new System.Windows.Forms.ListBox();
+            this.btnFinish = new System.Windows.Forms.Button();
+            this.lblQueue = new System.Windows.Forms.Label();
+            this.lbQueue = new System.Windows.Forms.ListBox();
+            this.picVis = new System.Windows.Forms.PictureBox();
+            this.lblVisCard = new System.Windows.Forms.Label();
+            this.tbVisCard = new System.Windows.Forms.TextBox();
+            this.lblVisName = new System.Windows.Forms.Label();
+            this.tbVisName = new System.Windows.Forms.TextBox();
+            this.logo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picVis)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
             // 
-            // button3
+            // btnView
             // 
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(221, 272);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(85, 33);
-            this.button3.TabIndex = 130;
-            this.button3.Text = "View tasks";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            this.btnView.Image = ((System.Drawing.Image)(resources.GetObject("btnView.Image")));
+            this.btnView.Location = new System.Drawing.Point(221, 272);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(85, 33);
+            this.btnView.TabIndex = 130;
+            this.btnView.Text = "View tasks";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
-            // label3
+            // lblModel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 192);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 13);
-            this.label3.TabIndex = 129;
-            this.label3.Text = "Model";
+            this.lblModel.AutoSize = true;
+            this.lblModel.Location = new System.Drawing.Point(27, 192);
+            this.lblModel.Name = "lblModel";
+            this.lblModel.Size = new System.Drawing.Size(36, 13);
+            this.lblModel.TabIndex = 129;
+            this.lblModel.Text = "Model";
             // 
-            // textBox3
+            // tbModel
             // 
-            this.textBox3.Location = new System.Drawing.Point(73, 192);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(86, 20);
-            this.textBox3.TabIndex = 128;
+            this.tbModel.Location = new System.Drawing.Point(73, 192);
+            this.tbModel.Name = "tbModel";
+            this.tbModel.Size = new System.Drawing.Size(86, 20);
+            this.tbModel.TabIndex = 128;
             // 
-            // label2
+            // lblDescr
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 218);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 13);
-            this.label2.TabIndex = 127;
-            this.label2.Text = "Description";
+            this.lblDescr.AutoSize = true;
+            this.lblDescr.Location = new System.Drawing.Point(8, 218);
+            this.lblDescr.Name = "lblDescr";
+            this.lblDescr.Size = new System.Drawing.Size(60, 13);
+            this.lblDescr.TabIndex = 127;
+            this.lblDescr.Text = "Description";
             // 
-            // label1
+            // lblBrand
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 166);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 126;
-            this.label1.Text = "Brand";
+            this.lblBrand.AutoSize = true;
+            this.lblBrand.Location = new System.Drawing.Point(32, 166);
+            this.lblBrand.Name = "lblBrand";
+            this.lblBrand.Size = new System.Drawing.Size(35, 13);
+            this.lblBrand.TabIndex = 126;
+            this.lblBrand.Text = "Brand";
             // 
-            // textBox2
+            // tbDesc
             // 
-            this.textBox2.Location = new System.Drawing.Point(73, 218);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(142, 48);
-            this.textBox2.TabIndex = 125;
+            this.tbDesc.Location = new System.Drawing.Point(73, 218);
+            this.tbDesc.Multiline = true;
+            this.tbDesc.Name = "tbDesc";
+            this.tbDesc.Size = new System.Drawing.Size(142, 48);
+            this.tbDesc.TabIndex = 125;
             // 
-            // textBox1
+            // tbBrand
             // 
-            this.textBox1.Location = new System.Drawing.Point(73, 166);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(86, 20);
-            this.textBox1.TabIndex = 124;
+            this.tbBrand.Location = new System.Drawing.Point(73, 166);
+            this.tbBrand.Name = "tbBrand";
+            this.tbBrand.Size = new System.Drawing.Size(86, 20);
+            this.tbBrand.TabIndex = 124;
             // 
-            // button2
+            // btnAdd
             // 
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(81, 272);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(134, 33);
-            this.button2.TabIndex = 123;
-            this.button2.Text = "Add appointment";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.Location = new System.Drawing.Point(81, 272);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(134, 33);
+            this.btnAdd.TabIndex = 123;
+            this.btnAdd.Text = "Add appointment";
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // lb5
+            // lblComp
             // 
-            this.lb5.AutoSize = true;
-            this.lb5.Location = new System.Drawing.Point(352, 330);
-            this.lb5.Name = "lb5";
-            this.lb5.Size = new System.Drawing.Size(123, 13);
-            this.lb5.TabIndex = 122;
-            this.lb5.Text = "Completed appointments";
+            this.lblComp.AutoSize = true;
+            this.lblComp.Location = new System.Drawing.Point(352, 330);
+            this.lblComp.Name = "lblComp";
+            this.lblComp.Size = new System.Drawing.Size(123, 13);
+            this.lblComp.TabIndex = 122;
+            this.lblComp.Text = "Completed appointments";
             // 
-            // appList2
+            // lbCompleted
             // 
-            this.appList2.FormattingEnabled = true;
-            this.appList2.Location = new System.Drawing.Point(350, 349);
-            this.appList2.Name = "appList2";
-            this.appList2.Size = new System.Drawing.Size(332, 186);
-            this.appList2.TabIndex = 121;
+            this.lbCompleted.FormattingEnabled = true;
+            this.lbCompleted.Location = new System.Drawing.Point(350, 349);
+            this.lbCompleted.Name = "lbCompleted";
+            this.lbCompleted.Size = new System.Drawing.Size(332, 186);
+            this.lbCompleted.TabIndex = 121;
             // 
-            // button1
+            // btnFinish
             // 
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(25, 542);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(134, 33);
-            this.button1.TabIndex = 120;
-            this.button1.Text = "Finish appointment";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnFinish.Image = ((System.Drawing.Image)(resources.GetObject("btnFinish.Image")));
+            this.btnFinish.Location = new System.Drawing.Point(25, 542);
+            this.btnFinish.Name = "btnFinish";
+            this.btnFinish.Size = new System.Drawing.Size(134, 33);
+            this.btnFinish.TabIndex = 120;
+            this.btnFinish.Text = "Finish appointment";
+            this.btnFinish.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFinish.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnFinish.UseVisualStyleBackColor = true;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
-            // lb4
+            // lblQueue
             // 
-            this.lb4.AutoSize = true;
-            this.lb4.Location = new System.Drawing.Point(22, 330);
-            this.lb4.Name = "lb4";
-            this.lb4.Size = new System.Drawing.Size(111, 13);
-            this.lb4.TabIndex = 119;
-            this.lb4.Text = "Queued appointments";
+            this.lblQueue.AutoSize = true;
+            this.lblQueue.Location = new System.Drawing.Point(22, 330);
+            this.lblQueue.Name = "lblQueue";
+            this.lblQueue.Size = new System.Drawing.Size(111, 13);
+            this.lblQueue.TabIndex = 119;
+            this.lblQueue.Text = "Queued appointments";
             // 
-            // appList1
+            // lbQueue
             // 
-            this.appList1.FormattingEnabled = true;
-            this.appList1.Location = new System.Drawing.Point(12, 349);
-            this.appList1.Name = "appList1";
-            this.appList1.Size = new System.Drawing.Size(332, 186);
-            this.appList1.TabIndex = 118;
+            this.lbQueue.FormattingEnabled = true;
+            this.lbQueue.Location = new System.Drawing.Point(12, 349);
+            this.lbQueue.Name = "lbQueue";
+            this.lbQueue.Size = new System.Drawing.Size(332, 186);
+            this.lbQueue.TabIndex = 118;
             // 
-            // pic
+            // picVis
             // 
-            this.pic.Image = ((System.Drawing.Image)(resources.GetObject("pic.Image")));
-            this.pic.InitialImage = null;
-            this.pic.Location = new System.Drawing.Point(6, 11);
-            this.pic.Name = "pic";
-            this.pic.Size = new System.Drawing.Size(100, 95);
-            this.pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pic.TabIndex = 112;
-            this.pic.TabStop = false;
+            this.picVis.Image = ((System.Drawing.Image)(resources.GetObject("picVis.Image")));
+            this.picVis.InitialImage = null;
+            this.picVis.Location = new System.Drawing.Point(6, 11);
+            this.picVis.Name = "picVis";
+            this.picVis.Size = new System.Drawing.Size(100, 95);
+            this.picVis.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picVis.TabIndex = 112;
+            this.picVis.TabStop = false;
             // 
-            // lb1
+            // lblVisCard
             // 
-            this.lb1.AutoSize = true;
-            this.lb1.Location = new System.Drawing.Point(110, 31);
-            this.lb1.Name = "lb1";
-            this.lb1.Size = new System.Drawing.Size(43, 13);
-            this.lb1.TabIndex = 113;
-            this.lb1.Text = "ID Card";
+            this.lblVisCard.AutoSize = true;
+            this.lblVisCard.Location = new System.Drawing.Point(110, 31);
+            this.lblVisCard.Name = "lblVisCard";
+            this.lblVisCard.Size = new System.Drawing.Size(43, 13);
+            this.lblVisCard.TabIndex = 113;
+            this.lblVisCard.Text = "ID Card";
             // 
-            // ID
+            // tbVisCard
             // 
-            this.ID.Location = new System.Drawing.Point(153, 28);
-            this.ID.Name = "ID";
-            this.ID.Size = new System.Drawing.Size(86, 20);
-            this.ID.TabIndex = 115;
+            this.tbVisCard.Location = new System.Drawing.Point(153, 28);
+            this.tbVisCard.Name = "tbVisCard";
+            this.tbVisCard.Size = new System.Drawing.Size(86, 20);
+            this.tbVisCard.TabIndex = 115;
             // 
-            // lb2
+            // lblVisName
             // 
-            this.lb2.AutoSize = true;
-            this.lb2.Location = new System.Drawing.Point(112, 62);
-            this.lb2.Name = "lb2";
-            this.lb2.Size = new System.Drawing.Size(35, 13);
-            this.lb2.TabIndex = 114;
-            this.lb2.Text = "Name";
+            this.lblVisName.AutoSize = true;
+            this.lblVisName.Location = new System.Drawing.Point(112, 62);
+            this.lblVisName.Name = "lblVisName";
+            this.lblVisName.Size = new System.Drawing.Size(35, 13);
+            this.lblVisName.TabIndex = 114;
+            this.lblVisName.Text = "Name";
             // 
-            // name1
+            // tbVisName
             // 
-            this.name1.Location = new System.Drawing.Point(153, 58);
-            this.name1.Name = "name1";
-            this.name1.Size = new System.Drawing.Size(86, 20);
-            this.name1.TabIndex = 116;
+            this.tbVisName.Location = new System.Drawing.Point(153, 58);
+            this.tbVisName.Name = "tbVisName";
+            this.tbVisName.Size = new System.Drawing.Size(86, 20);
+            this.tbVisName.TabIndex = 116;
             // 
-            // pic2
+            // logo
             // 
-            this.pic2.Image = ((System.Drawing.Image)(resources.GetObject("pic2.Image")));
-            this.pic2.Location = new System.Drawing.Point(542, 11);
-            this.pic2.Margin = new System.Windows.Forms.Padding(2);
-            this.pic2.Name = "pic2";
-            this.pic2.Size = new System.Drawing.Size(154, 125);
-            this.pic2.TabIndex = 117;
-            this.pic2.TabStop = false;
+            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
+            this.logo.Location = new System.Drawing.Point(641, -1);
+            this.logo.Margin = new System.Windows.Forms.Padding(2);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(64, 64);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logo.TabIndex = 117;
+            this.logo.TabStop = false;
             // 
             // PCDoctorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(707, 583);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.lb5);
-            this.Controls.Add(this.appList2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.lb4);
-            this.Controls.Add(this.appList1);
-            this.Controls.Add(this.pic);
-            this.Controls.Add(this.lb1);
-            this.Controls.Add(this.ID);
-            this.Controls.Add(this.lb2);
-            this.Controls.Add(this.name1);
-            this.Controls.Add(this.pic2);
+            this.Controls.Add(this.btnView);
+            this.Controls.Add(this.lblModel);
+            this.Controls.Add(this.tbModel);
+            this.Controls.Add(this.lblDescr);
+            this.Controls.Add(this.lblBrand);
+            this.Controls.Add(this.tbDesc);
+            this.Controls.Add(this.tbBrand);
+            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.lblComp);
+            this.Controls.Add(this.lbCompleted);
+            this.Controls.Add(this.btnFinish);
+            this.Controls.Add(this.lblQueue);
+            this.Controls.Add(this.lbQueue);
+            this.Controls.Add(this.picVis);
+            this.Controls.Add(this.lblVisCard);
+            this.Controls.Add(this.tbVisCard);
+            this.Controls.Add(this.lblVisName);
+            this.Controls.Add(this.tbVisName);
+            this.Controls.Add(this.logo);
             this.Name = "PCDoctorForm";
-            this.Text = "PCDoctorForm";
-            ((System.ComponentModel.ISupportInitialize)(this.pic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic2)).EndInit();
+            this.Text = "PCDoctor";
+            ((System.ComponentModel.ISupportInitialize)(this.picVis)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,24 +263,24 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label lb5;
-        private System.Windows.Forms.ListBox appList2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label lb4;
-        private System.Windows.Forms.ListBox appList1;
-        private System.Windows.Forms.PictureBox pic;
-        private System.Windows.Forms.Label lb1;
-        private System.Windows.Forms.TextBox ID;
-        private System.Windows.Forms.Label lb2;
-        private System.Windows.Forms.TextBox name1;
-        private System.Windows.Forms.PictureBox pic2;
+        private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.Label lblModel;
+        private System.Windows.Forms.TextBox tbModel;
+        private System.Windows.Forms.Label lblDescr;
+        private System.Windows.Forms.Label lblBrand;
+        private System.Windows.Forms.TextBox tbDesc;
+        private System.Windows.Forms.TextBox tbBrand;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Label lblComp;
+        private System.Windows.Forms.ListBox lbCompleted;
+        private System.Windows.Forms.Button btnFinish;
+        private System.Windows.Forms.Label lblQueue;
+        private System.Windows.Forms.ListBox lbQueue;
+        private System.Windows.Forms.PictureBox picVis;
+        private System.Windows.Forms.Label lblVisCard;
+        private System.Windows.Forms.TextBox tbVisCard;
+        private System.Windows.Forms.Label lblVisName;
+        private System.Windows.Forms.TextBox tbVisName;
+        private System.Windows.Forms.PictureBox logo;
     }
 }

@@ -50,7 +50,7 @@ namespace Classes
             this.ReturnedAt = DateTime.Now;
             this.Notes += notes;
             
-            Database.Update(this, "ReturnedAt = {0}, ReturnedBy = {1}".Arg(this.ReturnedAt, this.ReturnedBy), "|T|.id = {0}".Arg(this.ID));
+            Database.Update(this, "ReturnedAt = {0}, ReturnedBy = {1}".Arg(this.ReturnedAt, this.ReturnedBy.ID), "|T|.id = {0}".Arg(this.ID));
         }
 
         public void ExtendPeriod(Visitor visitor, int days, int hours, int minutes, string reason = "")
@@ -61,6 +61,20 @@ namespace Classes
         public override Record Create()
         {
             return Database.Insert(this,"item_ID,rentedby,rentedat,rentedtill",this.RentedItem.ID,this.RentedBy.ID,this.RentedAt,this.RentedTill);
+        }
+
+        public override string ToString()
+        {
+            return 
+                string.Format("{0} {1} on {2} for {3} for {4}{5} per hour ({6}{7}total)",
+            this.RentedItem.Brand,
+            this.RentedItem.Model,
+            this.RentedAt,
+            Math.Abs((this.RentedTill - this.RentedAt).TotalHours),
+            this.Price,
+            Constants.Currency,
+            this.Price * (decimal)(Math.Abs((this.RentedTill - this.RentedAt).TotalHours)),
+            Constants.Currency);
         }
     }
 }

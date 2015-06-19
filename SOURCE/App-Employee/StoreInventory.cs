@@ -33,7 +33,6 @@ namespace App_Employee
             foreach (var item in items.OrderBy(x => x.Name))
             {
                 CreateConfirmItem(item, ref y, vScrollBar1.Left);
-                CreateConfirmItem(item, ref y, vScrollBar1.Left);
             }
 
             StoreItemsCollection collection = new StoreItemsCollection(this, vScrollBar1, y, panels);

@@ -210,5 +210,84 @@ namespace App_Common
             MainMenu.Clear();
             MainMenu.Set(menu);
         }
+
+        protected void AddAutoCompleteTo(TextBox tb, Action<KeyPressEventArgs> onKeyPress, Action<object> onSelected)
+        {
+            tb.WordWrap = false;
+            tb.Multiline = true;
+            tb.AcceptsReturn = true;
+            tb.AutoCompleteMode = AutoCompleteMode.None;
+            tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            OnAutoComplete.Add(tb, new AutoCompleteData(onSelected));
+            ListBox listBox = OnAutoComplete[tb].ListBox;
+            listBox.Visible = false;
+            this.Controls.Add(listBox);
+            int yy = tb.Top + tb.Height;
+            int xx = tb.Left;
+            listBox.Top = yy;
+            listBox.Left = xx;
+            listBox.Width = tb.Width;
+            listBox.IntegralHeight = false;
+            listBox.Sorted = false;
+
+            listBox.SelectedIndexChanged += (x, y) =>
+            {
+                if (listBox.SelectedIndex != -1)
+                {
+                    OnAutoComplete[tb].Invoke();
+                    tb.Text = listBox.SelectedItem.ToString();
+                    listBox.Visible = false;
+                }
+            };
+
+            listBox.BringToFront();
+
+            tb.KeyPress += (x, e) => onKeyPress(e);
+            tb.KeyUp += AutoComplete;
+        }
+
+        protected Dictionary<TextBox, AutoCompleteData> OnAutoComplete = new Dictionary<TextBox, AutoCompleteData>();
+
+        protected class AutoCompleteData
+        {
+            public bool IsInitialized { get; private set; }
+            public ListBox ListBox;
+            public Action<object> Action;
+
+            public AutoCompleteData(Action<object> action)
+            {
+                this.Action = action;
+                this.ListBox = new ListBox();
+            }
+
+            public void Invoke() { this.Action(ListBox.SelectedItem); }
+        }
+
+        private void AutoComplete(object sender, KeyEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            ListBox listBox = OnAutoComplete[textBox].ListBox;
+            if (e.KeyCode == Keys.Return) { listBox.Visible = false; return; }
+            string[] items = new string[textBox.AutoCompleteCustomSource.Count];
+            textBox.AutoCompleteCustomSource.CopyTo(items, 0);
+
+            string text = textBox.Text.ToLower();
+            IEnumerable<string> localList = items.Where(x => x.ToLower().StartsWith(text) || x.ToLower().Contains(text));
+            if (localList.Any())
+            {
+                listBox.Items.Clear();
+                foreach (var item in localList.OrderByDescending(x => x.ToLower().StartsWith(text)))
+                    if (!listBox.Items.Contains(item))
+                        listBox.Items.Add(item);
+
+                listBox.Visible = true;
+                listBox.SelectedIndex = -1;
+
+                listBox.Height = (listBox.ItemHeight + 3) * (listBox.Items.Count > 4 ? 4 : listBox.Items.Count);
+                this.Refresh();
+            }
+            else
+                listBox.Visible = false;
+        }
     }
 }

@@ -36,7 +36,7 @@ namespace App_Employee
                     Max = length;
                 }
             }
-            listBox1.Items.Clear();
+            lbPeople.Items.Clear();
             foreach (Visitor I in Visitors)
             {
                 string Vis = I.ToString();
@@ -44,7 +44,7 @@ namespace App_Employee
                 {
 
                     Vis = Vis + new string(' ', (Max - Vis.Length) * 2);
-                    listBox1.Items.Add(new ListboxVisitor(I));
+                    lbPeople.Items.Add(new ListboxVisitor(I));
 
 
                 }
@@ -59,7 +59,7 @@ namespace App_Employee
 
         private void payTicketBtn_Click_1(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItem != null)
+            if (lbPeople.SelectedItem != null)
             {
                 //((LoggedInUser as Employee).Workplace as InformationKioskWorkplace).GiveIDCardToVisitor;
                 decimal Price;
@@ -72,7 +72,7 @@ namespace App_Employee
                 {
                     Price = 55;
                 }
-                Visitor I = (listBox1.SelectedItem as ListboxVisitor).CurrentVisitor;
+                Visitor I = (lbPeople.SelectedItem as ListboxVisitor).CurrentVisitor;
                 decimal VisitorBalance = I.Balance;
                 try
                 {
@@ -97,10 +97,10 @@ namespace App_Employee
 
         private void giveTagBtn_Click_1(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItem != null)
+            if (lbPeople.SelectedItem != null)
             {
                 string RTag = reader.LastTag;
-                Visitor I = (listBox1.SelectedItem as ListboxVisitor).CurrentVisitor;
+                Visitor I = (lbPeople.SelectedItem as ListboxVisitor).CurrentVisitor;
                 int VisID = I.ID;
                 Visitor vis = Database.Find<Visitor>("id = {0}", VisID);
                 InformationKioskWorkplace d = new InformationKioskWorkplace(0, 0, 0);
@@ -116,9 +116,9 @@ namespace App_Employee
 
         private void closeAccountBtn_Click_1(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItem != null)
+            if (lbPeople.SelectedItem != null)
             {
-                ListboxVisitor SelectedItem = listBox1.SelectedItem as ListboxVisitor;
+                ListboxVisitor SelectedItem = lbPeople.SelectedItem as ListboxVisitor;
 
                 Visitor vis = SelectedItem.CurrentVisitor;
                 try

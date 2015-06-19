@@ -31,9 +31,9 @@
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.confirmBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblModified = new System.Windows.Forms.Label();
+            this.lblUnique = new System.Windows.Forms.Label();
+            this.lblFind = new System.Windows.Forms.Label();
             this.nameTbox = new System.Windows.Forms.TextBox();
             this.itemsModifiedLbl = new System.Windows.Forms.Label();
             this.uniqueAddedLbl = new System.Windows.Forms.Label();
@@ -66,32 +66,32 @@
             this.confirmBtn.UseVisualStyleBackColor = true;
             this.confirmBtn.Click += new System.EventHandler(this.confirmBtn_Click);
             // 
-            // label1
+            // lblModified
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(340, 138);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Items modified";
+            this.lblModified.AutoSize = true;
+            this.lblModified.Location = new System.Drawing.Point(340, 138);
+            this.lblModified.Name = "lblModified";
+            this.lblModified.Size = new System.Drawing.Size(74, 13);
+            this.lblModified.TabIndex = 6;
+            this.lblModified.Text = "Items modified";
             // 
-            // label2
+            // lblUnique
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(330, 187);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Unique items added";
+            this.lblUnique.AutoSize = true;
+            this.lblUnique.Location = new System.Drawing.Point(330, 187);
+            this.lblUnique.Name = "lblUnique";
+            this.lblUnique.Size = new System.Drawing.Size(101, 13);
+            this.lblUnique.TabIndex = 7;
+            this.lblUnique.Text = "Unique items added";
             // 
-            // label3
+            // lblFind
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(98, 303);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Find by name";
+            this.lblFind.AutoSize = true;
+            this.lblFind.Location = new System.Drawing.Point(98, 303);
+            this.lblFind.Name = "lblFind";
+            this.lblFind.Size = new System.Drawing.Size(70, 13);
+            this.lblFind.TabIndex = 8;
+            this.lblFind.Text = "Find by name";
             // 
             // nameTbox
             // 
@@ -126,9 +126,9 @@
             this.Controls.Add(this.uniqueAddedLbl);
             this.Controls.Add(this.itemsModifiedLbl);
             this.Controls.Add(this.nameTbox);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblFind);
+            this.Controls.Add(this.lblUnique);
+            this.Controls.Add(this.lblModified);
             this.Controls.Add(this.confirmBtn);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.vScrollBar1);
@@ -144,9 +144,9 @@
         private System.Windows.Forms.VScrollBar vScrollBar1;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.Button confirmBtn;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblModified;
+        private System.Windows.Forms.Label lblUnique;
+        private System.Windows.Forms.Label lblFind;
         private System.Windows.Forms.TextBox nameTbox;
         private System.Windows.Forms.Label itemsModifiedLbl;
         private System.Windows.Forms.Label uniqueAddedLbl;

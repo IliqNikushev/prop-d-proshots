@@ -28,9 +28,9 @@ namespace App_Employee
             {
                 if (app.Status)
                 {
-                    appList2.Items.Add(app);
+                    lbCompleted.Items.Add(app);
                 }
-                else appList1.Items.Add(app);
+                else lbQueue.Items.Add(app);
             }
 
         }
@@ -42,38 +42,37 @@ namespace App_Employee
                 return;
             MainMenu.Invoke(new Action(
                 ()=>{
-                
-
-                     ID.Text = tag;
-                     name1.Text = activeVis.FullName;
-               
+                    picVis.ImageLocation = activeVis.Picture;
+                     tbVisCard.Text = tag;
+                     tbVisName.Text = activeVis.FullName;
                 }));
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             if (activeVis != null)
             {
-                AppointedItem item = new AppointedItem(textBox1.Text, textBox3.Text);
+                AppointedItem item = new AppointedItem(tbBrand.Text, tbModel.Text);
                 item = item.Create() as AppointedItem;
-                Appointment app = new Appointment(item, activeVis, textBox2.Text);
+                Appointment app = new Appointment(item, activeVis, tbDesc.Text);
                 app = app.Create() as Appointment;
-                appList1.Items.Add(app);
+                if(!Database.HadAnError)
+                    lbQueue.Items.Add(app);
             }
             else MessageBox.Show("No visitor found. Please approach the card first before confirming.");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnFinish_Click(object sender, EventArgs e)
         {
-            (appList1.SelectedItem as Appointment).Complete();
-            appList2.Items.Add(appList1.SelectedItem);
-            appList1.Items.Remove(appList1.SelectedItem);
+            (lbQueue.SelectedItem as Appointment).Complete();
+            lbCompleted.Items.Add(lbQueue.SelectedItem);
+            lbQueue.Items.Remove(lbQueue.SelectedItem);
 
         }
 
-        private void button3_Click_1(object sender, EventArgs e)
+        private void btnView_Click(object sender, EventArgs e)
         {
-            if (appList1.SelectedItem == null)
+            if (lbQueue.SelectedItem == null)
             {
                 MessageBox.Show("Please select an item");
             }
@@ -83,14 +82,9 @@ namespace App_Employee
                 newform.ShowDialog();
             }
         }
-        public Appointment selected()
+        public Appointment Selected()
         {
-            return appList1.SelectedItem as Appointment;
-        }
-
-        private void oad(object sender, EventArgs e)
-        {
-
+            return lbQueue.SelectedItem as Appointment;
         }
     }
 }

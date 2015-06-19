@@ -139,7 +139,14 @@ namespace Classes
         {
             //if (typeof(T) == typeof(DateTime))
             //    return (T)(object)DateTime.ParseExact(reader.GetStr(name), DateTimeFormat, System.Globalization.CultureInfo.CurrentCulture);
-            return (T)reader.Get(name, default(T), typeof(T));
+            object result = reader.Get(name, default(T), typeof(T));
+            if (typeof(T) == typeof(bool))
+                if (result.ToString() == "0")
+                    result = false;
+                else if (result.ToString() == "1")
+                    result = true;
+                else result = false;
+            return (T)result;
         }
 
         public static string GetStr(this MySql.Data.MySqlClient.MySqlDataReader reader, string name)

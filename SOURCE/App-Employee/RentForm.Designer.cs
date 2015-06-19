@@ -29,41 +29,42 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RentForm));
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblCart = new System.Windows.Forms.Label();
             this.lbCart = new System.Windows.Forms.ListBox();
             this.cartListView = new System.Windows.Forms.ListBox();
             this.plItems = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblLog = new System.Windows.Forms.Label();
+            this.lblStock = new System.Windows.Forms.Label();
+            this.lblFrom = new System.Windows.Forms.Label();
+            this.lblEnd = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.date = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbCard = new System.Windows.Forms.Label();
             this.tbID = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
             this.tbFullname = new System.Windows.Forms.TextBox();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnReturn = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.picVis = new System.Windows.Forms.PictureBox();
+            this.picJob = new System.Windows.Forms.PictureBox();
+            this.logo = new System.Windows.Forms.PictureBox();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.lbPrice = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            this.btnReturnItem = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.picVis)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picJob)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
             // 
-            // label10
+            // lblCart
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(387, 344);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(64, 13);
-            this.label10.TabIndex = 106;
-            this.label10.Text = "Items in cart";
+            this.lblCart.AutoSize = true;
+            this.lblCart.Location = new System.Drawing.Point(387, 344);
+            this.lblCart.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCart.Name = "lblCart";
+            this.lblCart.Size = new System.Drawing.Size(64, 13);
+            this.lblCart.TabIndex = 106;
+            this.lblCart.Text = "Items in cart";
             // 
             // lbCart
             // 
@@ -72,6 +73,7 @@
             this.lbCart.Name = "lbCart";
             this.lbCart.Size = new System.Drawing.Size(484, 147);
             this.lbCart.TabIndex = 105;
+            this.lbCart.SelectedIndexChanged += new System.EventHandler(this.lbCart_SelectedIndexChanged);
             // 
             // cartListView
             // 
@@ -80,6 +82,7 @@
             this.cartListView.Name = "cartListView";
             this.cartListView.Size = new System.Drawing.Size(484, 147);
             this.cartListView.TabIndex = 104;
+            this.cartListView.SelectedIndexChanged += new System.EventHandler(this.cartListView_SelectedIndexChanged);
             // 
             // plItems
             // 
@@ -89,45 +92,45 @@
             this.plItems.Size = new System.Drawing.Size(348, 224);
             this.plItems.TabIndex = 103;
             // 
-            // label3
+            // lblLog
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(387, 164);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 13);
-            this.label3.TabIndex = 96;
-            this.label3.Text = "Rented items log";
+            this.lblLog.AutoSize = true;
+            this.lblLog.Location = new System.Drawing.Point(387, 164);
+            this.lblLog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLog.Name = "lblLog";
+            this.lblLog.Size = new System.Drawing.Size(86, 13);
+            this.lblLog.TabIndex = 96;
+            this.lblLog.Text = "Rented items log";
             // 
-            // label4
+            // lblStock
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 267);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 13);
-            this.label4.TabIndex = 95;
-            this.label4.Text = "Items in  stock";
+            this.lblStock.AutoSize = true;
+            this.lblStock.Location = new System.Drawing.Point(10, 267);
+            this.lblStock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblStock.Name = "lblStock";
+            this.lblStock.Size = new System.Drawing.Size(75, 13);
+            this.lblStock.TabIndex = 95;
+            this.lblStock.Text = "Items in  stock";
             // 
-            // label9
+            // lblFrom
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(10, 207);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(91, 13);
-            this.label9.TabIndex = 100;
-            this.label9.Text = "Start Date: Today";
+            this.lblFrom.AutoSize = true;
+            this.lblFrom.Location = new System.Drawing.Point(10, 207);
+            this.lblFrom.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFrom.Name = "lblFrom";
+            this.lblFrom.Size = new System.Drawing.Size(91, 13);
+            this.lblFrom.TabIndex = 100;
+            this.lblFrom.Text = "Start Date: Today";
             // 
-            // label8
+            // lblEnd
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 220);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(55, 13);
-            this.label8.TabIndex = 99;
-            this.label8.Text = "End Date:";
+            this.lblEnd.AutoSize = true;
+            this.lblEnd.Location = new System.Drawing.Point(10, 220);
+            this.lblEnd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEnd.Name = "lblEnd";
+            this.lblEnd.Size = new System.Drawing.Size(55, 13);
+            this.lblEnd.TabIndex = 99;
+            this.lblEnd.Text = "End Date:";
             // 
             // label7
             // 
@@ -145,15 +148,16 @@
             this.date.Name = "date";
             this.date.Size = new System.Drawing.Size(151, 20);
             this.date.TabIndex = 98;
+            this.date.ValueChanged += new System.EventHandler(this.date_ValueChanged);
             // 
-            // label2
+            // lbCard
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(109, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
-            this.label2.TabIndex = 90;
-            this.label2.Text = "ID Card";
+            this.lbCard.AutoSize = true;
+            this.lbCard.Location = new System.Drawing.Point(109, 24);
+            this.lbCard.Name = "lbCard";
+            this.lbCard.Size = new System.Drawing.Size(43, 13);
+            this.lbCard.TabIndex = 90;
+            this.lbCard.Text = "ID Card";
             // 
             // tbID
             // 
@@ -162,14 +166,14 @@
             this.tbID.Size = new System.Drawing.Size(86, 20);
             this.tbID.TabIndex = 92;
             // 
-            // label5
+            // lblName
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(111, 55);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 91;
-            this.label5.Text = "Name";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(111, 55);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(35, 13);
+            this.lblName.TabIndex = 91;
+            this.lblName.Text = "Name";
             // 
             // tbFullname
             // 
@@ -182,7 +186,7 @@
             // 
             this.btnConfirm.Image = ((System.Drawing.Image)(resources.GetObject("btnConfirm.Image")));
             this.btnConfirm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConfirm.Location = new System.Drawing.Point(257, 514);
+            this.btnConfirm.Location = new System.Drawing.Point(390, 508);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(110, 32);
             this.btnConfirm.TabIndex = 102;
@@ -193,57 +197,60 @@
             // 
             // btnReturn
             // 
+            this.btnReturn.Enabled = false;
             this.btnReturn.Image = ((System.Drawing.Image)(resources.GetObject("btnReturn.Image")));
             this.btnReturn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReturn.Location = new System.Drawing.Point(390, 513);
+            this.btnReturn.Location = new System.Drawing.Point(506, 508);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(110, 32);
             this.btnReturn.TabIndex = 101;
             this.btnReturn.Text = "Return selected";
             this.btnReturn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReturn.UseVisualStyleBackColor = true;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
-            // pictureBox2
+            // picVis
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.InitialImage = null;
-            this.pictureBox2.Location = new System.Drawing.Point(5, 4);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(100, 95);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 88;
-            this.pictureBox2.TabStop = false;
+            this.picVis.Image = ((System.Drawing.Image)(resources.GetObject("picVis.Image")));
+            this.picVis.InitialImage = null;
+            this.picVis.Location = new System.Drawing.Point(5, 4);
+            this.picVis.Name = "picVis";
+            this.picVis.Size = new System.Drawing.Size(100, 95);
+            this.picVis.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picVis.TabIndex = 88;
+            this.picVis.TabStop = false;
             // 
-            // pictureBox3
+            // picJob
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(307, 4);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(220, 158);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 87;
-            this.pictureBox3.TabStop = false;
+            this.picJob.Image = ((System.Drawing.Image)(resources.GetObject("picJob.Image")));
+            this.picJob.Location = new System.Drawing.Point(390, 1);
+            this.picJob.Margin = new System.Windows.Forms.Padding(2);
+            this.picJob.Name = "picJob";
+            this.picJob.Size = new System.Drawing.Size(220, 158);
+            this.picJob.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picJob.TabIndex = 87;
+            this.picJob.TabStop = false;
             // 
-            // pictureBox11
+            // logo
             // 
-            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
-            this.pictureBox11.Location = new System.Drawing.Point(741, 4);
-            this.pictureBox11.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(154, 125);
-            this.pictureBox11.TabIndex = 97;
-            this.pictureBox11.TabStop = false;
+            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
+            this.logo.Location = new System.Drawing.Point(831, 1);
+            this.logo.Margin = new System.Windows.Forms.Padding(2);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(64, 64);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logo.TabIndex = 97;
+            this.logo.TabStop = false;
             // 
-            // label1
+            // lblTotal
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(523, 344);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
-            this.label1.TabIndex = 107;
-            this.label1.Text = "Total cost:";
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(523, 344);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(57, 13);
+            this.lblTotal.TabIndex = 107;
+            this.lblTotal.Text = "Total cost:";
             // 
             // lbPrice
             // 
@@ -255,37 +262,52 @@
             this.lbPrice.TabIndex = 108;
             this.lbPrice.Text = "$$$.$$";
             // 
+            // btnReturnItem
+            // 
+            this.btnReturnItem.Enabled = false;
+            this.btnReturnItem.Image = ((System.Drawing.Image)(resources.GetObject("btnReturnItem.Image")));
+            this.btnReturnItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReturnItem.Location = new System.Drawing.Point(764, 325);
+            this.btnReturnItem.Name = "btnReturnItem";
+            this.btnReturnItem.Size = new System.Drawing.Size(110, 32);
+            this.btnReturnItem.TabIndex = 109;
+            this.btnReturnItem.Text = "Return selected";
+            this.btnReturnItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReturnItem.UseVisualStyleBackColor = true;
+            this.btnReturnItem.Click += new System.EventHandler(this.btnReturnItem_Click);
+            // 
             // RentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(896, 552);
+            this.Controls.Add(this.btnReturnItem);
             this.Controls.Add(this.lbPrice);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.lblTotal);
+            this.Controls.Add(this.lblCart);
             this.Controls.Add(this.lbCart);
             this.Controls.Add(this.cartListView);
             this.Controls.Add(this.plItems);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnReturn);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lblLog);
+            this.Controls.Add(this.lblStock);
+            this.Controls.Add(this.picVis);
+            this.Controls.Add(this.lblFrom);
+            this.Controls.Add(this.lblEnd);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.date);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbCard);
             this.Controls.Add(this.tbID);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblName);
             this.Controls.Add(this.tbFullname);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox11);
+            this.Controls.Add(this.picJob);
+            this.Controls.Add(this.logo);
             this.Name = "RentForm";
             this.Text = "Renting";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picVis)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picJob)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,26 +315,27 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblCart;
         private System.Windows.Forms.ListBox lbCart;
         private System.Windows.Forms.ListBox cartListView;
         private System.Windows.Forms.Panel plItems;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnReturn;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblLog;
+        private System.Windows.Forms.Label lblStock;
+        private System.Windows.Forms.PictureBox picVis;
+        private System.Windows.Forms.Label lblFrom;
+        private System.Windows.Forms.Label lblEnd;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker date;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbCard;
         private System.Windows.Forms.TextBox tbID;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox tbFullname;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox picJob;
+        private System.Windows.Forms.PictureBox logo;
+        private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label lbPrice;
+        private System.Windows.Forms.Button btnReturnItem;
     }
 }

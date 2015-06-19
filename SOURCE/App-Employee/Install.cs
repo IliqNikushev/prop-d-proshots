@@ -8,7 +8,7 @@ namespace App_Employee
 {
     static class Install
     {
-#warning set the job based on the install prefferences ( Build for every store a new version )
-
+//#warning set the job based on the install prefferences ( Build for every computer a different version )
+       // public static readonly Classes.Workplace Job = Classes.Database.Find<Classes.Workplace>("|T|.id = 3");
     }
 }

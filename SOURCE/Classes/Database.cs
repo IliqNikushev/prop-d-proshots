@@ -10,7 +10,7 @@ namespace Classes
     using Command = MySql.Data.MySqlClient.MySqlCommand;
     public static partial class Database
     {
-        public static Action<Exception, string> OnUnableToProcessSQL;
+        public static Action<Exception, string> OnUnableToProcessSQL = (x,y) => HadAnError = true;
 
         const string C_Server = "athena01.fhict.local";
         const string C_DataBase = "dbi317294";
@@ -233,6 +233,9 @@ namespace Classes
             }
             return result;
         }
+
+        public static bool HadAnError { get; private set; }
+
         static bool blockInsertForWarning = false;
         public static int ExecuteSQL(string sql)
         {
@@ -306,6 +309,7 @@ namespace Classes
 
         private static void LogSQL(string sql)
         {
+            HadAnError = false;
             System.IO.StreamWriter sw = new System.IO.StreamWriter("sql.txt", true);
             using (sw)
             {

@@ -55,7 +55,7 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.statePbox);
             this.Name = "CheckinOutMenu";
-            this.Text = "Form1";
+            this.Text = "";
             ((System.ComponentModel.ISupportInitialize)(this.statePbox)).EndInit();
             this.ResumeLayout(false);
 

@@ -28,6 +28,9 @@ namespace ConsoleTester
         static void Main(string[] args)
             // {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type", "logo")},
         {
+            Database.OnUnableToProcessSQL += (x,y)=> Console.WriteLine(x);
+            var h = Database.All<RentableItemHistory>();
+            return;
             Tent arg = Classes.Database.Find<Tent>("|T|.location = 1");
             Console.WriteLine(arg.BookedFor);
             return;

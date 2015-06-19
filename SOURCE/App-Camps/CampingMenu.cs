@@ -57,7 +57,7 @@ namespace App_Camps
             this.detailsPanel.Visible = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void logoutBtn_Click(object sender, EventArgs e)
         {
             this.Close();
         }

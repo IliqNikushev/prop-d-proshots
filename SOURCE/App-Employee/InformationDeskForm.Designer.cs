@@ -30,67 +30,65 @@
         {
             this.logoPBox = new System.Windows.Forms.PictureBox();
             this.logOutBtn = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.searchLbl = new System.Windows.Forms.Label();
+            this.lblRfid = new System.Windows.Forms.Label();
+            this.lblInfoRow3 = new System.Windows.Forms.Label();
             this.giveTagBtn = new System.Windows.Forms.Button();
             this.closeAccountBtn = new System.Windows.Forms.Button();
             this.payTicketBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblInfoRow1 = new System.Windows.Forms.Label();
             this.visitorSearchTbox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblInfoRow2 = new System.Windows.Forms.Label();
+            this.lbPeople = new System.Windows.Forms.ListBox();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblTicket = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.logoPBox)).BeginInit();
             this.SuspendLayout();
             // 
             // logoPBox
             // 
             this.logoPBox.Image = global::App_Employee.Properties.Resources.LOGO_Proshot;
-            this.logoPBox.Location = new System.Drawing.Point(502, 1);
-            this.logoPBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.logoPBox.Location = new System.Drawing.Point(458, 2);
+            this.logoPBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.logoPBox.Name = "logoPBox";
-            this.logoPBox.Size = new System.Drawing.Size(153, 121);
+            this.logoPBox.Size = new System.Drawing.Size(64, 64);
             this.logoPBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.logoPBox.TabIndex = 14;
             this.logoPBox.TabStop = false;
             // 
             // logOutBtn
             // 
-            this.logOutBtn.Location = new System.Drawing.Point(69, 385);
-            this.logOutBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.logOutBtn.Location = new System.Drawing.Point(52, 313);
             this.logOutBtn.Name = "logOutBtn";
-            this.logOutBtn.Size = new System.Drawing.Size(100, 28);
+            this.logOutBtn.Size = new System.Drawing.Size(75, 23);
             this.logOutBtn.TabIndex = 29;
             this.logOutBtn.Text = "Logout";
             this.logOutBtn.UseVisualStyleBackColor = true;
             this.logOutBtn.Click += new System.EventHandler(this.logOutBtn_Click_1);
             // 
-            // label5
+            // lblRfid
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(499, 152);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(39, 17);
-            this.label5.TabIndex = 41;
-            this.label5.Text = "RFID";
+            this.lblRfid.AutoSize = true;
+            this.lblRfid.Location = new System.Drawing.Point(374, 124);
+            this.lblRfid.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRfid.Name = "lblRfid";
+            this.lblRfid.Size = new System.Drawing.Size(32, 13);
+            this.lblRfid.TabIndex = 41;
+            this.lblRfid.Text = "RFID";
             // 
-            // searchLbl
+            // lblInfoRow3
             // 
-            this.searchLbl.AutoSize = true;
-            this.searchLbl.Location = new System.Drawing.Point(66, 105);
-            this.searchLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.searchLbl.Name = "searchLbl";
-            this.searchLbl.Size = new System.Drawing.Size(134, 17);
-            this.searchLbl.TabIndex = 31;
-            this.searchLbl.Text = "Search for a person";
+            this.lblInfoRow3.AutoSize = true;
+            this.lblInfoRow3.Location = new System.Drawing.Point(50, 85);
+            this.lblInfoRow3.Name = "lblInfoRow3";
+            this.lblInfoRow3.Size = new System.Drawing.Size(100, 13);
+            this.lblInfoRow3.TabIndex = 31;
+            this.lblInfoRow3.Text = "Search for a person";
             // 
             // giveTagBtn
             // 
-            this.giveTagBtn.Location = new System.Drawing.Point(529, 385);
-            this.giveTagBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.giveTagBtn.Location = new System.Drawing.Point(397, 313);
             this.giveTagBtn.Name = "giveTagBtn";
-            this.giveTagBtn.Size = new System.Drawing.Size(100, 28);
+            this.giveTagBtn.Size = new System.Drawing.Size(75, 23);
             this.giveTagBtn.TabIndex = 32;
             this.giveTagBtn.Text = "Give Tag";
             this.giveTagBtn.UseVisualStyleBackColor = true;
@@ -98,10 +96,9 @@
             // 
             // closeAccountBtn
             // 
-            this.closeAccountBtn.Location = new System.Drawing.Point(265, 385);
-            this.closeAccountBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.closeAccountBtn.Location = new System.Drawing.Point(199, 313);
             this.closeAccountBtn.Name = "closeAccountBtn";
-            this.closeAccountBtn.Size = new System.Drawing.Size(120, 28);
+            this.closeAccountBtn.Size = new System.Drawing.Size(90, 23);
             this.closeAccountBtn.TabIndex = 33;
             this.closeAccountBtn.Text = "Close Account";
             this.closeAccountBtn.UseVisualStyleBackColor = true;
@@ -109,91 +106,91 @@
             // 
             // payTicketBtn
             // 
-            this.payTicketBtn.Location = new System.Drawing.Point(276, 340);
-            this.payTicketBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.payTicketBtn.Location = new System.Drawing.Point(207, 276);
             this.payTicketBtn.Name = "payTicketBtn";
-            this.payTicketBtn.Size = new System.Drawing.Size(100, 28);
+            this.payTicketBtn.Size = new System.Drawing.Size(75, 23);
             this.payTicketBtn.TabIndex = 34;
             this.payTicketBtn.Text = "Pay Ticket";
             this.payTicketBtn.UseVisualStyleBackColor = true;
             this.payTicketBtn.Click += new System.EventHandler(this.payTicketBtn_Click_1);
             // 
-            // label1
+            // lblInfoRow1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 71);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(258, 17);
-            this.label1.TabIndex = 35;
-            this.label1.Text = "Approach the visitor\'s tag to the reader ";
+            this.lblInfoRow1.AutoSize = true;
+            this.lblInfoRow1.Location = new System.Drawing.Point(4, 58);
+            this.lblInfoRow1.Name = "lblInfoRow1";
+            this.lblInfoRow1.Size = new System.Drawing.Size(192, 13);
+            this.lblInfoRow1.TabIndex = 35;
+            this.lblInfoRow1.Text = "Approach the visitor\'s tag to the reader ";
             // 
             // visitorSearchTbox
             // 
-            this.visitorSearchTbox.Location = new System.Drawing.Point(69, 126);
-            this.visitorSearchTbox.Margin = new System.Windows.Forms.Padding(4);
+            this.visitorSearchTbox.Location = new System.Drawing.Point(52, 102);
             this.visitorSearchTbox.Name = "visitorSearchTbox";
-            this.visitorSearchTbox.Size = new System.Drawing.Size(559, 22);
+            this.visitorSearchTbox.Size = new System.Drawing.Size(420, 20);
             this.visitorSearchTbox.TabIndex = 30;
             this.visitorSearchTbox.TextChanged += new System.EventHandler(this.visitorSearchTbox_TextChanged_1);
             // 
-            // label2
+            // lblInfoRow2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(118, 88);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(21, 17);
-            this.label2.TabIndex = 37;
-            this.label2.Text = "or";
+            this.lblInfoRow2.AutoSize = true;
+            this.lblInfoRow2.Location = new System.Drawing.Point(88, 72);
+            this.lblInfoRow2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblInfoRow2.Name = "lblInfoRow2";
+            this.lblInfoRow2.Size = new System.Drawing.Size(16, 13);
+            this.lblInfoRow2.TabIndex = 37;
+            this.lblInfoRow2.Text = "or";
             // 
-            // listBox1
+            // lbPeople
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(69, 169);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(559, 148);
-            this.listBox1.TabIndex = 38;
+            this.lbPeople.FormattingEnabled = true;
+            this.lbPeople.Location = new System.Drawing.Point(52, 137);
+            this.lbPeople.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbPeople.Name = "lbPeople";
+            this.lbPeople.Size = new System.Drawing.Size(420, 121);
+            this.lbPeople.TabIndex = 38;
             // 
-            // label3
+            // lblName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(80, 152);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 17);
-            this.label3.TabIndex = 39;
-            this.label3.Text = "Name";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(60, 124);
+            this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(35, 13);
+            this.lblName.TabIndex = 39;
+            this.lblName.Text = "Name";
             // 
-            // label4
+            // lblTicket
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(313, 152);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 17);
-            this.label4.TabIndex = 40;
-            this.label4.Text = "Ticket";
+            this.lblTicket.AutoSize = true;
+            this.lblTicket.Location = new System.Drawing.Point(235, 124);
+            this.lblTicket.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTicket.Name = "lblTicket";
+            this.lblTicket.Size = new System.Drawing.Size(37, 13);
+            this.lblTicket.TabIndex = 40;
+            this.lblTicket.Text = "Ticket";
             // 
             // InformationDeskForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(695, 473);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(521, 384);
+            this.Controls.Add(this.lblRfid);
+            this.Controls.Add(this.lblTicket);
+            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.lbPeople);
+            this.Controls.Add(this.lblInfoRow2);
+            this.Controls.Add(this.lblInfoRow1);
             this.Controls.Add(this.payTicketBtn);
             this.Controls.Add(this.closeAccountBtn);
             this.Controls.Add(this.giveTagBtn);
-            this.Controls.Add(this.searchLbl);
+            this.Controls.Add(this.lblInfoRow3);
             this.Controls.Add(this.visitorSearchTbox);
             this.Controls.Add(this.logOutBtn);
             this.Controls.Add(this.logoPBox);
-            this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "InformationDeskForm";
-            this.Text = "InformationDeskForm";
+            this.Text = "Information Desk";
             ((System.ComponentModel.ISupportInitialize)(this.logoPBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -204,17 +201,17 @@
 
         private System.Windows.Forms.PictureBox logoPBox;
         private System.Windows.Forms.Button logOutBtn;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label searchLbl;
+        private System.Windows.Forms.Label lblRfid;
+        private System.Windows.Forms.Label lblInfoRow3;
         private System.Windows.Forms.Button giveTagBtn;
         private System.Windows.Forms.Button closeAccountBtn;
         private System.Windows.Forms.Button payTicketBtn;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblInfoRow1;
         private System.Windows.Forms.TextBox visitorSearchTbox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblInfoRow2;
+        private System.Windows.Forms.ListBox lbPeople;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblTicket;
 
     }
 }

@@ -19,16 +19,34 @@ namespace App_Employee
         {
             InitializeComponent();
             this.pc = pc;
-            this.tasks = pc.selected().Tasks;
+            this.tasks = pc.Selected().Tasks;
             foreach (AppointmentTask task in tasks)
             {
-                listBox1.Items.Add(task);
+                lbTasks.Items.Add(task);
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
+            AppointmentTask task = new AppointmentTask(tbName.Text, tbDescr.Text, nudPrice.Value, pc.Selected()).Create() as AppointmentTask;
+            if(!Database.HadAnError)
+            this.lbTasks.Items.Add(task);
+        }
 
+        private void btnRem_Click(object sender, EventArgs e)
+        {
+            AppointmentTask selected = this.lbTasks.SelectedItem as AppointmentTask;
+            Database.Delete(selected, "|T|.id = {0}", selected.ID);
+            if(!Database.HadAnError)
+                this.lbTasks.Items.RemoveAt(this.lbTasks.SelectedIndex);
+        }
+
+        private void lbTasks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lbTasks.SelectedItem == null)
+                btnRem.Enabled = false;
+            else
+                btnRem.Enabled = true;
         }
     }
 }

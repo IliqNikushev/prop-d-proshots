@@ -13,31 +13,37 @@ namespace App_Employee
 {
     public partial class RentForm : App_Common.Menu
     {
-        
+
         List<Classes.RentableItem> selectedItems = new List<Classes.RentableItem>();
         List<Classes.RentableItem> AllItems = Classes.Database.All<Classes.RentableItem>();
         List<RentableItem> removedItems = new List<RentableItem>();
+
+        private RentableItemHistory currentSelectedRentedItem { get { return this.cartListView.SelectedItem as RentableItemHistory; } }
+
         Visitor activeVis;
+
         public decimal Totalprice
         {
             get
             {
                 decimal sum = 0;
-                foreach(var item in selectedItems)
+                foreach (var i in lbCart.Items)
                 {
-                    TimeSpan differene = date.Value - DateTime.Now;
-                    sum += item.Price*Convert.ToDecimal(differene.TotalHours);
+                    RentableItem item = i as RentableItem;
+                    TimeSpan differene = date.Value - DateTime.Today.AddHours(DateTime.Now.Hour);
+                    sum += item.Price * (decimal)differene.TotalHours;
                 }
                 sum = Decimal.Round(sum, 2);
                 return sum;
             }
         }
+
         public RentForm(App_Common.Menu parent)
             : base(parent)
         {
-            
+
             InitializeComponent();
-            
+
             plItems.AutoScroll = true;
             int posX = 0;
             int posY = 0;
@@ -89,7 +95,6 @@ namespace App_Employee
                 {
                     c += 1;
                     stock.Text = (item.InStock - c).ToString();
-                    selectedItems.Add(item);
                     lbCart.Items.Add(item);
                     lbPrice.Text = Totalprice + App_Common.Constants.Currency;
                 };
@@ -98,20 +103,21 @@ namespace App_Employee
                         if (item != lbCart.SelectedItem as RentableItem)
                             return;
                         c -= 1;
-                        lbCart.Items.Remove(lbCart.SelectedItem);
+                        lbCart.Items.RemoveAt(lbCart.SelectedIndex);
                         stock.Text = (item.InStock - c).ToString();
                         lbPrice.Text = Totalprice + App_Common.Constants.Currency;
                     };
                 btnConfirm.Click += (x, yy) =>
                     {
                         if (activeVis == null) return;
-                        if (!selectedItems.Contains(item))
-                            return;
+                        bool contained = false;
                         while (lbCart.Items.Contains(item))
                         {
-                            cartListView.Items.Add(new RentableItemHistory(item,activeVis,""));
+                            contained = true;
+                            cartListView.Items.Add(new RentableItemHistory(item, activeVis, ""));
                             lbCart.Items.Remove(item);
                         }
+                        if (!contained) return;
                         new RentableItemHistory(item, activeVis, "").Create();
                         Database.ExecuteSQL("UPDATE `rentableitems` SET InStock = {0} WHERE Item_ID = {1}", item.InStock - c, item.ID);
                     };
@@ -122,7 +128,10 @@ namespace App_Employee
                     reader.OnDetect += rf_OnDetect;
                 }
             }
+
+            rf_OnDetect((Visitor.Authenticate("tester", "test") as Visitor).RFID);
         }
+
         void rf_OnDetect(string tag)
         {
             activeVis = Visitor.Authenticate(tag);
@@ -133,19 +142,65 @@ namespace App_Employee
                     cartListView.Items.Clear();
                     tbID.Text = tag;
                     tbFullname.Text = activeVis.FullName;
-                    foreach(var item in activeVis.RentedItems)
+                    foreach (var item in activeVis.RentedItems)
                     {
-                        cartListView.Items.Add(item); 
+                        if (item.IsReturned) continue;
+                        cartListView.Items.Add(item);
                     }
                 }));
         }
 
         private void btnRent_Click(object sender, EventArgs e)
         {
-            if(activeVis==null)
+            if (activeVis == null)
             {
                 MessageBox.Show("No active visitors found! Please approach the card.");
             }
+            if (lbCart.Items.Count == 0)
+            {
+                MessageBox.Show("No items to rent selected");
+            }
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void cartListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cartListView.SelectedItem == null)
+                btnReturnItem.Enabled = false;
+            else
+                btnReturnItem.Enabled = true;
+        }
+
+        private void btnReturnItem_Click(object sender, EventArgs e)
+        {
+            if (currentSelectedRentedItem == null) return;
+            if (activeVis == null)
+            {
+                MessageBox.Show("No active visitors found! Please approach the card.");
+                return;
+            }
+            currentSelectedRentedItem.Return(activeVis);
+            if (Database.HadAnError)
+                return;
+            MessageBox.Show("Item successfully returned");
+
+            this.cartListView.Items.Remove(currentSelectedRentedItem);
+        }
+
+        private void lbCart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lbCart.SelectedItem == null)
+                btnReturn.Enabled = false;
+            else
+                btnReturn.Enabled = true;
+        }
+
+        private void date_ValueChanged(object sender, EventArgs e)
+        {
+            lbPrice.Text = Totalprice + App_Common.Constants.Currency;
         }
     }
 }
