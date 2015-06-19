@@ -224,7 +224,7 @@ namespace Classes
                 }
                 catch (Exception ex)
                 {
-                    LogResult(ex.GetType().Name + " \n " + ex.Message);
+                    LogResult(ex.GetType().Name +" \n " + ex.Message+"\n "+ex.StackTrace);
                     if (OnUnableToProcessSQL != null)
                         OnUnableToProcessSQL(ex, sql);
                     if (testing)
@@ -256,7 +256,7 @@ namespace Classes
                 catch (Exception ex)
                 {
                     if (blockInsertForWarning) return -1;
-                    LogResult(ex.GetType().Name + " \n " + ex.Message);
+                    LogResult(ex.GetType().Name + " \n " + ex.Message + "\n " + ex.StackTrace);
                     if (OnUnableToProcessSQL != null)
                         OnUnableToProcessSQL(ex, sql);
                     if (testing)
@@ -298,7 +298,7 @@ namespace Classes
                 catch (Exception ex)
                 {
                     if (blockInsertForWarning) return;
-                    LogResult(ex.GetType().Name + " \n " + ex.Message);
+                    LogResult(ex.GetType().Name + " \n " + ex.Message + "\n " + ex.StackTrace);
                     if(OnUnableToProcessSQL != null)
                         OnUnableToProcessSQL(ex, sql);
                     if (testing)

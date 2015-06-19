@@ -11,7 +11,7 @@ namespace Classes
         [ExpectedException(typeof(Record.NotToBeSentToDatabaseException))]
         public override void DatabaseCreate()
         {
-            new Visitor(0, null, null, null, null, null, null, 0, null, false, false).Create();
+            new Visitor(0, null, null, null, null, null, null, 0, null, false,false).Create();
         }
 
         [TestMethod]

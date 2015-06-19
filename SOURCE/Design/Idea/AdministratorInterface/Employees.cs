@@ -14,13 +14,15 @@ namespace Design.Idea.AdministratorInterface
     public partial class Employees : HomePageWithMap
     {
         
-        private List<Classes.Employee> employee;
+        private List<Classes.Employee> employees;
+        List<Classes.Employee> EmployeeToShow;
         private List<Classes.ShopWorkplace> shopjob;
         private Classes.Employee currentEmployee;
         public Employees(Form parent) : base()
         {
             InitializeComponent();
-            this.employee = Classes.Database.All<Classes.Employee>();
+            this.employees = Classes.Database.All<Classes.Employee>();
+            EmployeeToShow = employees;
             currentEmployee = LoggedInUser as Employee;
             this.comboBoxDuty.Items.Clear();
             this.comboBoxDuty.Items.Add("ALL");
@@ -52,18 +54,31 @@ namespace Design.Idea.AdministratorInterface
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<Classes.Employee> EmployeeToShow = this.employee;
-            if (checkBoxEmployee.Checked)
-            {
-                EmployeeToShow = EmployeeToShow.Where(x => x.FullName.Contains(textBoxEmployee.Text)).ToList();
-            }
+            
+           
+           
+            
+            EmployeeToShow = employees.Where(x => x.FullName.Contains(textBoxEmployee.Text)).ToList();
+            
             //search
             
-            else if (comboBoxDuty.SelectedItem != null && comboBoxDuty.SelectedItem.ToString() != "All" )
-                EmployeeToShow = EmployeeToShow.Where(x => x.Duty == (comboBoxDuty.SelectedItem ).ToString()).ToList();
+             
 
            
 
+            this.listBox1.Items.Clear();
+            this.listBox1.Items.AddRange(EmployeeToShow.ToArray());
+        }
+
+        private void comboBoxDuty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxDuty.SelectedItem.ToString()=="ALL")
+            {
+                EmployeeToShow = employees;
+            }
+
+            else if (comboBoxDuty.SelectedItem != null && comboBoxDuty.SelectedItem.ToString() != "ALL")
+                EmployeeToShow = employees.Where(x => x.Duty == (comboBoxDuty.SelectedItem).ToString()).ToList();
             this.listBox1.Items.Clear();
             this.listBox1.Items.AddRange(EmployeeToShow.ToArray());
         }
