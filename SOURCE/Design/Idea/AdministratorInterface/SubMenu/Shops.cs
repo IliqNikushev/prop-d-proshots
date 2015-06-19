@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Classes;
 
 namespace Design.Idea.AdministratorInterface.SubMenu
 {
@@ -15,6 +16,12 @@ namespace Design.Idea.AdministratorInterface.SubMenu
         public Shops()
         {
             InitializeComponent();
+             object r1 = Database.ExecuteScalar("Select Sum(Price*Quantity) from Shopitems Group by Shop_id having Shop_id= 1");
+             labelShop1.Text = "Profit: " + r1.ToString() + " €";
+             object r2 = Database.ExecuteScalar("Select Sum(Price*Quantity) from Shopitems Group by Shop_id having Shop_id= 2");
+             labelShop2.Text = "Profit: " + r2.ToString() + " €";
+             object r3 = Database.ExecuteScalar("Select Sum(Price*Quantity) from Shopitems Group by Shop_id having Shop_id= 3");
+             labelShop3.Text = "Profit: " + r3.ToString() + " €";
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -127,17 +134,17 @@ namespace Design.Idea.AdministratorInterface.SubMenu
 
         private void pictureBox4_Click_1(object sender, EventArgs e)
         {
-            new ShopInformation(Classes.Database.Find<Classes.ShopWorkplace>("Shops.id = 3")).Show();
+            new ShopInformation(Classes.Database.Find<Classes.ShopWorkplace>("Shops.id = 1")).Show();
         }
 
         private void pictureBox8_Click_1(object sender, EventArgs e)
         {
-            new ShopInformation().Show();
+            new ShopInformation(Classes.Database.Find<Classes.ShopWorkplace>("Shops.id = 2")).Show();
         }
 
         private void pictureBox5_Click_1(object sender, EventArgs e)
         {
-            new ShopInformation().Show();
+            new ShopInformation(Classes.Database.Find<Classes.ShopWorkplace>("Shops.id = 3")).Show();
         }
     }
 }

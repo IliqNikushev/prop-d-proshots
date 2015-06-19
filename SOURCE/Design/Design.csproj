@@ -119,6 +119,12 @@
     <Compile Include="Idea\AdministratorInterface\Visitors.Designer.cs">
       <DependentUpon>Visitors.cs</DependentUpon>
     </Compile>
+    <Compile Include="Idea\AdministratorInterface\Warnnings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idea\AdministratorInterface\Warnnings.Designer.cs">
+      <DependentUpon>Warnnings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Idea\EmployeeInterface\Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -322,6 +328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\AdministratorInterface\SubMenu\Shops.resx">
       <DependentUpon>Shops.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Idea\AdministratorInterface\Warnnings.resx">
+      <DependentUpon>Warnnings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Idea\EmployeeInterface\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>

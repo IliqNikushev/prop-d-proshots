@@ -169,7 +169,7 @@
             // pictureBox11
             // 
             this.pictureBox11.Image = global::Design.Properties.Resources.LOGO_Proshot;
-            this.pictureBox11.Location = new System.Drawing.Point(389, 46);
+            this.pictureBox11.Location = new System.Drawing.Point(165, 5);
             this.pictureBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(150, 125);

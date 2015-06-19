@@ -17,18 +17,20 @@ namespace Design.Idea.AdministratorInterface
         { 
             InitializeComponent();
             object r = Database.ExecuteScalar("select (COALESCE(({0}),0))+(COALESCE(({1}),0))+(COALESCE(({2}),0)) as sum from dual;",
-                                                             "Select sum(amount) from " + Database.TableName<Deposit>().Name,
-                                                             "SELECT sum(totalamount) from " + Database.TableName<ReceiptItem>().Name,
-                                                             "SELECT sum(price) FROM "+ Database.TableName<AppointmentTask>().Name
+                                                             "Select sum(amount) from " + Database.TableFor<Deposit>().Name,
+                                                             "SELECT sum(totalamount) from " + Database.TableFor<ReceiptItem>().Name,
+                                                             "SELECT sum(price) FROM "+ Database.TableFor<AppointmentTask>().Name
                                                              );
 
             decimal amount = (decimal) r;
             string totalVisitor = Convert.ToString(Database.Visitors.Count);
-            string logedin= Convert.ToString(Database.Visitors.Where(x=>x.))
+            //string logedin= Convert.ToString(Database.Visitors.Where(x=>x.log));
+            object VisitorInEvent = Database.ExecuteScalar("Select Count(*) from Visitors Where IsInTheEvent= 1" );
+            labelLogedInVisitor.Text = "In event: " + VisitorInEvent.ToString();
             labeltotalVisitor.Text = "Total Visitors: "+totalVisitor;
             int warn= Database.Warning.Count;
             labelWarning.Text +=  " " + warn;
-            labelMoney.Text = "Total: "+amount;
+            labelMoney.Text = "Total: " + amount + " €";
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

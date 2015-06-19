@@ -111,10 +111,11 @@
             this.comboBoxDuty.FormattingEnabled = true;
             this.comboBoxDuty.Items.AddRange(new object[] {
             "All",
-            "IT Servic",
-            "PC Doctor",
-            "Information kiosk",
-            "Shops"});
+            "cashier",
+            "information",
+            "pcdoctor",
+            "rent",
+            "shopmanager"});
             this.comboBoxDuty.Location = new System.Drawing.Point(20, 50);
             this.comboBoxDuty.Name = "comboBoxDuty";
             this.comboBoxDuty.Size = new System.Drawing.Size(121, 24);

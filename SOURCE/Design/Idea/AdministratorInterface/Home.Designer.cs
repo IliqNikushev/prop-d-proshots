@@ -36,7 +36,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.labelWarning = new System.Windows.Forms.Label();
             this.labelMoney = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.labelLogedInVisitor = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -130,7 +130,7 @@
             // labelWarning
             // 
             this.labelWarning.AutoSize = true;
-            this.labelWarning.Location = new System.Drawing.Point(143, 479);
+            this.labelWarning.Location = new System.Drawing.Point(124, 476);
             this.labelWarning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelWarning.Name = "labelWarning";
             this.labelWarning.Size = new System.Drawing.Size(76, 17);
@@ -147,20 +147,20 @@
             this.labelMoney.TabIndex = 17;
             this.labelMoney.Text = "Money";
             // 
-            // label10
+            // labelLogedInVisitor
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(277, 479);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(90, 17);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "Total Visitors";
+            this.labelLogedInVisitor.AutoSize = true;
+            this.labelLogedInVisitor.Location = new System.Drawing.Point(245, 459);
+            this.labelLogedInVisitor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelLogedInVisitor.Name = "labelLogedInVisitor";
+            this.labelLogedInVisitor.Size = new System.Drawing.Size(82, 17);
+            this.labelLogedInVisitor.TabIndex = 18;
+            this.labelLogedInVisitor.Text = "In the event";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 388);
+            this.label1.Location = new System.Drawing.Point(8, 379);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 17);
@@ -174,7 +174,7 @@
             this.pictureBox9.Location = new System.Drawing.Point(10, 419);
             this.pictureBox9.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(76, 55);
+            this.pictureBox9.Size = new System.Drawing.Size(60, 50);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox9.TabIndex = 21;
             this.pictureBox9.TabStop = false;
@@ -183,7 +183,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Design.Properties.Resources.tent;
-            this.pictureBox1.Location = new System.Drawing.Point(7, 284);
+            this.pictureBox1.Location = new System.Drawing.Point(7, 275);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 100);
@@ -195,10 +195,10 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = global::Design.Properties.Resources.warning38;
-            this.pictureBox7.Location = new System.Drawing.Point(145, 419);
+            this.pictureBox7.Location = new System.Drawing.Point(127, 419);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(71, 58);
+            this.pictureBox7.Size = new System.Drawing.Size(60, 50);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 11;
             this.pictureBox7.TabStop = false;
@@ -280,7 +280,7 @@
             // 
             this.groupBox1.Controls.Add(this.labeltotalVisitor);
             this.groupBox1.Controls.Add(this.pictureBox9);
-            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.labelLogedInVisitor);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.labelMoney);
             this.groupBox1.Controls.Add(this.pictureBox1);
@@ -303,22 +303,22 @@
             this.groupBox1.Size = new System.Drawing.Size(367, 513);
             this.groupBox1.TabIndex = 41;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Menu";
             // 
             // labeltotalVisitor
             // 
             this.labeltotalVisitor.AutoSize = true;
-            this.labeltotalVisitor.Location = new System.Drawing.Point(288, 462);
+            this.labeltotalVisitor.Location = new System.Drawing.Point(245, 476);
             this.labeltotalVisitor.Name = "labeltotalVisitor";
-            this.labeltotalVisitor.Size = new System.Drawing.Size(58, 17);
+            this.labeltotalVisitor.Size = new System.Drawing.Size(40, 17);
             this.labeltotalVisitor.TabIndex = 22;
-            this.labeltotalVisitor.Text = "Number";
+            this.labeltotalVisitor.Text = "Total";
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 653);
+            this.ClientSize = new System.Drawing.Size(755, 670);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Home";
@@ -358,7 +358,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label labelWarning;
         private System.Windows.Forms.Label labelMoney;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labelLogedInVisitor;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox9;
