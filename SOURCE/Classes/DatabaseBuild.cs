@@ -212,11 +212,13 @@ namespace Classes
             {
                 CreatePayPalMachine(reader);
                 CreateEventLandmark(reader);
+                CreateTentPitch(reader);
             }
             switch (type.Replace('-', ' ').ToLower())
             {
                 case "paypal": return CreatePayPalMachine(reader);
                 case "event": return CreateEventLandmark(reader);
+                case "tent": return CreateTentPitch(reader);
             }
 
             try

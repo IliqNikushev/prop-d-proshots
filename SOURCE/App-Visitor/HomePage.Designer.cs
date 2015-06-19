@@ -221,10 +221,10 @@
             this.Margin = new System.Windows.Forms.Padding(12, 9, 12, 9);
             this.Name = "HomePage";
             this.Text = "HomePage";
-            this.Controls.SetChildIndex(this.findByNameLbl, 0);
-            this.Controls.SetChildIndex(this.findByTypeTb, 0);
-            this.Controls.SetChildIndex(this.findByTypeLbl, 0);
-            this.Controls.SetChildIndex(this.findByNameTb, 0);
+            //this.Controls.SetChildIndex(this.findByNameLbl, 0);
+            //this.Controls.SetChildIndex(this.findByTypeTb, 0);
+            //this.Controls.SetChildIndex(this.findByTypeLbl, 0);
+            //this.Controls.SetChildIndex(this.findByNameTb, 0);
             this.Controls.SetChildIndex(this.AppointmentsPicture, 0);
             this.Controls.SetChildIndex(this.PurchasedPicture, 0);
             this.Controls.SetChildIndex(this.BookedPicture, 0);

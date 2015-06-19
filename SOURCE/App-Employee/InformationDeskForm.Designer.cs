@@ -64,6 +64,7 @@
             this.logOutBtn.TabIndex = 29;
             this.logOutBtn.Text = "Logout";
             this.logOutBtn.UseVisualStyleBackColor = true;
+            this.logOutBtn.Click += new System.EventHandler(this.logOutBtn_Click_1);
             // 
             // label5
             // 
@@ -93,6 +94,7 @@
             this.giveTagBtn.TabIndex = 32;
             this.giveTagBtn.Text = "Give Tag";
             this.giveTagBtn.UseVisualStyleBackColor = true;
+            this.giveTagBtn.Click += new System.EventHandler(this.giveTagBtn_Click_1);
             // 
             // closeAccountBtn
             // 
@@ -103,6 +105,7 @@
             this.closeAccountBtn.TabIndex = 33;
             this.closeAccountBtn.Text = "Close Account";
             this.closeAccountBtn.UseVisualStyleBackColor = true;
+            this.closeAccountBtn.Click += new System.EventHandler(this.closeAccountBtn_Click_1);
             // 
             // payTicketBtn
             // 
@@ -113,6 +116,7 @@
             this.payTicketBtn.TabIndex = 34;
             this.payTicketBtn.Text = "Pay Ticket";
             this.payTicketBtn.UseVisualStyleBackColor = true;
+            this.payTicketBtn.Click += new System.EventHandler(this.payTicketBtn_Click_1);
             // 
             // label1
             // 
@@ -131,6 +135,7 @@
             this.visitorSearchTbox.Name = "visitorSearchTbox";
             this.visitorSearchTbox.Size = new System.Drawing.Size(559, 22);
             this.visitorSearchTbox.TabIndex = 30;
+            this.visitorSearchTbox.TextChanged += new System.EventHandler(this.visitorSearchTbox_TextChanged_1);
             // 
             // label2
             // 

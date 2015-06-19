@@ -35,8 +35,8 @@ namespace Classes
             this.RentedBy = rentedBy;
             this.RentedAt = rentedAt;
             this.ReturnedAt = returnedAt;
-            this.ReturnedBy = ReturnedBy;
-            this.RentedTill = RentedTill;
+            this.ReturnedBy = returnedBy;
+            this.RentedTill = rentedTill;
             this.Notes = notes;
         }
 
@@ -46,12 +46,11 @@ namespace Classes
 
         public void Return(Visitor returner, string notes = "")
         {
-            this.RentedBy = returner;
+            this.ReturnedBy = returner;
             this.ReturnedAt = DateTime.Now;
             this.Notes += notes;
-            throw new NotImplementedException();
-
-            //update
+            
+            Database.Update(this, "ReturnedAt = {0}, ReturnedBy = {1}".Arg(this.ReturnedAt, this.ReturnedBy), "|T|.id = {0}".Arg(this.ID));
         }
 
         public void ExtendPeriod(Visitor visitor, int days, int hours, int minutes, string reason = "")
