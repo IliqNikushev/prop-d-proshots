@@ -17,7 +17,7 @@ namespace Design.Idea.AdministratorInterface.SubMenu
         private Classes.ShopWorkplace shop;
         private List<Classes.Visitor> visitors = new List<Classes.Visitor>();
 
-        public ShopInformation(Classes.ShopWorkplace shop = null)
+        public ShopInformation(Classes.ShopWorkplace shop)
         {
             InitializeComponent();
             if (shop == null)
@@ -41,6 +41,7 @@ namespace Design.Idea.AdministratorInterface.SubMenu
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+
             new Shops().Show();
         }
 

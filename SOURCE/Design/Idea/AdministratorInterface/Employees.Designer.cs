@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBoxEmployee = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.textBoxEmployee = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,7 +49,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBoxEmployee);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.textBoxEmployee);
             this.groupBox1.Controls.Add(this.label1);
@@ -70,15 +70,14 @@
             this.groupBox1.Text = "Overview Sorted by:";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // checkBoxEmployee
+            // label2
             // 
-            this.checkBoxEmployee.AutoSize = true;
-            this.checkBoxEmployee.Location = new System.Drawing.Point(153, 26);
-            this.checkBoxEmployee.Name = "checkBoxEmployee";
-            this.checkBoxEmployee.Size = new System.Drawing.Size(133, 21);
-            this.checkBoxEmployee.TabIndex = 44;
-            this.checkBoxEmployee.Text = "Employee Name";
-            this.checkBoxEmployee.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(150, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 17);
+            this.label2.TabIndex = 36;
+            this.label2.Text = "Employee Name:";
             // 
             // button1
             // 
@@ -120,6 +119,7 @@
             this.comboBoxDuty.Name = "comboBoxDuty";
             this.comboBoxDuty.Size = new System.Drawing.Size(121, 24);
             this.comboBoxDuty.TabIndex = 31;
+            this.comboBoxDuty.SelectedIndexChanged += new System.EventHandler(this.comboBoxDuty_SelectedIndexChanged);
             // 
             // listBox1
             // 
@@ -226,7 +226,7 @@
         private System.Windows.Forms.TextBox textBoxEmployee;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.CheckBox checkBoxEmployee;
+        private System.Windows.Forms.Label label2;
 
     }
 }

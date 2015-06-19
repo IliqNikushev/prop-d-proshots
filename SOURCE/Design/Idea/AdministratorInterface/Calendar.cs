@@ -55,7 +55,7 @@ namespace Design.Idea.AdministratorInterface
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            labelDescription.Text = (listBox1.SelectedItem as EventLandmark).Description;
+            labelDescription.Text ="Description: " +(listBox1.SelectedItem as EventLandmark).Description;
         }
 
         private void button1_Click(object sender, EventArgs e)

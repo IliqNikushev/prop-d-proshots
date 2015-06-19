@@ -542,10 +542,11 @@ namespace Classes
 
             System.DateTime rentedTill = reader.Get<System.DateTime>("RentedTill");
             
-            reader.AddPrefix("returnedBy");
             Visitor returnedBy = null;
             if(reader.HasColumnAndNotNull("ticket"))
                 returnedBy = CreateVisitor(reader);
+
+            reader.AddPrefix("returnedBy");
             reader.RemovePrefix();
 
             System.DateTime returnedAt = reader.Get<System.DateTime>("ReturnedAt");

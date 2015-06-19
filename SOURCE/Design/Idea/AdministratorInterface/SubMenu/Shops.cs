@@ -16,12 +16,66 @@ namespace Design.Idea.AdministratorInterface.SubMenu
         public Shops()
         {
             InitializeComponent();
-             object r1 = Database.ExecuteScalar("Select Sum(Price*Quantity) from Shopitems Group by Shop_id having Shop_id= 1");
-             labelShop1.Text = "Profit: " + r1.ToString() + " €";
-             object r2 = Database.ExecuteScalar("Select Sum(Price*Quantity) from Shopitems Group by Shop_id having Shop_id= 2");
-             labelShop2.Text = "Profit: " + r2.ToString() + " €";
-             object r3 = Database.ExecuteScalar("Select Sum(Price*Quantity) from Shopitems Group by Shop_id having Shop_id= 3");
-             labelShop3.Text = "Profit: " + r3.ToString() + " €";
+             
+             int xC = 0;
+             int yC = 0;
+             int countShops = 0;
+             Panel panel = new Panel();
+             panel.Left = 22;
+             panel.Top = 177;
+             panel.Width = 300;
+             panel.Height = 450;
+             panel.AutoScroll = true;
+             this.Controls.Add(panel);
+             
+
+                 foreach (var item in Database.Shops)
+                 {
+                     
+                     countShops++;
+                     PictureBox p = new PictureBox();
+                     p.ImageLocation = item.Icon;
+                     panel.Controls.Add(p);
+                     p.SizeMode = PictureBoxSizeMode.StretchImage;
+                     p.Width = 128;
+                     p.Height = 128;
+                     p.Left = xC;
+                     p.Top = yC;
+                     ShopWorkplace shop = item;
+                     p.Click += (x, y) => new ShopInformation(shop).Show();
+                     object rr = Database.ExecuteScalar("SELECT sum(TotalAmount) FROM `receiptitems` WHERE item_id in(select id from ShopItems where shopitems.shop_id= {0});", item.ID);
+                     if (rr==null)
+                     {
+                         rr = 0;
+                     }
+                     Label l = new Label();
+                     l.Left = xC;
+                     l.Top = yC + 128;
+                     l.Text = item.Label;
+                     panel.Controls.Add(l);
+                     Label prof = new Label();
+                     prof.Left = xC;
+                     prof.Top =yC+ 138 + l.Height;
+                     prof.Text = "Profit: " + rr.ToString()+Constants.Currency;
+                     panel.Controls.Add(prof);
+                     xC += 150;
+                     if (countShops % 2 == 0)
+                     {
+                         yC += 200;
+                         xC = 0;
+                     }
+
+                 }
+             PictureBox q = new PictureBox();
+             q.Image = Properties.Resources.KFC;
+             panel.Controls.Add(q);
+             q.SizeMode = PictureBoxSizeMode.StretchImage;
+             q.Width = 128;
+             q.Height = 128;
+             q.Left = xC;
+             q.Top = yC;
+             q.Parent = null;
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -134,17 +188,17 @@ namespace Design.Idea.AdministratorInterface.SubMenu
 
         private void pictureBox4_Click_1(object sender, EventArgs e)
         {
-            new ShopInformation(Classes.Database.Find<Classes.ShopWorkplace>("Shops.id = 1")).Show();
+            new ShopInformation(Classes.Database.Find<Classes.ShopWorkplace>("|T|.id = 41")).Show();
         }
 
         private void pictureBox8_Click_1(object sender, EventArgs e)
         {
-            new ShopInformation(Classes.Database.Find<Classes.ShopWorkplace>("Shops.id = 2")).Show();
+            new ShopInformation(Classes.Database.Find<Classes.ShopWorkplace>("|T|.id = 41")).Show();
         }
 
         private void pictureBox5_Click_1(object sender, EventArgs e)
         {
-            new ShopInformation(Classes.Database.Find<Classes.ShopWorkplace>("Shops.id = 3")).Show();
+            new ShopInformation(Classes.Database.Find<Classes.ShopWorkplace>("|T|.id = 43")).Show();
         }
     }
 }
