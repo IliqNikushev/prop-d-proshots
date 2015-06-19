@@ -20,7 +20,7 @@ namespace Classes
                     //return Database.PathToAthenaUploads + picture;
                     return picture;
                 else
-                return Database.PathToAthenaUploads + picture;
+                    return Database.PathToAthenaUploads + picture;
             }
             set { this.picture = value; }
         }
@@ -87,10 +87,10 @@ namespace Classes
         {
             int Count = 0;
             foreach (RentableItemHistory I in RentedItems)
-	{
-		 Count += 1;
-	}
-                if (Count == 0)
+            {
+                Count += 1;
+            }
+            if (Count == 0)
             {
                 Database.Delete(this, "Visitors.user_id = " + this.ID);
             }
@@ -112,25 +112,40 @@ namespace Classes
             if (amount < 0) throw new InvalidOperationException("Balance cannot be negative");
 
             Database.Update(this, "balance = {0}".Arg(amount), "|T|.user_id = {0}".Arg(this.ID));
-            new LogMessage("change balance", "by:"+this.ID + " reason: " + reason).Create();
+            new LogMessage("change balance", "by:" + this.ID + " reason: " + reason).Create();
         }
 
-        public void PayTicket(decimal VisitorBalance,decimal Price)
+        public void PayTicket(decimal VisitorBalance, decimal Price)
         {
 
-                decimal EndBalance = 0;
-                if (VisitorBalance >= Price)
-                {
-                    EndBalance = VisitorBalance - Price;
-                
+            decimal EndBalance = 0;
+            if (VisitorBalance >= Price)
+            {
+                EndBalance = VisitorBalance - Price;
+
                 Database.Update(this, "Balance = " + EndBalance.ToString(), "visitors.user_id = " + this.ID);
                 Database.Update(this, "Ticket = 1", "visitors.user_id = " + this.ID);
-                    }
-                else
-                {
-                    throw new Exception ("User doesn't have enough money!");
-                }
-            
+            }
+            else
+            {
+                throw new Exception("User doesn't have enough money!");
+            }
+        }
+
+        public void CheckIn()
+        {
+            ToggleCheck(true);
+        }
+
+        public void CheckOut()
+        {
+            ToggleCheck(false);
+        }
+
+        private void ToggleCheck(bool state)
+        {
+            this.IsInTheEvent = state;
+            Database.Update(this, "isInTheEvent = {0}".Arg(state), "|T|.user_id = {0}".Arg(this.ID));
         }
     }
 }
