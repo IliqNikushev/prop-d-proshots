@@ -9,6 +9,34 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Classes;
 
+<<<<<<< HEAD
+namespace Design.Idea.AdministratorInterface
+{
+    public partial class Home : App_Common.HomePageWithMap
+    {
+        public Home()
+            : base()
+        {
+            InitializeComponent();
+            object r = Database.ExecuteScalar("select (COALESCE(({0}),0))+(COALESCE(({1}),0))+(COALESCE(({2}),0)) as sum from dual;",
+                                                             "Select sum(amount) from " + Database.TableFor<Deposit>().Name,
+                                                             "SELECT sum(totalamount) from " + Database.TableFor<ReceiptItem>().Name,
+                                                             "SELECT sum(price) FROM " + Database.TableFor<AppointmentTask>().Name
+                                                             );
+
+            decimal amount = (decimal)r;
+            string totalVisitor = Convert.ToString(Database.Visitors.Count);
+            //string logedin= Convert.ToString(Database.Visitors.Where(x=>x.log));
+            object VisitorInEvent = Database.ExecuteScalar("Select Count(*) from Visitors Where IsInTheEvent= 1");
+            labelLogedInVisitor.Text = "In event: " + VisitorInEvent.ToString();
+            labeltotalVisitor.Text = "Total Visitors: " + totalVisitor;
+            int warn = Database.Warning.Count;
+            labelWarning.Text += " " + warn;
+            labelMoney.Text = "Total: " + amount + " €";
+        }
+
+      
+=======
 namespace App_Admin
 {
     public partial class Home : App_Common.HomePageWithMap
@@ -39,12 +67,24 @@ namespace App_Admin
         {
 
         }
+>>>>>>> 86c631d7932f1f812bd88bc4adcb67188573ef83
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {
             new Warnings().Show();
         }
 
+<<<<<<< HEAD
+
+
+
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            new SubMenu.Shops().Show();
+        }
+
+=======
         private void pictureBox9_Click(object sender, EventArgs e)
         {
         }
@@ -78,18 +118,24 @@ namespace App_Admin
         {
 
         }
+>>>>>>> 86c631d7932f1f812bd88bc4adcb67188573ef83
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             new Calendar(this).Show();
         }
 
+<<<<<<< HEAD
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+=======
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
 
         private void btnBack_Click_1(object sender, EventArgs e)
+>>>>>>> 86c631d7932f1f812bd88bc4adcb67188573ef83
         {
             new Camping(this).Show();
         }
@@ -99,11 +145,14 @@ namespace App_Admin
             new ServiceDesk(this).Show();
         }
 
+<<<<<<< HEAD
+=======
         private void label6_Click(object sender, EventArgs e)
         {
 
         }
 
+>>>>>>> 86c631d7932f1f812bd88bc4adcb67188573ef83
         private void pictureBox6_Click(object sender, EventArgs e)
         {
             new Visitors(this).Show();
@@ -114,16 +163,22 @@ namespace App_Admin
             new PcDoctor(this).Show();
         }
 
+<<<<<<< HEAD
+=======
         private void label5_Click(object sender, EventArgs e)
         {
 
         }
+>>>>>>> 86c631d7932f1f812bd88bc4adcb67188573ef83
 
         private void pictureBox8_Click(object sender, EventArgs e)
         {
             new Employees(this).Show();
         }
 
+<<<<<<< HEAD
+
+=======
         private void btnBack1_Click(object sender, EventArgs e)
         {
 
@@ -138,6 +193,7 @@ namespace App_Admin
         {
             
         }
+>>>>>>> 86c631d7932f1f812bd88bc4adcb67188573ef83
 
         private void Home_Load(object sender, EventArgs e)
         {
