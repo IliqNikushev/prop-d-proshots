@@ -40,6 +40,7 @@
         /// </summary>
        private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StoreForm));
             this.totalItemsCountLbl = new System.Windows.Forms.Label();
             this.numberItemsLbl = new System.Windows.Forms.Label();
             this.totalNumberLbl = new System.Windows.Forms.Label();
@@ -54,9 +55,11 @@
             this.addPbox = new System.Windows.Forms.PictureBox();
             this.storeLogoPbox = new System.Windows.Forms.PictureBox();
             this.inventoryBtn = new System.Windows.Forms.Button();
+            this.logo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.subPbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addPbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeLogoPbox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
             // 
             // totalItemsCountLbl
@@ -190,10 +193,22 @@
             this.inventoryBtn.UseVisualStyleBackColor = true;
             this.inventoryBtn.Click += new System.EventHandler(this.restockBtn_Click);
             // 
+            // logo
+            // 
+            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
+            this.logo.Location = new System.Drawing.Point(541, 0);
+            this.logo.Margin = new System.Windows.Forms.Padding(2);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(64, 64);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logo.TabIndex = 98;
+            this.logo.TabStop = false;
+            // 
             // StoreForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(606, 443);
+            this.Controls.Add(this.logo);
             this.Controls.Add(this.inventoryBtn);
             this.Controls.Add(this.activeVisitorLbl);
             this.Controls.Add(this.resetBtn);
@@ -214,6 +229,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.subPbox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addPbox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeLogoPbox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,5 +239,6 @@
        private System.Windows.Forms.Button resetBtn;
        private System.Windows.Forms.Label activeVisitorLbl;
        private System.Windows.Forms.Button inventoryBtn;
+       private System.Windows.Forms.PictureBox logo;
     }
 }

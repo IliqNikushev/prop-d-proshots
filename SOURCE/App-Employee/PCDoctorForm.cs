@@ -19,10 +19,11 @@ namespace App_Employee
             : base(parent)
         {
             InitializeComponent();
-            if(!IsInDebug){
+            if (!IsInDebug)
+            {
                 reader.Dispose();
-            reader = new RFID();
-            reader.OnDetect += rf_OnDetect;
+                reader = new RFID();
+                reader.OnDetect += rf_OnDetect;
             }
             foreach (Appointment app in queue)
             {
@@ -32,7 +33,6 @@ namespace App_Employee
                 }
                 else lbQueue.Items.Add(app);
             }
-
         }
 
         void rf_OnDetect(string tag)
@@ -67,7 +67,6 @@ namespace App_Employee
             (lbQueue.SelectedItem as Appointment).Complete();
             lbCompleted.Items.Add(lbQueue.SelectedItem);
             lbQueue.Items.Remove(lbQueue.SelectedItem);
-
         }
 
         private void btnView_Click(object sender, EventArgs e)

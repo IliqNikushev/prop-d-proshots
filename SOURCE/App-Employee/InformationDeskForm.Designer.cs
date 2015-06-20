@@ -92,7 +92,7 @@
             this.giveTagBtn.TabIndex = 32;
             this.giveTagBtn.Text = "Give Tag";
             this.giveTagBtn.UseVisualStyleBackColor = true;
-            this.giveTagBtn.Click += new System.EventHandler(this.giveTagBtn_Click_1);
+            this.giveTagBtn.Click += new System.EventHandler(this.giveTagBtn_Click);
             // 
             // closeAccountBtn
             // 
@@ -102,7 +102,7 @@
             this.closeAccountBtn.TabIndex = 33;
             this.closeAccountBtn.Text = "Close Account";
             this.closeAccountBtn.UseVisualStyleBackColor = true;
-            this.closeAccountBtn.Click += new System.EventHandler(this.closeAccountBtn_Click_1);
+            this.closeAccountBtn.Click += new System.EventHandler(this.closeAccountBtn_Click);
             // 
             // payTicketBtn
             // 

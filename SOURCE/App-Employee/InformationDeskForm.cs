@@ -15,13 +15,10 @@ namespace App_Employee
     {
         List<Visitor> Visitors = Database.All<Visitor>();
 
-
         public InformationDeskForm(App_Common.Menu parent) : base(parent)
         {
             InitializeComponent();
             UpdateListBox();
-
-
         }
 
         private void UpdateListBox()
@@ -42,11 +39,8 @@ namespace App_Employee
                 string Vis = I.ToString();
                 if (Vis.StartsWith(visitorSearchTbox.Text))
                 {
-
                     Vis = Vis + new string(' ', (Max - Vis.Length) * 2);
                     lbPeople.Items.Add(new ListboxVisitor(I));
-
-
                 }
             }
         }
@@ -80,6 +74,7 @@ namespace App_Employee
                     if (I.Ticket == false)
                     {
                         I.PayTicket(VisitorBalance, Price);
+                        if (Database.HadAnError) return;
                         MessageBox.Show("Ticket payed!");
                         UpdateListBox();
                     }
@@ -89,13 +84,11 @@ namespace App_Employee
                     }
                 }
                 catch (Exception ex) { MessageBox.Show("error, " + ex.Message); }
-
-
             }
             else { MessageBox.Show("Please select visitor"); }
         }
 
-        private void giveTagBtn_Click_1(object sender, EventArgs e)
+        private void giveTagBtn_Click(object sender, EventArgs e)
         {
             if (lbPeople.SelectedItem != null)
             {
@@ -107,6 +100,7 @@ namespace App_Employee
                 try
                 {
                     d.GiveIDCardToVisitor(vis, RTag);
+                    if (Database.HadAnError) return;
                 }
                 catch (Exception ex) { MessageBox.Show("error," + ex.Message); }
                 UpdateListBox();
@@ -114,7 +108,7 @@ namespace App_Employee
             else { MessageBox.Show("Please select visitor"); }
         }
 
-        private void closeAccountBtn_Click_1(object sender, EventArgs e)
+        private void closeAccountBtn_Click(object sender, EventArgs e)
         {
             if (lbPeople.SelectedItem != null)
             {
@@ -165,6 +159,5 @@ namespace App_Employee
         {
             return String.Format("{0,-50}{1,-5}{2,25}{3}", CurrentVisitor.FullName, Ticket, RFID, CurrentVisitor.RFID);
         }
-    
     }
 }

@@ -57,6 +57,24 @@ namespace App_Common
             InitializeComponent();
         }
 
+        private static int exceptionCounter = 0;
+        private static bool exceptionBlocker = false;
+
+        /// <summary>
+        /// prevents at the rent form when the comfirm button is clicked multiple time seeing there is an error
+        /// </summary>
+        protected static void BlockExceptions()
+        {
+            exceptionCounter = 0;
+            exceptionBlocker = true;
+        }
+
+        protected static void UnBlockExceptions()
+        {
+            exceptionCounter = 0;
+            exceptionBlocker = false;
+        }
+
         public Menu(Menu parent)
         {
             if (MainMenu == null)
@@ -79,7 +97,13 @@ namespace App_Common
                     Classes.Database.OnUnableToProcessSQL += (ex, sql) =>
                     {
                         new Classes.Warning("SQL error", ex.GetType() + "\n" + ex.Message + "\n" + sql).Create();
-                        MessageBox.Show("There was an issue while using the database.");
+                        if (exceptionBlocker)
+                        {
+                            if (exceptionCounter++ == 0)
+                                MessageBox.Show("There was an issue while using the database.");
+                        }
+                        else
+                            MessageBox.Show("There was an issue while using the database.");
                     };
                     reader.OnAttach += (x) => reader.ToggleLED();
 
@@ -119,6 +143,8 @@ namespace App_Common
             //this.ControlBox = false;
 
             this.ParentMenu = parent;
+
+            this.Icon = Properties.Resources.Icon;
         }
 
         protected virtual void Reset()

@@ -13,7 +13,6 @@ namespace App_Employee
 {
     public partial class RentForm : App_Common.Menu
     {
-
         List<Classes.RentableItem> selectedItems = new List<Classes.RentableItem>();
         List<Classes.RentableItem> AllItems = Classes.Database.All<Classes.RentableItem>();
         List<RentableItem> removedItems = new List<RentableItem>();
@@ -41,8 +40,9 @@ namespace App_Employee
         public RentForm(App_Common.Menu parent)
             : base(parent)
         {
-
             InitializeComponent();
+
+            btnConfirm.Click += (x, y) => BlockExceptions();
 
             plItems.AutoScroll = true;
             int posX = 0;
@@ -91,6 +91,7 @@ namespace App_Employee
                 box.Height = y + rent.Height + 5;
                 box.Width = 84;
                 int c = 0;
+
                 rent.Click += (xx, yy) =>
                 {
                     c += 1;
@@ -98,29 +99,32 @@ namespace App_Employee
                     lbCart.Items.Add(item);
                     lbPrice.Text = Totalprice + App_Common.Constants.Currency;
                 };
+
                 btnReturn.Click += (x, yy) =>
-                    {
-                        if (item != lbCart.SelectedItem as RentableItem)
-                            return;
-                        c -= 1;
-                        lbCart.Items.RemoveAt(lbCart.SelectedIndex);
-                        stock.Text = (item.InStock - c).ToString();
-                        lbPrice.Text = Totalprice + App_Common.Constants.Currency;
-                    };
+                {
+                    if (item != lbCart.SelectedItem as RentableItem)
+                        return;
+                    c -= 1;
+                    lbCart.Items.RemoveAt(lbCart.SelectedIndex);
+                    stock.Text = (item.InStock - c).ToString();
+                    lbPrice.Text = Totalprice + App_Common.Constants.Currency;
+                };
+
                 btnConfirm.Click += (x, yy) =>
+                {
+                    if (activeVis == null) return;
+                    bool contained = false;
+                    while (lbCart.Items.Contains(item))
                     {
-                        if (activeVis == null) return;
-                        bool contained = false;
-                        while (lbCart.Items.Contains(item))
-                        {
-                            contained = true;
-                            cartListView.Items.Add(new RentableItemHistory(item, activeVis, ""));
-                            lbCart.Items.Remove(item);
-                        }
-                        if (!contained) return;
-                        new RentableItemHistory(item, activeVis, "").Create();
-                        Database.ExecuteSQL("UPDATE `rentableitems` SET InStock = {0} WHERE Item_ID = {1}", item.InStock - c, item.ID);
-                    };
+                        contained = true;
+                        cartListView.Items.Add(new RentableItemHistory(item, activeVis, ""));
+                        lbCart.Items.Remove(item);
+                    }
+                    if (!contained) return;
+                    new RentableItemHistory(item, activeVis, "").Create();
+                    Database.ExecuteSQL("UPDATE `rentableitems` SET InStock = {0} WHERE Item_ID = {1}", item.InStock - c, item.ID);
+                };
+
                 if (!IsInDebug)
                 {
                     reader.Dispose();
@@ -129,6 +133,8 @@ namespace App_Employee
                 }
             }
 
+            btnConfirm.Click += (x, y) => UnBlockExceptions();
+
             rf_OnDetect((Visitor.Authenticate("tester", "test") as Visitor).RFID);
         }
 
@@ -136,18 +142,18 @@ namespace App_Employee
         {
             activeVis = Visitor.Authenticate(tag);
             MainMenu.Invoke(new Action(
-                () =>
-                {
+            () =>
+            {
 
-                    cartListView.Items.Clear();
-                    tbID.Text = tag;
-                    tbFullname.Text = activeVis.FullName;
-                    foreach (var item in activeVis.RentedItems)
-                    {
-                        if (item.IsReturned) continue;
-                        cartListView.Items.Add(item);
-                    }
-                }));
+                cartListView.Items.Clear();
+                tbID.Text = tag;
+                tbFullname.Text = activeVis.FullName;
+                foreach (var item in activeVis.RentedItems)
+                {
+                    if (item.IsReturned) continue;
+                    cartListView.Items.Add(item);
+                }
+            }));
         }
 
         private void btnRent_Click(object sender, EventArgs e)

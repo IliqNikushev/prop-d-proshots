@@ -17,7 +17,6 @@ namespace Classes
             get
             {
                 if (picture.StartsWith("http"))
-                    //return Database.PathToAthenaUploads + picture;
                     return picture;
                 else
                     return Database.PathToAthenaUploads + picture;

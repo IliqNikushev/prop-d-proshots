@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StoreInventoryForm));
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.confirmBtn = new System.Windows.Forms.Button();
@@ -37,6 +38,8 @@
             this.nameTbox = new System.Windows.Forms.TextBox();
             this.itemsModifiedLbl = new System.Windows.Forms.Label();
             this.uniqueAddedLbl = new System.Windows.Forms.Label();
+            this.logo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
             // 
             // vScrollBar1
@@ -118,11 +121,23 @@
             this.uniqueAddedLbl.TabIndex = 11;
             this.uniqueAddedLbl.Text = "uniqueAddedLbl";
             // 
+            // logo
+            // 
+            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
+            this.logo.Location = new System.Drawing.Point(380, 1);
+            this.logo.Margin = new System.Windows.Forms.Padding(2);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(64, 64);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logo.TabIndex = 98;
+            this.logo.TabStop = false;
+            // 
             // StoreInventoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(443, 341);
+            this.Controls.Add(this.logo);
             this.Controls.Add(this.uniqueAddedLbl);
             this.Controls.Add(this.itemsModifiedLbl);
             this.Controls.Add(this.nameTbox);
@@ -134,6 +149,7 @@
             this.Controls.Add(this.vScrollBar1);
             this.Name = "StoreInventoryForm";
             this.Text = "StoreInventory";
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,5 +166,6 @@
         private System.Windows.Forms.TextBox nameTbox;
         private System.Windows.Forms.Label itemsModifiedLbl;
         private System.Windows.Forms.Label uniqueAddedLbl;
+        private System.Windows.Forms.PictureBox logo;
     }
 }

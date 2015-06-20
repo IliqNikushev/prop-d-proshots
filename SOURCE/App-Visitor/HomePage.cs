@@ -116,6 +116,5 @@ namespace App_Visitor
         {
             this.Close();
         }
-
     }
 }
