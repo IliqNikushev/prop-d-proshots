@@ -60,18 +60,16 @@
             "1000%"});
             this.zoomTb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.zoomTb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.zoomTb.Location = new System.Drawing.Point(704, 491);
-            this.zoomTb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.zoomTb.Location = new System.Drawing.Point(528, 399);
             this.zoomTb.Name = "zoomTb";
-            this.zoomTb.Size = new System.Drawing.Size(68, 22);
+            this.zoomTb.Size = new System.Drawing.Size(52, 20);
             this.zoomTb.TabIndex = 29;
             // 
             // zoomOutBtn
             // 
-            this.zoomOutBtn.Location = new System.Drawing.Point(791, 490);
-            this.zoomOutBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.zoomOutBtn.Location = new System.Drawing.Point(593, 398);
             this.zoomOutBtn.Name = "zoomOutBtn";
-            this.zoomOutBtn.Size = new System.Drawing.Size(56, 30);
+            this.zoomOutBtn.Size = new System.Drawing.Size(42, 24);
             this.zoomOutBtn.TabIndex = 28;
             this.zoomOutBtn.Text = "-";
             this.zoomOutBtn.UseVisualStyleBackColor = true;
@@ -79,10 +77,9 @@
             // 
             // ZoomInBtn
             // 
-            this.ZoomInBtn.Location = new System.Drawing.Point(628, 491);
-            this.ZoomInBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ZoomInBtn.Location = new System.Drawing.Point(471, 399);
             this.ZoomInBtn.Name = "ZoomInBtn";
-            this.ZoomInBtn.Size = new System.Drawing.Size(56, 28);
+            this.ZoomInBtn.Size = new System.Drawing.Size(42, 23);
             this.ZoomInBtn.TabIndex = 27;
             this.ZoomInBtn.Text = "+";
             this.ZoomInBtn.UseVisualStyleBackColor = true;
@@ -92,10 +89,9 @@
             // 
             this.mapArea.Image = global::App_Common.Properties.Resources.Park_English;
             this.mapArea.InitialImage = null;
-            this.mapArea.Location = new System.Drawing.Point(491, 23);
-            this.mapArea.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mapArea.Location = new System.Drawing.Point(368, 19);
             this.mapArea.Name = "mapArea";
-            this.mapArea.Size = new System.Drawing.Size(495, 454);
+            this.mapArea.Size = new System.Drawing.Size(371, 369);
             this.mapArea.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.mapArea.TabIndex = 0;
             this.mapArea.TabStop = false;
@@ -103,43 +99,41 @@
             // mapHolder
             // 
             this.mapHolder.Image = global::App_Common.Properties.Resources.imac1;
-            this.mapHolder.Location = new System.Drawing.Point(472, 2);
-            this.mapHolder.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.mapHolder.Location = new System.Drawing.Point(354, 2);
+            this.mapHolder.Margin = new System.Windows.Forms.Padding(2);
             this.mapHolder.Name = "mapHolder";
-            this.mapHolder.Size = new System.Drawing.Size(533, 583);
+            this.mapHolder.Size = new System.Drawing.Size(400, 474);
             this.mapHolder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.mapHolder.TabIndex = 23;
             this.mapHolder.TabStop = false;
+            this.mapHolder.Click += new System.EventHandler(this.mapHolder_Click);
             // 
             // findByNameTb
             // 
             this.findByNameTb.AcceptsReturn = true;
             this.findByNameTb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.findByNameTb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.findByNameTb.Location = new System.Drawing.Point(472, 545);
-            this.findByNameTb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.findByNameTb.Location = new System.Drawing.Point(354, 443);
             this.findByNameTb.Multiline = true;
             this.findByNameTb.Name = "findByNameTb";
-            this.findByNameTb.Size = new System.Drawing.Size(172, 24);
+            this.findByNameTb.Size = new System.Drawing.Size(130, 20);
             this.findByNameTb.TabIndex = 30;
             // 
             // findByNameLbl
             // 
             this.findByNameLbl.AutoSize = true;
-            this.findByNameLbl.Location = new System.Drawing.Point(515, 526);
-            this.findByNameLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.findByNameLbl.Location = new System.Drawing.Point(386, 427);
             this.findByNameLbl.Name = "findByNameLbl";
-            this.findByNameLbl.Size = new System.Drawing.Size(95, 17);
+            this.findByNameLbl.Size = new System.Drawing.Size(72, 13);
             this.findByNameLbl.TabIndex = 31;
             this.findByNameLbl.Text = "Find by Name";
             // 
             // findByTypeLbl
             // 
             this.findByTypeLbl.AutoSize = true;
-            this.findByTypeLbl.Location = new System.Drawing.Point(879, 526);
-            this.findByTypeLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.findByTypeLbl.Location = new System.Drawing.Point(659, 427);
             this.findByTypeLbl.Name = "findByTypeLbl";
-            this.findByTypeLbl.Size = new System.Drawing.Size(90, 17);
+            this.findByTypeLbl.Size = new System.Drawing.Size(68, 13);
             this.findByTypeLbl.TabIndex = 33;
             this.findByTypeLbl.Text = "Find by Type";
             // 
@@ -148,19 +142,17 @@
             this.findByTypeTb.AcceptsReturn = true;
             this.findByTypeTb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.findByTypeTb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.findByTypeTb.Location = new System.Drawing.Point(832, 545);
-            this.findByTypeTb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.findByTypeTb.Location = new System.Drawing.Point(624, 443);
             this.findByTypeTb.Multiline = true;
             this.findByTypeTb.Name = "findByTypeTb";
-            this.findByTypeTb.Size = new System.Drawing.Size(172, 24);
+            this.findByTypeTb.Size = new System.Drawing.Size(130, 20);
             this.findByTypeTb.TabIndex = 34;
             // 
             // mapBtn
             // 
-            this.mapBtn.Location = new System.Drawing.Point(344, 13);
-            this.mapBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mapBtn.Location = new System.Drawing.Point(258, 11);
             this.mapBtn.Name = "mapBtn";
-            this.mapBtn.Size = new System.Drawing.Size(100, 28);
+            this.mapBtn.Size = new System.Drawing.Size(75, 23);
             this.mapBtn.TabIndex = 0;
             this.mapBtn.Text = "Map";
             this.mapBtn.UseVisualStyleBackColor = true;
@@ -168,10 +160,9 @@
             // 
             // zoomOnItemsBtn
             // 
-            this.zoomOnItemsBtn.Location = new System.Drawing.Point(483, 491);
-            this.zoomOnItemsBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.zoomOnItemsBtn.Location = new System.Drawing.Point(362, 399);
             this.zoomOnItemsBtn.Name = "zoomOnItemsBtn";
-            this.zoomOnItemsBtn.Size = new System.Drawing.Size(136, 28);
+            this.zoomOnItemsBtn.Size = new System.Drawing.Size(102, 23);
             this.zoomOnItemsBtn.TabIndex = 35;
             this.zoomOnItemsBtn.Text = "Zoom on items";
             this.zoomOnItemsBtn.UseVisualStyleBackColor = true;
@@ -179,10 +170,9 @@
             // 
             // resetZoomBtn
             // 
-            this.resetZoomBtn.Location = new System.Drawing.Point(872, 490);
-            this.resetZoomBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.resetZoomBtn.Location = new System.Drawing.Point(654, 398);
             this.resetZoomBtn.Name = "resetZoomBtn";
-            this.resetZoomBtn.Size = new System.Drawing.Size(115, 28);
+            this.resetZoomBtn.Size = new System.Drawing.Size(86, 23);
             this.resetZoomBtn.TabIndex = 36;
             this.resetZoomBtn.Text = "Reset zoom";
             this.resetZoomBtn.UseVisualStyleBackColor = true;
@@ -191,17 +181,16 @@
             // vr
             // 
             this.vr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.vr.Location = new System.Drawing.Point(452, -25);
-            this.vr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.vr.Location = new System.Drawing.Point(339, -20);
             this.vr.Name = "vr";
-            this.vr.Size = new System.Drawing.Size(13, 610);
+            this.vr.Size = new System.Drawing.Size(10, 586);
             this.vr.TabIndex = 47;
             // 
             // HomePageWithMap
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1056, 879);
+            this.ClientSize = new System.Drawing.Size(792, 609);
             this.Controls.Add(this.vr);
             this.Controls.Add(this.resetZoomBtn);
             this.Controls.Add(this.zoomOnItemsBtn);
@@ -215,13 +204,13 @@
             this.Controls.Add(this.mapArea);
             this.Controls.Add(this.mapHolder);
             this.Controls.Add(this.mapBtn);
-            this.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
+            this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "HomePageWithMap";
             this.Text = "HomePageWithMap";
             ((System.ComponentModel.ISupportInitialize)(this.mapArea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mapHolder)).EndInit();
             this.ResumeLayout(false);
-            //this.PerformLayout();
+            this.PerformLayout();
 
         }
 

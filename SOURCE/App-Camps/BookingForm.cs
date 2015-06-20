@@ -123,8 +123,9 @@ namespace App_Camps
         public BookingForm(App_Common.Menu parent, IEnumerable<Classes.Tent> bookedByVisitorPitches, IEnumerable<Classes.Tent> bookedForVisitorPitches)
             : base(parent)
         {
+            Fix();
             InitializeComponent();
-
+            Unfix();
             this.bookedByVisitorPitches = bookedByVisitorPitches;
             this.bookedForVisitorPitches = bookedForVisitorPitches;
 

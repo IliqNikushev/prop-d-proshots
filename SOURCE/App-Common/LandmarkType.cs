@@ -13,6 +13,7 @@ namespace App_Common
         PC_Doctor,
         Event,
         Paypal,
-        Loan
+        Loan,
+        Tent
     }
 }

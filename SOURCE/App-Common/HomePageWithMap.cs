@@ -15,6 +15,30 @@ namespace App_Common
         private MapPoint[] points = new MapPoint[]{
         };
 
+        Dictionary<Control, Control> fixedChildren = new Dictionary<Control, Control>();
+
+        private void FixChild(Control control)
+        {
+            fixedChildren.Add(control, control.Parent);
+            this.Controls.Add(control);
+        }
+
+        //Fix for issue with inheritance between controls ( my child is not actually mine, but the main menu's )
+        protected void Fix()
+        {
+            FixChild(this.findByNameLbl);
+            FixChild(this.findByTypeTb);
+            FixChild(this.findByTypeLbl);
+            FixChild(this.findByNameTb);
+        }
+
+        protected void Unfix()
+        {
+            foreach (var item in fixedChildren)
+                item.Key.Parent = item.Value;
+            fixedChildren.Clear();
+        }
+
         protected override List<Control> Inherited
         {
             get
@@ -286,9 +310,9 @@ namespace App_Common
             else
                 if (type != "none")
                     if (label == "")
-                        collection = points.Where(x => x.Type.ToString() == type);
+                        collection = points.Where(x => x.Type.ToString().ToLower() == type);
                     else
-                        collection = points.Where(x => x.Type.ToString() == type && x.Label.ToLower() == label);
+                        collection = points.Where(x => x.Type.ToString().ToLower() == type && x.Label.ToLower() == label);
             return collection;
         }
 
@@ -365,6 +389,7 @@ namespace App_Common
 
         private void zoomOnItemsBtn_Click(object sender, EventArgs e)
         {
+            if (points.Length == 0) return;
             string type = findByTypeTb.Text;
             string label = findByNameTb.Text;
             SetMapItems(type, label);
@@ -384,6 +409,11 @@ namespace App_Common
         private void zoomOutBtn_Click(object sender, EventArgs e)
         {
             ChangeZoom(wantedZoom * -0.1f);
+        }
+
+        private void mapHolder_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

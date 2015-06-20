@@ -248,8 +248,17 @@ namespace App_Common
             ListBox listBox = OnAutoComplete[tb].ListBox;
             listBox.Visible = false;
             this.Controls.Add(listBox);
-            int yy = tb.Top + tb.Height;
+            int yy = tb.Top + tb.Height + 10;
             int xx = tb.Left;
+
+            Control c = tb.Parent;
+            while (!c.GetType().IsSubclassOf(typeof(Form)))
+            {
+                if (c.GetType() == typeof(Form)) break;
+                yy += c.Top;
+                xx += c.Left;
+                c = c.Parent;
+            }
             listBox.Top = yy;
             listBox.Left = xx;
             listBox.Width = tb.Width;
@@ -270,6 +279,8 @@ namespace App_Common
 
             tb.KeyPress += (x, e) => onKeyPress(e);
             tb.KeyUp += AutoComplete;
+
+            //tb.LostFocus += (x, y) => listBox.Visible = false;
         }
 
         protected Dictionary<TextBox, AutoCompleteData> OnAutoComplete = new Dictionary<TextBox, AutoCompleteData>();

@@ -31,8 +31,9 @@ namespace App_Common
                 if (t == typeof(Classes.InformationKioskWorkplace)) return LandmarkType.Information;
                 if (t == typeof(Classes.ITServiceWorkplace)) return LandmarkType.Loan;
                 if (t == typeof(Classes.PCDoctorWorkplace)) return LandmarkType.PC_Doctor;
+                if(t == typeof(Classes.TentPitch)) return LandmarkType.Tent;
             }
-            throw new InvalidOperationException("UNKNOWN LANDMARK");
+            throw new InvalidOperationException("UNKNOWN LANDMARK," + t.GetType().Name);
         }
         public LandmarkType Type
         {
@@ -126,6 +127,7 @@ namespace App_Common
 
         public static bool operator ==(MapPoint p, Classes.Landmark l)
         {
+            if ((object)p == null) return false;
             return p.Equals(l);
         }
 

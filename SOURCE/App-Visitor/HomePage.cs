@@ -14,11 +14,12 @@ namespace App_Visitor
     public partial class HomePage : App_Common.HomePageWithMap
     {
         Visitor LogedinVisitor = LoggedInUser as Visitor;
-        
+
         public HomePage(App_Common.Menu menu):base(menu)
         {
+            Fix();
             InitializeComponent();
-
+            Unfix();
             SetMapItems(Classes.Database.All<Classes.Landmark>().Where(x=>
             {
                 Classes.TentPitch tent = x as Classes.TentPitch;
