@@ -14,6 +14,7 @@ namespace Design.Idea.AdministratorInterface
     public partial class Camping : HomePageWithMap
     {
         private List<Classes.Tent> tents;
+        private List<Classes.Tent> tentToShow;
         public Camping(Form parent) : base()
         {
             InitializeComponent();
@@ -27,11 +28,25 @@ namespace Design.Idea.AdministratorInterface
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
+            List<Classes.Tent> ItemsToShow = this.tents;
+            ItemsToShow = ItemsToShow.Where(x => x.BookedBy.FullName.Contains(textBoxVisitor.Text)).ToList();
+            this.listBox1.Items.Clear();
+            foreach (var item in ItemsToShow)
+            {
+                string result = item.ID + " " + item.BookedBy + " for " + item.NumberOfPeople + " people, on" + item.BookedOn + " price=" + item.Price;
+                listBox1.Items.Add(result);
+            }
+
+        }
+
+        private void comboBoxDate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
             string status = comboBoxDate.Text;
             List<Classes.Tent> ItemsToShow = this.tents;
 
 
-            if (!(comboBoxDate.Text == "All" || comboBoxDate.Text == ""))
+            if (!(comboBoxDate.Text == "ALL" || comboBoxDate.Text == ""))
             {
                 int day = int.Parse(comboBoxDate.Text);
 
@@ -40,11 +55,11 @@ namespace Design.Idea.AdministratorInterface
             }
 
 
-            if (!(comboBoxTent.Text == "All" || comboBoxDate.Text == ""))
+            if (!(comboBoxTent.Text == "ALL" || comboBoxTent.Text == ""))
             {
                 int tentNr = int.Parse(comboBoxTent.Text);
                 ItemsToShow = ItemsToShow.Where(x => x.ID == tentNr).ToList();
-                
+
             }
 
             if (!(textBoxVisitor.Text == ""))
@@ -55,8 +70,12 @@ namespace Design.Idea.AdministratorInterface
 
 
             this.listBox1.Items.Clear();
-            listBox1.Items.AddRange(ItemsToShow.ToArray());
-
+            foreach (var item in ItemsToShow)
+            {
+                string  result= item.ID+" "+item.BookedBy+" for "+item.NumberOfPeople+" people, on"+ item.BookedOn+ " price="+item.Price;
+                listBox1.Items.Add(result);    
+            }
+            
         }
     }
 }

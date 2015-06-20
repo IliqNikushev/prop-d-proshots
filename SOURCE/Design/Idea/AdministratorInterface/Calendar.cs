@@ -66,6 +66,7 @@ namespace Design.Idea.AdministratorInterface
         private void button2_Click(object sender, EventArgs e)
         {
 #warning remove at database?
+
             this.listBox1.Items.Remove(this.listBox1.SelectedItem);
         }
     }

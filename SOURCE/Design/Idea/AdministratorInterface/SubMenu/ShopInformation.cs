@@ -41,7 +41,7 @@ namespace Design.Idea.AdministratorInterface.SubMenu
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            this.Close();
             new Shops().Show();
         }
 

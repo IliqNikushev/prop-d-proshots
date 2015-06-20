@@ -39,43 +39,31 @@ namespace Design.Idea.AdministratorInterface
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             List<Classes.RentableItemHistory> ItemsToShow = this.itemsHistory;
+            
+            ItemsToShow = ItemsToShow.Where(x => x.RentedBy.FullName.Contains(textBoxVisitor.Text)).ToList();
 
-            if (comboBoxDate.Text == "All" || comboBoxDate.Text == "")
-            {
-                if (textBoxVisitor.Text == "")
-                {
-                    ItemsToShow.AddRange(
-                itemsHistory);
-                }
-                else
-                {
+            this.listBox1.Items.Clear();
+            this.listBox1.Items.AddRange(ItemsToShow.ToArray());
+        }
 
-                    ItemsToShow.AddRange(
-                itemsHistory.Where(x => x.RentedBy.FullName.Contains(textBoxVisitor.Text))
-                );
-                }
+        private void comboBoxDate_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-            }
-            else
+            List<Classes.RentableItemHistory> ItemsToShow = new List<RentableItemHistory>();
+            ItemsToShow.AddRange(this.itemsHistory);
+            if (!(comboBoxDate.Text == "ALL" || comboBoxDate.Text == ""))
             {
                 int day = int.Parse(comboBoxDate.Text);
-                if (textBoxVisitor.Text == "")
-                {
-                    ItemsToShow.AddRange(
-                itemsHistory.Where(x => x.RentedAt.Day == day)
-                );
-                }
-                else
-                {
+                ItemsToShow.Clear();
+                ItemsToShow.AddRange(itemsHistory.Where(x => x.RentedAt.Day == day));
 
-                    ItemsToShow.AddRange(
-                itemsHistory.Where(x => x.RentedAt.Day == day && x.RentedBy.FullName.Contains(textBoxVisitor.Text)));
-                }
             }
-            
 
-            
+            if (!(textBoxVisitor.Text == ""))
+            {
+                ItemsToShow = ItemsToShow.Where(x => x.RentedBy.FullName.Contains(textBoxVisitor.Text)).ToList();
 
+            }
 
             this.listBox1.Items.Clear();
             this.listBox1.Items.AddRange(ItemsToShow.ToArray());

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBoxVisitor = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.textBoxVisitor = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBoxTent = new System.Windows.Forms.ComboBox();
@@ -37,21 +37,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxDate = new System.Windows.Forms.ComboBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBoxVisitor);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.textBoxVisitor);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.comboBoxTent);
@@ -59,29 +52,23 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.comboBoxDate);
             this.groupBox1.Controls.Add(this.listBox1);
-            this.groupBox1.Controls.Add(this.pictureBox9);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.pictureBox7);
             this.groupBox1.Location = new System.Drawing.Point(12, 145);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(440, 601);
+            this.groupBox1.Size = new System.Drawing.Size(554, 443);
             this.groupBox1.TabIndex = 32;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Overview order by:";
             // 
-            // checkBoxVisitor
+            // label3
             // 
-            this.checkBoxVisitor.AutoSize = true;
-            this.checkBoxVisitor.Location = new System.Drawing.Point(284, 30);
-            this.checkBoxVisitor.Name = "checkBoxVisitor";
-            this.checkBoxVisitor.Size = new System.Drawing.Size(110, 21);
-            this.checkBoxVisitor.TabIndex = 46;
-            this.checkBoxVisitor.Text = "Visitor Name";
-            this.checkBoxVisitor.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(287, 34);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(88, 17);
+            this.label3.TabIndex = 46;
+            this.label3.Text = "Visitor Name";
             // 
             // textBoxVisitor
             // 
@@ -92,7 +79,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(358, 90);
+            this.button1.Location = new System.Drawing.Point(390, 54);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 39;
@@ -104,6 +91,7 @@
             // 
             this.comboBoxTent.FormattingEnabled = true;
             this.comboBoxTent.Items.AddRange(new object[] {
+            "ALL",
             "1",
             "2",
             "3",
@@ -143,13 +131,15 @@
             // 
             this.comboBoxDate.FormattingEnabled = true;
             this.comboBoxDate.Items.AddRange(new object[] {
-            "27-06-2015",
-            "28-06-2015",
-            "29-06-2015"});
+            "ALL",
+            "27",
+            "28",
+            "29"});
             this.comboBoxDate.Location = new System.Drawing.Point(12, 53);
             this.comboBoxDate.Name = "comboBoxDate";
             this.comboBoxDate.Size = new System.Drawing.Size(121, 24);
             this.comboBoxDate.TabIndex = 35;
+            this.comboBoxDate.SelectedIndexChanged += new System.EventHandler(this.comboBoxDate_SelectedIndexChanged);
             // 
             // listBox1
             // 
@@ -157,57 +147,8 @@
             this.listBox1.ItemHeight = 16;
             this.listBox1.Location = new System.Drawing.Point(6, 130);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(411, 260);
+            this.listBox1.Size = new System.Drawing.Size(542, 260);
             this.listBox1.TabIndex = 30;
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.Image = global::Design.Properties.Resources.money;
-            this.pictureBox9.Location = new System.Drawing.Point(9, 501);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(73, 69);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox9.TabIndex = 21;
-            this.pictureBox9.TabStop = false;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(5, 574);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(50, 17);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "Money";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(343, 574);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(90, 17);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "Total Visitors";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(147, 574);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(138, 17);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "Number of Warnings";
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = global::Design.Properties.Resources.warning38;
-            this.pictureBox7.Location = new System.Drawing.Point(175, 501);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(65, 62);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 11;
-            this.pictureBox7.TabStop = false;
             // 
             // pictureBox1
             // 
@@ -224,7 +165,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 653);
+            this.ClientSize = new System.Drawing.Size(755, 614);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox1);
             this.Name = "Camping";
@@ -233,8 +174,6 @@
             this.Controls.SetChildIndex(this.pictureBox1, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -249,14 +188,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxDate;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBoxVisitor;
-        private System.Windows.Forms.CheckBox checkBoxVisitor;
+        private System.Windows.Forms.Label label3;
     }
 }

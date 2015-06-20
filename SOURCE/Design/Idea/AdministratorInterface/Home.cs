@@ -40,6 +40,7 @@ namespace Design.Idea.AdministratorInterface
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {
+            new Warnings().Show();
         }
 
         private void pictureBox9_Click(object sender, EventArgs e)

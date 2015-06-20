@@ -117,7 +117,7 @@ namespace Design.Idea.AdministratorInterface
 
             currentButton.BackColor = defaultColor;
             currentButton = buttonAll;
-            currentButton.BackColor = Color.Gold;
+            currentButton.BackColor = Color.Bisque;
 
 
             
@@ -174,7 +174,7 @@ namespace Design.Idea.AdministratorInterface
             }
             currentButton.BackColor =defaultColor;
             currentButton = buttonloaned;
-            currentButton.BackColor = Color.Gold;
+            currentButton.BackColor = Color.Bisque;
 
             AddToListBox(listToShow);
 
@@ -233,7 +233,7 @@ namespace Design.Idea.AdministratorInterface
             }
             currentButton.BackColor =defaultColor;
             currentButton = buttonTransactions;
-            currentButton.BackColor = Color.Gold;
+            currentButton.BackColor = Color.Bisque;
 
             AddToListBox(listToShow);*/
         }
@@ -276,7 +276,7 @@ namespace Design.Idea.AdministratorInterface
             }
             currentButton.BackColor =defaultColor;
             currentButton = buttonPurchased;
-            currentButton.BackColor = Color.Gold;
+            currentButton.BackColor = Color.Bisque;
 
             AddToListBox(listToShow);
         }
@@ -319,7 +319,7 @@ namespace Design.Idea.AdministratorInterface
             }
             currentButton.BackColor =defaultColor;
             currentButton = buttonAppointment;
-            currentButton.BackColor = Color.Gold;
+            currentButton.BackColor = Color.Bisque;
 
             AddToListBox(listToShow);
         }
@@ -362,7 +362,7 @@ namespace Design.Idea.AdministratorInterface
             }
             currentButton.BackColor =defaultColor;
             currentButton = buttonTopUps;
-            currentButton.BackColor = Color.Gold;
+            currentButton.BackColor = Color.Bisque;
 
             AddToListBox(listToShow);
         }
@@ -405,7 +405,7 @@ namespace Design.Idea.AdministratorInterface
             }
             currentButton.BackColor =defaultColor;
             currentButton = buttonTent;
-            currentButton.BackColor = Color.Gold;
+            currentButton.BackColor = Color.Bisque;
 
             AddToListBox(listToShow);
         }
