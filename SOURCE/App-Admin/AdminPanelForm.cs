@@ -19,5 +19,12 @@ namespace App_Admin
             
             this.ControlBox = true;
         }
+
+        protected override bool OnLogin()
+        {
+            if (LoggedInUser.GetType() !=  typeof(Classes.AdminUser)) return false;
+            new Home(this).Show();
+            return true;
+        }
     }
 }

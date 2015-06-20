@@ -44,16 +44,102 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddNewEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewEvent.Designer.cs">
+      <DependentUpon>AddNewEvent.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminPanelForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AdminPanelForm.Designer.cs">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Calendar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Calendar.Designer.cs">
+      <DependentUpon>Calendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Camping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camping.Designer.cs">
+      <DependentUpon>Camping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Employees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Employees.Designer.cs">
+      <DependentUpon>Employees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PcDoctor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PcDoctor.Designer.cs">
+      <DependentUpon>PcDoctor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceDesk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServiceDesk.Designer.cs">
+      <DependentUpon>ServiceDesk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubMenu\ShopInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubMenu\ShopInformation.Designer.cs">
+      <DependentUpon>ShopInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubMenu\Shops.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubMenu\Shops.Designer.cs">
+      <DependentUpon>Shops.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visitors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visitors.Designer.cs">
+      <DependentUpon>Visitors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Warnnings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Warnnings.Designer.cs">
+      <DependentUpon>Warnnings.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddNewEvent.resx">
+      <DependentUpon>AddNewEvent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminPanelForm.resx">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calendar.resx">
+      <DependentUpon>Calendar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camping.resx">
+      <DependentUpon>Camping.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employees.resx">
+      <DependentUpon>Employees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PcDoctor.resx">
+      <DependentUpon>PcDoctor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -63,7 +149,24 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ServiceDesk.resx">
+      <DependentUpon>ServiceDesk.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubMenu\ShopInformation.resx">
+      <DependentUpon>ShopInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubMenu\Shops.resx">
+      <DependentUpon>Shops.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visitors.resx">
+      <DependentUpon>Visitors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Warnnings.resx">
+      <DependentUpon>Warnnings.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -86,6 +189,198 @@
       <Project>{187aacee-fd7c-493e-964d-b4f5f4dca1c0}</Project>
       <Name>Classes</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2561.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acc-image-icon-big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addMoney.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addpurchase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\appointment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Back1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Back2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Back3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BurgerKing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Button-Back-3-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Button-Back-3-5121.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer-doctor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Doctor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Employees.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Employees1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Food and drink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home166.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imac.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imac1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_desk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_desk_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_desk_list.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inventory_icon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KFC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LandingPage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGO-Proshot.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\manager.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mcdonalds.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\michael.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotDone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Park.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Park-English.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Participants.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pin60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pin601.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profile29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\purchase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remMoney.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\removepurchase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\repair17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Service Desk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shop-nice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\soft4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Supermarket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TentGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TentGreen1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TENTRED.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning38.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wealth.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows8-design-splash-screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows8-design-splash-screen1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yes_check.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

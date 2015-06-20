@@ -33,7 +33,7 @@ namespace Design.Idea.AdministratorInterface
             this.listBox1.Items.Clear();
             foreach (var item in ItemsToShow)
             {
-                string result = item.ID + " " + item.BookedBy + " for " + item.NumberOfPeople + " people, on" + item.BookedOn + " price=" + item.Price;
+                string result = item.ID + " " + item.BookedBy + " for " + item.NumberOfPeople + " people, on " + item.BookedOn + " price=" + item.Price;
                 listBox1.Items.Add(result);
             }
 
@@ -72,7 +72,7 @@ namespace Design.Idea.AdministratorInterface
             this.listBox1.Items.Clear();
             foreach (var item in ItemsToShow)
             {
-                string  result= item.ID+" "+item.BookedBy+" for "+item.NumberOfPeople+" people, on"+ item.BookedOn+ " price="+item.Price;
+                string  result= item.ID+" "+item.BookedBy+" for "+item.NumberOfPeople+" people, on "+ item.BookedOn+ " price="+item.Price;
                 listBox1.Items.Add(result);    
             }
             

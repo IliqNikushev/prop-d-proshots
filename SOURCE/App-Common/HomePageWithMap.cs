@@ -49,6 +49,9 @@ namespace App_Common
             }
         }
 
+        public int MapWidth { get { return this.mapArea.Width; } }
+        public int MapHeight { get { return this.mapArea.Height; } }
+
         private Point dragOffset;
         private Point mouseDragStartLocation;
 
