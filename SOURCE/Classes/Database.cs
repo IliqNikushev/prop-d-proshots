@@ -12,10 +12,16 @@ namespace Classes
     {
         public static Action<Exception, string> OnUnableToProcessSQL = (x,y) => HadAnError = true;
 
-        const string C_Server = "athena01.fhict.local";
+        /*const string C_Server = "athena01.fhict.local";
         const string C_DataBase = "dbi317294";
         const string C_UserID = "dbi317294";
-        const string C_Password = "NBD7TnUwhT";
+        const string C_Password = "NBD7TnUwhT";*/
+
+        const string C_Server = "localhost";
+        const string C_DataBase = "fontys";
+        const string C_UserID = "root";
+        const string C_Password = "";
+
         static string connectionString = string.Format(
                     "server={0};database={1};uid={2};password={3};",
                     C_Server, C_DataBase, C_UserID, C_Password
@@ -58,7 +64,7 @@ namespace Classes
             {typeof(InformationKioskWorkplace), new Table("Landmarks where landmarks.type = 'info'")
                 .Copy<ITServiceWorkplace>()},
             {typeof(Item), new Table("Items_ALL", "brand", "model", "id", "type", "description", "igroup", "icon" )},
-            {typeof(ITServiceWorkplace), new Table("Landmarks where landmarks.type = 'it'", "id", "x", "y")},
+            {typeof(ITServiceWorkplace), new Table("Landmarks where landmarks.type = 'rent'", "id", "x", "y")},
             {typeof(Workplace), new Table("Landmarks Where landmarks.type not in ('paypal','tent', 'event')", "id", "x", "y", "label", "description", "type", "logo")},
             {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type", "logo")},
             {typeof(LogMessage), new Table("Logs", "id", "date", "description", "name")},
@@ -103,6 +109,8 @@ namespace Classes
                 Join<User>("JOIN", "Users.id = Visitors.user_id", "")},
             {typeof(Warning), new Table("Warnings", "id", "name", "description")},
         };
+
+        public static IEnumerable<Table> Tables { get { return tables.Select(x=>x.Value); } }
 
         private static Table TFor<T>() where T : Record
         {

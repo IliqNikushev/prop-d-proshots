@@ -14,7 +14,7 @@ namespace App_Employee
     {
         private Classes.ShopWorkplace Shop { get { return LoggedInEmployee.Workplace as Classes.ShopWorkplace; } }
 
-        private const int iconSize = 64;
+        private const int iconSize = 144;
         private const int labelHeight = 16;
         private const int itemHeight = iconSize + labelHeight * 5;
 
@@ -28,7 +28,7 @@ namespace App_Employee
             InitializeComponent();
 
             StoreItem example = new StoreItem(new Classes.ShopItem(0, 0, "", "Example imte", "<>", "", "","", 0, 0, null, 0));
-            this.Controls.Add(GenerateItem(exampleLbl.Left, exampleLbl.Top, example));
+            this.Controls.Add(GenerateItem(exampleLbl.Left, exampleLbl.Top, example, 64));
 
             foreach (var item in example.PanelAssosiated.Controls)
                 (item as Control).Enabled = false;
@@ -109,41 +109,7 @@ namespace App_Employee
 
             reader.OnVisitorDetect += reader_OnVisitorDetect;
 
-            ActiveVisitor = Classes.Visitor.Authenticate("tester", "test") as Classes.Visitor;
-
-            Classes.Receipt activeOrder = ActiveVisitor.ActiveOrder(this.Shop);
-            if (activeOrder != null)
-            {
-                List<Classes.ReceiptItem> orderItems = activeOrder.Items;
-                int itemCount = orderItems.Sum(z => z.Times);
-                if (MessageBox.Show(string.Format(
-                    "Visitor already has an active order. Does they wish to continue it? ({0} item{1}, price:{2}{3})",
-                    itemCount, itemCount == 1 ? "" : "s", orderItems.Sum(z => z.TotalPrice), App_Common.Constants.Currency)
-                    , "Active order found", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-                {
-                    List<Classes.ReceiptItem> notEnoughItems = new List<Classes.ReceiptItem>();
-                    foreach (var item in orderItems)
-                    {
-                        StoreItem found = this.items.Where(z => z.Item.ID == item.Item.ID).FirstOrDefault();
-
-                        if (found != null)
-                        {
-                            if (item.Times > found.InStock)
-                                notEnoughItems.Add(item);
-                            found.Update(item.Times);
-                        }
-                    }
-                    UpdateTotal();
-                    if (notEnoughItems.Any())
-                        MessageBox.Show("Some items could not be fit into the visitor's order.\n" +
-                            notEnoughItems.Select(z =>
-                                z.Item.Brand + " " +
-                                z.Item.Model + " " +
-                                " wanted " + z.Times +
-                                " but there are " + z.Item.InStock + " (+" + (z.Times - z.Item.InStock) + ")"));
-                }
-                activeOrder.Clear();
-            }
+            addPbox_Click(null, null);
         }
 
         void reader_OnVisitorDetect(Classes.Visitor visitor)
@@ -197,19 +163,22 @@ namespace App_Employee
             this.itemsPanel.Top = -verticalBar.Value;
         }
 
-        private Panel GenerateItem(int x, int y, StoreItem i)
+        private Panel GenerateItem(int x, int y, StoreItem i, int size = -1)
         {
+            if (size == -1) size = iconSize;
+            int height = size + labelHeight * 5;
+
             Panel layout = new Panel();
             layout.Left = x;
             layout.Top = y;
-            layout.Width = iconSize;
-            layout.Height = itemHeight;
+            layout.Width = size;
+            layout.Height = height;
             layout.BorderStyle = BorderStyle.Fixed3D;
 
             PictureBox icon = new PictureBox();
             icon.BorderStyle = BorderStyle.Fixed3D;
-            icon.Width = iconSize;
-            icon.Height = iconSize;
+            icon.Width = size;
+            icon.Height = size;
             icon.ImageLocation = i.Icon;
             icon.SizeMode = PictureBoxSizeMode.StretchImage;
 
@@ -231,7 +200,7 @@ namespace App_Employee
             purchasedAmount.AutoSize = false;
             total.AutoSize = false;
 
-            price.Width = iconSize;
+            price.Width = size;
             purchasedAmount.Width = price.Width;
             total.Width = price.Width;
 

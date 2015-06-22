@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTester", "ConsoleTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App-Checkin_Out", "App-Checkin_Out\App-Checkin_Out.csproj", "{2F8763D7-2BD8-45D3-B79D-B418BF3F211C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseGenerator", "DatabaseGenerator\DatabaseGenerator.csproj", "{0F4B5C3C-CD0D-4467-A0ED-F91B2D23EEBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -150,6 +152,16 @@ Global
 		{2F8763D7-2BD8-45D3-B79D-B418BF3F211C}.Release|ARM.ActiveCfg = Release|Any CPU
 		{2F8763D7-2BD8-45D3-B79D-B418BF3F211C}.Release|x64.ActiveCfg = Release|Any CPU
 		{2F8763D7-2BD8-45D3-B79D-B418BF3F211C}.Release|x86.ActiveCfg = Release|Any CPU
+		{0F4B5C3C-CD0D-4467-A0ED-F91B2D23EEBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F4B5C3C-CD0D-4467-A0ED-F91B2D23EEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F4B5C3C-CD0D-4467-A0ED-F91B2D23EEBC}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{0F4B5C3C-CD0D-4467-A0ED-F91B2D23EEBC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0F4B5C3C-CD0D-4467-A0ED-F91B2D23EEBC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0F4B5C3C-CD0D-4467-A0ED-F91B2D23EEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F4B5C3C-CD0D-4467-A0ED-F91B2D23EEBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F4B5C3C-CD0D-4467-A0ED-F91B2D23EEBC}.Release|ARM.ActiveCfg = Release|Any CPU
+		{0F4B5C3C-CD0D-4467-A0ED-F91B2D23EEBC}.Release|x64.ActiveCfg = Release|Any CPU
+		{0F4B5C3C-CD0D-4467-A0ED-F91B2D23EEBC}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

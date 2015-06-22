@@ -28,6 +28,8 @@ namespace ConsoleTester
         static void Main(string[] args)
             // {typeof(Landmark), new Table("Landmarks", "id", "label", "description", "x", "y", "type", "logo")},
         {
+            Console.WriteLine(Database.ExecuteScalar("Select count(*) from users"));
+            return;
             Database.OnUnableToProcessSQL += (x,y)=> Console.WriteLine(x);
             var h = Database.All<RentableItemHistory>();
             return;

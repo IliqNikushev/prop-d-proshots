@@ -41,6 +41,7 @@
             this.zoomOnItemsBtn = new System.Windows.Forms.Button();
             this.resetZoomBtn = new System.Windows.Forms.Button();
             this.vr = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mapArea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mapHolder)).BeginInit();
             this.SuspendLayout();
@@ -186,11 +187,21 @@
             this.vr.Size = new System.Drawing.Size(10, 586);
             this.vr.TabIndex = 47;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(423, 356);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "label1";
+            // 
             // HomePageWithMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 609);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.vr);
             this.Controls.Add(this.resetZoomBtn);
             this.Controls.Add(this.zoomOnItemsBtn);
@@ -229,5 +240,6 @@
         private System.Windows.Forms.Button resetZoomBtn;
         private System.Windows.Forms.Button zoomOnItemsBtn;
         private System.Windows.Forms.Label vr;
+        private System.Windows.Forms.Label label1;
     }
 }
