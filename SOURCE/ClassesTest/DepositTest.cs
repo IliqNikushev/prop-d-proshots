@@ -10,7 +10,7 @@ namespace Classes
         [ExpectedException(typeof(Record.NotToBeSentToDatabaseException))]
         public override void DatabaseCreate()
         {
-            new Deposit(0, 0, DateTime.MinValue, null).Create();
+            new Deposit(0, 0, DateTime.MinValue, null,0).Create();
         }
 
         [TestMethod]

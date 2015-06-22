@@ -14,7 +14,6 @@ namespace App_Admin
     public partial class Camping : App_Common.HomePageWithMap
     {
         private List<Classes.Tent> tents;
-        private List<Classes.Tent> tentToShow;
         public Camping(App_Common.Menu parent)
             : base(parent)
         {
@@ -25,8 +24,12 @@ namespace App_Admin
 
             this.comboBoxTent.Items.Clear();
             this.comboBoxTent.Items.Add("All");
+
             foreach (TentPitch pitch in Database.All<TentPitch>())
                 this.comboBoxTent.Items.Add(pitch.ID);
+
+            findByTypeTb.Visible = false;
+            findByTypeLbl.Visible = false;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -49,17 +52,14 @@ namespace App_Admin
 
         private void comboBoxDate_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             string status = comboBoxDate.Text;
             List<Classes.Tent> ItemsToShow = this.tents;
-
 
             if (!(comboBoxDate.Text == "ALL" || comboBoxDate.Text == ""))
             {
                 int day = int.Parse(comboBoxDate.Text);
 
                 ItemsToShow = ItemsToShow.Where(x => x.BookedOn.Day == day).ToList();
-
             }
 
 
@@ -67,13 +67,11 @@ namespace App_Admin
             {
                 int tentNr = int.Parse(comboBoxTent.Text);
                 ItemsToShow = ItemsToShow.Where(x => x.ID == tentNr).ToList();
-
             }
 
             if (!(textBoxVisitor.Text == ""))
             {
                 ItemsToShow = ItemsToShow.Where(x => x.BookedBy.FullName.Contains(textBoxVisitor.Text)).ToList();
-
             }
 
 
@@ -84,6 +82,7 @@ namespace App_Admin
                 listBox1.Items.Add(result);
             }
 
+            SetMapItems(ItemsToShow.Select(x=>x.Location));
         }
     }
 }

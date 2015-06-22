@@ -59,6 +59,8 @@ namespace App_Employee
                 inventoryBtn.Visible = false;
         }
 
+        int itemsPanelHeight = -1;
+
         protected override void Reset()
         {
             int column = 0;
@@ -87,12 +89,14 @@ namespace App_Employee
             }
             if (column > 0) y += itemHeight;
 
-            if (y > this.itemsPanel.Height)
+            if (itemsPanelHeight == -1) itemsPanelHeight = itemsPanel.Height;
+
+            if (y > itemsPanelHeight)
             {
                 verticalBar.Visible = true;
-                verticalBar.Maximum = y - this.itemsPanel.Height;
+                verticalBar.Maximum = y - itemsPanelHeight;
                 verticalBar.Scroll += verticalBar_Scroll;
-                this.itemsPanel.Height = y;
+                itemsPanel.Height = y;
             }
             else
                 verticalBar.Visible = false;
@@ -108,6 +112,8 @@ namespace App_Employee
             UpdateTotal();
 
             reader.OnVisitorDetect += reader_OnVisitorDetect;
+
+            this.verticalBar.BringToFront();
 
             addPbox_Click(null, null);
         }

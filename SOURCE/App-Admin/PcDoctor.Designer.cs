@@ -43,16 +43,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnBack)).BeginInit();
             this.SuspendLayout();
             // 
-            // findByNameTb
-            // 
-            //this.findByNameTb.Margin = new System.Windows.Forms.Padding(2);
-            //this.findByNameTb.Size = new System.Drawing.Size(130, 17);
-            // 
-            // findByTypeTb
-            // 
-            //this.findByTypeTb.Margin = new System.Windows.Forms.Padding(2);
-            //this.findByTypeTb.Size = new System.Drawing.Size(130, 17);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label1);
@@ -175,23 +165,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(770, 541);
+            this.ClientSize = new System.Drawing.Size(335, 541);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PcDoctor";
             this.Text = "PcDoctor";
-            //this.Controls.SetChildIndex(this.findByNameLbl, 0);
-            //this.Controls.SetChildIndex(this.findByTypeTb, 0);
-            //this.Controls.SetChildIndex(this.findByTypeLbl, 0);
-            //this.Controls.SetChildIndex(this.findByNameTb, 0);
-            this.Controls.SetChildIndex(this.groupBox1, 0);
-            this.Controls.SetChildIndex(this.btnBack, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnBack)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

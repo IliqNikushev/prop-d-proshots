@@ -11,7 +11,7 @@ using Classes;
 
 namespace App_Admin
 {
-    public partial class Employees : App_Common.HomePageWithMap
+    public partial class Employees : App_Common.HomePage
     {
         
         private List<Classes.Employee> employees;

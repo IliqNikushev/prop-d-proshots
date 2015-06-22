@@ -33,7 +33,6 @@
             this.freeTentsLbl = new System.Windows.Forms.Label();
             this.occupiedByYouLbl = new System.Windows.Forms.Label();
             this.bookedByDetailsBtn = new System.Windows.Forms.Button();
-            this.bookedForDetailsBtn = new System.Windows.Forms.Button();
             this.bookedByLBox = new System.Windows.Forms.ListBox();
             this.bookedForLBox = new System.Windows.Forms.ListBox();
             this.includedInLbl = new System.Windows.Forms.Label();
@@ -52,6 +51,7 @@
             this.closeDetailsBtn = new System.Windows.Forms.Button();
             this.pitchNumberLbl = new System.Windows.Forms.Label();
             this.isPaidCbox = new System.Windows.Forms.CheckBox();
+            this.bookedForDetailsBtn = new System.Windows.Forms.Button();
             this.detailsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,16 +101,6 @@
             this.bookedByDetailsBtn.Text = "Details";
             this.bookedByDetailsBtn.UseVisualStyleBackColor = true;
             this.bookedByDetailsBtn.Click += new System.EventHandler(this.bookedByDetailsBtn_Click);
-            // 
-            // bookedForDetailsBtn
-            // 
-            this.bookedForDetailsBtn.Location = new System.Drawing.Point(235, 182);
-            this.bookedForDetailsBtn.Name = "bookedForDetailsBtn";
-            this.bookedForDetailsBtn.Size = new System.Drawing.Size(75, 23);
-            this.bookedForDetailsBtn.TabIndex = 5;
-            this.bookedForDetailsBtn.Text = "Details";
-            this.bookedForDetailsBtn.UseVisualStyleBackColor = true;
-            this.bookedForDetailsBtn.Click += new System.EventHandler(this.bookedForDetailsBtn_Click);
             // 
             // bookedByLBox
             // 
@@ -288,6 +278,16 @@
             this.isPaidCbox.Text = "$$$$$$$.$$";
             this.isPaidCbox.UseVisualStyleBackColor = true;
             // 
+            // bookedForDetailsBtn
+            // 
+            this.bookedForDetailsBtn.Location = new System.Drawing.Point(235, 182);
+            this.bookedForDetailsBtn.Name = "bookedForDetailsBtn";
+            this.bookedForDetailsBtn.Size = new System.Drawing.Size(75, 23);
+            this.bookedForDetailsBtn.TabIndex = 5;
+            this.bookedForDetailsBtn.Text = "Details";
+            this.bookedForDetailsBtn.UseVisualStyleBackColor = true;
+            this.bookedForDetailsBtn.Click += new System.EventHandler(this.bookedForDetailsBtn_Click);
+            // 
             // CampingMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,7 +321,6 @@
         private System.Windows.Forms.Label freeTentsLbl;
         private System.Windows.Forms.Label occupiedByYouLbl;
         private System.Windows.Forms.Button bookedByDetailsBtn;
-        private System.Windows.Forms.Button bookedForDetailsBtn;
         private System.Windows.Forms.ListBox bookedByLBox;
         private System.Windows.Forms.ListBox bookedForLBox;
         private System.Windows.Forms.Label includedInLbl;
@@ -340,5 +339,6 @@
         private System.Windows.Forms.Label dateTimeBookedLbl;
         private System.Windows.Forms.Label bookedByLbl;
         private System.Windows.Forms.CheckBox isPaidCbox;
+        private System.Windows.Forms.Button bookedForDetailsBtn;
     }
 }

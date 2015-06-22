@@ -17,7 +17,6 @@ namespace App_Admin
 
         public PcDoctor(App_Common.Menu parent) : base(parent)
         {
-            
             InitializeComponent();
             
             appointments = Database.Appointments;

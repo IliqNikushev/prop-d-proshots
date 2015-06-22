@@ -155,6 +155,7 @@ namespace Classes
 
             int iD = reader.Get<int>("ID");
             decimal amount = reader.Get<decimal>("Amount");
+            int visitor_id = reader.Get<int>("visitor_id");
             DateTime date = reader.Get<DateTime>("date");
             reader.AddPrefix("document");
             PayPalDocument document = CreatePayPalDocument(reader);
@@ -162,7 +163,7 @@ namespace Classes
 
             reader.RemoveDistinctPrefix();
 
-            return new Deposit(iD, amount, date, document);
+            return new Deposit(iD, amount, date, document, visitor_id);
         }
 
         private static Employee CreateEmployee(Reader reader, string prefix="", bool asbtr = false)

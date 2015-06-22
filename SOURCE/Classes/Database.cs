@@ -22,7 +22,7 @@ namespace Classes
         const string C_UserID = "root";
         const string C_Password = "";
 
-        static string connectionString = string.Format(
+        private static string connectionString = string.Format(
                     "server={0};database={1};uid={2};password={3};",
                     C_Server, C_DataBase, C_UserID, C_Password
                 );
@@ -54,7 +54,7 @@ namespace Classes
                 Join<Visitor>("JOIN", "Appointments.appointed_by = Visitors.user_id", "appointed_by")},
             {typeof(AppointmentTask), new Table("AppointmentTasks", "id", "name", "description", "price").
                 Join<Appointment>("JOIN", "AppointmentTasks.appointment_ID = Appointments.id", "appointment")},
-            {typeof(Deposit), new Table("PayPalDeposits", "id", "amount", "date").
+            {typeof(Deposit), new Table("PayPalDeposits", "id", "amount", "date", "visitor_id").
                 Join<PayPalDocument>("JOIN", "PayPalDeposits.paypal_document_id = PayPalDocuments.id", "document")},
             {typeof(Employee), new Table("Employees", "job").
                 Join<User>("JOIN", "Employees.user_id = Users.id", "").

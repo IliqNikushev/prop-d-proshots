@@ -106,6 +106,7 @@ namespace App_Camps
             isPaidCbox.Checked = tent.IsPaid;
 
             isPaidCbox.Text = tent.Price + App_Common.Constants.Currency;
+            bookedForDetailsLbox.Items.Clear();
             bookedForDetailsLbox.Items.AddRange(tent.BookedFor);
 
             if (!tent.IsPaid && tent.BookedBy == LoggedInVisitor)

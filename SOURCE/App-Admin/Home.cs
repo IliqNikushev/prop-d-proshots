@@ -33,6 +33,8 @@ namespace App_Admin
             int warn= Database.Warning.Count;
             labelWarning.Text +=  " " + warn;
             labelMoney.Text = "Total: " + amount + " €";
+
+            SetMapItems(Database.All<Landmark>());
         }
 
         private void btnBack_Click(object sender, EventArgs e)

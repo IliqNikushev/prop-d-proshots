@@ -20,9 +20,15 @@ namespace App_Admin
             Fix();
             InitializeComponent();
             Unfix();
+        }
+
+        protected override void Reset()
+        {
             events = Database.All<EventLandmark>();
             lbResult.Items.Clear();
             lbResult.Items.AddRange(events.ToArray());
+
+            SetMapItems(events);
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
