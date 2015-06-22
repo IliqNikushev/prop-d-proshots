@@ -145,9 +145,12 @@
             // 
             this.date.Location = new System.Drawing.Point(13, 235);
             this.date.Margin = new System.Windows.Forms.Padding(2);
+            this.date.MaxDate = new System.DateTime(2015, 6, 28, 0, 0, 0, 0);
+            this.date.MinDate = new System.DateTime(2015, 6, 26, 0, 0, 0, 0);
             this.date.Name = "date";
             this.date.Size = new System.Drawing.Size(151, 20);
             this.date.TabIndex = 98;
+            this.date.Value = new System.DateTime(2015, 6, 26, 0, 0, 0, 0);
             this.date.ValueChanged += new System.EventHandler(this.date_ValueChanged);
             // 
             // lbCard

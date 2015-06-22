@@ -18,6 +18,8 @@ namespace Classes
                         this.items = new List<ReceiptItem>(); 
                     else
                         this.items = Database.Where<ReceiptItem>("|T|.receipt_id = {0}", this.ID);
+                else if(this.items.Count == 0 && this.ID != 0)
+                    this.items = Database.Where<ReceiptItem>("|T|.receipt_id = {0}", this.ID);
                 return this.items;
             }
         }

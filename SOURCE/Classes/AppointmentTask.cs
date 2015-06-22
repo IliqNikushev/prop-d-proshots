@@ -29,7 +29,7 @@ namespace Classes
 
         public override string ToString()
         {
-            return Name + " for " + Price + " euros, info: " + Description;
+            return Name + " for " + Price + " euros, details: " + Description;
         }
     }
 }

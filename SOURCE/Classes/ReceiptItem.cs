@@ -33,7 +33,7 @@ namespace Classes
 
         public override Record Create()
         {
-            return Database.Insert(this, "item_id, receipt_id, times, pricePerItem, totalAmount", this.Item.ItemID, this.Receipt.ID, this.Times, this.PricePerItem, this.TotalPrice);
+            return Database.Insert(this, "item_id, receipt_id, times, pricePerItem, totalAmount", this.Item.ID, this.Receipt.ID, this.Times, this.PricePerItem, this.TotalPrice);
         }
 
         public override string ToString()

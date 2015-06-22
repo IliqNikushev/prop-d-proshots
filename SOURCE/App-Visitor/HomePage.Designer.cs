@@ -66,7 +66,7 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.HorizontalScrollbar = true;
-            this.listBox1.Location = new System.Drawing.Point(86, 254);
+            this.listBox1.Location = new System.Drawing.Point(91, 253);
             this.listBox1.Margin = new System.Windows.Forms.Padding(2);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(248, 147);
@@ -75,7 +75,7 @@
             // labelEmail
             // 
             this.labelEmail.AutoSize = true;
-            this.labelEmail.Location = new System.Drawing.Point(84, 76);
+            this.labelEmail.Location = new System.Drawing.Point(89, 75);
             this.labelEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelEmail.Name = "labelEmail";
             this.labelEmail.Size = new System.Drawing.Size(35, 13);
@@ -97,7 +97,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(194, 233);
+            this.label8.Location = new System.Drawing.Point(199, 232);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(42, 13);
@@ -107,7 +107,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 233);
+            this.label2.Location = new System.Drawing.Point(21, 232);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
@@ -117,7 +117,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(-1, 323);
+            this.label7.Location = new System.Drawing.Point(4, 322);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(71, 13);
@@ -127,7 +127,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(94, 233);
+            this.label4.Location = new System.Drawing.Point(99, 232);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
@@ -137,7 +137,7 @@
             // labelBalance
             // 
             this.labelBalance.AutoSize = true;
-            this.labelBalance.Location = new System.Drawing.Point(84, 96);
+            this.labelBalance.Location = new System.Drawing.Point(89, 95);
             this.labelBalance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelBalance.Name = "labelBalance";
             this.labelBalance.Size = new System.Drawing.Size(49, 13);
@@ -147,7 +147,7 @@
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(84, 55);
+            this.labelName.Location = new System.Drawing.Point(89, 54);
             this.labelName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(38, 13);
@@ -157,7 +157,7 @@
             // RentedPicture
             // 
             this.RentedPicture.Image = ((System.Drawing.Image)(resources.GetObject("RentedPicture.Image")));
-            this.RentedPicture.Location = new System.Drawing.Point(174, 165);
+            this.RentedPicture.Location = new System.Drawing.Point(179, 164);
             this.RentedPicture.Margin = new System.Windows.Forms.Padding(2);
             this.RentedPicture.Name = "RentedPicture";
             this.RentedPicture.Size = new System.Drawing.Size(72, 84);
@@ -169,7 +169,7 @@
             // ProfilePicture
             // 
             this.ProfilePicture.Image = ((System.Drawing.Image)(resources.GetObject("ProfilePicture.Image")));
-            this.ProfilePicture.Location = new System.Drawing.Point(-4, 48);
+            this.ProfilePicture.Location = new System.Drawing.Point(1, 47);
             this.ProfilePicture.Margin = new System.Windows.Forms.Padding(2);
             this.ProfilePicture.Name = "ProfilePicture";
             this.ProfilePicture.Size = new System.Drawing.Size(83, 90);
@@ -180,7 +180,7 @@
             // BookedPicture
             // 
             this.BookedPicture.Image = ((System.Drawing.Image)(resources.GetObject("BookedPicture.Image")));
-            this.BookedPicture.Location = new System.Drawing.Point(-2, 162);
+            this.BookedPicture.Location = new System.Drawing.Point(3, 161);
             this.BookedPicture.Margin = new System.Windows.Forms.Padding(2);
             this.BookedPicture.Name = "BookedPicture";
             this.BookedPicture.Size = new System.Drawing.Size(72, 84);
@@ -192,7 +192,7 @@
             // PurchasedPicture
             // 
             this.PurchasedPicture.Image = ((System.Drawing.Image)(resources.GetObject("PurchasedPicture.Image")));
-            this.PurchasedPicture.Location = new System.Drawing.Point(86, 162);
+            this.PurchasedPicture.Location = new System.Drawing.Point(91, 161);
             this.PurchasedPicture.Margin = new System.Windows.Forms.Padding(2);
             this.PurchasedPicture.Name = "PurchasedPicture";
             this.PurchasedPicture.Size = new System.Drawing.Size(72, 84);
@@ -204,7 +204,7 @@
             // AppointmentsPicture
             // 
             this.AppointmentsPicture.Image = ((System.Drawing.Image)(resources.GetObject("AppointmentsPicture.Image")));
-            this.AppointmentsPicture.Location = new System.Drawing.Point(-2, 253);
+            this.AppointmentsPicture.Location = new System.Drawing.Point(3, 252);
             this.AppointmentsPicture.Margin = new System.Windows.Forms.Padding(2);
             this.AppointmentsPicture.Name = "AppointmentsPicture";
             this.AppointmentsPicture.Size = new System.Drawing.Size(72, 84);

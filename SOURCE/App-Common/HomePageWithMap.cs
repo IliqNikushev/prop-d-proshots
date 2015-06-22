@@ -246,11 +246,10 @@ namespace App_Common
             wantedZoom += amount;
 
             mapArea.Scale(new SizeF(difference, difference));
-
+            dragOffset = new Point(0, 0);
             mapArea.Location = dragOffset;
 
             zoomTb.Text = (wantedZoom * 100) + "%";
-
 
             if (wantedZoom == 1) resetZoomBtn.Visible = false;
         }
@@ -345,6 +344,7 @@ namespace App_Common
             float height = bottom - top + MapPoint.IconSize;
 
             dragOffset = new Point(left, top);
+            mapArea.Location = dragOffset;
 
             float deltaZoomWidth = mapArea.Width / width;
             float deltaZoomHeight = mapArea.Height / height;

@@ -545,10 +545,11 @@ namespace Classes
             System.DateTime rentedTill = reader.Get<System.DateTime>("RentedTill");
             
             Visitor returnedBy = null;
-            if(reader.HasColumnAndNotNull("ticket"))
-                returnedBy = CreateVisitor(reader);
-
             reader.AddPrefix("returnedBy");
+            if (reader.HasColumnAndNotNull("ticket"))
+            {
+                returnedBy = CreateVisitor(reader);
+            }
             reader.RemovePrefix();
 
             System.DateTime returnedAt = reader.Get<System.DateTime>("ReturnedAt");
@@ -602,7 +603,7 @@ namespace Classes
             reader.RemovePrefix();
 
             System.DateTime bookedOn = reader.Get<System.DateTime>("BookedOn");
-            bool isPayed = reader.Get<bool>("IsPayed");
+            bool isPayed = reader.Get<bool>("isPaid");
             System.DateTime bookedTill = reader.Get<System.DateTime>("BookedTill");
 
             reader.AddPrefix("bookedBy");

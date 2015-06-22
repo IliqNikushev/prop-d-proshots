@@ -145,6 +145,7 @@ namespace Classes
                     result = false;
                 else if (result.ToString() == "1")
                     result = true;
+                else if (result is bool) {}
                 else result = false;
             return (T)result;
         }

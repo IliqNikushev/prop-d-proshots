@@ -30,7 +30,7 @@ namespace Classes
 
         public void GiveIDCardToVisitor(Visitor visitor, string tag)
         {
-            if (visitor.RFID != null || visitor.RFID != "")
+            if (!(visitor.RFID == null || visitor.RFID == ""))
                 throw new InvalidOperationException("User already has RFID");
 
             if ((long)Database.ExecuteScalar("Select count(*) from {0} Where {0}.rfid = '{1}'", Database.TableFor<Visitor>().Name, tag.Replace("'", "''")) != 0)

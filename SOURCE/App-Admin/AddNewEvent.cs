@@ -43,7 +43,7 @@ namespace App_Admin
         {
             get
             {
-                return (float)new App_Common.HomePageWithMap().MapWidth / this.pictureBoxMap.Width;
+                return (float)new App_Common.HomePageWithMap(null).MapWidth / this.pictureBoxMap.Width;
             }
         }
 
@@ -51,7 +51,7 @@ namespace App_Admin
         {
             get
             {
-                return  (float)new App_Common.HomePageWithMap().MapHeight / this.pictureBoxMap.Height;
+                return  (float)new App_Common.HomePageWithMap(null).MapHeight / this.pictureBoxMap.Height;
             }
         }
 

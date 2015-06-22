@@ -58,7 +58,8 @@ namespace DatabaseGenerator
                 new TentPitch(0, 630, 302),
                 new TentPitch(0, 650, 302),
                 new TentPitch(0, 636, 280),
-                new TentPitch(0, 564, 232),
+                new TentPitch(0, 664, 232),
+                new PayPalMachine(0, 475, 209),
 
                 new ShopWorkplace(0, "FoodAndDrink", "Main food and drink shop", "foodAndDrink.png", 564, 280),
                 new ITServiceWorkplace(0, 468, 331),

@@ -115,47 +115,51 @@ namespace App_Employee
         void reader_OnVisitorDetect(Classes.Visitor visitor)
         {
             ActiveVisitor = visitor;
-            if (ActiveVisitor)
-                activeVisitorLbl.Text = "Active visitor: " + ActiveVisitor.FullName;
-            else
+            MainMenu.Invoke(new Action(() =>
             {
-                activeVisitorLbl.Text = "Visitor not found in the database!";
-                return;
-            }
-            Classes.Receipt activeOrder = ActiveVisitor.ActiveOrder(this.Shop);
-            List<Classes.ReceiptItem> orderItems = activeOrder.Items;
-            if (activeOrder != null)
-            {
-                if (MessageBox.Show(string.Format(
-                    "Visitor already has an active order. Does he wish to continue it? ({0} item{1}, price:{2}{3})",
-                    orderItems.Count, orderItems.Count == 1 ? "" : "s", orderItems.Sum(x => x.TotalPrice), App_Common.Constants.Currency)
-                    , "Active order found", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-                {
-                    activeOrder.Clear();
-                }
+                if (ActiveVisitor)
+                    activeVisitorLbl.Text = "Active visitor: " + ActiveVisitor.FullName;
                 else
                 {
-                    List<Classes.ReceiptItem> notEnoughItems = new List<Classes.ReceiptItem>();
-                    foreach (var item in orderItems)
-                    {
-                        StoreItem found = this.items.Where(x => x.Item.ID == item.Item.ID).FirstOrDefault();
-
-                        if (found != null)
-                        {
-                            if (item.Times > found.InStock)
-                                notEnoughItems.Add(item);
-                            found.Update(item.Times);
-                        }
-                    }
-                    if (notEnoughItems.Any())
-                        MessageBox.Show("Some items could not be fit into the visitor's order.\n" + 
-                            notEnoughItems.Select(x => 
-                                x.Item.Brand + " " +
-                                x.Item.Model + " " +
-                                " wanted " + x.Times +
-                                " but there are " + x.Item.InStock + " (+" + (x.Times - x.Item.InStock) + ")"));
+                    activeVisitorLbl.Text = "Visitor not found in the database!";
+                    return;
                 }
-            }
+                Classes.Receipt activeOrder = ActiveVisitor.ActiveOrder(this.Shop);
+                if (activeOrder == null) return;
+                List<Classes.ReceiptItem> orderItems = activeOrder.Items;
+                if (activeOrder != null)
+                {
+                    if (MessageBox.Show(string.Format(
+                        "Visitor already has an active order. Does he wish to continue it? ({0} item{1}, price:{2}{3})",
+                        orderItems.Count, orderItems.Count == 1 ? "" : "s", orderItems.Sum(x => x.TotalPrice), App_Common.Constants.Currency)
+                        , "Active order found", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        activeOrder.Clear();
+                    }
+                    else
+                    {
+                        List<Classes.ReceiptItem> notEnoughItems = new List<Classes.ReceiptItem>();
+                        foreach (var item in orderItems)
+                        {
+                            StoreItem found = this.items.Where(x => x.Item.ID == item.Item.ID).FirstOrDefault();
+
+                            if (found != null)
+                            {
+                                if (item.Times > found.InStock)
+                                    notEnoughItems.Add(item);
+                                found.Update(item.Times);
+                            }
+                        }
+                        if (notEnoughItems.Any())
+                            MessageBox.Show("Some items could not be fit into the visitor's order.\n" +
+                                notEnoughItems.Select(x =>
+                                    x.Item.Brand + " " +
+                                    x.Item.Model + " " +
+                                    " wanted " + x.Times +
+                                    " but there are " + x.Item.InStock + " (+" + (x.Times - x.Item.InStock) + ")"));
+                    }
+                }
+            }));
         }
 
         void verticalBar_Scroll(object sender, ScrollEventArgs e)
@@ -340,7 +344,7 @@ namespace App_Employee
         {
             if (ActiveVisitor == null)
             {
-                MessageBox.Show("No visitor found. Please approach the card first before confirming.");
+                MessageBox.Show("No visitor found. Please approach the card first before continuing.");
                 return; 
             }
             if (!this.items.Where(x => x.PurchaseTimes > 0).Any())

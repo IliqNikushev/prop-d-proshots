@@ -17,6 +17,7 @@ namespace App_Employee
         List<Classes.RentableItem> AllItems = Classes.Database.All<Classes.RentableItem>();
         List<RentableItem> removedItems = new List<RentableItem>();
 
+        private RentableItemHistory lastSelectedRentedItem;
         private RentableItemHistory currentSelectedRentedItem { get { return this.cartListView.SelectedItem as RentableItemHistory; } }
 
         Visitor activeVis;
@@ -29,8 +30,8 @@ namespace App_Employee
                 foreach (var i in lbCart.Items)
                 {
                     RentableItem item = i as RentableItem;
-                    TimeSpan differene = date.Value - DateTime.Today.AddHours(DateTime.Now.Hour);
-                    sum += item.Price * (decimal)differene.TotalHours;
+                    TimeSpan differene = date.Value.AddDays(1) - DateTime.Now;
+                    sum += item.Price * decimal.Round((decimal)differene.TotalHours,0);
                 }
                 sum = Decimal.Round(sum, 2);
                 return sum;
@@ -41,7 +42,7 @@ namespace App_Employee
             : base(parent)
         {
             InitializeComponent();
-
+            if (date.MinDate < DateTime.Today) date.MinDate = DateTime.Today;
             btnConfirm.Click += (x, y) => BlockExceptions();
 
             plItems.AutoScroll = true;
@@ -94,10 +95,20 @@ namespace App_Employee
 
                 rent.Click += (xx, yy) =>
                 {
+                    if (item.InStock - c <= 0) return;
                     c += 1;
                     stock.Text = "Quantity: " + (item.InStock - c).ToString();
                     lbCart.Items.Add(item);
                     lbPrice.Text = Totalprice + App_Common.Constants.Currency;
+                };
+
+                btnReturnItem.Click += (x, yy) =>
+                {
+                    if (lastSelectedRentedItem == null) return;
+                    if (activeVis == null) return;
+                    if (lastSelectedRentedItem.RentedItem != item) return;
+                    c -= 1;
+                    stock.Text = "Quantity: " + (item.InStock - c).ToString();
                 };
 
                 btnReturn.Click += (x, yy) =>
@@ -106,23 +117,22 @@ namespace App_Employee
                         return;
                     c -= 1;
                     lbCart.Items.RemoveAt(lbCart.SelectedIndex);
-                    stock.Text = (item.InStock - c).ToString();
+                    stock.Text = "Quantity: " + (item.InStock - c).ToString();
                     lbPrice.Text = Totalprice + App_Common.Constants.Currency;
                 };
 
                 btnConfirm.Click += (x, yy) =>
                 {
                     if (activeVis == null) return;
-                    bool contained = false;
+                    if (activeVis.Balance < Totalprice) return;
+                    
                     while (lbCart.Items.Contains(item))
                     {
-                        contained = true;
-                        cartListView.Items.Add(new RentableItemHistory(item, activeVis, ""));
+                        RentableItemHistory h = new RentableItemHistory(item, activeVis, "", date.Value.AddDays(1)).Create() as RentableItemHistory;
+                        cartListView.Items.Add(h);
+                        Database.ExecuteSQL("UPDATE `rentableitems` SET InStock = {0} WHERE Item_ID = {1}", item.InStock - c, item.ID);
                         lbCart.Items.Remove(item);
                     }
-                    if (!contained) return;
-                    new RentableItemHistory(item, activeVis, "").Create();
-                    Database.ExecuteSQL("UPDATE `rentableitems` SET InStock = {0} WHERE Item_ID = {1}", item.InStock - c, item.ID);
                 };
 
                 if (!IsInDebug)
@@ -134,6 +144,17 @@ namespace App_Employee
             }
 
             btnConfirm.Click += (x, y) => UnBlockExceptions();
+            btnConfirm.Click += (x, y) =>
+                {
+                    if (activeVis == null) return;
+                    if (Totalprice == 0) return;
+                    if (activeVis.Balance < Totalprice)
+                    {
+                        MessageBox.Show("Visitor does not have enough funds ({0}{1} more needed)".Args(Totalprice - activeVis.Balance, Constants.Currency));
+                        return;
+                    }
+                    activeVis.ChangeBalanceWith(-Totalprice, "rent " + DateTime.Now);
+                };
         }
 
         void rf_OnDetect(string tag)
@@ -142,10 +163,10 @@ namespace App_Employee
             MainMenu.Invoke(new Action(
             () =>
             {
-
                 cartListView.Items.Clear();
                 tbID.Text = tag;
                 tbFullname.Text = activeVis.FullName;
+                picVis.ImageLocation = activeVis.Picture;
                 foreach (var item in activeVis.RentedItems)
                 {
                     if (item.IsReturned) continue;
@@ -190,7 +211,7 @@ namespace App_Employee
             if (Database.HadAnError)
                 return;
             MessageBox.Show("Item successfully returned");
-
+            lastSelectedRentedItem = currentSelectedRentedItem;
             this.cartListView.Items.Remove(currentSelectedRentedItem);
         }
 

@@ -64,7 +64,25 @@ namespace App_Employee
 
         private void btnFinish_Click(object sender, EventArgs e)
         {
-            (lbQueue.SelectedItem as Appointment).Complete();
+            if(lbQueue.SelectedItem == null) return;
+            Appointment appointment = lbQueue.SelectedItem as Appointment;
+            if (activeVis == null)
+            {
+                MessageBox.Show("No visitor found. Please approach the card");
+                return;
+            }
+            if (activeVis.ID != appointment.Visitor.ID)
+            {
+                MessageBox.Show("Item does not belong to current visitor");
+                return;
+            }
+            if (activeVis.Balance < appointment.Price)
+            {
+                MessageBox.Show("Visitor cannot pay for the appointment ({0}{1} more is needed)".Arg(appointment.Price - activeVis.Balance));
+                return;
+            }
+            activeVis.ChangeBalanceWith(-appointment.Price, "Appointment " + appointment.ID);
+            appointment.Complete();
             lbCompleted.Items.Add(lbQueue.SelectedItem);
             lbQueue.Items.Remove(lbQueue.SelectedItem);
         }

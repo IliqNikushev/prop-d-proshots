@@ -13,11 +13,6 @@ namespace Classes
         {
         }
 
-        public void Rent(Classes.Visitor renter)
-        {
-            renter.Rent(this);
-            RentableItemHistory history = new RentableItemHistory(this, renter);
-        }
         public override string ToString()
         {
             return Brand + " " + Model;

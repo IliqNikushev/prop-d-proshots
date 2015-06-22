@@ -27,7 +27,7 @@ namespace Classes
             get { return this.ReturnedBy != null; }
         }
 
-        public bool IsReturned { get { return this.IsRented && this.ReturnedAt != DateTime.MinValue; } }
+        public bool IsReturned { get { return this.ReturnedBy != null; } }
 
         public RentableItemHistory(int id, RentableItem item, Visitor rentedBy, Visitor returnedBy, DateTime rentedAt, DateTime returnedAt, DateTime rentedTill, string notes) : base(id)
         {
@@ -40,7 +40,7 @@ namespace Classes
             this.Notes = notes;
         }
 
-        public RentableItemHistory(RentableItem item, Visitor rentedBy, string notes = "") : this(0, item,rentedBy, null, DateTime.Today, DateTime.MinValue, DateTime.Today, notes)
+        public RentableItemHistory(RentableItem item, Visitor rentedBy, string notes, DateTime rentedTill) : this(0, item,rentedBy, null, DateTime.Now, DateTime.MinValue, rentedTill, notes)
         {
         }
 
@@ -66,14 +66,14 @@ namespace Classes
         public override string ToString()
         {
             return 
-                string.Format("{0} {1} on {2} for {3} for {4}{5} per hour ({6}{7}total)",
+                string.Format("{0} {1} on {2} for {3} hours for {4}{5} per hour ({6}{7}total)",
             this.RentedItem.Brand,
             this.RentedItem.Model,
             this.RentedAt,
-            Math.Abs((this.RentedTill - this.RentedAt).TotalHours),
+            decimal.Round((decimal)Math.Abs((this.RentedTill - this.RentedAt).TotalHours),0),
             this.Price,
             Constants.Currency,
-            this.Price * (decimal)(Math.Abs((this.RentedTill - this.RentedAt).TotalHours)),
+            this.Price * (decimal.Round((decimal)(Math.Abs((this.RentedTill - this.RentedAt).TotalHours)), 0)),
             Constants.Currency);
         }
     }

@@ -80,7 +80,7 @@ namespace Classes
                 Join<Visitor>("JOIN", "Receipts.purchasedby = Visitors.user_id", "purchasedby")},
             {typeof(ReceiptItem), new Table("ReceiptItems", "id", "totalAmount", "pricePerItem", "times").
                 Join<Receipt>("JOIN", "Receipts.id = ReceiptItems.receipt_id", "receipt").
-                Join<ShopItem>("JOIN", "ShopItems.item_id = ReceiptItems.item_id", "item")},
+                Join<ShopItem>("JOIN", "ShopItems.id = ReceiptItems.item_id", "item")},
             {typeof(RentableItem), new Table("RentableItems", "price", "inStock").
                 Join<Item>("Join", "RentableItems.item_id = Items_ALL.id", "")},
             {typeof(RentableItemHistory), new Table("RentableItemHistories", "returnedAt", "rentedAt", "notes", "rentedTill", "id").
@@ -94,7 +94,7 @@ namespace Classes
                 Join<Restock>("JOIN", "Restocks.id = RestockItems.restock_id", "restock").
                 Join<ShopItem>("JOIN", "ShopItems.item_id = RestockItems.item_id", "item")},
             {typeof(ShopWorkplace), new Table("Shops", "id", "label", "description", "x", "y", "type", "logo")},
-            {typeof(Tent), new Table("Tents", "bookedOn", "bookedTill", "isPayed").
+            {typeof(Tent), new Table("Tents", "bookedOn", "bookedTill", "isPaid").
                 Join<Visitor>("JOIN", "Tents.bookedBy = Visitors.user_id", "bookedBy").
                 Join<TentPitch>("JOIN", "Landmarks.id = Tents.location", "location")},
             {typeof(TentPerson), new Table("TentPeople", "ID", "CheckedInTime").

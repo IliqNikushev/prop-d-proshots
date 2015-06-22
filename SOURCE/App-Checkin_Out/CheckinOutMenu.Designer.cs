@@ -36,6 +36,7 @@
             // 
             // statePbox
             // 
+            this.statePbox.Image = global::App_Checkin_Out.Properties.Resources.Idle;
             this.statePbox.Location = new System.Drawing.Point(12, 12);
             this.statePbox.Name = "statePbox";
             this.statePbox.Size = new System.Drawing.Size(260, 237);

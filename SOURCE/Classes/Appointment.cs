@@ -51,7 +51,7 @@ namespace Classes
 
         public override Record Create()
         {
-            return Database.Insert(this,"appointed_item,appointed_by,description",this.AppointedItem.ID,Visitor.ID,Description);
+            return Database.Insert(this,"appointed_item,appointed_by,description, appointedOn",this.AppointedItem.ID,Visitor.ID,Description, DateTime.Now);
         }
         public void Complete()
         {
@@ -60,7 +60,7 @@ namespace Classes
 
         public override string ToString()
         {
-            return Visitor.ToString() + " scheduled his " + AppointedItem + " on " + AppointedOn;
+            return Visitor.ToString() + " scheduled their " + AppointedItem + " on " + AppointedOn.ToString("dd, at HH:mm, ") +" ({0} tasks for {1}{2})".Args(this.Tasks.Count, this.Price, Constants.Currency);
         }
     }
 }

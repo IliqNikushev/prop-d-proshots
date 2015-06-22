@@ -20,6 +20,7 @@ namespace App_Visitor
 
         protected override bool OnLogin()
         {
+            if (LoggedInVisitor == null) return false;
             new HomePage(this).Show();
             return true;
         }

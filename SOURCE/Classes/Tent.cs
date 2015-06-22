@@ -84,7 +84,7 @@ namespace Classes
             if (result != null)
                 if(result.ID == result.Location.ID)
                     foreach (var item in this.bookedFor)
-                        new TentPerson(item, this).Create();
+                        new TentPerson(item, result).Create();
             return result;
         }
     }

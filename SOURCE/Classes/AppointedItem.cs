@@ -15,9 +15,9 @@ namespace Classes
 
         public override Record Create()
         {
-            int id = 0; 
-            Database.ExecuteSQL("INSERT INTO `dbi317294`.`items` (`Brand`, `Model`, `Type`, `Description`) VALUES ('{0}', '{1}', '{2}', '{3}');",this.Brand,this.Model,this.Type,this.Description);
-            Database.ExecuteSQLWithResult("SELECT ID FROM `items` WHERE Brand = '{0}' AND Model = '{1}' AND Type = '{2}' ORDER BY ID DESC limit 1;", x => { x.Read(); id = x.GetInt("ID"); },this.Brand,this.Model,this.Type);
+            int id = 0;
+            Database.ExecuteSQL("INSERT INTO Items (Brand, Model, Type, Description) VALUES ('{0}', '{1}', '{2}', '{3}');", this.Brand, this.Model, this.Type, this.Description);
+            Database.ExecuteSQLWithResult("SELECT ID FROM Items WHERE Brand = '{0}' AND Model = '{1}' AND Type = '{2}' ORDER BY ID DESC limit 1;", x => { x.Read(); id = x.Get<int>("ID"); },this.Brand,this.Model,this.Type);
             return Database.Find<AppointedItem>("|T|.ID = {0}", id);
         }
         public override string ToString()
