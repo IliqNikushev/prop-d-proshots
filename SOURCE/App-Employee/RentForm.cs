@@ -72,7 +72,7 @@ namespace App_Employee
                 box.Controls.Add(name);
 
                 Label price = new Label();
-                price.Text = item.Price.ToString();
+                price.Text = (item.Price.ToString()) + " € per hour";
                 price.Top = y;
                 y += price.Height;
                 box.Controls.Add(price);
@@ -95,7 +95,7 @@ namespace App_Employee
                 rent.Click += (xx, yy) =>
                 {
                     c += 1;
-                    stock.Text = (item.InStock - c).ToString();
+                    stock.Text = "Quantity: " + (item.InStock - c).ToString();
                     lbCart.Items.Add(item);
                     lbPrice.Text = Totalprice + App_Common.Constants.Currency;
                 };
@@ -134,8 +134,6 @@ namespace App_Employee
             }
 
             btnConfirm.Click += (x, y) => UnBlockExceptions();
-
-            rf_OnDetect((Visitor.Authenticate("tester", "test") as Visitor).RFID);
         }
 
         void rf_OnDetect(string tag)

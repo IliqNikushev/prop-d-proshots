@@ -89,7 +89,7 @@
             this.plItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.plItems.Location = new System.Drawing.Point(7, 283);
             this.plItems.Name = "plItems";
-            this.plItems.Size = new System.Drawing.Size(348, 224);
+            this.plItems.Size = new System.Drawing.Size(375, 224);
             this.plItems.TabIndex = 103;
             // 
             // lblLog
