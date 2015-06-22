@@ -45,13 +45,13 @@
             // 
             // findByNameTb
             // 
-            this.findByNameTb.Margin = new System.Windows.Forms.Padding(2);
-            this.findByNameTb.Size = new System.Drawing.Size(130, 17);
+            //this.findByNameTb.Margin = new System.Windows.Forms.Padding(2);
+            //this.findByNameTb.Size = new System.Drawing.Size(130, 17);
             // 
             // findByTypeTb
             // 
-            this.findByTypeTb.Margin = new System.Windows.Forms.Padding(2);
-            this.findByTypeTb.Size = new System.Drawing.Size(130, 17);
+            //this.findByTypeTb.Margin = new System.Windows.Forms.Padding(2);
+            //this.findByTypeTb.Size = new System.Drawing.Size(130, 17);
             // 
             // groupBox1
             // 
@@ -181,10 +181,10 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PcDoctor";
             this.Text = "PcDoctor";
-            this.Controls.SetChildIndex(this.findByNameLbl, 0);
-            this.Controls.SetChildIndex(this.findByTypeTb, 0);
-            this.Controls.SetChildIndex(this.findByTypeLbl, 0);
-            this.Controls.SetChildIndex(this.findByNameTb, 0);
+            //this.Controls.SetChildIndex(this.findByNameLbl, 0);
+            //this.Controls.SetChildIndex(this.findByTypeTb, 0);
+            //this.Controls.SetChildIndex(this.findByTypeLbl, 0);
+            //this.Controls.SetChildIndex(this.findByNameTb, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.btnBack, 0);
             this.groupBox1.ResumeLayout(false);

@@ -43,7 +43,18 @@ namespace App_Admin
         public void AddToListBox(List<Record> r)
         {
             listBox1.Items.Clear();
-            listBox1.Items.AddRange(r.ToArray());
+            foreach (var item in r)
+            {
+                if(item is Tent)
+                {
+                    Tent t = item as Tent;
+                    string result = item.ID + " " + t.BookedBy + " for " + t.NumberOfPeople + " additional people, on " + t.BookedOn + " price=" + t.Price;
+                    listBox1.Items.Add(result);
+                }
+                else
+                    listBox1.Items.Add(item);
+            }
+            
 
         }
 

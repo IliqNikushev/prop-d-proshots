@@ -20,9 +20,9 @@ namespace App_Admin
         private Classes.Employee currentEmployee;
         public Employees(App_Common.Menu parent) : base(parent)
         {
-            Fix();
+            
             InitializeComponent();
-            Unfix();
+            
             this.employees = Classes.Database.All<Classes.Employee>();
             EmployeeToShow = employees;
             currentEmployee = LoggedInUser as Employee;
@@ -69,7 +69,12 @@ namespace App_Admin
            
 
             this.listBox1.Items.Clear();
-            this.listBox1.Items.AddRange(EmployeeToShow.ToArray());
+            foreach (var item in EmployeeToShow)
+            {
+                string result = item.ID + "-" + item.FullName + "-" + item.Duty + " working at " + item.Workplace;
+                listBox1.Items.Add(result);
+            }
+            
         }
 
         private void comboBoxDuty_SelectedIndexChanged(object sender, EventArgs e)
@@ -82,7 +87,12 @@ namespace App_Admin
             else if (comboBoxDuty.SelectedItem != null && comboBoxDuty.SelectedItem.ToString() != "ALL")
                 EmployeeToShow = employees.Where(x => x.Duty == (comboBoxDuty.SelectedItem).ToString()).ToList();
             this.listBox1.Items.Clear();
-            this.listBox1.Items.AddRange(EmployeeToShow.ToArray());
+            foreach (var item in EmployeeToShow)
+            {
+                string result = item.ID + "-" + item.FullName + "-" + item.Duty + " working at " + item.Workplace;
+                listBox1.Items.Add(result);
+            }
+            
         }
     }
 }

@@ -32,7 +32,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonTent = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.checkBoxVisitor = new System.Windows.Forms.CheckBox();
             this.buttonAll = new System.Windows.Forms.Button();
             this.textBoxVisitor = new System.Windows.Forms.TextBox();
             this.buttonTopUps = new System.Windows.Forms.Button();
@@ -44,6 +43,7 @@
             this.buttonloaned = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnBack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -51,9 +51,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.buttonTent);
             this.groupBox1.Controls.Add(this.listBox1);
-            this.groupBox1.Controls.Add(this.checkBoxVisitor);
             this.groupBox1.Controls.Add(this.buttonAll);
             this.groupBox1.Controls.Add(this.textBoxVisitor);
             this.groupBox1.Controls.Add(this.buttonTopUps);
@@ -90,16 +90,6 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(833, 260);
             this.listBox1.TabIndex = 30;
-            // 
-            // checkBoxVisitor
-            // 
-            this.checkBoxVisitor.AutoSize = true;
-            this.checkBoxVisitor.Location = new System.Drawing.Point(158, 27);
-            this.checkBoxVisitor.Name = "checkBoxVisitor";
-            this.checkBoxVisitor.Size = new System.Drawing.Size(110, 21);
-            this.checkBoxVisitor.TabIndex = 53;
-            this.checkBoxVisitor.Text = "Visitor Name";
-            this.checkBoxVisitor.UseVisualStyleBackColor = true;
             // 
             // buttonAll
             // 
@@ -211,6 +201,15 @@
             this.pictureBox2.TabIndex = 45;
             this.pictureBox2.TabStop = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(159, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 17);
+            this.label2.TabIndex = 55;
+            this.label2.Text = "Visitor Name";
+            // 
             // Visitors
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -239,7 +238,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxDate;
         private System.Windows.Forms.PictureBox btnBack;
-        private System.Windows.Forms.CheckBox checkBoxVisitor;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button buttonTopUps;
         private System.Windows.Forms.Button buttonAppointment;
@@ -247,6 +245,7 @@
         private System.Windows.Forms.Button buttonloaned;
         private System.Windows.Forms.Button buttonAll;
         private System.Windows.Forms.Button buttonTent;
+        private System.Windows.Forms.Label label2;
 
     }
 }

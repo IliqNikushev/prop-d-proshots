@@ -11,16 +11,16 @@ using Classes;
 
 namespace App_Admin
 {
-    public partial class ServiceDesk : App_Common.HomePageWithMap
+    public partial class ServiceDesk : App_Common.HomePage
     {
         private List<Classes.Item> items;
         private List<Classes.RentableItemHistory> itemsHistory;
         private Classes.Item currentItem;
         public ServiceDesk(App_Common.Menu parent) : base(parent)
         {
-            Fix();
+           // Fix();
             InitializeComponent();
-            Unfix();
+//Unfix();
             this.itemsHistory = Classes.Database.All<Classes.RentableItemHistory>();
            //currentEmployee = LoggedInUser as Employee;
            // this.comboBoxItems.Items.Clear();

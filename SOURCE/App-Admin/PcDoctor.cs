@@ -11,15 +11,15 @@ using Classes;
 
 namespace App_Admin
 {
-    public partial class PcDoctor : App_Common.HomePageWithMap
+    public partial class PcDoctor : App_Common.HomePage
     {
         private List<Classes.Appointment> appointments;
 
         public PcDoctor(App_Common.Menu parent) : base(parent)
         {
-            Fix();
+            
             InitializeComponent();
-            Unfix();
+            
             appointments = Database.Appointments;
         }
 

@@ -35,6 +35,7 @@ namespace App_Admin.SubMenu
                  {
                      
                      countShops++;
+                     ShopWorkplace shop = item;
                      PictureBox p = new PictureBox();
                      p.ImageLocation = item.Icon;
                      panel.Controls.Add(p);
@@ -43,7 +44,7 @@ namespace App_Admin.SubMenu
                      p.Height = 128;
                      p.Left = xC;
                      p.Top = yC;
-                     ShopWorkplace shop = item;
+                     
                      p.Click += (x, y) => new ShopInformation(shop, this).Show();
                      object rr = Database.ExecuteScalar("SELECT sum(TotalAmount) FROM `receiptitems` WHERE item_id in(select id from ShopItems where shopitems.shop_id= {0});", item.ID);
                      if (rr==null)
