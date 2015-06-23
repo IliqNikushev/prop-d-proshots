@@ -27,6 +27,8 @@ namespace App_Employee
         {
             InitializeComponent();
 
+            this.storeLogoPbox.ImageLocation = this.Shop.Icon;
+
             StoreItem example = new StoreItem(new Classes.ShopItem(0, 0, "", "Example imte", "<>", "", "","", 0, 0, null, 0));
             this.Controls.Add(GenerateItem(exampleLbl.Left, exampleLbl.Top, example, 64));
 
@@ -108,6 +110,7 @@ namespace App_Employee
                 item.Reset();
             this.ActiveVisitor = null;
             this.activeVisitorLbl.Text = "No active visitor";
+            this.visPbox.ImageLocation = "";
 
             UpdateTotal();
 
@@ -124,10 +127,14 @@ namespace App_Employee
             MainMenu.Invoke(new Action(() =>
             {
                 if (ActiveVisitor)
+                {
                     activeVisitorLbl.Text = "Active visitor: " + ActiveVisitor.FullName;
+                    visPbox.ImageLocation = ActiveVisitor.Picture;
+                }
                 else
                 {
                     activeVisitorLbl.Text = "Visitor not found in the database!";
+                    visPbox.ImageLocation = "";
                     return;
                 }
                 Classes.Receipt activeOrder = ActiveVisitor.ActiveOrder(this.Shop);
@@ -138,7 +145,7 @@ namespace App_Employee
                     if (MessageBox.Show(string.Format(
                         "Visitor already has an active order. Does he wish to continue it? ({0} item{1}, price:{2}{3})",
                         orderItems.Count, orderItems.Count == 1 ? "" : "s", orderItems.Sum(x => x.TotalPrice), App_Common.Constants.Currency)
-                        , "Active order found", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                        , "Active order found", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
                     {
                         activeOrder.Clear();
                     }
@@ -380,6 +387,10 @@ namespace App_Employee
         private void restockBtn_Click(object sender, EventArgs e)
         {
             new StoreInventoryForm(items,() => this.Reset(), LoggedInEmployee).Show();
+        }
+
+        private void searchTbox_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }

@@ -199,6 +199,24 @@ namespace DatabaseGenerator
 
         static void Main(string[] args)
         {
+            Dictionary<string,string> s = new Dictionary<string,string>();
+            foreach (var item in Database.All<Landmark>())
+            {
+                if (s.ContainsKey(item.Icon)) continue ;
+                s.Add(item.Icon, item.Icon);
+            }
+
+            foreach (var item in s)
+            {
+                Console.WriteLine(item.Key);
+            }
+
+            foreach (var item in Database.All<Visitor>())
+            {
+                Console.WriteLine(item.Picture);
+            }
+
+            return;
             Delete();
             Delete();
             Create();

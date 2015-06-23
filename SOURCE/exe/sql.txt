@@ -1,0 +1,111 @@
+23/06/2015 10:18:16 AM>>>ExecuteSQLWithResult
+Select Employees.job job
+, Users.id id, Users.firstName firstName, Users.lastName lastName, Users.email email, Users.password password, Users.type type, Users.username username
+, Landmarks.id workplace_id, Landmarks.label workplace_label, Landmarks.description workplace_description, Landmarks.x workplace_x, Landmarks.y workplace_y, Landmarks.type workplace_type, Landmarks.logo workplace_logo
+, Visitors.balance balance, Visitors.picture picture, Visitors.ticket ticket, Visitors.rfid rfid, Visitors.IsInTheEvent IsInTheEvent
+from
+Employees
+RIGHT JOIN Users On Employees.user_id = Users.id
+LEFT JOIN Landmarks On Landmarks.id = Employees.workplace_id
+LEFT JOIN Visitors  On Users.id = Visitors.user_id Where Users.password = 'pass' and Users.username = 'visitor' Limit 1
+result => True => Cols:20 * Rows:1
+<<<
+
+23/06/2015 10:18:16 AM>>>ExecuteSQLWithResult
+Select Events.timeStart timeStart, Events.timeEnd timeEnd
+, Landmarks.id id, Landmarks.label label, Landmarks.description description, Landmarks.x x, Landmarks.y y, Landmarks.type type, Landmarks.logo logo
+from
+Events
+RIGHT JOIN Landmarks On Landmarks.id = Events.location
+result => True => Cols:9 * Rows:11
+<<<
+
+23/06/2015 10:18:16 AM>>>ExecuteSQLWithResult
+Select Tents.bookedOn bookedOn, Tents.bookedTill bookedTill, Tents.isPaid isPaid
+, Visitors.balance bookedBy_balance, Visitors.picture bookedBy_picture, Visitors.ticket bookedBy_ticket, Visitors.rfid bookedBy_rfid, Visitors.IsInTheEvent bookedBy_IsInTheEvent
+, Users.id bookedBy_id, Users.firstName bookedBy_firstName, Users.lastName bookedBy_lastName, Users.email bookedBy_email, Users.password bookedBy_password, Users.type bookedBy_type, Users.username bookedBy_username
+, Landmarks.id location_id, Landmarks.x location_x, Landmarks.y location_y
+from
+Tents
+JOIN Visitors On Tents.bookedBy = Visitors.user_id
+JOIN Users On Users.id = Visitors.user_id
+JOIN Landmarks On Landmarks.id = Tents.location
+Where
+( landmarks.type = 'tent') and (Tents.location = 1)
+result => False => Cols:18 * Rows:0
+<<<
+
+23/06/2015 10:18:16 AM>>>ExecuteSQLWithResult
+Select Tents.bookedOn bookedOn, Tents.bookedTill bookedTill, Tents.isPaid isPaid
+, Visitors.balance bookedBy_balance, Visitors.picture bookedBy_picture, Visitors.ticket bookedBy_ticket, Visitors.rfid bookedBy_rfid, Visitors.IsInTheEvent bookedBy_IsInTheEvent
+, Users.id bookedBy_id, Users.firstName bookedBy_firstName, Users.lastName bookedBy_lastName, Users.email bookedBy_email, Users.password bookedBy_password, Users.type bookedBy_type, Users.username bookedBy_username
+, Landmarks.id location_id, Landmarks.x location_x, Landmarks.y location_y
+from
+Tents
+JOIN Visitors On Tents.bookedBy = Visitors.user_id
+JOIN Users On Users.id = Visitors.user_id
+JOIN Landmarks On Landmarks.id = Tents.location
+Where
+( landmarks.type = 'tent') and (Tents.location = 2)
+result => False => Cols:18 * Rows:0
+<<<
+
+23/06/2015 10:18:16 AM>>>ExecuteSQLWithResult
+Select Tents.bookedOn bookedOn, Tents.bookedTill bookedTill, Tents.isPaid isPaid
+, Visitors.balance bookedBy_balance, Visitors.picture bookedBy_picture, Visitors.ticket bookedBy_ticket, Visitors.rfid bookedBy_rfid, Visitors.IsInTheEvent bookedBy_IsInTheEvent
+, Users.id bookedBy_id, Users.firstName bookedBy_firstName, Users.lastName bookedBy_lastName, Users.email bookedBy_email, Users.password bookedBy_password, Users.type bookedBy_type, Users.username bookedBy_username
+, Landmarks.id location_id, Landmarks.x location_x, Landmarks.y location_y
+from
+Tents
+JOIN Visitors On Tents.bookedBy = Visitors.user_id
+JOIN Users On Users.id = Visitors.user_id
+JOIN Landmarks On Landmarks.id = Tents.location
+Where
+( landmarks.type = 'tent') and (Tents.location = 3)
+result => False => Cols:18 * Rows:0
+<<<
+
+23/06/2015 10:18:16 AM>>>ExecuteSQLWithResult
+Select Tents.bookedOn bookedOn, Tents.bookedTill bookedTill, Tents.isPaid isPaid
+, Visitors.balance bookedBy_balance, Visitors.picture bookedBy_picture, Visitors.ticket bookedBy_ticket, Visitors.rfid bookedBy_rfid, Visitors.IsInTheEvent bookedBy_IsInTheEvent
+, Users.id bookedBy_id, Users.firstName bookedBy_firstName, Users.lastName bookedBy_lastName, Users.email bookedBy_email, Users.password bookedBy_password, Users.type bookedBy_type, Users.username bookedBy_username
+, Landmarks.id location_id, Landmarks.x location_x, Landmarks.y location_y
+from
+Tents
+JOIN Visitors On Tents.bookedBy = Visitors.user_id
+JOIN Users On Users.id = Visitors.user_id
+JOIN Landmarks On Landmarks.id = Tents.location
+Where
+( landmarks.type = 'tent') and (Tents.location = 4)
+result => False => Cols:18 * Rows:0
+<<<
+
+23/06/2015 10:18:16 AM>>>ExecuteSQLWithResult
+Select Tents.bookedOn bookedOn, Tents.bookedTill bookedTill, Tents.isPaid isPaid
+, Visitors.balance bookedBy_balance, Visitors.picture bookedBy_picture, Visitors.ticket bookedBy_ticket, Visitors.rfid bookedBy_rfid, Visitors.IsInTheEvent bookedBy_IsInTheEvent
+, Users.id bookedBy_id, Users.firstName bookedBy_firstName, Users.lastName bookedBy_lastName, Users.email bookedBy_email, Users.password bookedBy_password, Users.type bookedBy_type, Users.username bookedBy_username
+, Landmarks.id location_id, Landmarks.x location_x, Landmarks.y location_y
+from
+Tents
+JOIN Visitors On Tents.bookedBy = Visitors.user_id
+JOIN Users On Users.id = Visitors.user_id
+JOIN Landmarks On Landmarks.id = Tents.location
+Where
+( landmarks.type = 'tent') and (Tents.location = 5)
+result => False => Cols:18 * Rows:0
+<<<
+
+23/06/2015 10:18:16 AM>>>ExecuteSQL
+Insert into UserActions (user_id, date, action) values (1,'2015-06-23 10:18:16','login'); 
+result => 1
+<<<
+
+23/06/2015 10:18:16 AM>>>ExecuteSQLWithResult
+Select UserActions.date date, UserActions.action action, UserActions.id id
+, Users.id user_id, Users.firstName user_firstName, Users.lastName user_lastName, Users.email user_email, Users.password user_password, Users.type user_type, Users.username user_username
+from
+UserActions
+JOIN Users On Users.id = UserActions.user_id Where UserActions.user_id = 1 and UserActions.date = '2015-06-23 10:18:16' and UserActions.action = 'login'
+result => True => Cols:10 * Rows:1
+<<<
+

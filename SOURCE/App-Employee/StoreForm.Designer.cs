@@ -56,10 +56,12 @@
             this.storeLogoPbox = new System.Windows.Forms.PictureBox();
             this.inventoryBtn = new System.Windows.Forms.Button();
             this.logo = new System.Windows.Forms.PictureBox();
+            this.visPbox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.subPbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addPbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeLogoPbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visPbox)).BeginInit();
             this.SuspendLayout();
             // 
             // totalItemsCountLbl
@@ -144,7 +146,7 @@
             // activeVisitorLbl
             // 
             this.activeVisitorLbl.AutoSize = true;
-            this.activeVisitorLbl.Location = new System.Drawing.Point(70, 3);
+            this.activeVisitorLbl.Location = new System.Drawing.Point(82, 3);
             this.activeVisitorLbl.Name = "activeVisitorLbl";
             this.activeVisitorLbl.Size = new System.Drawing.Size(70, 13);
             this.activeVisitorLbl.TabIndex = 67;
@@ -176,7 +178,7 @@
             // 
             // storeLogoPbox
             // 
-            this.storeLogoPbox.Location = new System.Drawing.Point(0, 0);
+            this.storeLogoPbox.Location = new System.Drawing.Point(541, 79);
             this.storeLogoPbox.Name = "storeLogoPbox";
             this.storeLogoPbox.Size = new System.Drawing.Size(64, 64);
             this.storeLogoPbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -204,10 +206,20 @@
             this.logo.TabIndex = 98;
             this.logo.TabStop = false;
             // 
+            // visPbox
+            // 
+            this.visPbox.Location = new System.Drawing.Point(12, 0);
+            this.visPbox.Name = "visPbox";
+            this.visPbox.Size = new System.Drawing.Size(64, 64);
+            this.visPbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.visPbox.TabIndex = 99;
+            this.visPbox.TabStop = false;
+            // 
             // StoreForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(606, 443);
+            this.Controls.Add(this.visPbox);
             this.Controls.Add(this.logo);
             this.Controls.Add(this.inventoryBtn);
             this.Controls.Add(this.activeVisitorLbl);
@@ -230,6 +242,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.addPbox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeLogoPbox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visPbox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -240,5 +253,6 @@
        private System.Windows.Forms.Label activeVisitorLbl;
        private System.Windows.Forms.Button inventoryBtn;
        private System.Windows.Forms.PictureBox logo;
+       private System.Windows.Forms.PictureBox visPbox;
     }
 }

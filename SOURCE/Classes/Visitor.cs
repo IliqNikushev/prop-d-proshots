@@ -16,10 +16,14 @@ namespace Classes
         {
             get
             {
+                picture = picture.Replace(".jpg", ".png");
                 if (picture.StartsWith("http"))
                     return picture;
                 else
-                    return Database.PathToAthenaUploads + picture;
+                    if (picture.StartsWith(Database.PathToAthenaUploads))
+                        return picture;
+                    else
+                        return Database.PathToAthenaUploads + picture;
             }
             set { this.picture = value; }
         }

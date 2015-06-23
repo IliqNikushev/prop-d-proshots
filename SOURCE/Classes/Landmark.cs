@@ -24,6 +24,7 @@ namespace Classes
         {
             get
             {
+                this.icon = icon.Replace(".jpg", ".png");
                 if (!icon.StartsWith("http"))
                     return Database.PathToAthenaLandmarkPictures + icon;
                 return icon;
