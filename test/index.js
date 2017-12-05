@@ -1,6 +1,6 @@
-const tester = require('./pageTester');
+const testerClass = require('./pageTester');
 
-tester = new tester(process.env.URL);
+const tester = new testerClass(process.env.URL);
 
 const pages = [
 	"Balance.php",
