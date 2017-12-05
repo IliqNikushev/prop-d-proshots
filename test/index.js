@@ -16,7 +16,6 @@ const pages = [
 	"Login.php",
 	"Navbar.php",
 	"Participants.php",
-	"paypal.php",
 	"Profile.php",
 	"Register.php",
 	"Reservation.php",
