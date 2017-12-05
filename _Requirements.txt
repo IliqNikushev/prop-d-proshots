@@ -1,6 +1,0 @@
-Phidget Drivers ( to use the reader )
-	http://www.phidgets.com/docs/Language_-_C_Sharp#Quick_Downloads
-.Net 4.5 ( to use c# )
-	https://www.microsoft.com/en-us/download/details.aspx?id=30653
-Cisco Any Connect ( to make a connection from the apps to the database )
-	http://www.cisco.com/c/en/us/support/security/anyconnect-vpn-client/tsd-products-support-general-information.html
